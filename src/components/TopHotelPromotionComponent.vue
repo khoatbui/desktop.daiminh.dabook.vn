@@ -13,15 +13,6 @@
                  {{pac.supplierId.supplierName}}</h6>
               <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
-              <!-- <div class="row">
-                <div class="col-6">
-                  <a href="#0" class="btn btn-info btn-sm">Read...</a>
-                </div>
-                <div class="col-6 d-flex align-items-center justify-content-end">
-                  <i class="far fa-heart mr-2 text-info"></i>
-                  <i class="far fa-comment-dots text-info"></i>
-                </div>
-              </div> -->
               <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
