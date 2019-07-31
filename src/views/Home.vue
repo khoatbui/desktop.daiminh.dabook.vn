@@ -6,19 +6,25 @@
       <div class="container-fluid p-0">
         <ThreeStepComponent></ThreeStepComponent>
       </div>
-      <div class="container pt-2">
+      <div class="container pt-4">
         <TopCityComponent></TopCityComponent>
       </div>
-      <div class="container pt-2">
+      <div class="container pt-4">
         <TopDestinationComponent></TopDestinationComponent>
       </div>
-      <div class="container-fluid pt-2 px-0">
+      <div class="container-fluid pt-4 px-0">
         <VideoComponent></VideoComponent>
       </div>
-      <div class="container pt-2">
+      <div class="container pt-4">
         <TopHotelPromotionComponent></TopHotelPromotionComponent>
       </div>
-      <div class="container pt-2">
+      <div class="container-fluid px-0 pt-4">
+        <IntroduceDaiMinhComponent></IntroduceDaiMinhComponent>
+      </div>
+      <div class="container pt-4">
+        <TopTourPromotionComponent></TopTourPromotionComponent>
+      </div>
+      <div class="container pt-4">
         <IntroDaiMinhComponent></IntroDaiMinhComponent>
       </div>
     </div>
@@ -37,6 +43,8 @@ import TopCityComponent from '@/components/TopCityComponent.vue';
 import TopHotelPromotionComponent from '@/components/TopHotelPromotionComponent.vue';
 import BackgroundHeaderComponent from '@/components/BackgroundHeaderComponent.vue';
 import ThreeStepComponent from '@/components/ThreeStepComponent.vue';
+import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue';
+import IntroduceDaiMinhComponent from '@/components/IntroduceDaiMinhComponent.vue';
 
 export default {
   name: 'home',
@@ -50,6 +58,8 @@ export default {
     TopHotelPromotionComponent,
     BackgroundHeaderComponent,
     ThreeStepComponent,
+    TopTourPromotionComponent,
+    IntroduceDaiMinhComponent,
   },
 };
 </script>
