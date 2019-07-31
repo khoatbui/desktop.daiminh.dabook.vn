@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <title>daiminh.dabook.vn</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but desktop.daiminh.dabook.vn doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-    <script src="assets/material-kit-master/assets/js/core/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/material-kit-master/assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="assets/material-kit-master/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-    <script src="assets/material-kit-master/assets/js/plugins/moment.min.js"></script>
-    <!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="assets/material-kit-master/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-    <!-- Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="assets/material-kit-master/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-    <!-- Google Maps Plugin -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-    <script src="assets/material-kit-master/assets/js/material-kit.js?v=2.0.5" type="text/javascript"></script>
-    <!-- javascript for init -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="assets/font-awesome/css/all.min.css"> <!-- Material Kit CSS -->
+  <link href="assets/material-kit-master/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script type="text/javascript">
+    if (screen.width <= 699) {
+      if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+        location.replace("http://mdaiminh.dabook.vn");
+      }
+      window.location = "http://mdaiminh.dabook.vn";
+    }
+
+  </script>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/5ce200352846b90c57af595c/default';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+  <title>daiminh.dabook.vn</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but desktop.daiminh.dabook.vn doesn't work properly without JavaScript enabled. Please enable it
+      to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script src="assets/material-kit-master/assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="assets/material-kit-master/assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="assets/material-kit-master/assets/js/core/bootstrap-material-design.min.js"
+    type="text/javascript"></script>
+  <script src="assets/material-kit-master/assets/js/plugins/moment.min.js"></script>
+  <!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="assets/material-kit-master/assets/js/plugins/bootstrap-datetimepicker.js"
+    type="text/javascript"></script>
+  <!-- Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="assets/material-kit-master/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!-- Google Maps Plugin -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="assets/material-kit-master/assets/js/material-kit.js?v=2.0.5" type="text/javascript"></script>
+  <!-- javascript for init -->
+</body>
+
 </html>
