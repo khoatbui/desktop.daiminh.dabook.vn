@@ -22,7 +22,7 @@
     >
       <div class="modal-dialog vw-85" role="document">
         <div class="modal-content">
-            <video id="video" class="g_v_c_mid" autoplay="autoplay" src="https://res.klook.com/video/upload/v1558002261/Homepage/EN4_m.mov"></video>
+            <video id="video" class="g_v_c_mid" autoplay="none" src="https://res.klook.com/video/upload/v1558002261/Homepage/EN4_m.mov"></video>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
       <div class="container pt-2">
         <TopDestinationComponent></TopDestinationComponent>
       </div>
-      <div class="component-fluid pt-2">
+      <div class="container-fluid pt-2 px-0">
         <VideoComponent></VideoComponent>
       </div>
       <div class="container pt-2">

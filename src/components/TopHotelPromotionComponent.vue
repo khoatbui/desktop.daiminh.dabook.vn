@@ -1,15 +1,18 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <h2 class="title text-left">Top package</h2>
+      <h3 class="title text-left m-0">Top hotel promotion today</h3>
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
             <img class="card-img-top image-package"  v-bind:src="pac.hotelId.hotelImages.length>0?`/${pac.hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
           v-bind:alt="pac.hotelId.hotelImages[0].fileName" />
             <div class="card-body p-2">
-              <h4 class="card-title m-0">{{pac.hotelId.hotelName}}</h4>
-              <p class="card-text intro-package hidden-outof-text" v-html="pac.hotelId.hotelIntro"></p>
+               <h6 class="card-title m-0 text-color-50 text-06">
+                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/${pac.supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
+                 {{pac.supplierId.supplierName}}</h6>
+              <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
+              <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
               <!-- <div class="row">
                 <div class="col-6">
                   <a href="#0" class="btn btn-info btn-sm">Read...</a>
@@ -19,8 +22,8 @@
                   <i class="far fa-comment-dots text-info"></i>
                 </div>
               </div> -->
-              <h2 class="text-x1 font-weight-bold m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
-              <small class="text-muted m-0 text-info">Avaible today</small>
+              <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>
         </slide>
@@ -37,6 +40,7 @@
 
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import moment from 'moment';
 import HotelService from '@/api/HotelService';
 
 function randomArray(array) {
@@ -61,6 +65,7 @@ export default {
     return {
       packages: [],
       selectedPayment: {},
+      bookingDate: moment().format('MM-DD-YYYY'),
     };
   },
   mounted() {
@@ -88,5 +93,15 @@ export default {
 }
 .image-package{
     height: 180px;
+}
+.price-text{
+  font-weight: 900;
+}
+.img-supplier{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border:none
 }
 </style>

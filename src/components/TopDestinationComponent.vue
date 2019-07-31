@@ -1,9 +1,9 @@
 <template>
   <div class="topdestination">
     <div class="section text-left pt-0 pb-4">
-      <h2 class="title text-left">Top destination</h2>
+      <h3 class="title text-left m-0">Top destination</h3>
       <carousel :per-page="1" :navigation-enabled="true">
-        <slide class="m-2 d-flex justify-content-center align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
+        <slide class="m-2 d-flex justify-content-between align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
           <div class="card card-des m-1 flex-grow-1 d-inline-block" v-for="(page,ipage) in destinations.slice(index, index+size)" v-bind:key="ipage">
             <img class="card-img image-des"  v-bind:src="page.destinationImages.length>0?`/${page.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
           v-bind:alt="page.destinationImages[0].fileName" />

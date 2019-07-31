@@ -1,11 +1,9 @@
 <template>
-  <div class="hello">
-    <div class="section text-left pt-4 pb-4">
                     <div class="row">
-                        <div>
+                        <div class="col-12 m-0 p-0 text-left">
                             <p>
                                     Dai Minh Trading, Service and Tourism Company Limited <img class="small-logo"
-                                    src="img/new_logo.jpg" alt=""> established in April 2004 in Hanoi.
+                                    src="img/new_logo.jpg" alt=""/> established in April 2004 in Hanoi.
                             </p>
                             <p>
                                     The company is proud to serve travelers and investors in the last 15 years, and aims to become the leading Destination Management Company in Vietnam, continues the mission to provide quality services: domestic and international air tickets; package tours, tailor-made tours; domestic and international golf tours; provides visa services and travel insurance; etc.
@@ -31,14 +29,14 @@
                             <p>
                                     Dai Minh Travel has a Ticket Office in My Dinh, Vietnam with 25 dynamic employees who serve 24/7 and hotline <span class="text-rose font-weight-bold"><i class="fab fa-hotjar mr-1"></i>19001542</span> available at any time. Our ticket delivery staffs are also eager to serve you. We seek to provide accurate consultancy and dedicated guidance to our customers.</p>
                             <p>
-                                    Our Online Booking System – Dabook.vn  <img class="small-logo" src="img/logo dabook.png" alt=""> born to be your trust-worthy 24h and nonstop Assistant for searching tickets; comparing fares & routes; reserving; and more
+                                    Our Online Booking System – Dabook.vn  <img class="small-logo" src="img/logo dabook.png" alt=""/> born to be your trust-worthy 24h and nonstop Assistant for searching tickets; comparing fares & routes; reserving; and more
                             </p>
                             <p>
-                                    Besides, our sister company T&H Law Firm <img class="small-logo" src="img/new_logo_lawfirm.jpg" alt=""> is able to provide quallity legal and investment consultancy.
+                                    Besides, our sister company T&H Law Firm <img class="small-logo" src="img/new_logo_lawfirm.jpg" alt=""/> is able to provide quallity legal and investment consultancy.
                             </p>
                             <p>
                                     Dai Minh Travel Company’s Head Quarter bases in My Dinh, Hanoi <img class="small-logo"
-                                    src="img/new_logo.jpg" alt=""> . You can also find our tour desk at Lotte Hotel in Lieu Giai, a 5-star hotel.
+                                    src="img/new_logo.jpg" alt=""/> . You can also find our tour desk at Lotte Hotel in Lieu Giai, a 5-star hotel.
                             </p>
                             <p>Contact us:</p>
                             <p>
@@ -62,8 +60,6 @@
                             </p>
                         </div>
                     </div>
-                </div>
-  </div>
 </template>
 
 <script>

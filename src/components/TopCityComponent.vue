@@ -1,7 +1,7 @@
 <template>
   <div class="topcity">
     <div class="section text-left pt-0 pb-4">
-      <h2 class="title text-left">Top city</h2>
+      <h3 class="title text-left m-0">Top city</h3>
       <h5>Cùng Dabook bắt đầu hành trình của bạn</h5>
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(city,ides) in citys" v-bind:key="ides">
@@ -71,7 +71,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .image-city{
-    height: 280px;
+    height: 350px;
 }
 .card-body-bottom-left{
     position:absolute;

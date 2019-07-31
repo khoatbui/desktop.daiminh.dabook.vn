@@ -6,6 +6,12 @@ body{
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
+  .text-06{
+    font-size: 0.6rem !important;
+  }
+  .text-08{
+      font-size: 0.8rem !important;
+  }
   .text-x1{
     font-size: 1rem;
   }
@@ -29,7 +35,9 @@ body{
     width: 85vw !important;
     max-width: 85vw !important;
 }
-
+.text-color-50{
+   color: rgba(32, 80, 114,0.5) !important;
+}
 
 
 /* ==============SCROLL NGANG================== */
@@ -73,6 +81,10 @@ body{
 .VueCarousel-dot{
     background-color: #205072 !important;
     color: #205072 !important;
+}
+.VueCarousel-dot{
+    margin-top: 0px !important;
+    background-color: rgba(32, 80, 114,0.5) !important;
 }
 @media (min-width: 1200px)
 {
