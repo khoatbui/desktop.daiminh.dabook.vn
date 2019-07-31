@@ -12,14 +12,23 @@
         <a class="link-des">Euro</a>
         <a class="link-des">ThaiLand</a>
       </div>
-      <carousel :per-page="1" :navigation-enabled="true">
-        <slide class="m-2 d-flex justify-content-center align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
-          <div class="card card-des m-1 flex-grow-1 d-inline-block" v-for="(page,ipage) in destinations.slice(index, index+size)" v-bind:key="ipage">
-            <img class="card-img image-des"  v-bind:src="page.destinationImages.length>0?`/${page.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="page.destinationImages[0].fileName" />
-            <div class="card-body-center">
-              <h4 class="card-title text-white">{{page.destinationName}}</h4>
-              <p class="card-text text-white">{{page.destinationIntro}}</p>
+      <carousel :per-page="4" :navigation-enabled="true">
+        <slide class="m-2" v-for="(destination,ides) in destinations" v-bind:key="ides">
+          <div class="card  m-0 h-100 d-inline-block">
+            <img class="card-img-top image-des"  v-bind:src="destination.destinationImages.length>0?`/${destination.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="destination.destinationImages[0].fileName" />
+            <div class="card-body">
+              <h4 class="card-title">{{destination.destinationName}}</h4>
+              <p class="card-text">{{destination.destinationIntro}}</p>
+              <div class="row">
+                <div class="col-6">
+                  <a href="#0" class="btn btn-info btn-sm">Read...</a>
+                </div>
+                <div class="col-6 d-flex align-items-center justify-content-end">
+                  <i class="far fa-heart mr-2 text-info"></i>
+                  <i class="far fa-comment-dots text-info"></i>
+                </div>
+              </div>
             </div>
           </div>
         </slide>
@@ -60,8 +69,6 @@ export default {
     return {
       destinations: [],
       selectedPayment: {},
-      pageNumber: 0,
-      size: 10,
     };
   },
   mounted() {
@@ -70,22 +77,10 @@ export default {
   methods: {
     async initial() {
       this.$store.commit('showHideLoading', true);
-      const response = await DestinationService.getAllDestination();
+      const response = await DestinationService.getTopDestination();
       this.destinations = randomArray(response.data);
       console.log(this.destinations);
       this.$store.commit('showHideLoading', false);
-    },
-  },
-  computed: {
-    pageCount() {
-      const l = this.destinations.length;
-      const s = this.size;
-      return Math.ceil(l / s);
-    },
-    paginatedData() {
-      const start = this.pageNumber * this.size;
-      const end = start + this.size;
-      return randomArray(this.destinations.slice(start, end));
     },
   },
 };
@@ -94,16 +89,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .card-des{
-    width: 18%;
+    width: 220px;
 }
 .image-des{
     height: 180px;
-}
-.card-body-center{
-  position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: #FFFFFF;
 }
 </style>

@@ -2,16 +2,16 @@
   <div class="home">
     <NavigationComponent></NavigationComponent>
     <div class="main-body">
-      <div class="container py-4">
+      <div class="container pt-4">
         <TopCityComponent></TopCityComponent>
       </div>
-      <div class="container py-4">
+      <div class="container pt-4">
         <TopDestinationComponent></TopDestinationComponent>
       </div>
       <div class="component-fluid">
         <VideoComponent></VideoComponent>
       </div>
-      <div class="container py-4">
+      <div class="container pt-4">
         <IntroDaiMinhComponent></IntroDaiMinhComponent>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="topcity">
-    <div class="section text-left pt-0 pb-4">
-      <h2 class="title text-left">Top city</h2>
+    <div class="section text-center pt-0 pb-4">
+      <h2 class="title text-center">Top city</h2>
       <h5>Cùng Dabook bắt đầu hành trình của bạn</h5>
       <carousel :per-page="4" :navigation-enabled="true">
         <slide class="m-2" v-for="(city,ides) in citys" v-bind:key="ides">
