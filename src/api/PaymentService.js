@@ -1,12 +1,9 @@
-import Api from '@/api/Api'
+import axios from 'axios';
 
-var paymenService = {
-  getAllPayment () {
-    return Api().get('payment')
+const Payment = {
+  getAllPayment() {
+    return axios.get('http://103.237.144.222:3000/payment');
   },
-  getTravelStyleById (parram) {
-    return Api().get('travelstyle/m/gettravelstylebyid/'+parram)
-  }
-}
+};
 
-export default paymenService
+export default Payment;

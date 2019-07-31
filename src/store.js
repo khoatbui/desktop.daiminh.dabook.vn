@@ -6,13 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loading: {
-      isShow: false
-    }
+      isShow: false,
+    },
   },
   mutations: {
     showHideLoading(state, payload) {
       state.loading.isShow = payload;
-    }
+    },
   },
   actions: {
 

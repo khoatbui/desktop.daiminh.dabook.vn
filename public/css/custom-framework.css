@@ -1,0 +1,66 @@
+body{
+    background-color: #FFFFFF !important;
+}
+
+.text-x2{
+    font-size: 2rem;
+}
+.text-x3{
+    font-size: 3rem;
+}
+.text-x4{
+    font-size: 4rem;
+}
+.vw-75{
+    width: 75vw !important;
+    max-width: 75vw !important;
+}
+.vw-85{
+    width: 85vw !important;
+    max-width: 85vw !important;
+}
+
+
+
+/* ==============SCROLL NGANG================== */
+.scroll-ngang {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  .one-line{
+    white-space: nowrap;
+  }
+  .scroll-ngang::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+/* ======CUSTOM CAROLSE========= */
+.VueCarousel-navigation-button.VueCarousel-navigation-next{
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: #FFFFFF !important;
+    right: 25px !important;
+    top: 40% !important;
+    box-shadow: 0 0 7px -4px #000;
+    color: #205072 !important;
+    outline: none;
+}
+.VueCarousel-navigation-button.VueCarousel-navigation-prev{
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: #FFFFFF !important;
+    left: 25px !important;
+    top: 40% !important;
+    box-shadow: 0 0 7px -4px #000;
+    color: #205072 !important;
+    outline: none;
+}
+.VueCarousel-dot{
+    background-color: #205072 !important;
+    color: #205072 !important;
+}
