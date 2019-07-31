@@ -1,7 +1,11 @@
 <template>
   <div class="home">
+   <BackgroundHeaderComponent></BackgroundHeaderComponent>
     <NavigationComponent></NavigationComponent>
     <div class="main-body">
+      <div class="container-fluid p-0">
+        <ThreeStepComponent></ThreeStepComponent>
+      </div>
       <div class="container pt-2">
         <TopCityComponent></TopCityComponent>
       </div>
@@ -31,7 +35,8 @@ import VideoComponent from '@/components/VideoComponent.vue';
 import TopDestinationComponent from '@/components/TopDestinationComponent.vue';
 import TopCityComponent from '@/components/TopCityComponent.vue';
 import TopHotelPromotionComponent from '@/components/TopHotelPromotionComponent.vue';
-
+import BackgroundHeaderComponent from '@/components/BackgroundHeaderComponent.vue';
+import ThreeStepComponent from '@/components/ThreeStepComponent.vue';
 
 export default {
   name: 'home',
@@ -43,6 +48,11 @@ export default {
     TopDestinationComponent,
     TopCityComponent,
     TopHotelPromotionComponent,
+    BackgroundHeaderComponent,
+    ThreeStepComponent,
   },
 };
 </script>
+<style scoped  lang="scss">
+
+</style>
