@@ -3,6 +3,9 @@
     <NavigationComponent></NavigationComponent>
     <div class="main-body">
       <div class="container py-4">
+        <TopCityComponent></TopCityComponent>
+      </div>
+      <div class="container py-4">
         <TopDestinationComponent></TopDestinationComponent>
       </div>
       <div class="component-fluid">
@@ -23,6 +26,7 @@ import FooterComponent from '@/components/FooterComponent.vue';
 import IntroDaiMinhComponent from '@/components/IntroDaiMinhComponent.vue';
 import VideoComponent from '@/components/VideoComponent.vue';
 import TopDestinationComponent from '@/components/TopDestinationComponent.vue';
+import TopCityComponent from '@/components/TopCityComponent.vue';
 
 export default {
   name: 'home',
@@ -32,6 +36,7 @@ export default {
     IntroDaiMinhComponent,
     VideoComponent,
     TopDestinationComponent,
+    TopCityComponent,
   },
 };
 </script>

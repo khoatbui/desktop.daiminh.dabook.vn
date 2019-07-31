@@ -19,10 +19,10 @@
           v-bind:alt="destination.destinationImages[0].fileName" />
             <div class="card-body">
               <h4 class="card-title">{{destination.destinationName}}</h4>
-              <p class="card-text">Experience the best season of the year</p>
+              <p class="card-text">{{destination.destinationIntro}}</p>
               <div class="row">
                 <div class="col-6">
-                  <a href="#0" class="btn btn-info btn-sm">Book...</a>
+                  <a href="#0" class="btn btn-info btn-sm">Read...</a>
                 </div>
                 <div class="col-6 d-flex align-items-center justify-content-end">
                   <i class="far fa-heart mr-2 text-info"></i>
