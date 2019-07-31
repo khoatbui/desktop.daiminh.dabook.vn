@@ -18,7 +18,7 @@
       <div class="container pt-4">
         <TopHotelPromotionComponent></TopHotelPromotionComponent>
       </div>
-      <div class="container-fluid px-0 pt-4">
+      <div class="container pt-4">
         <IntroduceDaiMinhComponent></IntroduceDaiMinhComponent>
       </div>
       <div class="container pt-4">
