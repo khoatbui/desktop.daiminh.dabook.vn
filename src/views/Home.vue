@@ -2,16 +2,19 @@
   <div class="home">
     <NavigationComponent></NavigationComponent>
     <div class="main-body">
-      <div class="container pt-4">
+      <div class="container pt-2">
         <TopCityComponent></TopCityComponent>
       </div>
-      <div class="container pt-4">
+      <div class="container pt-2">
         <TopDestinationComponent></TopDestinationComponent>
       </div>
-      <div class="component-fluid">
+      <div class="component-fluid pt-2">
         <VideoComponent></VideoComponent>
       </div>
-      <div class="container pt-4">
+      <div class="container pt-2">
+        <TopHotelPromotionComponent></TopHotelPromotionComponent>
+      </div>
+      <div class="container pt-2">
         <IntroDaiMinhComponent></IntroDaiMinhComponent>
       </div>
     </div>
@@ -27,6 +30,8 @@ import IntroDaiMinhComponent from '@/components/IntroDaiMinhComponent.vue';
 import VideoComponent from '@/components/VideoComponent.vue';
 import TopDestinationComponent from '@/components/TopDestinationComponent.vue';
 import TopCityComponent from '@/components/TopCityComponent.vue';
+import TopHotelPromotionComponent from '@/components/TopHotelPromotionComponent.vue';
+
 
 export default {
   name: 'home',
@@ -37,6 +42,7 @@ export default {
     VideoComponent,
     TopDestinationComponent,
     TopCityComponent,
+    TopHotelPromotionComponent,
   },
 };
 </script>

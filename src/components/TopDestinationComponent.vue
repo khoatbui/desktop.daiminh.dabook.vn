@@ -1,17 +1,7 @@
 <template>
   <div class="topdestination">
     <div class="section text-left pt-0 pb-4">
-      <h2 class="title text-center">Top destination</h2>
-      <div class="row d-flex justify-content-center align-items-center pl-10 pr-10 scroll-ngang">
-        <a class="link-des active">HaNoi</a>
-        <a class="link-des">HoChiMinh</a>
-        <a class="link-des">DaNang</a>
-        <a class="link-des">Mekong</a>
-        <a class="link-des">Korea</a>
-        <a class="link-des">Japan</a>
-        <a class="link-des">Euro</a>
-        <a class="link-des">ThaiLand</a>
-      </div>
+      <h2 class="title text-left">Top destination</h2>
       <carousel :per-page="1" :navigation-enabled="true">
         <slide class="m-2 d-flex justify-content-center align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
           <div class="card card-des m-1 flex-grow-1 d-inline-block" v-for="(page,ipage) in destinations.slice(index, index+size)" v-bind:key="ipage">

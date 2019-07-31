@@ -1,7 +1,17 @@
 body{
     background-color: #FFFFFF !important;
 }
-
+.hidden-outof-text{
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .text-x1{
+    font-size: 1rem;
+  }
+  .text-xh1{
+    font-size: 1.5rem;
+}
 .text-x2{
     font-size: 2rem;
 }
@@ -63,4 +73,12 @@ body{
 .VueCarousel-dot{
     background-color: #205072 !important;
     color: #205072 !important;
+}
+@media (min-width: 1200px)
+{
+.container {
+    max-width: 1760px !important;
+    padding-right: 80px !important;
+    padding-left: 80px !important;
+}
 }

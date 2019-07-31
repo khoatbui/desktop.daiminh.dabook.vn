@@ -1,26 +1,16 @@
 <template>
-  <div class="topdestination">
+  <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <h2 class="title text-center">Top destination</h2>
-      <div class="row d-flex justify-content-center align-items-center pl-10 pr-10 scroll-ngang">
-        <a class="link-des active">HaNoi</a>
-        <a class="link-des">HoChiMinh</a>
-        <a class="link-des">DaNang</a>
-        <a class="link-des">Mekong</a>
-        <a class="link-des">Korea</a>
-        <a class="link-des">Japan</a>
-        <a class="link-des">Euro</a>
-        <a class="link-des">ThaiLand</a>
-      </div>
-      <carousel :per-page="4" :navigation-enabled="true">
-        <slide class="m-2" v-for="(destination,ides) in destinations" v-bind:key="ides">
+      <h2 class="title text-left">Top package</h2>
+      <carousel :per-page="5" :navigation-enabled="true">
+        <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-des"  v-bind:src="destination.destinationImages.length>0?`/${destination.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="destination.destinationImages[0].fileName" />
-            <div class="card-body">
-              <h4 class="card-title">{{destination.destinationName}}</h4>
-              <p class="card-text">{{destination.destinationIntro}}</p>
-              <div class="row">
+            <img class="card-img-top image-package"  v-bind:src="pac.hotelId.hotelImages.length>0?`/${pac.hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.hotelId.hotelImages[0].fileName" />
+            <div class="card-body p-2">
+              <h4 class="card-title m-0">{{pac.hotelId.hotelName}}</h4>
+              <p class="card-text intro-package hidden-outof-text" v-html="pac.hotelId.hotelIntro"></p>
+              <!-- <div class="row">
                 <div class="col-6">
                   <a href="#0" class="btn btn-info btn-sm">Read...</a>
                 </div>
@@ -28,7 +18,9 @@
                   <i class="far fa-heart mr-2 text-info"></i>
                   <i class="far fa-comment-dots text-info"></i>
                 </div>
-              </div>
+              </div> -->
+              <h2 class="text-x1 font-weight-bold m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <small class="text-muted m-0 text-info">Avaible today</small>
             </div>
           </div>
         </slide>
@@ -45,7 +37,7 @@
 
 <script>
 import { Carousel, Slide } from 'vue-carousel';
-import DestinationService from '@/api/DestinationService';
+import HotelService from '@/api/HotelService';
 
 function randomArray(array) {
   const array2 = [];
@@ -61,13 +53,13 @@ export default {
     Carousel,
     Slide,
   },
-  name: 'TopDestinationComponent',
+  name: 'TopHotelComponent',
   props: {
     msg: String,
   },
   data() {
     return {
-      destinations: [],
+      packages: [],
       selectedPayment: {},
     };
   },
@@ -77,9 +69,9 @@ export default {
   methods: {
     async initial() {
       this.$store.commit('showHideLoading', true);
-      const response = await DestinationService.getTopDestination();
-      this.destinations = randomArray(response.data);
-      console.log(this.destinations);
+      const response = await HotelService.getTopPromotionHotelPackage();
+      this.packages = randomArray(response.data);
+      console.log(this.packages);
       this.$store.commit('showHideLoading', false);
     },
   },
@@ -88,10 +80,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.card-des{
+.card-package{
     width: 220px;
 }
-.image-des{
+.intro-package{
+    width: 100px;
+}
+.image-package{
     height: 180px;
 }
 </style>
