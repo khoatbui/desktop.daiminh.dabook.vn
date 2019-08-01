@@ -28,6 +28,9 @@
         <TopTourPromotionComponent></TopTourPromotionComponent>
       </div>
       <div class="container pt-4">
+        <AdsWithHotelPromotionComponent></AdsWithHotelPromotionComponent>
+      </div>
+      <div class="container pt-4">
         <IntroDaiMinhComponent></IntroDaiMinhComponent>
       </div>
     </div>
@@ -49,6 +52,7 @@ import ThreeStepComponent from '@/components/ThreeStepComponent.vue';
 import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue';
 import IntroduceDaiMinhComponent from '@/components/IntroduceDaiMinhComponent.vue';
 import HorizontalAdsComponent from '@/components/HorizontalAdsComponent.vue';
+import AdsWithHotelPromotionComponent from '@/components/AdsWithHotelPromotionComponent.vue';
 
 export default {
   name: 'home',
@@ -65,6 +69,7 @@ export default {
     TopTourPromotionComponent,
     IntroduceDaiMinhComponent,
     HorizontalAdsComponent,
+    AdsWithHotelPromotionComponent,
   },
 };
 </script>

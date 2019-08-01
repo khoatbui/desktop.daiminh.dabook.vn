@@ -9,7 +9,7 @@
             <div class="card-body-bottom-left text-left">
               <h4 class="card-title text-white">{{pac.adsName}}</h4>
               <p class="card-text text-white"  v-html="pac.adsIntro"></p>
-              <small class="text-muted m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
+              <small class="m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
             </div>
           </div>
         </slide>
@@ -91,7 +91,7 @@ export default {
   border:none
 }
 .image-ads{
-    height: 350px;
+    height: 350px !important;
 }
 .card-body-bottom-left{
     position:absolute;

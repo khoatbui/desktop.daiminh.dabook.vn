@@ -25,15 +25,14 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="packages[0].hotelId.hotelImages.length>0?`/${packages[0].hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="packages[0].hotelId.hotelImages[0].fileName" />
-            <div class="card-body p-2">
-               <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="packages[0].supplierId.supplierImages.length>0?`/${packages[0].supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
-                 {{packages[0].supplierId.supplierName}}</h6>
-              <h6 class="card-title m-0">{{packages[0].hotelId.hotelName}}</h6>
-              <p class="card-text intro-package hidden-outof-text" v-html="packages[0].roomTypeId.roomTypeName"></p>
-              <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(packages[0].price)}}</h2>
+            <img class="card-img-top image-package"  v-bind:src="packages[0].tourImages.length>0?`/${packages[0].tourImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="packages[0].tourImages[0].fileName" />
+             <div class="card-body p-2">
+                <h6 class="card-title m-0 text-color-50 text-06">
+               {{packages[0].to}} | {{packages[0].tourTypeId.tourTypeName}}</h6>
+              <h6 class="card-title m-0">{{packages[0].tourName}}</h6>
+               <p class="card-text intro-package hidden-outof-text" v-html="packages[0].tourIntro"></p>
+              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(packages[0].price)}}</h2>
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>
@@ -42,15 +41,14 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="pac.hotelId.hotelImages.length>0?`/${pac.hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.hotelId.hotelImages[0].fileName" />
-            <div class="card-body p-2">
-               <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/${pac.supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
-                 {{pac.supplierId.supplierName}}</h6>
-              <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
-              <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
-              <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+            <img class="card-img-top image-package"  v-bind:src="pac.tourImages.length>0?`/${pac.tourImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.tourImages[0].fileName" />
+             <div class="card-body p-2">
+                <h6 class="card-title m-0 text-color-50 text-06">
+               {{pac.to}} | {{pac.tourTypeId.tourTypeName}}</h6>
+              <h6 class="card-title m-0">{{pac.tourName}}</h6>
+               <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
+              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>
@@ -63,7 +61,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
-import HotelService from '@/api/HotelService';
+import TourService from '@/api/TourService';
 import AdsService from '@/api/AdsService';
 
 function randomArray(array) {
@@ -80,7 +78,7 @@ export default {
     Carousel,
     Slide,
   },
-  name: 'AdsWithHotelPromotionComponent',
+  name: 'AdsWithTourPromotionComponent',
   props: {
     msg: String,
   },
@@ -98,7 +96,7 @@ export default {
   methods: {
     async initial() {
       this.$store.commit('showHideLoading', true);
-      const response = await HotelService.getTopPromotionHotelPackage();
+      const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
       const responseads = await AdsService.getAllAds();
       this.ads = randomArray(responseads.data);
