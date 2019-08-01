@@ -16,8 +16,8 @@
           <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100"  v-bind:src="ads[0].adsImages.length>0?`/${ads[0].adsImages[0].filePath}`:'/img/defaultloading.gif'"
             v-bind:alt="ads[0].adsImages[0].fileName" />
-            <div class="card-body-bottom-center text-left">
-              <h4 class="card-title text-white">{{ads[0].adsName}}</h4>
+            <div class="card-body-center text-left">
+              <h4 class="card-title text-white text-x2">{{ads[0].adsName}}</h4>
               <p class="card-text text-white"  v-html="ads[0].adsIntro"></p>
               <small class="m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
             </div>
@@ -100,7 +100,6 @@ export default {
       this.packages = randomArray(response.data);
       const responseads = await AdsService.getAllAds();
       this.ads = randomArray(responseads.data);
-      console.log(this.packages);
       this.$store.commit('showHideLoading', false);
     },
   },

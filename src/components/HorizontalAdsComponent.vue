@@ -57,7 +57,6 @@ export default {
       this.$store.commit('showHideLoading', true);
       const response = await AdsService.getAllAdsByType(this.adstype);
       this.ads = randomArray(response.data);
-      console.log(this.ads);
       this.$store.commit('showHideLoading', false);
     },
   },

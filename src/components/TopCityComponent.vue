@@ -63,7 +63,6 @@ export default {
       this.$store.commit('showHideLoading', true);
       const response = await CityService.getTopCity();
       this.citys = randomArray(response.data);
-      console.log(this.citys);
       this.$store.commit('showHideLoading', false);
     },
   },

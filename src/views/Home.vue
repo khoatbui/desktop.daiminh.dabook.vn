@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-   <BackgroundHeaderComponent></BackgroundHeaderComponent>
+    <BackgroundHeaderComponent></BackgroundHeaderComponent>
     <NavigationComponent></NavigationComponent>
     <div class="main-body">
       <div class="container-fluid p-0">

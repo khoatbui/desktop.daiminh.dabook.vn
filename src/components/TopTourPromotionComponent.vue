@@ -66,7 +66,6 @@ export default {
       this.$store.commit('showHideLoading', true);
       const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
-      console.log(this.packages);
       this.$store.commit('showHideLoading', false);
     },
   },
