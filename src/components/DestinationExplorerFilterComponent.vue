@@ -36,7 +36,7 @@
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>
-          <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ides) in tours" v-bind:key="ides">
+          <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ideas) in tours" v-bind:key="ideas">
             <img class="card-img-top image-package"  v-bind:src="pac.tourImages.length>0?`/${pac.tourImages[0].filePath}`:'/img/defaultloading.gif'"
           v-bind:alt="pac.tourImages[0].fileName" />
             <div class="card-body p-2">
@@ -150,8 +150,8 @@ export default {
 }
 .filter-card{
   width: 23% !important;
-  max-height: 320px;
-  min-height: 320px;
+  max-height: 340px;
+  min-height: 340px;
   flex-grow: 1 !important;
 }
 </style>
