@@ -24,8 +24,8 @@
       </div>
       <div class="row m-0 p-0 pt-3 d-flex flex-wrap justify-content-start align-items-stretch">
           <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ides) in packages" v-bind:key="ides">
-            <img class="card-img-top image-package"  v-bind:src="pac.hotelId.hotelImages.length>0?`/${pac.hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.hotelId.hotelImages[0].fileName" />
+            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/${pac.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.roomTypeId.roomImages[0].fileName" />
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
                 <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/${pac.supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
