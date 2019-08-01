@@ -1,7 +1,7 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <carousel :per-page="ads.length>3?(ads.length/2):ads.length" :navigation-enabled="true">
+      <carousel :per-page="caculatePage" :navigation-enabled="true">
         <slide class="m-2" v-for="(pac,ides) in ads" v-bind:key="ides">
             <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100"  v-bind:src="pac.adsImages.length>0?`/${pac.adsImages[0].filePath}`:'/img/defaultloading.gif'"
@@ -59,6 +59,11 @@ export default {
       this.ads = randomArray(response.data);
       console.log(this.ads);
       this.$store.commit('showHideLoading', false);
+    },
+  },
+  computed: {
+    caculatePage() {
+      return (this.ads.length > 3) ? (this.ads.length > 6) ? 3 : 2 : 1;
     },
   },
 };
