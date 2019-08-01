@@ -7,6 +7,9 @@
         <ThreeStepComponent></ThreeStepComponent>
       </div>
       <div class="container pt-4">
+        <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
+      </div>
+      <div class="container pt-4">
         <TopCityComponent></TopCityComponent>
       </div>
       <div class="container pt-4">
@@ -45,6 +48,7 @@ import BackgroundHeaderComponent from '@/components/BackgroundHeaderComponent.vu
 import ThreeStepComponent from '@/components/ThreeStepComponent.vue';
 import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue';
 import IntroduceDaiMinhComponent from '@/components/IntroduceDaiMinhComponent.vue';
+import HorizontalAdsComponent from '@/components/HorizontalAdsComponent.vue';
 
 export default {
   name: 'home',
@@ -60,6 +64,7 @@ export default {
     ThreeStepComponent,
     TopTourPromotionComponent,
     IntroduceDaiMinhComponent,
+    HorizontalAdsComponent,
   },
 };
 </script>
