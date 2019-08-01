@@ -21,7 +21,6 @@
 
 <script>
 import carousel from 'vue-owl-carousel';
-import DestinationService from '@/api/DestinationService';
 
 export default {
   components: {
@@ -30,24 +29,15 @@ export default {
   name: 'DestinationBackgroundHeaderComponent',
   props: {
     msg: String,
-    destinationId:String,
+    destination:{},
   },
   data() {
     return {
-        destination:{}
     };
   },
   mounted() {
-     this.initial();
   },
   methods: {
-      async initial() {
-      this.$store.commit('showHideLoading', true);
-      const response = await DestinationService.getDestinationById(this.destinationId);
-      this.destination =response.data;
-      console.log(this.destination);
-      this.$store.commit('showHideLoading', false);
-    }
   },
 };
 </script>

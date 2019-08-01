@@ -1,10 +1,10 @@
 <template>
   <div class="destination">
-    <DestinationBackgroundHeaderComponent :destinationId="destinationId" ></DestinationBackgroundHeaderComponent>
+    <DestinationBackgroundHeaderComponent :destination="destination" ></DestinationBackgroundHeaderComponent>
     <NavigationComponent></NavigationComponent>
     <div class="main-body">
-      <div class="container-fluid p-0">
-        <ThreeStepComponent></ThreeStepComponent>
+      <div class="container pt-4">
+        <DestinationIntroduceComponent :destination="destination"></DestinationIntroduceComponent>
       </div>
       <div class="container pt-4">
         <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
@@ -39,7 +39,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import DestinationService from '@/api/DestinationService';
+
 import NavigationComponent from '@/components/NavigationComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import IntroDaiMinhComponent from '@/components/IntroDaiMinhComponent.vue';
@@ -53,6 +54,7 @@ import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vu
 import IntroduceDaiMinhComponent from '@/components/IntroduceDaiMinhComponent.vue';
 import HorizontalAdsComponent from '@/components/HorizontalAdsComponent.vue';
 import AdsWithHotelPromotionComponent from '@/components/AdsWithHotelPromotionComponent.vue';
+import DestinationIntroduceComponent from '@/components/DestinationIntroduceComponent.vue';
 
 export default {
   name: 'DestinationView',
@@ -70,15 +72,25 @@ export default {
     IntroduceDaiMinhComponent,
     HorizontalAdsComponent,
     AdsWithHotelPromotionComponent,
+    DestinationIntroduceComponent,
   },
   data() {
     return {
       destinationId:this.$route.query.destinationid,
+      destination:{},
     };
   },
   mounted() {
+         this.initial();
   },
   methods: {
+      async initial() {
+      this.$store.commit('showHideLoading', true);
+      const response = await DestinationService.getDestinationById(this.destinationId);
+      this.destination =response.data;
+      console.log(this.destination);
+      this.$store.commit('showHideLoading', false);
+    }
   },
 };
 </script>

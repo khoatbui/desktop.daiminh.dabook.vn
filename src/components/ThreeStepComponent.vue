@@ -44,21 +44,19 @@
 </template>
 
 <script>
-import PaymentComponent from "@/components/PaymentComponent.vue";
 
 export default {
   components: {
-    PaymentComponent
   },
-  name: "ThreeStepComponent",
+  name: 'ThreeStepComponent',
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {};
   },
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 
