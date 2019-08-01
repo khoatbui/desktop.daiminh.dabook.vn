@@ -25,8 +25,8 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="packages[0].hotelId.hotelImages.length>0?`/${packages[0].hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="packages[0].hotelId.hotelImages[0].fileName" />
+            <img class="card-img-top image-package"  v-bind:src="packages[0].roomTypeId.roomTypeImages.length>0?`/${packages[0].roomTypeId.roomTypeImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="packages[0].roomTypeId.roomTypeImages[0].fileName" />
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
                 <img class="img-supplier" v-bind:src="packages[0].supplierId.supplierImages.length>0?`/${packages[0].supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
@@ -42,8 +42,8 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="pac.hotelId.hotelImages.length>0?`/${pac.hotelId.hotelImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.hotelId.hotelImages[0].fileName" />
+            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomTypeImages.length>0?`/${pac.roomTypeId.roomTypeImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.roomTypeId.roomTypeImages[0].fileName" />
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
                 <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/${pac.supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
@@ -88,7 +88,6 @@ export default {
     return {
       packages: [],
       ads:[],
-      selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
     };
   },
