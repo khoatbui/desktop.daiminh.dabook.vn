@@ -1,7 +1,7 @@
 <template>
   <div class="main-index h-700" data-parallax="true">
-    <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" :autoplaySpeed=500 class="w-100 m-0 p-0">
-        <img class="des-img" v-for="(img,i) in destination.destinationImages" v-bind:key="i" v-bind:src="`/${img.filePath}`"
+    <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" class="w-100 m-0 p-0">
+        <img class="w-100" v-for="(img,i) in destination.destinationImages" v-bind:key="i" v-bind:src="`/${img.filePath}`"
             v-bind:alt="img.fileName">
     </carousel>
         <div class="w-75 card-body-center">
@@ -10,8 +10,8 @@
                     <div class="brand text-center">
                         <h4>Thay doi diem den</h4>
                         <h1 class="text-center text-white title mb-0">{{destination.destinationName}}</h1>
-                        <h4 class="title text-white text-center mt-0">You can get an additional 10% discount on your first
-                            reservation.</h4>
+                        <h4>Diem den duoc yeu thich nhat 2019</h4>
+                        <button class="btn btn-light bg-white border-radius-100 text-danger">{{destination.cityId.cityName}} <font-awesome-icon icon="arrow-right" class="text-center" /></button>
                     </div>
                 </div>
             </div>
@@ -68,5 +68,8 @@ export default {
 }
 .des-img{
     height: 700px !important;
+}
+.bg-white:hover{
+  background-color: #f44336 !important;
 }
 </style>
