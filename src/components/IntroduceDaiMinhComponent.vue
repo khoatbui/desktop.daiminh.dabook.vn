@@ -6,7 +6,7 @@
         <p>Cung kham pha va trai nghiem cac dich vu cua DaiMinh Travel</p>
       </div>
       <div class="col-12 m-0 p-0 parent-absolute">
-        <img class="w-100" src="/img/background/bg_04.jpg" alt />
+        <img class="w-100" src="/img/background/bg_10.jpg" alt />
         <div class="center-absolute text-center text-white">
           <button class="explorer-btn shadow text-x06">
             EXPLORE US
@@ -20,13 +20,13 @@
 
 <script>
 export default {
-  name: "VideoComponent",
+  name: 'IntroduceDaiMinhComponent',
   props: {},
   data() {
     return {};
   },
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 
@@ -36,6 +36,8 @@ export default {
   position: relative;
   overflow: hidden;
   border-radius: 5px;
+  height: 300px;
+  overflow: hidden;
 }
 .center-absolute {
   position: absolute;
@@ -44,7 +46,7 @@ export default {
   transform: translate(-50%, -50%);
 }
 .intro-component img {
-  height: 300px;
+  background-size: cover;
 }
 .explorer-btn {
   height: 48px;

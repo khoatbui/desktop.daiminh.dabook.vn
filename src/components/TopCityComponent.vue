@@ -2,7 +2,15 @@
   <div class="topcity">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">Top city</h3>
-      <h5>Cùng Dabook bắt đầu hành trình của bạn</h5>
+      <div class="row p-0 m-0 ">
+        <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
+          <p>Cùng Dabook bắt đầu hành trình của bạn</p>
+          <a class="link-des text-danger">
+              Xem thêm
+              <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+          </a>
+        </div>
+      </div>
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(city,ides) in citys" v-bind:key="ides">
           <div class="card m-0 h-100 d-inline-block position-relative">
@@ -15,12 +23,6 @@
           </div>
         </slide>
       </carousel>
-      <div class="row d-flex justify-content-end align-items-center">
-        <a class="link-des">
-          더보기
-          <i class="fas fa-chevron-right"></i>
-        </a>
-      </div>
     </div>
   </div>
 </template>

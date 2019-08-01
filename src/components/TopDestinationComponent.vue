@@ -2,8 +2,14 @@
   <div class="topdestination">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">Top destination</h3>
+      <div class="row p-0 m-0 d-flex justify-content-end align-items-center">
+          <a class="link-des text-danger">
+              Xem thêm
+              <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+          </a>
+      </div>
       <carousel :per-page="1" :navigation-enabled="true">
-        <slide class="m-2 d-flex justify-content-between align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
+        <slide class="m-2 d-flex justify-content-start align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
           <div class="card card-des m-1 flex-grow-1 d-inline-block" v-for="(page,ipage) in destinations.slice(index, index+size)" v-bind:key="ipage">
             <img class="card-img image-des"  v-bind:src="page.destinationImages.length>0?`/${page.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
           v-bind:alt="page.destinationImages[0].fileName" />
@@ -14,12 +20,6 @@
           </div>
         </slide>
       </carousel>
-      <div class="row d-flex justify-content-end align-items-center">
-        <a class="link-des">
-          더보기
-          <i class="fas fa-chevron-right"></i>
-        </a>
-      </div>
     </div>
   </div>
 </template>
@@ -84,7 +84,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .card-des{
-    width: 18%;
+    width: 19%;
 }
 .image-des{
     height: 180px;

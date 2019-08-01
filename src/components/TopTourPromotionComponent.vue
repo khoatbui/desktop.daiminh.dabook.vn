@@ -2,6 +2,12 @@
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">Top tour promotion today</h3>
+      <div class="row p-0 m-0 d-flex justify-content-end align-items-center">
+          <a class="link-des text-danger">
+              Xem thêm
+              <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+          </a>
+      </div>
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
@@ -18,12 +24,6 @@
           </div>
         </slide>
       </carousel>
-      <div class="row d-flex justify-content-end align-items-center">
-        <a class="link-des">
-          더보기
-          <i class="fas fa-chevron-right"></i>
-        </a>
-      </div>
     </div>
   </div>
 </template>

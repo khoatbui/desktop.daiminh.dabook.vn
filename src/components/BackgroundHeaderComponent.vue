@@ -1,6 +1,6 @@
 <template>
-  <div class="main-index" data-parallax="true">
-  <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" class="w-100 m-0 p-0">
+  <div class="main-index h-700" data-parallax="true">
+  <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" :autoplaySpeed="500" class="w-100 m-0 p-0">
     <img src="/img/background/bg_01.jpg">
     <img src="/img/background/bg_02.jpg">
     <img src="/img/background/bg_03.jpg">
@@ -27,23 +27,23 @@
 </template>
 
 <script>
-import carousel from 'vue-owl-carousel'
-import MainSearchComponent from "@/components/MainSearchComponent.vue";
+import carousel from 'vue-owl-carousel';
+import MainSearchComponent from '@/components/MainSearchComponent.vue';
 
 export default {
   components: {
     MainSearchComponent,
     carousel,
   },
-  name: "BackgroundHeaderComponent",
+  name: 'BackgroundHeaderComponent',
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {};
   },
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 
@@ -56,5 +56,9 @@ export default {
     transform: translate(-50%,-50%);
     color: #FFFFFF;
     z-index: 2;
+}
+.h-700,.owl-carousel{
+  height: 700px !important;
+  overflow: hidden;
 }
 </style>
