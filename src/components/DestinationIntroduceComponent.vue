@@ -18,7 +18,7 @@
               data-toggle="modal"
               data-target="#destinationIntroModal"
             >
-              <p class="text-center border-top">
+              <p class="text-center border-top font-weight-bold text-info">
                 Xem them
                 <font-awesome-icon icon="chevron-down" class="text-center" />
               </p>
@@ -74,7 +74,7 @@
               <div v-html="destination.destinationIntro"></div>
             </div>
             <div class="col-4">
-              <carousel :per-page="1" :navigation-enabled="false" :paginationEnabled="false">
+              <carousel class="image-des" :per-page="1" :navigation-enabled="false" :paginationEnabled="false">
                 <slide
                   class="m-2"
                   v-for="(pac,ides) in destination.destinationImages"
@@ -125,32 +125,8 @@
                 <b>Hot promotion</b>
               </h4>
             </div>
-            <div class="col-4">
-              <p>
-                <b>Mui gio</b>
-              </p>
-              <p>GMT +07</p>
-              <p>
-                <small>Truoc 2 gio</small>
-              </p>
-            </div>
-            <div class="col-4">
-              <p>
-                <b>Tien te</b>
-              </p>
-              <p>Vietnamdong</p>
-              <p>
-                <small>1$ = 23.000d</small>
-              </p>
-            </div>
-            <div class="col-4">
-              <p>
-                <b>Thoi gian tuyet nhat de vi vu</b>
-              </p>
-              <p>THG 7 + 8</p>
-              <p>
-                <small>Mua hoa man</small>
-              </p>
+            <div class="col-12">
+              <TopTourPromotionComponent :isTitle="false" :paginationEnabled="false"></TopTourPromotionComponent>
             </div>
           </div>
         </div>
@@ -161,6 +137,7 @@
 
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue'
 import CityService from '@/api/CityService';
 
 function randomArray(array) {
@@ -176,6 +153,7 @@ export default {
   components: {
     Carousel,
     Slide,
+    TopTourPromotionComponent,
   },
   name: 'DestinationIntroComponent',
   props: {
@@ -204,8 +182,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.image-city {
-  height: 350px;
+.image-des {
+  height: 200px !important;
 }
 .card-body-bottom-left {
   position: absolute;

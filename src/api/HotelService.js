@@ -7,9 +7,11 @@ const Hotel = {
   getTopHotel() {
     return axios.get('http://103.237.144.222:3000/hotel/m/getlisthotelpromotion');
   },
-  getTopPromotionHotelPackage(){
+  getTopPromotionHotelPackage() {
     return axios.get('http://103.237.144.222:3000/packagehotelrel/m/getallpromotionpackage');
-    
+  },
+  getHotelPackageByDestination(destinationId) {
+    return axios.get('http://103.237.144.222:3000/packagehotelrel/m/getallpackagebydestination/' + destinationId);
   }
 };
 

@@ -1,7 +1,7 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0" v-if="isTitle">Top tour promotion today</h3>
+      <h3 class="title text-left m-0" v-if="isTitle">{{getTitle}}</h3>
       <div class="row p-0 m-0 d-flex justify-content-end align-items-center" v-if="isTitle">
           <a class="link-des text-danger">
               Xem thêm
@@ -52,6 +52,7 @@ export default {
     msg: String,
     isTitle:true,
     paginationEnabled:true,
+    destination:{},
   },
   data() {
     return {
@@ -61,7 +62,13 @@ export default {
     };
   },
   mounted() {
-    this.initial();
+      if (typeof this.destination._id !=='undefined' && this.destination._id !== "") {
+        this.initialByDestination(this.destination._id);
+        this.title = `Hot tour in ${this.destination.destinationName}`
+      }
+      else {
+        this.initial();
+      }
   },
   methods: {
     async initial() {
@@ -70,6 +77,22 @@ export default {
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
     },
+    async initialByDestination(destinationId) {
+      this.$store.commit('showHideLoading', true);
+      const response = await TourService.getTourPackageByDestination();
+      this.packages = randomArray(response.data);
+      this.$store.commit('showHideLoading', false);
+    },
+  },
+  computed: {
+      getTitle() {
+           if (typeof this.destination._id !=='undefined' && this.destination._id !== "") {
+               return `Hot tour in ${this.destination.destinationName}`
+           }
+           else {
+               return 'Top tour promotion today'
+           }
+      },
   },
 };
 </script>
