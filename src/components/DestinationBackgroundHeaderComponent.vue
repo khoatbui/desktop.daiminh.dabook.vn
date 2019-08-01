@@ -1,5 +1,5 @@
 <template>
-  <div class="main-index h-700" data-parallax="true">
+  <div class="main-index h-400" data-parallax="true">
     <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" class="w-100 m-0 p-0">
         <img class="w-100" v-for="(img,i) in destination.destinationImages" v-bind:key="i" v-bind:src="`/${img.filePath}`"
             v-bind:alt="img.fileName">
@@ -8,9 +8,9 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="brand text-center">
-                        <h4>Thay doi diem den</h4>
-                        <h1 class="text-center text-white title mb-0">{{destination.destinationName}}</h1>
-                        <h4>Diem den duoc yeu thich nhat 2019</h4>
+                        <h4 class="my-0 font-weight-bold">Thay doi diem den <font-awesome-icon icon="chevron-down" class="text-center" /></h4>
+                        <h1 class="text-center text-white title my-0">{{destination.destinationName}}</h1>
+                        <h4 class="my-0 font-weight-bold">Diem den duoc yeu thich nhat 2019</h4>
                         <button class="btn btn-light bg-white border-radius-100 text-danger">{{destination.cityId.cityName}} <font-awesome-icon icon="arrow-right" class="text-center" /></button>
                     </div>
                 </div>
@@ -56,14 +56,14 @@ export default {
 <style scoped lang="scss">
 .card-body-center{
   position:absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     color: #FFFFFF;
     z-index: 2;
 }
-.h-700,.owl-carousel{
-  height: 700px !important;
+.h-400,.owl-carousel{
+  height: 400px !important;
   overflow: hidden;
 }
 .des-img{
