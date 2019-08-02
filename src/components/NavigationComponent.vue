@@ -2,7 +2,7 @@
     <nav class="navbar fixed-top navbar-expand-lg" v-bind:class="classObject"  color-on-scroll="100">
       <div class="container">
         <div class="navbar-translate">
-          <a class="navbar-brand" href="/index.html">
+          <a class="navbar-brand" href="/">
             <img src="/img/new_logo.jpg" alt height="50px;" />
           </a>
           <button
@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="/index.html" class="nav-link">
+              <a href="/" class="nav-link">
                 <i class="fa fa-menu"></i> Home
               </a>
             </li>
@@ -46,19 +46,19 @@
             <li class="nav-item dropdown hestia-mega-menu">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href="/travelstyle"
                 id="navbarDropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >Travel Style</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="dropdown-menu" role="menu" aria-labelledby="navbarDropdownMenuLink">
                 <div class="row m-1">
                   <div class="col-7">
                     <div class="row">
                       <div class="col-6 p-1">
                         <div class="card bg-dark text-white m-1">
-                          <a class="nav-card-link" href="/tour/tourlist.html">
+                          <a class="nav-card-link" href="/travelstyle/detail">
                             <img
                               class="card-img h-30"
                               src="/img/tour/style_luxury.jpg"
@@ -72,7 +72,7 @@
                       </div>
                       <div class="col-6 p-1">
                         <div class="card bg-dark text-white m-1">
-                          <a class="nav-card-link" href="/tour/tourlist.html">
+                          <a class="nav-card-link" href="/travelstyle/detail">
                             <img
                               class="card-img h-30"
                               src="/img/tour/style_golf.jpg"
@@ -86,7 +86,7 @@
                       </div>
                       <div class="col-6 p-1">
                         <div class="card bg-dark text-white m-1">
-                          <a class="nav-card-link" href="/tour/tourlist.html">
+                          <a class="nav-card-link" href="/travelstyle/detail">
                             <img
                               class="card-img h-30"
                               src="/img/tour/style_classic.jpg"
@@ -100,7 +100,7 @@
                       </div>
                       <div class="col-6 p-1">
                         <div class="card bg-dark text-white m-1">
-                          <a class="nav-card-link" href="/tour/tourlist.html">
+                          <a class="nav-card-link" href="/travelstyle/detail">
                             <img
                               class="card-img h-30"
                               src="/img/tour/style_adventure.jpg"
@@ -118,7 +118,7 @@
                     <div class="row d-flex align-items-center justify-content-center h-100">
                       <div class="col-12 m-1">
                         <div class="card bg-dark text-white m-1">
-                          <a class="nav-card-link" href="/tour/tourlist.html">
+                          <a class="nav-card-link" href="/travelstyle">
                             <img
                               class="card-img"
                               src="/img/tour/des_phuquoc.webp"
@@ -138,36 +138,36 @@
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href="/travelservice"
                 id="navbarDropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >Travel Service</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item text-info" href="/hotel/hotel-booking-confirm.html">
+                <a class="dropdown-item text-info" href="/hotel">
                   <i class="fas fa-hotel mr-2"></i> Hotel
                 </a>
-                <a class="dropdown-item text-info" href="#">
+                <a class="dropdown-item text-info" href="/car">
                   <i class="fas fa-taxi mr-2"></i> Car
                 </a>
-                <a class="dropdown-item text-info" href="#">
+                <a class="dropdown-item text-info" href="/visa">
                   <i class="fab fa-avianex mr-2"></i> Visa
                 </a>
               </div>
             </li>
             <li class="nav-item">
-              <a href="/tour/mice.html" class="nav-link">
+              <a href="/mice" class="nav-link">
                 <i class="fa fa-menu"></i> MICE
               </a>
             </li>
             <li class="nav-item">
-              <a href="/tour/fit.html" class="nav-link">
+              <a href="/fit" class="nav-link">
                 <i class="fa fa-menu"></i> FIT
               </a>
             </li>
             <li class="nav-item">
-              <a href="/function/aboutus.html" class="nav-link">
+              <a href="/aboutus" class="nav-link">
                 <i class="fa fa-menu"></i>
                 About Us
               </a>

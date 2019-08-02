@@ -1,15 +1,14 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <carousel :per-page="caculatePage" :navigation-enabled="true">
+      <carousel :per-page="caculatePage" :navigation-enabled="navigationEnabled" :pagination-enabled="paginationEnabled">
         <slide class="m-2" v-for="(pac,ides) in ads" v-bind:key="ides">
             <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100"  v-bind:src="pac.adsImages.length>0?`/${pac.adsImages[0].filePath}`:'/img/defaultloading.gif'"
             v-bind:alt="pac.adsImages[0].fileName" />
             <div class="card-body-bottom-left text-left">
-              <h4 class="card-title text-white">{{pac.adsName}}</h4>
-              <p class="card-text text-white"  v-html="pac.adsIntro"></p>
-              <small class="m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
+              <h6 class="card-title text-white m-0">{{pac.adsName}}</h6>
+              <small class="text-white m-0">Chuong trinh keo dai den ngay {{moment(pac.endDate).format('YYYY.MM.DD')}}</small>
             </div>
           </div>
         </slide>
@@ -41,16 +40,24 @@ export default {
   props: {
     msg: String,
     adstype: String,
+    paginationEnabled:true,
+    navigationEnabled:true,
   },
   data() {
     return {
       ads: [],
       selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
+      moment:moment,
     };
   },
   mounted() {
-    this.initial();
+    if(this.adstype=='ALL') {
+      this.initialAll();
+    }
+    else {
+      this.initial();
+    }
   },
   methods: {
     async initial() {
@@ -59,6 +66,12 @@ export default {
       this.ads = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
     },
+    async initialAll() {
+      this.$store.commit('showHideLoading', true);
+      const response = await AdsService.getAllAds();
+      this.ads = randomArray(response.data);
+      this.$store.commit('showHideLoading', false);
+    }
   },
   computed: {
     caculatePage() {
@@ -90,12 +103,16 @@ export default {
   border:none
 }
 .image-ads{
-    height: 350px !important;
+    height: 220px !important;
 }
 .card-body-bottom-left{
     position:absolute;
     bottom: 10px;
     left: 10px;
     color: #FFFFFF;
+    background:rgba(244,67,54,.9)!important;
+    padding: 20px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 </style>

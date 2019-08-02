@@ -148,10 +148,15 @@ export default {
   border-radius: 50%;
   border:none
 }
+.small-loading-img {
+    width: 30px !important;
+    height: 30px !important;
+}
 .filter-card{
   width: 23% !important;
   max-height: 340px;
   min-height: 340px;
   flex-grow: 1 !important;
+  overflow: hidden;
 }
 </style>

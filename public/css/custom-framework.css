@@ -135,3 +135,9 @@ body{
     border-bottom-right-radius: 0 !important;
     border-radius: none !important;
   }
+
+  /* LOADING */
+  .small-loading-img{
+    width :30px !important;
+    height: 30px !important;
+  }
