@@ -55,11 +55,11 @@
             <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
               <div class="row m-1">
                 <div
-                  class="col-3 m-0 p-1 d-flex flex-row justify-content-between align-items-center flex-wrap"
+                  class="col-4 m-0 p-1 pr-4 border-right d-flex flex-row justify-content-between align-items-stretch flex-wrap"
                 >
                   <div class="card travel-style-card my-1" v-for="(st,iStyle) in travelStyle" v-bind:key="iStyle">
-                    <a class="nav-card-link" href="/tour/tourlist.html">
-                      <img class="w-100"  v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}" v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
+                    <a class="nav-card-link h-100" href="/tour/tourlist.html">
+                      <img class="w-100 h-100"  v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}" v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
                         v-bind:alt="st.travelStyleName"  />
                       <div class="card-img-overlay">
                         <h4 class="card-title text-center text-white">{{st.travelStyleName}}</h4>
@@ -67,10 +67,11 @@
                     </a>
                   </div>
                 </div>
-                <div class="col-3 m-0 p-1"></div>
-                <div class="col-3 m-0 p-1">
+                <div class="col-3 m-0 p-1 pr-4 border-right"></div>
+                <div class="col-3 m-0 p-1 pr-4 border-right">
                   <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
                 </div>
+                <div class="col-2 m-0 p-1"></div>
               </div>
             </div>
           </li>
@@ -209,13 +210,18 @@ export default {
 /* =======MENU========== */
 @media (min-width: 769px) {
   .fullwidth-mega-menu {
-    padding: 0 20px !important;
+    padding: 0 10px !important;
     width: 100vw !important;
     left: 0 !important;
     top: 70px;
   }
 }
 .travel-style-card {
-  width: 48%;
+  width: 31%;
+  box-shadow: none;
+}
+.nav-card-link,.nav-card-link:hover{
+  box-shadow: none;
+  background-color:#FFFFFF;
 }
 </style>
