@@ -30,20 +30,36 @@ export default {
 <style scoped lang="scss">
 .main-search-component{
   box-sizing: border-box;
-  border:1px solid #FFFFFF;
+  border-radius: 100px;
+  overflow: hidden;
+  margin:0;
+  padding: 0;
+  outline: none;
+  height: 40px;
+  box-sizing: border-box;
 }
 .main-search-component:hover{
-  border:1px solid #00bcd4;
+  box-shadow: 0 0 7px -4px#f44336;
+}
+.main-input-search{
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+.main-button-search{
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
 .main-input-search,.main-button-search{
-  height: 40px;
+  border:2px solid #f44336;
   display: inline-block;
-  border:none;
   padding: 0 20px;
+  height: 100%;
+  margin:0;
+  box-sizing: border-box;
 }
 .main-button-search{
   border:none;
-  background-color:#00bcd4 !important;
+  background-color:#f44336 !important;
   font-size: 0.8rem;
   color: #FFFFFF;
   padding: 0 40px;

@@ -80,7 +80,7 @@
                   v-for="(pac,ides) in destination.destinationImages"
                   v-bind:key="ides"
                 >
-                  <img class="w-100" v-bind:src="`/${pac.filePath}`" v-bind:alt="pac.fileName" />
+                  <img class="image-des-img" v-bind:src="`/${pac.filePath}`" v-bind:alt="pac.fileName" />
                 </slide>
               </carousel>
             </div>
@@ -184,6 +184,10 @@ export default {
 <style scoped lang="scss">
 .image-des {
   height: 200px !important;
+}
+.image-des-img{
+  height: 200px !important;
+  width:auto !important;
 }
 .card-body-bottom-left {
   position: absolute;

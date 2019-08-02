@@ -78,6 +78,7 @@ export default {
 <style scoped lang="scss">
 .card-package{
     width: 220px;
+    overflow: hidden;
 }
 .intro-package{
    min-width: 100px;

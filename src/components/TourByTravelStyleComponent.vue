@@ -1,23 +1,20 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0">{{area.areaCountryName}}</h3>
-      <div class="row p-0 m-0 ">
-        <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
-          <div v-html="area.areaCountryIntro"></div>
+      <h3 class="title text-left m-0">{{travelStyle.travelStyleName}}</h3>
+      <div class="row p-0 m-0 d-flex justify-content-end align-items-center">
           <a class="link-des text-danger">
               Xem thêm
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
-        </div>
       </div>
       <div class="row p-0 m-0 d-flex align-items-stretch">
         <div class="col-8 m-0 p-1">
           <div class="card m-0 h-100 d-inline-block position-relative">
-            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':area.areaCountryImages.length==0}" v-bind:src="area.areaCountryImages.length>0?`/${area.areaCountryImages[0].filePath}`:'/img/defaultloading.gif'"
-            v-bind:alt="area.areaCountryName" />
+            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':travelStyle.travelStyleImages.length==0}" v-bind:src="travelStyle.travelStyleImages.length>0?`/${travelStyle.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
+            v-bind:alt="travelStyle.travelStyleName" />
             <div class="card-body-center text-left">
-              <h4 class="card-title text-white text-x2">{{area.areaCountryName}}</h4>
+              <h4 class="card-title text-white text-x2">{{travelStyle.travelStyleName}}</h4>
               <p class="card-text text-white"><b>200</b> diem den | <b>50</b> khach san | <b>10</b> tour</p>
               <small class="m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
             </div>
@@ -25,35 +22,37 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':destination[0].destinationImages.length==0}"  v-bind:src="destination[0].destinationImages.length>0?`/${destination[0].destinationImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="destination[0].destinationName" />
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':tour[0].tourImages.length==0}"  v-bind:src="tour[0].tourImages.length>0?`/${tour[0].tourImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="tour[0].tourName" />
              <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
-               {{destination[0].cityId.cityName}}</h6>
-              <h6 class="card-title m-0 cursor-pointer" @click="redirectToDestination(destination[0])">{{destination[0].destinationName}}</h6>
-               <p class="card-text intro-package hidden-outof-text" v-html="destination[0].destinationIntro"></p>
-              <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
+               {{tour[0].destinationId.destinationName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer"  @click="redirectToTour(tour[0])">{{tour[0].tourName}}</h6>
+               <p class="card-text intro-package hidden-outof-text" v-html="tour[0].tourIntro"></p>
+               <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour[0].price)}}</h2>
+               <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted m-0 text-success">Cap nhap tu {{bookingDate}}</small>
-                <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToDestination(destination[0])"/>
+                <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTour(tour[0])"/>
                </div>
             </div>
           </div>
         </div>
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
-        <slide class="m-2" v-for="(pac,ides) in destination" v-bind:key="ides">
+        <slide class="m-2" v-for="(pac,ides) in tour" v-bind:key="ides">
           <div class="card card-package m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.destinationImages.length==0}"  v-bind:src="pac.destinationImages.length>0?`/${pac.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.destinationName" />
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.tourImages.length==0}"  v-bind:src="pac.tourImages.length>0?`/${pac.tourImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.tourName" />
              <div class="card-body w-100 p-2">
-              <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center">
-               <span class="flex-grow">{{pac.cityId.cityName}}</span>
+              <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center cursor-pointer"  @click="redirectToDestination(pac)">
+               <span class="flex-grow">{{pac.destinationId.destinationName}}</span>
                <span class="badge badge-pill badge-danger shadow" v-if="pac.isHot"><font-awesome-icon icon="fire-alt" class="text-06 text-center" /></span>
                <span class="badge badge-pill badge-danger shadow" v-if="pac.isPromotion"><font-awesome-icon icon="tag" class="text-06 text-center" /><font-awesome-icon icon="percent" class="text-06 text-center" /></span>
               </h6>
-              <h6 class="card-title m-0 cursor-pointer" @click="redirectToDestination(pac)">{{pac.destinationName}}</h6>
-              <div class="card-text intro-package hidden-outof-text" v-html="pac.destinationIntro"></div>
-              <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToDestination(pac)">{{pac.tourName}}</h6>
+              <div class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></div>
+              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+               <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted m-0 text-success">Cap nhap tu {{moment(pac.createDate).format('YYYY.MM.DD')}}</small>
                 <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToDestination(pac)"/>
                </div>
@@ -68,7 +67,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
-import DestinationService from '@/api/DestinationService';
+import TourService from '@/api/TourService';
 
 function randomArray(array) {
   const array2 = [];
@@ -84,14 +83,13 @@ export default {
     Carousel,
     Slide,
   },
-  name: 'DestinationByAreaCountryComponent',
+  name: 'TourByTravelStyleComponent',
   props: {
-    area:{}
+    travelStyle:{}
   },
   data() {
     return {
-      destination: [],
-      selectedPayment: {},
+      tour: [],
       bookingDate: moment().format('MM-DD-YYYY'),
       moment:moment
     };
@@ -102,28 +100,28 @@ export default {
   methods: {
     async initial() {
       this.$store.commit('showHideLoading', true);
-      console.log(this.area);
-      const response = await DestinationService.getDestinationByAreaCountry(this.area._id);
-      this.destination = randomArray(response.data);
-      console.log(this.destination);
+      console.log(this.travelStyle);
+      const response = await TourService.getTourPackageByStyle(this.travelStyle._id);
+      this.tour = randomArray(response.data);
+      console.log(this.tour);
       this.$store.commit('showHideLoading', false);
     },
     redirectToDestination(des){
        this.$router.push(
-        `/destination/detail?destinationid=${des._id}`
+        `/tour/detail?tourid=${des._id}`
       );
     }
   },
   computed: {
-    destinationByLang() {
-      return this.destination;
+    tourByLang() {
+      return this.tour;
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<travelStyle scoped lang="scss">
 .card-package{
     width: 220px;
     overflow: hidden;
@@ -163,4 +161,4 @@ export default {
   flex-grow: 1 !important;
 }
 
-</style>
+</travelStyle>

@@ -4,8 +4,10 @@ import Home from './views/Home.vue';
 
 import DestinationView from './views/DestinationView.vue';
 import DestinationAllComponent from './components/DestinationAllComponent.vue';
-import DestinationDetailComponent from './components/DestinationDetailComponent.vue'
+import DestinationDetailComponent from './components/DestinationDetailComponent.vue';
 import TravelStyleView from './views/TravelStyleView.vue';
+import TravelStyleAllComponent from './components/TravelStyleAllComponent.vue';
+import TravelStyleDetailComponent from './components/TravelStyleDetailComponent.vue';
 import TravelServiceView from './views/TravelServiceView.vue';
 import MICEView from './views/MICEView.vue';
 import FITView from './views/FITView.vue';
@@ -52,6 +54,18 @@ export default new Router({
       path: '/travelstyle',
       name: 'travelstyle',
       component: TravelStyleView,
+      children: [
+        {
+          path: 'detail',
+          name: 'travelstyledetail',
+          component: TravelStyleDetailComponent,
+        },
+        {
+          path: '',
+          name: 'travelstyleall',
+          component: TravelStyleAllComponent,
+        },
+      ],
     },
     {
       path: '/travelservice',
