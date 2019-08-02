@@ -62,7 +62,7 @@
                       <img class="w-100"  v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}" v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
                         v-bind:alt="st.travelStyleName"  />
                       <div class="card-img-overlay">
-                        <h4 class="card-title text-center text-white">{{style.travelStyleName}}</h4>
+                        <h4 class="card-title text-center text-white">{{st.travelStyleName}}</h4>
                       </div>
                     </a>
                   </div>
