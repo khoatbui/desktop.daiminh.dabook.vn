@@ -12,7 +12,7 @@
         <slide class="m-2 d-flex justify-content-start align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
             <div class="card card-des m-1 flex-grow-1 d-inline-block" @click="redirectToDestination(page)" v-for="(page,ipage) in destinations.slice(index, index+size)" v-bind:key="ipage">
               <img class="card-img image-des"  v-bind:src="page.destinationImages.length>0?`/${page.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
-            v-bind:alt="page.destinationImages[0].fileName" />
+            v-bind:alt="page.destinationIntro" />
               <div class="card-body-center">
                 <h4 class="card-title text-white">{{page.destinationName}}</h4>
               </div>
@@ -65,7 +65,7 @@ export default {
     },
     redirectToDestination(des){
        this.$router.push(
-        `/destination?destinationid=${des._id}`
+        `/destination/detail?destinationid=${des._id}`
       );
     }
   },

@@ -86,14 +86,14 @@ body{
     margin-top: 0px !important;
     background-color: rgba(32, 80, 114,0.5) !important;
 }
-@media (min-width: 1200px)
+/* @media (min-width: 1200px)
 {
 .container {
     max-width: 1760px !important;
     padding-right: 80px !important;
     padding-left: 80px !important;
 }
-}
+} */
 
 /* ========BORDER RADIUS=========== */
 .border-radius-5{

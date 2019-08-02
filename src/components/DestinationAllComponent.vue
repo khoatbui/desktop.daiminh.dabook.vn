@@ -1,22 +1,24 @@
 <template>
-  <div class="home">
-    <BackgroundHeaderComponent></BackgroundHeaderComponent>
-    <NavigationComponent :isTran="true"></NavigationComponent>
+  <div class="destinationmain">
+    <BackgroundHeaderComponent :destination="destination" ></BackgroundHeaderComponent>
     <div class="main-body">
-      <div class="container-fluid p-0">
-        <ThreeStepComponent></ThreeStepComponent>
+      <div class="container pt-4" v-for="(area,i) in areaCountry" v-bind:key="i">
+        <DestinationByAreaCountryComponent :area="area"></DestinationByAreaCountryComponent>
       </div>
       <div class="container pt-4">
         <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
       </div>
       <div class="container pt-4">
-        <TopCityComponent></TopCityComponent>
+        <HotelByDestinationComponent :destination="destination"></HotelByDestinationComponent>
       </div>
       <div class="container pt-4">
-        <TopDestinationComponent></TopDestinationComponent>
+        <TourByDestinationComponent :isTitle="true" :paginationEnabled="false" :destination="destination"></TourByDestinationComponent>
       </div>
       <div class="container-fluid pt-4 px-0">
         <VideoComponent></VideoComponent>
+      </div>
+      <div class="container pt-4">
+        <DestinationExplorerFilterComponent :destination="destination"></DestinationExplorerFilterComponent>
       </div>
       <div class="container pt-4">
         <TopHotelPromotionComponent></TopHotelPromotionComponent>
@@ -25,27 +27,24 @@
         <IntroduceDaiMinhComponent></IntroduceDaiMinhComponent>
       </div>
       <div class="container pt-4">
-        <TopTourPromotionComponent :isTitle="true"></TopTourPromotionComponent>
+        <TopTourPromotionComponent></TopTourPromotionComponent>
       </div>
       <div class="container pt-4">
         <AdsWithHotelPromotionComponent></AdsWithHotelPromotionComponent>
       </div>
-      <div class="container pt-4">
-        <IntroDaiMinhComponent></IntroDaiMinhComponent>
-      </div>
     </div>
-    <FooterComponent></FooterComponent>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import NavigationComponent from '@/components/NavigationComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
+import DestinationService from '@/api/DestinationService';
+import AreaCountryService from '@/api/AreaCountryService';
 import IntroDaiMinhComponent from '@/components/IntroDaiMinhComponent.vue';
 import VideoComponent from '@/components/VideoComponent.vue';
 import TopDestinationComponent from '@/components/TopDestinationComponent.vue';
-import TopCityComponent from '@/components/TopCityComponent.vue';
+import HotelByDestinationComponent from '@/components/HotelByDestinationComponent.vue';
+import TourByDestinationComponent from '@/components/TourByDestinationComponent.vue';
 import TopHotelPromotionComponent from '@/components/TopHotelPromotionComponent.vue';
 import BackgroundHeaderComponent from '@/components/BackgroundHeaderComponent.vue';
 import ThreeStepComponent from '@/components/ThreeStepComponent.vue';
@@ -53,16 +52,16 @@ import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vu
 import IntroduceDaiMinhComponent from '@/components/IntroduceDaiMinhComponent.vue';
 import HorizontalAdsComponent from '@/components/HorizontalAdsComponent.vue';
 import AdsWithHotelPromotionComponent from '@/components/AdsWithHotelPromotionComponent.vue';
+import DestinationByAreaCountryComponent from '@/components/DestinationByAreaCountryComponent.vue';
+import DestinationExplorerFilterComponent from '@/components/DestinationExplorerFilterComponent.vue';
 
 export default {
-  name: 'home',
+  name: 'destinationmain',
   components: {
-    NavigationComponent,
-    FooterComponent,
     IntroDaiMinhComponent,
     VideoComponent,
     TopDestinationComponent,
-    TopCityComponent,
+    HotelByDestinationComponent,
     TopHotelPromotionComponent,
     BackgroundHeaderComponent,
     ThreeStepComponent,
@@ -70,9 +69,27 @@ export default {
     IntroduceDaiMinhComponent,
     HorizontalAdsComponent,
     AdsWithHotelPromotionComponent,
+    DestinationByAreaCountryComponent,
+    TourByDestinationComponent,
+    DestinationExplorerFilterComponent,
+  },
+  data() {
+    return {
+      destinationId:this.$route.query.destinationid,
+      destination:{},
+      areaCountry:[]
+    };
+  },
+  mounted() {
+         this.initial();
+  },
+  methods: {
+      async initial() {
+      this.$store.commit('showHideLoading', true);
+      const response = await AreaCountryService.getAllAreaCountry();
+      this.areaCountry =response.data;
+      this.$store.commit('showHideLoading', false);
+    }
   },
 };
 </script>
-<style scoped  lang="scss">
-
-</style>

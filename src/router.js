@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+
 import DestinationView from './views/DestinationView.vue';
+import DestinationAllComponent from './components/DestinationAllComponent.vue';
+import DestinationDetailComponent from './components/DestinationDetailComponent.vue'
 import TravelStyleView from './views/TravelStyleView.vue';
 import TravelServiceView from './views/TravelServiceView.vue';
 import MICEView from './views/MICEView.vue';
@@ -32,6 +35,18 @@ export default new Router({
       path: '/destination',
       name: 'destination',
       component: DestinationView,
+      children: [
+        {
+          path: 'detail',
+          name: 'destinationdetail',
+          component: DestinationDetailComponent,
+        },
+        {
+          path: '',
+          name: 'destinatioall',
+          component: DestinationAllComponent,
+        },
+      ],
     },
     {
       path: '/travelstyle',

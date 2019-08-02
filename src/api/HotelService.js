@@ -12,7 +12,7 @@ const Hotel = {
   },
   getHotelPackageByDestination(destinationId) {
     return axios.get('http://103.237.144.222:3000/packagehotelrel/m/getallpackagebydestination/' + destinationId);
-  }
+  },
 };
 
 export default Hotel;

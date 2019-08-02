@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg"  color-on-scroll="100">
+    <nav class="navbar fixed-top navbar-expand-lg" v-bind:class="classObject"  color-on-scroll="100">
       <div class="container">
         <div class="navbar-translate">
           <a class="navbar-brand" href="/index.html">
@@ -35,7 +35,7 @@
                 aria-expanded="false"
               >Destination</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item text-info" href="#">
+                <a class="dropdown-item text-info" href="/destination">
                   <i class="fab fa-buysellads mr-2"></i> VietNam
                 </a>
                 <a class="dropdown-item text-info" href="#">
@@ -232,8 +232,16 @@
 export default {
   name: "NavigationComponent",
   props: {
-    msg: String
-  }
+    isTran: true
+  },
+  data() {
+    return{
+      classObject: {
+        'navbar-color-on-scroll navbar-transparent' : this.isTran,
+        'navbar-no-transparent' : !this.isTran,
+      },
+    }
+  },
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="main-index h-700" data-parallax="true">
-  <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" :autoplaySpeed="500" class="w-100 m-0 p-0">
+  <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" class="w-100 m-0 p-0">
     <img src="/img/background/bg_01.jpg">
     <img src="/img/background/bg_02.jpg">
     <img src="/img/background/bg_03.jpg">
