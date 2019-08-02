@@ -57,10 +57,10 @@
                 <div
                   class="col-3 m-0 p-1 d-flex flex-row justify-content-between align-items-center flex-wrap"
                 >
-                  <div class="card travel-style-card my-1" v-for="(style,iStyle) in travelStyle" v-bind:key="iStyle">
+                  <div class="card travel-style-card my-1" v-for="(st,iStyle) in travelStyle" v-bind:key="iStyle">
                     <a class="nav-card-link" href="/tour/tourlist.html">
-                      <img class="w-100"  v-bind:class="{'small-loading-img':style.travelStyleImages.length==0}" v-bind:src="style.travelStyleImages.length>0?`/${style.travelStyleImages.filePath}`:'/img/defaultloading.gif'"
-                        v-bind:alt="style.travelStyleName"  />
+                      <img class="w-100"  v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}" v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
+                        v-bind:alt="st.travelStyleName"  />
                       <div class="card-img-overlay">
                         <h4 class="card-title text-center text-white">{{style.travelStyleName}}</h4>
                       </div>
