@@ -25,22 +25,113 @@
               <i class="fa fa-menu"></i> Home
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item fullwidth-dropdown">
             <a
               class="nav-link dropdown-toggle"
-              href="/destination"
+              href="#"
               id="navbarDropdownMenuLink"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >Destination</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item text-info" href="/destination">
-                <i class="fab fa-buysellads mr-2"></i> VietNam
-              </a>
-              <a class="dropdown-item text-info" href="#">
-                <i class="fas fa-air-freshener mr-2"></i> Other Country
-              </a>
+            <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row m-1">
+                <div class="col-2 m-0 p-2 pr-4 border-right">
+                  <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
+                  <p class="text-left text-08">
+                    Hang tram diem den tuyet voi tren dat nuoc VietNam bao gom Tay Bac, Me Kong, Mien Trung
+                    Mien Nam, va cac tinh Bac Trung Bo. Chung toi luon co nhung dich vu tuyet voi
+                  </p>
+                  <small class="text-06">
+                    <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
+                    <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de tuoc tu van, hoac chat truc tiep voi chung toi
+                  </small>
+                </div>
+                <div class="col-8 m-0 p-0">
+                  <div class="row m-0 p-0">
+                    <div class="col-4 m-0 p-2 border-right" v-for="(area,iArea) in areaCountry" v-bind:key="iArea">
+                      <div
+                        class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                      >
+                        <span class="text-1 text-danger font-weight-bold">{{area.areaCountryName}}</span>
+                        <span class="text-08 text-danger">
+                          Xem thêm
+                          <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                        </span>
+                      </div>
+                      <div
+                        class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
+                      >
+                        <div
+                          class="card travel-style-card my-1"
+                          v-for="(des,iDes) in area.destinations"
+                          v-bind:key="iDes"
+                        >
+                          <div class="row h-100 nav-style-card-filter">
+                            <a
+                              class="nav-card-link h-100"
+                              v-bind:href="`/travelstyle/detail/${des._id}`"
+                            >
+                              <img
+                                class="w-100 h-100"
+                                v-bind:class="{'small-loading-img':des.destinationImages.length==0}"
+                                v-bind:src="des.destinationImages.length>0?`/${des.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
+                                v-bind:alt="des.destinationName"
+                              />
+                              <div class="card-img-overlay">
+                                <h4
+                                  class="card-title text-08 text-center text-white"
+                                >{{des.destinationName}}</h4>
+                              </div>
+                            </a>
+                          </div>
+                          <div class="row m-0 p-0">
+                            <div class="hotel-card-body-bottom text-06">
+                              <a><span class="text-08 font-weight-bold m-0">Tour</span></a> |
+                              <a><span class="text-08 font-weight-bold m-0">Hotel</span></a> |
+                              <a><span class="text-08 font-weight-bold m-0">Car</span></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 m-0 p-2">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
+                    <span class="text-1 text-danger font-weight-bold">Any question, contact us</span>
+                  </div>
+                  <div class="row m-0 p-0 d-flex flex-column justify-content-around">
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="iname">Your name</label>
+                      <input class="custom-form-input" type="text" name="iname" id />
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="imail">Your email</label>
+                      <input class="custom-form-input" type="text" name="imail" id />
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="iphone">Your phone</label>
+                      <input class="custom-form-input" type="text" name="iphone" id />
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="imessage">Your request</label>
+                      <textarea class="custom-form-input" type="text" name="imessage" id></textarea>
+                    </div>
+                    <div class="col-12 py-1 text-right">
+                      <button class="btn btn-sm btn-danger border-radius-100">Send request</button>
+                    </div>
+                    <div class="col-12 py-1 text-right">
+                      <small class="text-06">
+                        <font-awesome-icon icon="headset" class="text-08 text-center" />Hotline
+                        <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
           <li class="nav-item fullwidth-dropdown">
@@ -55,21 +146,25 @@
             <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
               <div class="row m-1">
                 <div class="col-3 m-0 p-2 pr-4 border-right">
-                  <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt="">
+                  <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
                   <p class="text-left text-08">
                     Dai Minh cung cap tat ca cac tour theo style cua ban. Chung toi co cac style theo
                     phong cach co dien, mao hiem,sang trong va doc dao
                   </p>
                 </div>
                 <div class="col-3 m-0 p-2 border-right">
-                  <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
                     <span class="text-1 text-danger font-weight-bold">Travel style for you</span>
                     <span class="text-08 text-danger">
                       Xem thêm
                       <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
                     </span>
                   </div>
-                  <div class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap">
+                  <div
+                    class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
+                  >
                     <div
                       class="card travel-style-card my-1"
                       v-for="(st,iStyle) in travelStyle"
@@ -87,7 +182,9 @@
                             v-bind:alt="st.travelStyleName"
                           />
                           <div class="card-img-overlay">
-                            <h4 class="card-title text-08 text-center text-white">{{st.travelStyleName}}</h4>
+                            <h4
+                              class="card-title text-08 text-center text-white"
+                            >{{st.travelStyleName}}</h4>
                           </div>
                         </a>
                       </div>
@@ -95,79 +192,90 @@
                   </div>
                 </div>
                 <div class="col-4 m-0 p-2 border-right">
-                  <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
                     <span class="text-1 text-danger font-weight-bold">Today promotion hotel</span>
                     <span class="text-08 text-danger">
                       Xem thêm
                       <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
                     </span>
                   </div>
-                  <div class="row w-100 p-0 m-0  d-flex flex-row justify-content-start align-items-start flex-wrap">
                   <div
-                    class="card nav-hotel-card"
-                    v-for="(ht,iHotel) in top10PromotionHotel"
-                    v-bind:key="iHotel"
+                    class="row w-100 p-0 m-0 d-flex flex-row justify-content-start align-items-start flex-wrap"
                   >
-                    <div class="row nav-hotel-card-filter">
-                      <a class="nav-card-link h-100" v-bind:href="`/travelstyle/detail/${ht._id}`">
-                        <!--  v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
-                        <img
-                          class="w-100 h-100"
-                          v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
-                          v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
-                          v-bind:alt="ht.roomTypeId.roomTypeName"
-                        />
-                        <div class="card-img-overlay">
-                          <h4
-                            class="card-title text-08 text-center text-white"
-                          >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(ht.price)}}</h4>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="row m-0 p-0">
-                      <div class="hotel-card-body-bottom text-06">
-                        <p class="text-08 font-weight-bold m-0">{{ht.hotelId.hotelName}}</p>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                          <span class="w-50">{{ht.roomTypeId.roomTypeName}}</span>
-                          <font-awesome-icon
-                            icon="arrow-right"
-                            class="text-1 text-center text-danger cursor-pointer"
-                            @click="redirectToTour(ht)"
+                    <div
+                      class="card nav-hotel-card"
+                      v-for="(ht,iHotel) in top10PromotionHotel"
+                      v-bind:key="iHotel"
+                    >
+                      <div class="row nav-hotel-card-filter">
+                        <a
+                          class="nav-card-link h-100"
+                          v-bind:href="`/travelstyle/detail/${ht._id}`"
+                        >
+                          <!--  v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
+                          <img
+                            class="w-100 h-100"
+                            v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
+                            v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+                            v-bind:alt="ht.roomTypeId.roomTypeName"
                           />
+                          <div class="card-img-overlay">
+                            <h4
+                              class="card-title text-08 text-center text-white"
+                            >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(ht.price)}}</h4>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="row m-0 p-0">
+                        <div class="hotel-card-body-bottom text-06">
+                          <p class="text-08 font-weight-bold m-0">{{ht.hotelId.hotelName}}</p>
+                          <div class="w-100 d-flex justify-content-between align-items-center">
+                            <span class="w-50">{{ht.roomTypeId.roomTypeName}}</span>
+                            <font-awesome-icon
+                              icon="arrow-right"
+                              class="text-1 text-center text-danger cursor-pointer"
+                              @click="redirectToTour(ht)"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
                 <div class="col-2 m-0 p-2">
-                  <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
                     <span class="text-1 text-danger font-weight-bold">Any question, contact us</span>
                   </div>
                   <div class="row m-0 p-0 d-flex flex-column justify-content-around">
                     <div class="col-12 py-1">
                       <label class="text-06 mb-1" for="iname">Your name</label>
-                      <input class="custom-form-input" type="text" name="iname" id="">
+                      <input class="custom-form-input" type="text" name="iname" id />
                     </div>
                     <div class="col-12 py-1">
                       <label class="text-06 mb-1" for="imail">Your email</label>
-                      <input class="custom-form-input" type="text" name="imail" id="">
+                      <input class="custom-form-input" type="text" name="imail" id />
                     </div>
                     <div class="col-12 py-1">
                       <label class="text-06 mb-1" for="iphone">Your phone</label>
-                      <input class="custom-form-input" type="text" name="iphone" id="">
+                      <input class="custom-form-input" type="text" name="iphone" id />
                     </div>
                     <div class="col-12 py-1">
                       <label class="text-06 mb-1" for="imessage">Your request</label>
-                      <textarea class="custom-form-input" type="text" name="imessage" id=""></textarea>
+                      <textarea class="custom-form-input" type="text" name="imessage" id></textarea>
                     </div>
                     <div class="col-12 py-1 text-right">
                       <button class="btn btn-sm btn-danger border-radius-100">Send request</button>
                     </div>
-                     <div class="col-12 py-1  text-right">
-                       <small class="text-06">
-                         <font-awesome-icon icon="headset" class="text-08 text-center" /> Hotline <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7</small>
-                     </div>
+                    <div class="col-12 py-1 text-right">
+                      <small class="text-06">
+                        <font-awesome-icon icon="headset" class="text-08 text-center" />Hotline
+                        <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7
+                      </small>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -269,6 +377,8 @@
 <script>
 import TravelStyleService from "@/api/TravelStyleService";
 import HotelService from "@/api/HotelService";
+import DestinationService from "@/api/DestinationService";
+import AreaCountryService from '@/api/AreaCountryService';
 import HorizontalAdsComponent from "@/components/HorizontalAdsComponent.vue";
 
 function randomArray(array) {
@@ -296,21 +406,37 @@ export default {
         "navbar-no-transparent": !this.isTran
       },
       travelStyle: [],
-      top10PromotionHotel: []
+      top10PromotionHotel: [],
+      areaCountry: [],
     };
   },
   mounted() {
-    this.initial();
+    this.getTravelStyle();
+    this.getPromotionHotel();
+    this.getAreaCountry();
   },
   methods: {
-    async initial() {
-      this.$store.commit("showHideLoading", true);
+    async getAreaCountry() {
+      const resArea = await AreaCountryService.getAllAreaCountry();
+      this.areaCountry = resArea.data;
+      for (let index = 0; index < this.areaCountry.length; index++) {
+        const fruit = this.areaCountry[index]
+        const numFruit = await this.getDestinationByArea(fruit._id)
+        this.areaCountry[index].destinations=[...numFruit]
+      }
+      console.log(this.areaCountry);
+    },
+    async getTravelStyle() {
       const response = await TravelStyleService.getAllTravelStyle();
       this.travelStyle = response.data;
+    },
+    async getPromotionHotel() {
       const responsehotel = await HotelService.getTop10PromotionHotel();
       this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 10);
-      console.log(this.top10PromotionHotel);
-      this.$store.commit("showHideLoading", false);
+    },
+    async getDestinationByArea(areaId) {
+      const resDes =await DestinationService.getDestinationByAreaCountry(areaId);
+      return resDes.data;
     },
     redirectToTour(tour) {}
   }
@@ -392,14 +518,14 @@ export default {
   margin-top: 10px;
 }
 .custom-form-input {
-  padding:3px 5px;
+  padding: 3px 5px;
   border-radius: 2px;
-  border:0.5px solid #d2d2d2;
+  border: 0.5px solid #d2d2d2;
   width: 100%;
-  margin:0;
+  margin: 0;
   font-size: 0.8rem;
 }
-textarea.custom-form-input{
+textarea.custom-form-input {
   height: auto;
 }
 .style-logo {
