@@ -54,24 +54,122 @@
             >Travel Style</a>
             <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
               <div class="row m-1">
-                <div
-                  class="col-4 m-0 p-1 pr-4 border-right d-flex flex-row justify-content-between align-items-stretch flex-wrap"
-                >
-                  <div class="card travel-style-card my-1" v-for="(st,iStyle) in travelStyle" v-bind:key="iStyle">
-                    <a class="nav-card-link h-100" href="/tour/tourlist.html">
-                      <img class="w-100 h-100"  v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}" v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
-                        v-bind:alt="st.travelStyleName"  />
-                      <div class="card-img-overlay">
-                        <h4 class="card-title text-center text-white">{{st.travelStyleName}}</h4>
+                <div class="col-3 m-0 p-2 pr-4 border-right">
+                  <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt="">
+                  <p class="text-left text-08">
+                    Dai Minh cung cap tat ca cac tour theo style cua ban. Chung toi co cac style theo
+                    phong cach co dien, mao hiem,sang trong va doc dao
+                  </p>
+                </div>
+                <div class="col-3 m-0 p-2 border-right">
+                  <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+                    <span class="text-1 text-danger font-weight-bold">Travel style for you</span>
+                    <span class="text-08 text-danger">
+                      Xem thêm
+                      <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                    </span>
+                  </div>
+                  <div class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap">
+                    <div
+                      class="card travel-style-card my-1"
+                      v-for="(st,iStyle) in travelStyle"
+                      v-bind:key="iStyle"
+                    >
+                      <div class="row h-100 nav-style-card-filter">
+                        <a
+                          class="nav-card-link h-100"
+                          v-bind:href="`/travelstyle/detail/${st._id}`"
+                        >
+                          <img
+                            class="w-100 h-100"
+                            v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}"
+                            v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
+                            v-bind:alt="st.travelStyleName"
+                          />
+                          <div class="card-img-overlay">
+                            <h4 class="card-title text-08 text-center text-white">{{st.travelStyleName}}</h4>
+                          </div>
+                        </a>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div class="col-3 m-0 p-1 pr-4 border-right"></div>
-                <div class="col-3 m-0 p-1 pr-4 border-right">
-                  <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
+                <div class="col-4 m-0 p-2 border-right">
+                  <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+                    <span class="text-1 text-danger font-weight-bold">Today promotion hotel</span>
+                    <span class="text-08 text-danger">
+                      Xem thêm
+                      <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                    </span>
+                  </div>
+                  <div class="row w-100 p-0 m-0  d-flex flex-row justify-content-start align-items-start flex-wrap">
+                  <div
+                    class="card nav-hotel-card"
+                    v-for="(ht,iHotel) in top10PromotionHotel"
+                    v-bind:key="iHotel"
+                  >
+                    <div class="row nav-hotel-card-filter">
+                      <a class="nav-card-link h-100" v-bind:href="`/travelstyle/detail/${ht._id}`">
+                        <!--  v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
+                        <img
+                          class="w-100 h-100"
+                          v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
+                          v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+                          v-bind:alt="ht.roomTypeId.roomTypeName"
+                        />
+                        <div class="card-img-overlay">
+                          <h4
+                            class="card-title text-08 text-center text-white"
+                          >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(ht.price)}}</h4>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="row m-0 p-0">
+                      <div class="hotel-card-body-bottom text-06">
+                        <p class="text-08 font-weight-bold m-0">{{ht.hotelId.hotelName}}</p>
+                        <div class="w-100 d-flex justify-content-between align-items-center">
+                          <span class="w-50">{{ht.roomTypeId.roomTypeName}}</span>
+                          <font-awesome-icon
+                            icon="arrow-right"
+                            class="text-1 text-center text-danger cursor-pointer"
+                            @click="redirectToTour(ht)"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
                 </div>
-                <div class="col-2 m-0 p-1"></div>
+                <div class="col-2 m-0 p-2">
+                  <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+                    <span class="text-1 text-danger font-weight-bold">Any question, contact us</span>
+                  </div>
+                  <div class="row m-0 p-0 d-flex flex-column justify-content-around">
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="iname">Your name</label>
+                      <input class="custom-form-input" type="text" name="iname" id="">
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="imail">Your email</label>
+                      <input class="custom-form-input" type="text" name="imail" id="">
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="iphone">Your phone</label>
+                      <input class="custom-form-input" type="text" name="iphone" id="">
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="imessage">Your request</label>
+                      <textarea class="custom-form-input" type="text" name="imessage" id=""></textarea>
+                    </div>
+                    <div class="col-12 py-1 text-right">
+                      <button class="btn btn-sm btn-danger border-radius-100">Send request</button>
+                    </div>
+                     <div class="col-12 py-1  text-right">
+                       <small class="text-06">
+                         <font-awesome-icon icon="headset" class="text-08 text-center" /> Hotline <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7</small>
+                     </div>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -169,8 +267,20 @@
 </template>
 
 <script>
-import TravelStyleService from '@/api/TravelStyleService';
+import TravelStyleService from "@/api/TravelStyleService";
+import HotelService from "@/api/HotelService";
 import HorizontalAdsComponent from "@/components/HorizontalAdsComponent.vue";
+
+function randomArray(array) {
+  const array2 = [];
+  while (array.length !== 0) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    array2.push(array[randomIndex]);
+    array.splice(randomIndex, 1);
+  }
+  return array2;
+}
+
 export default {
   name: "NavigationComponent",
   components: {
@@ -185,20 +295,25 @@ export default {
         "navbar-color-on-scroll navbar-transparent": this.isTran,
         "navbar-no-transparent": !this.isTran
       },
-      travelStyle:[],
+      travelStyle: [],
+      top10PromotionHotel: []
     };
   },
   mounted() {
-         this.initial();
+    this.initial();
   },
   methods: {
-     async initial() {
-      this.$store.commit('showHideLoading', true);
+    async initial() {
+      this.$store.commit("showHideLoading", true);
       const response = await TravelStyleService.getAllTravelStyle();
-      this.travelStyle =response.data;
-      this.$store.commit('showHideLoading', false);
+      this.travelStyle = response.data;
+      const responsehotel = await HotelService.getTop10PromotionHotel();
+      this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 10);
+      console.log(this.top10PromotionHotel);
+      this.$store.commit("showHideLoading", false);
     },
-  },
+    redirectToTour(tour) {}
+  }
 };
 </script>
 
@@ -219,9 +334,75 @@ export default {
 .travel-style-card {
   width: 31%;
   box-shadow: none;
+  margin: 1%;
+  flex-shrink: 1;
+  flex-grow: 1;
 }
-.nav-card-link,.nav-card-link:hover{
+.nav-card-link,
+.nav-card-link:hover {
   box-shadow: none;
-  background-color:#FFFFFF;
+  background-color: #ffffff;
+}
+.vertical-260 {
+  height: 260px !important;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.nav-hotel-card {
+  width: 18% !important;
+  margin: 1%;
+  flex-shrink: 1;
+  flex-grow: 1;
+  box-shadow: none;
+}
+.nav-hotel-card-filter,
+.nav-style-card-filter {
+  position: relative;
+  margin: 0;
+}
+.nav-hotel-card-filter::after,
+.nav-hotel-card-filter::before,
+.nav-style-card-filter::after,
+.nav-style-card-filter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgb(17, 17, 17, 0.2) !important;
+}
+.nav-hotel-card-filter .card-img-overlay,
+.nav-style-card-filter .card-img-overlay {
+  z-index: 11 !important;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+.hotel-card-body-bottom {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 2em;
+  margin-top: 10px;
+}
+.custom-form-input {
+  padding:3px 5px;
+  border-radius: 2px;
+  border:0.5px solid #d2d2d2;
+  width: 100%;
+  margin:0;
+  font-size: 0.8rem;
+}
+textarea.custom-form-input{
+  height: auto;
+}
+.style-logo {
+  width: 100%;
 }
 </style>

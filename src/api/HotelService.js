@@ -1,17 +1,20 @@
 import axios from 'axios';
-
+const api='http://103.237.144.222:3000'
 const Hotel = {
   getAllHotel() {
-    return axios.get('http://103.237.144.222:3000/hotel/');
+    return axios.get(`${api}/hotel/`);
   },
   getTopHotel() {
-    return axios.get('http://103.237.144.222:3000/hotel/m/getlisthotelpromotion');
+    return axios.get(`${api}/hotel/m/getlisthotelpromotion`);
+  },
+  getTop10PromotionHotel() {
+    return axios.get(`${api}/packagehotelrel/m/getallpromotionpackage`);
   },
   getTopPromotionHotelPackage() {
-    return axios.get('http://103.237.144.222:3000/packagehotelrel/m/getallpromotionpackage');
+    return axios.get(`${api}/packagehotelrel/m/getallpromotionpackage`);
   },
   getHotelPackageByDestination(destinationId) {
-    return axios.get('http://103.237.144.222:3000/packagehotelrel/m/getallpackagebydestination/' + destinationId);
+    return axios.get(`${api}/packagehotelrel/m/getallpackagebydestination/${destinationId}`);
   },
 };
 
