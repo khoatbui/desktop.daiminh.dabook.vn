@@ -532,7 +532,7 @@
                     class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
                   >
                     <div
-                      class="card nav-50-card my-1"
+                      class="card nav-25-card my-1"
                       v-for="(mice,iMice) in mices"
                       v-bind:key="iMice"
                     >
@@ -828,6 +828,13 @@ export default {
 }
 .nav-50-card {
   width: 48% !important;
+  margin: 1%;
+  flex-shrink: 1;
+  flex-grow: 1;
+  box-shadow: none;
+}
+.nav-25-card {
+  width: 23% !important;
   margin: 1%;
   flex-shrink: 1;
   flex-grow: 1;
