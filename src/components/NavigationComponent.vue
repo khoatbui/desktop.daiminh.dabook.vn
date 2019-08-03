@@ -331,24 +331,24 @@
                       >
                         <div
                           class="card travel-style-card my-1"
-                          v-for="(st,iStyle) in travelStyle"
-                          v-bind:key="iStyle"
+                          v-for="(tservice,iService) in travelServices"
+                          v-bind:key="iService"
                         >
                           <div class="row h-100 nav-style-card-filter">
                             <a
                               class="nav-card-link h-100"
-                              v-bind:href="`/travelstyle/detail/${st._id}`"
+                              v-bind:href="`/travelservice/detail/${tservice._id}`"
                             >
                               <img
                                 class="w-100 h-100"
-                                v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}"
-                                v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
-                                v-bind:alt="st.travelStyleName"
+                                v-bind:class="{'small-loading-img':tservice.travelServiceImages.length==0}"
+                                v-bind:src="tservice.travelServiceImages.length>0?`/${tservice.travelServiceImages[0].filePath}`:'/img/defaultloading.gif'"
+                                v-bind:alt="tservice.travelServiceName"
                               />
                               <div class="card-img-overlay">
                                 <h4
                                   class="card-title text-08 text-center text-white"
-                                >{{st.travelStyleName}}</h4>
+                                >{{tservice.travelServiceName}}</h4>
                               </div>
                             </a>
                           </div>
@@ -697,6 +697,7 @@ import moment from 'moment';
 import TravelStyleService from "@/api/TravelStyleService";
 import HotelService from "@/api/HotelService";
 import CarService from "@/api/CarService";
+import TravelService from '@/api/TravelService'
 import MICEService from "@/api/MICEService";
 import DestinationService from "@/api/DestinationService";
 import AreaCountryService from "@/api/AreaCountryService";
@@ -731,6 +732,7 @@ export default {
       areaCountry: [],
       top10Cars: [],
       mices:[],
+      travelServices:[],
       moment:moment,
     };
   },
@@ -740,6 +742,7 @@ export default {
     this.getAreaCountry();
     this.getCarPromotion();
     this.getMICE();
+    this.getTravelService();
   },
   methods: {
     async getAreaCountry() {
@@ -765,6 +768,10 @@ export default {
     async getMICE() {
       const responsemice = await MICEService.getAllMICE();
       this.mices = randomArray(responsemice.data);
+    },
+    async getTravelService() {
+      const responseservice = await TravelService.getAllTravelService();
+      this.travelServices = randomArray(responseservice.data);
     },
     async getDestinationByArea(areaId) {
       const resDes = await DestinationService.getDestinationByAreaCountry(
