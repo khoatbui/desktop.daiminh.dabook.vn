@@ -44,19 +44,23 @@
                   </p>
                   <small class="text-06">
                     <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
-                    <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de tuoc tu van, hoac chat truc tiep voi chung toi
+                    <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de duoc tu van, hoac chat truc tiep voi chung toi
                   </small>
                 </div>
                 <div class="col-8 m-0 p-0">
                   <div class="row m-0 p-0">
-                    <div class="col-4 m-0 p-2 border-right" v-for="(area,iArea) in areaCountry" v-bind:key="iArea">
+                    <div
+                      class="col-4 m-0 p-2 border-right"
+                      v-for="(area,iArea) in areaCountry"
+                      v-bind:key="iArea"
+                    >
                       <div
                         class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                       >
-                        <span class="text-1 text-danger font-weight-bold">{{area.areaCountryName}}</span>
+                        <span class="text-08 text-danger font-weight-bold">{{area.areaCountryName}}</span>
                         <span class="text-08 text-danger">
-                          Xem thêm
-                          <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                          View all
+                          <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                         </span>
                       </div>
                       <div
@@ -87,9 +91,15 @@
                           </div>
                           <div class="row m-0 p-0">
                             <div class="hotel-card-body-bottom text-06">
-                              <a class="nav-card-link cursor-pointer"><span class="text-08 font-weight-bold m-0">Tour</span></a> |
-                              <a class="nav-card-link cursor-pointer"><span class="text-08 font-weight-bold m-0">Hotel</span></a> |
-                              <a class="nav-card-link cursor-pointer"><span class="text-08 font-weight-bold m-0">Car</span></a>
+                              <a class="nav-card-link cursor-pointer">
+                                <span class="text-08 font-weight-bold m-0">Tour</span>
+                              </a> |
+                              <a class="nav-card-link cursor-pointer">
+                                <span class="text-08 font-weight-bold m-0">Hotel</span>
+                              </a> |
+                              <a class="nav-card-link cursor-pointer">
+                                <span class="text-08 font-weight-bold m-0">Car</span>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -101,7 +111,7 @@
                   <div
                     class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                   >
-                    <span class="text-1 text-danger font-weight-bold">Any question, contact us</span>
+                    <span class="text-08 text-danger font-weight-bold">Any question, contact us</span>
                   </div>
                   <div class="row m-0 p-0 d-flex flex-column justify-content-around">
                     <div class="col-12 py-1">
@@ -156,10 +166,10 @@
                   <div
                     class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                   >
-                    <span class="text-1 text-danger font-weight-bold">Travel style for you</span>
+                    <span class="text-08 text-danger font-weight-bold">Travel style for you</span>
                     <span class="text-08 text-danger">
-                      Xem thêm
-                      <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                      View all
+                      <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                     </span>
                   </div>
                   <div
@@ -195,10 +205,10 @@
                   <div
                     class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                   >
-                    <span class="text-1 text-danger font-weight-bold">Today promotion hotel</span>
+                    <span class="text-08 text-danger font-weight-bold">Today promotion hotel</span>
                     <span class="text-08 text-danger">
-                      Xem thêm
-                      <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                      View all
+                      <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                     </span>
                   </div>
                   <div
@@ -248,7 +258,7 @@
                   <div
                     class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                   >
-                    <span class="text-1 text-danger font-weight-bold">Any question, contact us</span>
+                    <span class="text-08 text-danger font-weight-bold">Any question, contact us</span>
                   </div>
                   <div class="row m-0 p-0 d-flex flex-column justify-content-around">
                     <div class="col-12 py-1">
@@ -281,7 +291,7 @@
               </div>
             </div>
           </li>
-           <li class="nav-item fullwidth-dropdown">
+          <li class="nav-item fullwidth-dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -295,25 +305,25 @@
                 <div class="col-2 m-0 p-2 pr-4 border-right">
                   <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
                   <p class="text-left text-08">
-                     Ngoai tour va ve, chung toi cung cap cac dich vu lien quan toi du lich nhu khach san,
-                     xe, bao hiem, visa voi muc gia uu dai va dich vu hoan hao, xin hay lien he voi chung toi
-                     de duoc tu van tot nhat
+                    Ngoai tour va ve, chung toi cung cap cac dich vu lien quan toi du lich nhu khach san,
+                    xe, bao hiem, visa voi muc gia uu dai va dich vu hoan hao, xin hay lien he voi chung toi
+                    de duoc tu van tot nhat
                   </p>
                   <small class="text-06">
                     <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
-                    <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de tuoc tu van, hoac chat truc tiep voi chung toi
+                    <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de duoc tu van, hoac chat truc tiep voi chung toi
                   </small>
                 </div>
-                <div class="col-8 m-0 p-2 pr-4 border-right">
-                  <div class="row m-0 p-0">              
+                <div class="col-8 m-0 p-2 border-right">
+                  <div class="row m-0 p-0">
                     <div class="col-4 m-0 p-2 border-right">
                       <div
                         class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                       >
-                        <span class="text-1 text-danger font-weight-bold">Service</span>
+                        <span class="text-08 text-danger font-weight-bold">Service</span>
                         <span class="text-08 text-danger">
-                          Xem thêm
-                          <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                          View all
+                          <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                         </span>
                       </div>
                       <div
@@ -349,10 +359,10 @@
                       <div
                         class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                       >
-                        <span class="text-1 text-danger font-weight-bold">Today promotion hotel</span>
+                        <span class="text-08 text-danger font-weight-bold">Today promotion hotel</span>
                         <span class="text-08 text-danger">
-                          Xem thêm
-                          <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                          View all
+                          <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                         </span>
                       </div>
                       <div
@@ -402,10 +412,10 @@
                       <div
                         class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                       >
-                        <span class="text-1 text-danger font-weight-bold">Today promotion car</span>
+                        <span class="text-08 text-danger font-weight-bold">Today promotion car</span>
                         <span class="text-08 text-danger">
-                          Xem thêm
-                          <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+                          View all
+                          <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                         </span>
                       </div>
                       <div
@@ -417,10 +427,7 @@
                           v-bind:key="iCar"
                         >
                           <div class="row nav-hotel-card-filter">
-                            <a
-                              class="nav-card-link h-100"
-                              v-bind:href="`/car/detail/${car._id}`"
-                            >
+                            <a class="nav-card-link h-100" v-bind:href="`/car/detail/${car._id}`">
                               <img
                                 class="w-100 h-100"
                                 v-bind:class="{'small-loading-img':car.priceByCarType[0].carImages.length==0}"
@@ -456,7 +463,7 @@
                   <div
                     class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
                   >
-                    <span class="text-1 text-danger font-weight-bold">Any question, contact us</span>
+                    <span class="text-08 text-danger font-weight-bold">Any question, contact us</span>
                   </div>
                   <div class="row m-0 p-0 d-flex flex-column justify-content-around">
                     <div class="col-12 py-1">
@@ -489,10 +496,134 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
-            <a href="/tour/mice.html" class="nav-link">
-              <i class="fa fa-menu"></i> MICE
-            </a>
+          <li class="nav-item fullwidth-dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >MICE</a>
+            <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row m-1">
+                <div class="col-2 m-0 p-2 pr-4 border-right">
+                  <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
+                  <p class="text-left text-08">
+                    Meetings, Incentives, Conferences, Events
+                    Chung toi co the dap ung tat ca cac yeu cau cua ban.
+                  </p>
+                  <small class="text-06">
+                    <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
+                    <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de duoc tu van, hoac chat truc tiep voi chung toi
+                  </small>
+                </div>
+                <div class="col-6 m-0 p-2 border-right">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
+                    <span class="text-08 text-danger font-weight-bold">ACTIVITIES</span>
+                    <span class="text-08 text-danger">
+                      View all
+                      <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
+                    </span>
+                  </div>
+                  <div
+                    class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
+                  >
+                    <div
+                      class="card nav-50-card my-1"
+                      v-for="(mice,iMice) in mices"
+                      v-bind:key="iMice"
+                    >
+                      <div class="row h-100 nav-style-card-filter">
+                        <a
+                          class="nav-card-link h-100"
+                          v-bind:href="`/mice/detail/${mice._id}`"
+                        >
+                          <img
+                            class="w-100 h-100"
+                            v-bind:class="{'small-loading-img':mice.miceImages.length==0}"
+                            v-bind:src="mice.miceImages.length>0?`/${mice.miceImages[0].filePath}`:'/img/defaultloading.gif'"
+                            v-bind:alt="mice.miceName"
+                          />
+                          <div class="card-img-overlay">
+                            <h4
+                              class="card-title text-08 text-center text-white"
+                            >{{mice.miceName}}</h4>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="row m-0 p-0">
+                        <div class="mice-card-body-bottom text-06">
+                          <div class="text-08 three-row m-0" v-html="mice.miceIntros[0].miceIntro"></div>
+                          <div class="w-100 d-flex justify-content-between align-items-center text-right">
+                            <small class="text-06 text-default">Update {{moment(mice.createDate).format('YYYY.MM.DD')}}</small>
+                            <font-awesome-icon
+                              icon="arrow-right"
+                              class="text-1 text-center text-danger cursor-pointer"
+                              @click="redirectToTour(mice)"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 m-0 p-2 border-right">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
+                    <span class="text-08 text-danger font-weight-bold">DESTINATION</span>
+                    <span class="text-08 text-danger">
+                      View all
+                      <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
+                    </span>
+                  </div>
+                  <div
+                    class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
+                  >
+                    <div class="text-left" v-for="(ar,iAr) in areaCountry" v-bind:key="iAr">
+                      <a href="#" class="nav-card-link m-0 p-0" v-for="(de,iDe) in ar.destinations" v-bind:key="iDe"><p class="text-06 m-0">{{de.destinationName}}</p></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 m-0 p-2">
+                  <div
+                    class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center"
+                  >
+                    <span class="text-08 text-danger font-weight-bold">Any question, contact us</span>
+                  </div>
+                  <div class="row m-0 p-0 d-flex flex-column justify-content-around">
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="iname">Your name</label>
+                      <input class="custom-form-input" type="text" name="iname" id />
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="imail">Your email</label>
+                      <input class="custom-form-input" type="text" name="imail" id />
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="iphone">Your phone</label>
+                      <input class="custom-form-input" type="text" name="iphone" id />
+                    </div>
+                    <div class="col-12 py-1">
+                      <label class="text-06 mb-1" for="imessage">Your request</label>
+                      <textarea class="custom-form-input" type="text" name="imessage" id></textarea>
+                    </div>
+                    <div class="col-12 py-1 text-right">
+                      <button class="btn btn-sm btn-danger border-radius-100">Send request</button>
+                    </div>
+                    <div class="col-12 py-1 text-right">
+                      <small class="text-06">
+                        <font-awesome-icon icon="headset" class="text-08 text-center" />Hotline
+                        <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
             <a href="/tour/fit.html" class="nav-link">
@@ -562,13 +693,14 @@
 </template>
 
 <script>
+import moment from 'moment';
 import TravelStyleService from "@/api/TravelStyleService";
 import HotelService from "@/api/HotelService";
-import CarService from '@/api/CarService'
+import CarService from "@/api/CarService";
+import MICEService from "@/api/MICEService";
 import DestinationService from "@/api/DestinationService";
-import AreaCountryService from '@/api/AreaCountryService';
+import AreaCountryService from "@/api/AreaCountryService";
 import HorizontalAdsComponent from "@/components/HorizontalAdsComponent.vue";
-
 
 function randomArray(array) {
   const array2 = [];
@@ -597,7 +729,9 @@ export default {
       travelStyle: [],
       top10PromotionHotel: [],
       areaCountry: [],
-      top10Cars:[],
+      top10Cars: [],
+      mices:[],
+      moment:moment,
     };
   },
   mounted() {
@@ -605,17 +739,19 @@ export default {
     this.getPromotionHotel();
     this.getAreaCountry();
     this.getCarPromotion();
+    this.getMICE();
   },
   methods: {
     async getAreaCountry() {
       const resArea = await AreaCountryService.getAllAreaCountry();
       this.areaCountry = resArea.data;
       const promises = resArea.data.map(async fruit => {
-        fruit.destinations = await this.getDestinationByArea(fruit._id)
-        return fruit
-      })
-      
+        fruit.destinations = await this.getDestinationByArea(fruit._id);
+        return fruit;
+      });
+
       const numFruits = await Promise.all(promises);
+      console.log(this.areaCountry);
       this.areaCountry = numFruits;
     },
     async getTravelStyle() {
@@ -626,17 +762,22 @@ export default {
       const responsehotel = await HotelService.getTop10PromotionHotel();
       this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 9);
     },
+    async getMICE() {
+      const responsemice = await MICEService.getAllMICE();
+      this.mices = randomArray(responsemice.data);
+    },
     async getDestinationByArea(areaId) {
-      const resDes =await DestinationService.getDestinationByAreaCountry(areaId);
+      const resDes = await DestinationService.getDestinationByAreaCountry(
+        areaId
+      );
       return randomArray(resDes.data).slice(0, 9);
     },
     async getCarPromotion() {
-      const resDes =await CarService.getTop10PromotionCar();
+      const resDes = await CarService.getTop10PromotionCar();
       this.top10Cars = randomArray(resDes.data).slice(0, 9);
-      console.log(this.top10Cars);
     },
     redirectToTour(tour) {},
-    redirectToCar(car) {},
+    redirectToCar(car) {}
   }
 };
 </script>
@@ -662,18 +803,31 @@ export default {
   flex-shrink: 1;
   flex-grow: 1;
 }
-.nav-card-link,
+.nav-card-link {
+  box-shadow: none;
+  background-color: #ffffff;
+  color: #205072;
+  font-weight: 700;
+}
 .nav-card-link:hover {
   box-shadow: none;
   background-color: #ffffff;
+  color: #205072;
 }
 .vertical-260 {
   height: 260px !important;
   overflow: hidden;
   overflow-y: scroll;
 }
-.nav-30-card{
+.nav-30-card {
   width: 31% !important;
+  margin: 1%;
+  flex-shrink: 1;
+  flex-grow: 1;
+  box-shadow: none;
+}
+.nav-50-card {
+  width: 48% !important;
   margin: 1%;
   flex-shrink: 1;
   flex-grow: 1;
@@ -722,6 +876,18 @@ export default {
   line-height: 2em;
   margin-top: 10px;
 }
+.mice-card-body-bottom{
+  width: 100%;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+}
+.three-row {
+ line-height: 2em;
+  height: 6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
 .custom-form-input {
   padding: 3px 5px;
   border-radius: 2px;
@@ -737,7 +903,7 @@ textarea.custom-form-input {
   width: 100%;
 }
 .card-img-overlay {
-    padding: 1px !important;
-    overflow: hidden !important;
+  padding: 1px !important;
+  overflow: hidden !important;
 }
 </style>
