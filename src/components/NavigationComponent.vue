@@ -87,9 +87,9 @@
                           </div>
                           <div class="row m-0 p-0">
                             <div class="hotel-card-body-bottom text-06">
-                              <a><span class="text-08 font-weight-bold m-0">Tour</span></a> |
-                              <a><span class="text-08 font-weight-bold m-0">Hotel</span></a> |
-                              <a><span class="text-08 font-weight-bold m-0">Car</span></a>
+                              <a class="nav-card-link cursor-pointer"><span class="text-08 font-weight-bold m-0">Tour</span></a> |
+                              <a class="nav-card-link cursor-pointer"><span class="text-08 font-weight-bold m-0">Hotel</span></a> |
+                              <a class="nav-card-link cursor-pointer"><span class="text-08 font-weight-bold m-0">Car</span></a>
                             </div>
                           </div>
                         </div>
@@ -443,7 +443,7 @@ export default {
     },
     async getDestinationByArea(areaId) {
       const resDes =await DestinationService.getDestinationByAreaCountry(areaId);
-      return resDes.data;
+      return randomArray(resDes.data).slice(0, 9);
     },
     redirectToTour(tour) {}
   }
