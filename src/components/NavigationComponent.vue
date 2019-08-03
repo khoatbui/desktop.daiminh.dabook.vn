@@ -419,12 +419,19 @@ export default {
     async getAreaCountry() {
       const resArea = await AreaCountryService.getAllAreaCountry();
       this.areaCountry = resArea.data;
-      for (let index = 0; index < this.areaCountry.length; index++) {
-        const fruit = this.areaCountry[index]
-        const numFruit = await this.getDestinationByArea(fruit._id)
-        this.areaCountry[index].destinations=[...numFruit]
-      }
-      console.log(this.areaCountry);
+      const promises = resArea.data.map(async fruit => {
+        fruit.destinations = await this.getDestinationByArea(fruit._id)
+        return fruit
+      })
+      
+      const numFruits = await Promise.all(promises);
+      this.areaCountry = numFruits;
+      console.log(numFruits)
+      // this.areaCountry=await  resArea.data.map(async num => {
+      //   const numFruit =await this.getDestinationByArea(num._id);
+      //   num.destinations=numFruit.data;
+      // });
+      // console.log(this.areaCountry);
     },
     async getTravelStyle() {
       const response = await TravelStyleService.getAllTravelStyle();
