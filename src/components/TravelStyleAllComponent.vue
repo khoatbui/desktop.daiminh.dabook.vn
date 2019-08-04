@@ -41,40 +41,58 @@
 
 <script>
 // @ is an alias to /src
+import lazyLoadComponent from '@/utils/lazy-load-component'
+import SkeletonBox from '@/components/SkeletonBox.vue';
 import DestinationService from '@/api/DestinationService';
 import TravelStyleService from '@/api/TravelStyleService';
-import IntroDaiMinhComponent from '@/components/IntroDaiMinhComponent.vue';
-import VideoComponent from '@/components/VideoComponent.vue';
-import TopDestinationComponent from '@/components/TopDestinationComponent.vue';
-import HotelByDestinationComponent from '@/components/HotelByDestinationComponent.vue';
-import TourByDestinationComponent from '@/components/TourByDestinationComponent.vue';
-import TopHotelPromotionComponent from '@/components/TopHotelPromotionComponent.vue';
-import BackgroundHeaderComponent from '@/components/BackgroundHeaderComponent.vue';
-import ThreeStepComponent from '@/components/ThreeStepComponent.vue';
-import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue';
-import IntroduceDaiMinhComponent from '@/components/IntroduceDaiMinhComponent.vue';
-import HorizontalAdsComponent from '@/components/HorizontalAdsComponent.vue';
-import AdsWithHotelPromotionComponent from '@/components/AdsWithHotelPromotionComponent.vue';
-import TourByTravelStyleComponent from '@/components/TourByTravelStyleComponent.vue';
-import DestinationExplorerFilterComponent from '@/components/DestinationExplorerFilterComponent.vue';
 
 export default {
   name: 'TravelStyleAll',
   components: {
-    IntroDaiMinhComponent,
-    VideoComponent,
-    TopDestinationComponent,
-    HotelByDestinationComponent,
-    TopHotelPromotionComponent,
-    BackgroundHeaderComponent,
-    ThreeStepComponent,
-    TopTourPromotionComponent,
-    IntroduceDaiMinhComponent,
-    HorizontalAdsComponent,
-    AdsWithHotelPromotionComponent,
-    TourByTravelStyleComponent,
-    TourByDestinationComponent,
-    DestinationExplorerFilterComponent,
+    VideoComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/VideoComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    HotelByDestinationComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/HotelByDestinationComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    TopHotelPromotionComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/TopHotelPromotionComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    BackgroundHeaderComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/BackgroundHeaderComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    TopTourPromotionComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/TopTourPromotionComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    IntroduceDaiMinhComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/IntroduceDaiMinhComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    HorizontalAdsComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/HorizontalAdsComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    AdsWithHotelPromotionComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/AdsWithHotelPromotionComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    TourByTravelStyleComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/TourByTravelStyleComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    TourByDestinationComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/TourByDestinationComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    DestinationExplorerFilterComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/DestinationExplorerFilterComponent.vue'),
+      loading: SkeletonBox,
+    }),
   },
   data() {
     return {

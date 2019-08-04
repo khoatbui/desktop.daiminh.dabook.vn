@@ -2,20 +2,19 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 
-import DestinationView from './views/DestinationView.vue';
-import DestinationAllComponent from './components/DestinationAllComponent.vue';
-import DestinationDetailComponent from './components/DestinationDetailComponent.vue';
-import TravelStyleView from './views/TravelStyleView.vue';
-import TravelStyleAllComponent from './components/TravelStyleAllComponent.vue';
-import TravelStyleDetailComponent from './components/TravelStyleDetailComponent.vue';
-import TravelServiceView from './views/TravelServiceView.vue';
-import MICEView from './views/MICEView.vue';
-import FITView from './views/FITView.vue';
-
-import TourDetailView from './views/TourDetailView.vue';
-import TourDetail from './components/TourDetailComponent.vue';
-import TourDetailConfirm from './components/TourDetailConfirmComponent.vue';
-import TourDetailRequest from './components/TourDetailRequestComponent.vue';
+const DestinationView = () => import('./views/DestinationView.vue');
+const DestinationAllComponent = () => import('./components/DestinationAllComponent.vue');
+const DestinationDetailComponent = () => import('./components/DestinationDetailComponent.vue');
+const TravelStyleView = () => import('./views/TravelStyleView.vue');
+const TravelStyleAllComponent = () => import('./components/TravelStyleAllComponent.vue');
+const TravelStyleDetailComponent = () => import('./components/TravelStyleDetailComponent.vue');
+const TravelServiceView = () => import('./views/TravelServiceView.vue');
+const MICEView = () => import('./views/MICEView.vue');
+const FITView = () => import('./views/FITView.vue');
+const TourDetailView = () => import('./views/TourDetailView.vue');
+const TourDetail = () => import('./components/TourDetailComponent.vue');
+const TourDetailConfirm = () => import('./components/TourDetailConfirmComponent.vue');
+const TourDetailRequest = () => import('./components/TourDetailRequestComponent.vue');
 
 Vue.use(Router);
 
@@ -35,7 +34,6 @@ export default new Router({
     },
     {
       path: '/destination',
-      name: 'destination',
       component: DestinationView,
       children: [
         {
@@ -52,7 +50,6 @@ export default new Router({
     },
     {
       path: '/travelstyle',
-      name: 'travelstyle',
       component: TravelStyleView,
       children: [
         {
@@ -84,7 +81,6 @@ export default new Router({
     },
     {
       path: '/tourdetail',
-      name: 'tourdetail',
       component: TourDetailView,
       children: [
         {

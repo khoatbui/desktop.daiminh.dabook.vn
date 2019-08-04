@@ -8,14 +8,18 @@
 
 <script>
 // @ is an alias to /src
+import lazyLoadComponent from '@/utils/lazy-load-component'
+import SkeletonBox from '@/components/SkeletonBox.vue';
 import NavigationComponent from '@/components/NavigationComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
 
 export default {
   name: 'TravelStyleView',
   components: {
     NavigationComponent,
-    FooterComponent,
+    FooterComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/FooterComponent.vue'),
+      loading: SkeletonBox,
+    }),
   },
 };
 </script>

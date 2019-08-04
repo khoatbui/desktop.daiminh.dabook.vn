@@ -11,7 +11,7 @@
                         <h4 class="my-0 font-weight-bold">Thay doi diem den <font-awesome-icon icon="chevron-down" class="text-center" /></h4>
                         <h1 class="text-center text-white title my-0">{{destination.destinationName}}</h1>
                         <h4 class="my-0 font-weight-bold">Diem den duoc yeu thich nhat 2019</h4>
-                        <button class="btn btn-light bg-white border-radius-100 text-danger">{{destination.cityId.cityName}} <font-awesome-icon icon="arrow-right" class="text-center" /></button>
+                        <button class="btn btn-light bg-white border-radius-100 text-danger" v-if="destination.length">{{destination.cityId.cityName}} <font-awesome-icon icon="arrow-right" class="text-center" /></button>
                     </div>
                 </div>
             </div>

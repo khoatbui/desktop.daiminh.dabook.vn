@@ -7,15 +7,18 @@
 </template>
 
 <script>
-
+import lazyLoadComponent from '@/utils/lazy-load-component'
+import SkeletonBox from '@/components/SkeletonBox.vue';
 import NavigationComponent from '@/components/NavigationComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
 
 export default {
   name: 'DestinationView',
   components: {
     NavigationComponent,
-    FooterComponent,
+    FooterComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/FooterComponent.vue'),
+      loading: SkeletonBox,
+    }),
   },
   data() {
     return {

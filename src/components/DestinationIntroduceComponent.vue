@@ -112,9 +112,9 @@
 </template>
 
 <script>
+import lazyLoadComponent from '@/utils/lazy-load-component'
+import SkeletonBox from '@/components/SkeletonBox.vue';
 import { Carousel, Slide } from 'vue-carousel';
-import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue'
-import WeatherComponent from '@/components/WeatherComponent.vue'
 import CityService from '@/api/CityService';
 
 function randomArray(array) {
@@ -130,8 +130,14 @@ export default {
   components: {
     Carousel,
     Slide,
-    TopTourPromotionComponent,
-    WeatherComponent,
+    TopTourPromotionComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/TopTourPromotionComponent.vue'),
+      loading: SkeletonBox,
+    }),
+    WeatherComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/WeatherComponent.vue'),
+      loading: SkeletonBox,
+    }),
   },
   name: 'DestinationIntroComponent',
   props: {

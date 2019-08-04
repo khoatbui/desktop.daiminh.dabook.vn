@@ -700,7 +700,6 @@ import TravelService from '@/api/TravelService'
 import MICEService from "@/api/MICEService";
 import DestinationService from "@/api/DestinationService";
 import AreaCountryService from "@/api/AreaCountryService";
-import HorizontalAdsComponent from "@/components/HorizontalAdsComponent.vue";
 
 function randomArray(array) {
   const array2 = [];
@@ -715,7 +714,6 @@ function randomArray(array) {
 export default {
   name: "NavigationComponent",
   components: {
-    HorizontalAdsComponent
   },
   props: {
     isTran: true
