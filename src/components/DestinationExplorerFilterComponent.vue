@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="row m-0 p-0 pt-3 d-flex flex-wrap justify-content-start align-items-stretch">
-          <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ides) in packages" v-bind:key="ides">
+          <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ipac) in packages" v-bind:key="ipac">
             <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/${pac.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomImages[0].fileName" />
             <div class="card-body p-2">
@@ -36,15 +36,15 @@
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>
-          <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ideas) in tours" v-bind:key="ideas">
-            <img class="card-img-top image-package"  v-bind:src="pac.tourImages.length>0?`/${pac.tourImages[0].filePath}`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.tourImages[0].fileName" />
+          <div class="card filter-card m-2 h-100 d-inline-block" v-for="(tour,ideas) in tours" v-bind:key="'Tour'+ideas">
+            <img class="card-img-top image-package"  v-bind:src="tour.tourImages.length>0?`/${tour.tourImages[0].filePath}`:'/img/defaultloading.gif'"
+          v-bind:alt="tour.tourImages[0].fileName" />
             <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
-               {{pac.to}} | {{pac.tourTypeId.tourTypeName}}</h6>
-              <h6 class="card-title m-0">{{pac.tourName}}</h6>
-               <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
-              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+               {{tour.to}} | {{tour.tourTypeId.tourTypeName}}</h6>
+              <h6 class="card-title m-0">{{tour.tourName}}</h6>
+               <p class="card-text intro-package hidden-outof-text" v-html="tour.tourIntro"></p>
+              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour.price)}}</h2>
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>

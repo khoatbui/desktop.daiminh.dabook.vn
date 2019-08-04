@@ -26,31 +26,7 @@
           </div>
         </div>
         <div class="col-4 m-0 p-0">
-          <div class="card m-0 h-100">
-            <div class="card-body text-08">
-              <div class="row">
-                <div class="col-4 text-right">
-                  <font-awesome-icon
-                    icon="cloud-sun-rain"
-                    class="text-x3 text-warning text-center"
-                  />
-                </div>
-                <div class="col-8 text-left">
-                  <p class="text-x1 font-weight-bold">
-                    <span class="pr-2">39 c</span>
-                    <span class="text-muted">26 c</span>
-                  </p>
-                  <p class="text-08">THU 5,1/8.(Gio dia phuong)</p>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent border-success text-center">
-              <small class="border-top text-center m-0 text-center w-100">
-                Xem thoi tiet 7 ngay tiep theo
-                <font-awesome-icon icon="chevron-down" class="text-center" />
-              </small>
-            </div>
-          </div>
+          <WeatherComponent></WeatherComponent>
         </div>
       </div>
     </div>
@@ -138,6 +114,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 import TopTourPromotionComponent from '@/components/TopTourPromotionComponent.vue'
+import WeatherComponent from '@/components/WeatherComponent.vue'
 import CityService from '@/api/CityService';
 
 function randomArray(array) {
@@ -154,6 +131,7 @@ export default {
     Carousel,
     Slide,
     TopTourPromotionComponent,
+    WeatherComponent,
   },
   name: 'DestinationIntroComponent',
   props: {
