@@ -14,13 +14,8 @@
       <div class="row p-0 m-0 d-flex align-items-stretch">
         <div class="col-8 m-0 p-1" v-cloak>
           <div class="card m-0 h-100 d-inline-block position-relative">
-            <img class="card-img image-ads h-100"  v-bind:src="ads[0].adsImages.length>0?`/${ads[0].adsImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':ads[0].adsImages.length==0}"  v-bind:src="ads[0].adsImages.length>0?`/${ads[0].adsImages[0].filePath}`:'/img/defaultloading.gif'"
             v-bind:alt="ads[0].adsImages[0].fileName" />
-            <div class="card-body-center text-left">
-              <h4 class="card-title text-white text-x2">{{ads[0].adsName}}</h4>
-              <p class="card-text text-white"  v-html="ads[0].adsIntro"></p>
-              <small class="m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
-            </div>
           </div>
         </div>
         <div class="col-4 m-0 p-1">

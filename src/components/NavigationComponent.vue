@@ -2,7 +2,7 @@
   <nav class="navbar fixed-top navbar-expand-lg" v-bind:class="classObject" color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="/index.html">
+        <a class="navbar-brand" href="/">
           <img src="/img/new_logo.jpg" alt height="50px;" />
         </a>
         <button

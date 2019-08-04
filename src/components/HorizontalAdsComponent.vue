@@ -6,10 +6,6 @@
             <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100"  v-bind:src="pac.adsImages.length>0?`/${pac.adsImages[0].filePath}`:'/img/defaultloading.gif'"
             v-bind:alt="pac.adsImages[0].fileName" />
-            <div class="card-body-bottom-left text-left">
-              <h6 class="card-title text-white m-0">{{pac.adsName}}</h6>
-              <small class="text-white m-0">Chuong trinh keo dai den ngay {{moment(pac.endDate).format('YYYY.MM.DD')}}</small>
-            </div>
           </div>
         </slide>
       </carousel>
