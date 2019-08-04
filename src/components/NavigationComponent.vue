@@ -74,7 +74,7 @@
                           <div class="row h-100 nav-style-card-filter">
                             <a
                               class="nav-card-link h-100"
-                              v-bind:href="`/travelstyle/detail/${des._id}`"
+                              @click="redirectToDestination(des)"
                             >
                               <img
                                 class="w-100 h-100"
@@ -183,7 +183,7 @@
                       <div class="row h-100 nav-style-card-filter">
                         <a
                           class="nav-card-link h-100"
-                          v-bind:href="`/travelstyle/detail/${st._id}`"
+                           @click="redirectToTravelStyle(st)"
                         >
                           <img
                             class="w-100 h-100"
@@ -222,9 +222,8 @@
                       <div class="row nav-hotel-card-filter">
                         <a
                           class="nav-card-link h-100"
-                          v-bind:href="`/travelstyle/detail/${ht._id}`"
+                          @click="redirectToHotel(ht)"
                         >
-                          <!--  v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
                           <img
                             class="w-100 h-100"
                             v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
@@ -246,7 +245,7 @@
                             <font-awesome-icon
                               icon="arrow-right"
                               class="text-1 text-center text-danger cursor-pointer"
-                              @click="redirectToTour(ht)"
+                             @click="redirectToHotel(ht)"
                             />
                           </div>
                         </div>
@@ -337,7 +336,7 @@
                           <div class="row h-100 nav-style-card-filter">
                             <a
                               class="nav-card-link h-100"
-                              v-bind:href="`/travelservice/detail/${tservice._id}`"
+                              @click="redirectToTravelService(tservice)"
                             >
                               <img
                                 class="w-100 h-100"
@@ -376,7 +375,7 @@
                           <div class="row nav-hotel-card-filter">
                             <a
                               class="nav-card-link h-100"
-                              v-bind:href="`/travelstyle/detail/${ht._id}`"
+                               @click="redirectToHotel(ht)"
                             >
                               <!--  v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
                               <img
@@ -400,7 +399,7 @@
                                 <font-awesome-icon
                                   icon="arrow-right"
                                   class="text-1 text-center text-danger cursor-pointer"
-                                  @click="redirectToTour(ht)"
+                                  @click="redirectToHotel(ht)"
                                 />
                               </div>
                             </div>
@@ -427,7 +426,7 @@
                           v-bind:key="iCar"
                         >
                           <div class="row nav-hotel-card-filter">
-                            <a class="nav-card-link h-100" v-bind:href="`/car/detail/${car._id}`">
+                            <a class="nav-card-link h-100" @click="redirectToCar(car)">
                               <img
                                 class="w-100 h-100"
                                 v-bind:class="{'small-loading-img':car.priceByCarType[0].carImages.length==0}"
@@ -449,7 +448,7 @@
                                 <font-awesome-icon
                                   icon="arrow-right"
                                   class="text-1 text-center text-danger cursor-pointer"
-                                  @click="redirectToCar(car)"
+                                   @click="redirectToCar(car)"
                                 />
                               </div>
                             </div>
@@ -539,7 +538,7 @@
                       <div class="row h-100 nav-style-card-filter">
                         <a
                           class="nav-card-link h-100"
-                          v-bind:href="`/mice/detail/${mice._id}`"
+                           @click="redirectToMICE(mice)"
                         >
                           <img
                             class="w-100 h-100"
@@ -562,7 +561,7 @@
                             <font-awesome-icon
                               icon="arrow-right"
                               class="text-1 text-center text-danger cursor-pointer"
-                              @click="redirectToTour(mice)"
+                              @click="redirectToMICE(mice)"
                             />
                           </div>
                         </div>
@@ -584,7 +583,7 @@
                     class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
                   >
                     <div class="text-left" v-for="(ar,iAr) in areaCountry" v-bind:key="iAr">
-                      <a href="#" class="nav-card-link m-0 p-0" v-for="(de,iDe) in ar.destinations" v-bind:key="iDe"><p class="text-06 m-0">{{de.destinationName}}</p></a>
+                      <a href="#" class="nav-card-link m-0 p-0" @click="redirectToDestination(de)" v-for="(de,iDe) in ar.destinations" v-bind:key="iDe"><p class="text-06 m-0">{{de.destinationName}}</p></a>
                     </div>
                   </div>
                 </div>
@@ -783,8 +782,41 @@ export default {
       const resDes = await CarService.getTop10PromotionCar();
       this.top10Cars = randomArray(resDes.data).slice(0, 9);
     },
-    redirectToTour(tour) {},
-    redirectToCar(car) {}
+    redirectToTour(tour) {
+      this.$router.push(
+        `/tour/detail?tourid=${tour._id}`
+      );
+    },
+    redirectToCar(car) {
+      this.$router.push(
+        `/car/detail?carid=${car._id}`
+      );
+    },
+    redirectToDestination(destination){
+       this.$router.push(
+        `/destination/detail?destinationid=${destination._id}`
+      );
+    },
+    redirectToTravelStyle(travelstyle){
+       this.$router.push(
+        `/travelstyle/detail?travelstyleid=${travelstyle._id}`
+      );
+    },
+    redirectToTravelService(travelservice){
+       this.$router.push(
+        `/travelservice/detail?travelserviceid=${travelservice._id}`
+      );
+    },
+    redirectToMICE(mice){
+       this.$router.push(
+        `/mice/detail?miceid=${mice._id}`
+      );
+    },
+    redirectToFIT(fit){
+       this.$router.push(
+        `/fit/detail?fitid=${fit._id}`
+      );
+    },
   }
 };
 </script>
