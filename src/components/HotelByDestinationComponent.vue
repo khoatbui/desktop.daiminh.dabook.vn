@@ -1,5 +1,5 @@
 <template>
-  <div class="toppackage">
+  <div class="toppackage" v-cloak v-if="packages.length>0">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">{{getTitle}}</h3>
       <div class="row p-0 m-0 ">

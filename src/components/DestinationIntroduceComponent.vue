@@ -9,9 +9,10 @@
               <div class="shot-intro" v-html="destination.destinationIntro"></div>
             </div>
             <div
-              class="col-12 m-0 p-0 d-flex justify-content-between align-items-center flex-grow-1"
+              class="col-12 m-0 p-0 d-flex justify-content-start align-items-center flex-grow-1"
             >
-              <span class="text-success font-weight-bold">Dung bo lo</span>
+              <span class="text-success font-weight-bold px-2">Dung bo lo :</span> <span class="text-muted px-2">Kỳ quan thiên nhiên</span> <span class="text-muted px-2"> Lịch sử và Văn hóa</span>
+              <span class="text-muted px-2"> Diem den khong the bo qua</span>
             </div>
             <div
               class="col-12 mt-auto text-align-center w-100 p-0 m-0 cursor-pointer"

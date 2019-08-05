@@ -1,5 +1,5 @@
 <template>
-  <div class="toppackage">
+  <div class="toppackage" v-cloak  v-if="ads.length">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">Cam hung du lich</h3>
       <div class="row p-0 m-0 ">
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="row p-0 m-0 d-flex align-items-stretch">
-        <div class="col-8 m-0 p-1" v-cloak  v-if="ads.length">
+        <div class="col-8 m-0 p-1">
           <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':ads[0].adsImages.length==0}"  v-bind:src="ads[0].adsImages.length>0?`/${ads[0].adsImages[0].filePath}`:'/img/defaultloading.gif'"
             v-bind:alt="ads[0].adsImages[0].fileName" />

@@ -7,10 +7,10 @@
             <div class="col-lg-3 col-md-6 col-sm-12 text-left">
               <div class="row pt-2">
                 <div class="col-6">
-                  <img class="footer-logo" src="img/new_logo.jpg" alt />
+                  <img class="footer-logo" src="/img/new_logo.jpg" alt />
                 </div>
                 <div class="col-6">
-                  <img class="footer-logo" src="img/logo dabook.png" alt />
+                  <img class="footer-logo" src="/img/logo dabook.png" alt />
                 </div>
               </div>
               <div class="row">
@@ -91,27 +91,27 @@
                   <ul class="footer-social">
                     <li>
                       <a href="#">
-                        <img src="img/social/kakao.png" alt />
+                        <img src="/img/social/kakao.png" alt />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <img src="img/social/facebook.png" alt />
+                        <img src="/img/social/facebook.png" alt />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <img src="img/social/skype.png" alt />
+                        <img src="/img/social/skype.png" alt />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <img src="img/social/twitter.png" alt />
+                        <img src="/img/social/twitter.png" alt />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <img src="img/social/zalo.png" alt />
+                        <img src="/img/social/zalo.png" alt />
                       </a>
                     </li>
                   </ul>
@@ -140,7 +140,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/Vinpearl.jpg"
+                    src="/img/partner/Vinpearl.jpg"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -150,7 +150,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/flc.png"
+                    src="/img/partner/flc.png"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -160,7 +160,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/hera.jpg"
+                    src="/img/partner/hera.jpg"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -170,7 +170,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/heritage.png"
+                    src="/img/partner/heritage.png"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -180,7 +180,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/lotte.png"
+                    src="/img/partner/lotte.png"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -190,7 +190,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/Paradise.jpg"
+                    src="/img/partner/Paradise.jpg"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -200,7 +200,7 @@
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top img-retange"
-                    src="img/partner/Sheraton.png"
+                    src="/img/partner/Sheraton.png"
                     alt="Card image cap"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -226,34 +226,34 @@
               <h4>Certificate</h4>
               <div class="d-flex flex-sm-row align-items-start flex-wrap">
                 <div class="card m-1 w-30 flex-grow-1 p-1">
-                  <img class="card-img-top" src="img/certificate/iata.jpg" alt="Card image cap" />
+                  <img class="card-img-top" src="/img/certificate/iata.jpg" alt="Card image cap" />
                 </div>
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top"
-                    src="img/certificate/thongbao_bocongthuong.png"
+                    src="/img/certificate/thongbao_bocongthuong.png"
                     alt="Card image cap"
                   />
                 </div>
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top"
-                    src="img/certificate/dangki_bocongthuong.png"
+                    src="/img/certificate/dangki_bocongthuong.png"
                     alt="Card image cap"
                   />
                 </div>
                 <div class="card m-1 w-30 flex-grow-1 p-1">
-                  <img class="card-img-top" src="img/certificate/DMCA.png" alt="Card image cap" />
+                  <img class="card-img-top" src="/img/certificate/DMCA.png" alt="Card image cap" />
                 </div>
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
                     class="card-img-top"
-                    src="img/certificate/Norton-Mobile-Security-Logo.jpg"
+                    src="/img/certificate/Norton-Mobile-Security-Logo.jpg"
                     alt="Card image cap"
                   />
                 </div>
                 <div class="card m-1 w-30 flex-grow-1 p-1">
-                  <img class="card-img-top" src="img/certificate/tcdl.jpg" alt="Card image cap" />
+                  <img class="card-img-top" src="/img/certificate/tcdl.jpg" alt="Card image cap" />
                 </div>
               </div>
               <hr />

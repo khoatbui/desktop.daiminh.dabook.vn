@@ -1,6 +1,6 @@
 <template>
   <div class="destination">
-    <NavigationComponent :isTran="false"></NavigationComponent>
+    <NavigationComponent :isTran="false" :isFixed="true"></NavigationComponent>
     <router-view></router-view>
     <FooterComponent></FooterComponent>
   </div>

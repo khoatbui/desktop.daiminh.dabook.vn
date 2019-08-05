@@ -17,6 +17,9 @@ const Tour = {
   getTourPackageByStyle(travelStyleId) {
     return axios.get(`${api}/tourlist/m/getalltourbystyle/${travelStyleId}`);
   },
+  GetTourDetailById(tourId) {
+    return axios.get(`${api}/tourdetail/m/gettourdetailbyid/${tourId}`);
+  },
 };
 
 export default Tour;

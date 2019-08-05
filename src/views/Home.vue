@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <BackgroundHeaderComponent></BackgroundHeaderComponent>
-    <NavigationComponent :isTran="true"></NavigationComponent>
+    <NavigationComponent :isTran="true" :isFixed="true"></NavigationComponent>
     <div class="main-body">
       <div class="container-fluid p-0">
         <ThreeStepComponent></ThreeStepComponent>
@@ -42,8 +42,7 @@
 // @ is an alias to /src
 import lazyLoadComponent from '@/utils/lazy-load-component'
 import SkeletonBox from '@/components/SkeletonBox.vue';
-import NavigationComponent from '@/components/NavigationComponent.vue'
-
+import NavigationComponent from '@/components/NavigationComponent.vue';
 export default {
   name: 'home',
   components: {

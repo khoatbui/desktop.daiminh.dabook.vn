@@ -21,13 +21,13 @@
         <DestinationExplorerFilterComponent :destination="destination"></DestinationExplorerFilterComponent>
       </div>
       <div class="container pt-4">
-        <TopHotelPromotionComponent></TopHotelPromotionComponent>
+        <TopHotelPromotionComponent  :isTitle="true" :paginationEnabled="false"></TopHotelPromotionComponent>
       </div>
       <div class="container pt-4">
         <IntroduceDaiMinhComponent></IntroduceDaiMinhComponent>
       </div>
       <div class="container pt-4">
-        <TopTourPromotionComponent :isTitle="true"></TopTourPromotionComponent>
+        <TopTourPromotionComponent :isTitle="true" :paginationEnabled="false"></TopTourPromotionComponent>
       </div>
       <div class="container pt-4">
         <AdsWithHotelPromotionComponent></AdsWithHotelPromotionComponent>

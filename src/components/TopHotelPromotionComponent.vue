@@ -1,8 +1,8 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0">Top hotel promotion today</h3>
-      <div class="row p-0 m-0 ">
+      <h3 class="title text-left m-0" v-if="isTitle">Top hotel promotion today</h3>
+      <div class="row p-0 m-0 " v-if="isTitle">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>Cung kham pha nhung khach san va resort 5* noi tieng</p>
           <a class="link-des text-danger">
@@ -11,7 +11,7 @@
           </a>
         </div>
       </div>
-      <carousel :per-page="5" :navigation-enabled="true">
+      <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
         <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
             <img class="card-img-top image-package"
@@ -60,6 +60,8 @@ export default {
   name: 'TopHotelComponent',
   props: {
     msg: String,
+    isTitle:true,
+    paginationEnabled:true,
   },
   data() {
     return {

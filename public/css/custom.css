@@ -2,7 +2,7 @@
     display:none;
   }
 * {
-    font-family: "Roboto";    
+    /* font-family: "Roboto";     */
     padding: 0px;
     }
 /* body{
@@ -790,12 +790,13 @@
     padding: 4px;
 }
 .btn-plus{
-    width: 20px !important;
-    height: 20px !important;
+    width: 30px !important;
+    height: 30px !important;
     border-radius: 50%;
-    background-color: #FFF;
+    background-color: #00bcd4 !important;
     border:none;
     cursor: pointer;
+    color: #FFFFFF;
 }
 .btn-plus:hover{
     box-shadow: 2px 7px 11px -5px rgba(0,0,0,.47);

@@ -8,6 +8,7 @@ export default new Vuex.Store({
     loading: {
       isShow: false,
     },
+    currentLang: 'EN',
   },
   mutations: {
     showHideLoading(state, payload) {

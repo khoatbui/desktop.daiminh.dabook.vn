@@ -1,5 +1,7 @@
 body{
     background-color: #FFFFFF !important;
+    color: #333333;
+    font-family: 'Comfortaa', cursive;;
 }
 .hidden-outof-text{
     white-space: nowrap !important;
@@ -144,3 +146,42 @@ body{
     width :30px !important;
     height: 30px !important;
   }
+/* ===========STICKY============= */
+.custom-sticky-component{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.custom-sticky-top{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.custom-sticky-top-1rem{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
+}
+/* =======TEXT======== */
+.text-nomal {
+  text-transform: none;
+}
+.text-deco-line-through {
+  text-decoration: line-through;
+}
+/* ========CUSTOM INPUT========= */
+.custom-form-input {
+  padding: 3px 5px;
+  border-radius: 2px;
+  border: 0.5px solid #d2d2d2;
+  width: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+}
+textarea.custom-form-input {
+  height: auto;
+}
+/* =============BACKGROUND========== */
+.second-background {
+  background-color: #f6f6f6;
+}

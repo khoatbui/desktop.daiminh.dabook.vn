@@ -22,7 +22,8 @@
     >
       <div class="modal-dialog vw-85" role="document">
         <div class="modal-content">
-            <video id="video" class="g_v_c_mid" autoplay="none" src="https://res.klook.com/video/upload/v1558002261/Homepage/EN4_m.mov"></video>
+            <!-- <video id="video" class="g_v_c_mid" autoplay="none" src="https://www.youtube.com/watch?v=FClS4ni4zfo"></video> -->
+           <iframe id="video" src="https://www.youtube.com/embed/2892_sYnYV4?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -74,7 +75,6 @@ export default {
     background-color: rgba(32, 80, 114,0.5);
 }
 #videoModal #video{
-    width: 100%;
-    height: 100%;
+    height: 70vh;
 }
 </style>

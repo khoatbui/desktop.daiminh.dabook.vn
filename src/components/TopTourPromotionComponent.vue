@@ -18,7 +18,7 @@
             <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
                {{pac.to}} | {{pac.tourTypeId.tourTypeName}}</h6>
-              <h6 class="card-title m-0">{{pac.tourName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
                <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
               <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
@@ -72,6 +72,11 @@ export default {
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
     },
+    redirectToTourDetail(des){
+       this.$router.push(
+        `/tourdetail?tourid=${des._id}`
+      );
+    }
   },
 };
 </script>
