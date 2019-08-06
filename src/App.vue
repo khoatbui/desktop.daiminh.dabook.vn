@@ -12,7 +12,7 @@
   text-align: center;
   color: #2c3e50;
 }
-.title, .card-title, .info-title, .footer-brand, .footer-big h5, .footer-big h4, .media .media-heading {
+.title, .card-title, .info-title, .footer-brand, .footer-big h5,.footer-big h4, .media .media-heading, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
     font-weight: 700;
     font-family: 'Quicksand', sans-serif !important;
 }

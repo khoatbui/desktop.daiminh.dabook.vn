@@ -7,19 +7,19 @@
             <div class="col-lg-3 col-md-6 col-sm-12 text-left">
               <div class="row pt-2">
                 <div class="col-6">
-                  <img class="footer-logo" src="/img/new_logo.jpg" alt />
+                  <img class="footer-logo" src="/img/main_logo_text.png" alt />
                 </div>
                 <div class="col-6">
                   <img class="footer-logo" src="/img/logo dabook.png" alt />
                 </div>
               </div>
               <div class="row">
-               <DefaultContactFormComponent :isTitle="false"></DefaultContactFormComponent>
+               <DefaultContactFormComponent :isTitle="false" class="w-100"></DefaultContactFormComponent>
               </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
               <h4>Contact</h4>
-              <ul class="d-flex flex-column">
+              <ul class="d-flex flex-column font-nomal">
                 <li>
                   <span>
                     <i class="fas fa-map-marker-alt mr-2"></i>Lot 118, TT3, My Dinh 1, Nam Tu Liem,
@@ -82,14 +82,12 @@
               <ul class="d-flex flex-column">
                 <li>
                   <a href="#">
-                    <b>Business Licience :</b>
-                    <span class="text-rose">0101472382</span>
+                    <span >Business Licience :0101472382</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <b>International Tour Opertor Licience:</b>
-                    <span class="text-rose">01-035/2015/TCDL-GPLHQT</span>
+                    <span>International Tour Opertor Licience: 01-035/2015/TCDL-GPLHQT</span>
                   </a>
                 </li>
               </ul>
@@ -222,7 +220,7 @@
             </div>
           </div>
           <div class="row border-top pt-2">
-            <div class="col-12 col-md-6 text-center">
+            <div class="col-12 col-md-6 text-center text-white">
               &copy;2019, made with
               <i class="far fa-heart"></i> by
               <a href="https://www.dabook.vn/" target="blank">DaiMinh</a> for a better travel.
@@ -244,15 +242,18 @@
         </div>
       </footer>
 
-      <div class="widget-component">
+      <!-- <div class="widget-component">
         <ul class="d-flex flex-column">
           <li class="special-margin">
             <a class="btn btn-info btn-fab btn-round" href="tel:19001542">
-              <i class="fas fa-phone"></i>
+             <font-awesome-icon
+                        icon="phone"
+                        class="text-center text-08"
+                      />
             </a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -284,6 +285,60 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .footer{
-  background-color:#F5F5F5;
+  background-color:#102344;
 }
+.footer p,
+    .footer a,
+    .footer span {
+    font-size: 12px;
+    text-transform: none;
+    color: #FFF;
+    }
+    .footer h4 {
+    font-size: 18px;
+    }
+    footer ul li {
+    padding: 2px;
+    }
+    footer ul li a {
+    padding: 0px;
+    }
+    .footer{
+        font-size: 14px;
+    }
+    .footer h4 {
+    color: #3c4858;
+    font-weight: bold;
+    }
+    .footer-logo {
+    width: 95%;
+    height: auto;
+    }
+    .small-logo{
+        height: 20px;
+        width: auto;
+    }
+    .footer .card {
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .footer h4{
+        color: #FFFFFF !important;
+        font-size: 0.9rem !important;
+    }
+
+    .footer-social img{
+        width: 30px !important;
+        height: 30px!important;
+        border-radius: 50%!important;
+    }
+    .footer-social img:hover{
+        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14);
+    }
+    .font-nomal{
+      font-weight: normal !important;
+    }
 </style>

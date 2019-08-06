@@ -46,8 +46,13 @@ body{
 .text-color-50{
    color: rgba(32, 80, 114,0.5) !important;
 }
-
-
+.vh-100{
+  min-height: 100vh !important;
+}
+.height-150{
+  max-height: 150px !important;
+  overflow: hidden;
+}
 /* ==============SCROLL NGANG================== */
 .scroll-ngang {
     width: 100%;
@@ -143,7 +148,9 @@ body{
     border-bottom-right-radius: 0 !important;
     border-radius: none !important;
   }
-
+.shadow-none{
+  box-shadow: none !important;
+}
   /* LOADING */
   .small-loading-img{
     width :30px !important;
@@ -164,6 +171,11 @@ body{
   position: -webkit-sticky;
   position: sticky;
   top: 4rem;
+}
+.custom-sticky-bottom{
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
 }
 .sticky-z-index-100{
   z-index: 100 !important;
@@ -196,12 +208,18 @@ body{
 }
 /* ========CUSTOM INPUT========= */
 .custom-form-input {
-  padding: 3px 5px;
+  padding: 3px 10px;
   border-radius: 2px;
   border: 0.5px solid #d2d2d2;
   width: 100%;
   margin: 0;
   font-size: 0.8rem;
+}
+.custom-form-input-md{
+  height: 40px;
+}
+.custom-form-text-md{
+  height: 80px !important;
 }
 textarea.custom-form-input {
   height: auto;
@@ -244,4 +262,7 @@ textarea.custom-form-input {
 /* ===========BORDER============== */
 .border-bottom-dash{
   border-bottom-style: dashed !important;
+}
+.border-left-bold{
+  border-left: 5px solid #2c3e50;
 }

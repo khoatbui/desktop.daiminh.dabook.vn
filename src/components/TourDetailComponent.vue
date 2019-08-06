@@ -1,13 +1,11 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
-    <!-- <BackgroundHeaderComponent :destination="destination"></BackgroundHeaderComponent> -->
-    <div class="main-body">
-      <div class="container pt-4">
+      <div class="container py-4 my-0">
         <TourDetailImageComponent></TourDetailImageComponent>
       </div>
-      <div class="container pt-4 custom-sticky-component">
+      <div class="container py-4 my-0 custom-sticky-component">
         <div class="row m-0 p-0">
-          <div class="col-12 w-100 m-0 p-0 custom-sticky-top sticky-z-index-100">
+          <div class="col-12 w-100 my-0 p-0 custom-sticky-top sticky-z-index-100 border-bottom">
             <ul
               class="w-100 d-flex flex-row justify-content-between align-items-center bg-white m-0 p-2 sticky-tab"
             >
@@ -118,9 +116,9 @@
                       <span class="text-x1 font-bold">{{tourDetailByLang.tourId.tourName}}</span>
                       <span>
                         <span
-                          class="text-06 pr-4 font-weight-bold text-muted text-deco-line-through"
+                          class="text-07 pr-3 font-weight-bold text-muted text-deco-line-through"
                         >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tourDetailByLang.tourId.price*1.3)}}</span>
-                        <span class="text-08 font-bold text-muted pr-2">tu</span>
+                        <span class="text-08 font-bold text-muted pr-1">tu</span>
                         <span
                           class="text-x1 font-bold"
                         >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tourDetailByLang.tourId.price)}}</span>
@@ -307,99 +305,106 @@
             </div>
           </div>
           <div class="col-4 m-0 p-0 pl-3 custom-sticky-component">
-            <div class="card custom-sticky-top-4rem">
-              <div class="card-body p-3">
-                <div class="row m-0 p-0" v-if="order.selectDate ==null">
-                  <p>
-                    <span class="text-09 font-weight-bold text-muted pr-2">tu</span>
-                    <span
-                      class="text-xh1 font-bold"
-                    >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
-                    <span
-                      class="text-09 pl-4 font-weight-bold text-muted text-deco-line-through"
-                    >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice*1.3)}}</span>
-                  </p>
-                </div>
-                <div
-                  class="row m-0 p-0 pb-4 border-bottom border-bottom-dash"
-                  v-if="order.selectDate !==null"
-                >
-                  <p
-                    class="text-x1 w-100 font-bold d-flex justify-content-between align-items-center"
+            <div class="row m-0 p-0 custom-sticky-top-4rem">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row m-0 p-0" v-if="order.selectDate ==null">
+                    <p>
+                      <span class="text-09 font-weight-bold text-muted pr-2">tu</span>
+                      <span
+                        class="text-xh1 font-bold"
+                      >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
+                      <span
+                        class="text-09 pl-4 font-weight-bold text-muted text-deco-line-through"
+                      >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice*1.3)}}</span>
+                    </p>
+                  </div>
+                  <div
+                    class="row m-0 p-0 pb-4 border-bottom border-bottom-dash"
+                    v-if="order.selectDate !==null"
                   >
-                    <span>{{tourDetailByLang.tourId.tourName}}</span>
-                    <font-awesome-icon
-                      icon="pencil-alt"
-                      class="text-center text-info text-08 mr-2"
-                    />
-                  </p>
-                  <p class="text-09 text-muted mb-0">09/08/2019</p>
-                  <p class="text-09 text-muted mb-0">
-                    <span class="pr-2">Nguoi lon x {{order.guest.guest.qty}}</span>
-                    <span class="pr-2">
-                      Tre em
-                      <span class="text-07">(0-4)</span>
-                      x {{order.guest.child04.qty}}
-                    </span>
+                    <p
+                      class="text-x1 w-100 font-bold d-flex justify-content-between align-items-center"
+                    >
+                      <span>{{tourDetailByLang.tourId.tourName}}</span>
+                      <font-awesome-icon
+                        icon="pencil-alt"
+                        class="text-center text-info text-08 mr-2"
+                      />
+                    </p>
+                    <p class="text-09 text-muted mb-0">09/08/2019</p>
+                    <p class="text-09 text-muted mb-0">
+                      <span class="pr-2">Nguoi lon x {{order.guest.guest.qty}}</span>
+                      <span class="pr-2">
+                        Tre em
+                        <span class="text-07">(0-4)</span>
+                        x {{order.guest.child04.qty}}
+                      </span>
+                      <span>
+                        Tre em
+                        <span class="text-07">(4-8)</span>
+                        x {{order.guest.child48.qty}}
+                      </span>
+                    </p>
+                  </div>
+                  <div
+                    class="row m-0 p-0 py-4 justify-content-between align-items-center"
+                    v-if="order.selectDate !==null"
+                  >
+                    <span class="text-09 text-muted mb-0">Tong tien</span>
+                    <span
+                      class="text-xh1 text-info font-bold"
+                    >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
+                  </div>
+                  <div class="row m-0 p-0">
+                    <button
+                      class="btn btn-danger text-nomal w-100"
+                      :disabled="order.guest.guest.qty==0"
+                      v-bind:class="{'btn-default':order.guest.guest.qty==0}"
+                      @click="selectPackage"
+                    >{{order.selectDate !==null?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</button>
+                  </div>
+                  <div class="row m-0 p-0 text-muted">
+                    <p class="my-1 text-08">
+                      <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />Xac nhan don hang tuc thi
+                    </p>
+                    <p class="my-1 text-08">
+                      <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />Nhan bao gia trong vong 1 ngay lam viec
+                    </p>
+                    <p class="my-1 text-08">
+                      <font-awesome-icon icon="medal" class="text-center text-08 mr-2" />Luon dam bao gia tot nhat va dich vu tot nhat
+                    </p>
+                  </div>
+                </div>
+                <div class="card-footer p-3 py-2 border-top">
+                  <div
+                    class="row w-100 m-0 p-0 d-flex text-08 text-muted justify-content-between align-items-center"
+                  >
                     <span>
-                      Tre em
-                      <span class="text-07">(4-8)</span>
-                      x {{order.guest.child48.qty}}
+                      <font-awesome-icon icon="fire-alt" class="text-center text-08 mr-2" />8K+ người đã đặt
                     </span>
-                  </p>
-                </div>
-                <div
-                  class="row m-0 p-0 py-4 justify-content-between align-items-center"
-                  v-if="order.selectDate !==null"
-                >
-                  <span class="text-09 text-muted mb-0">Tong tien</span>
-                  <span
-                    class="text-xh1 text-info font-bold"
-                  >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
-                </div>
-                <div class="row m-0 p-0">
-                  <button
-                    class="btn btn-danger text-nomal w-100"
-                    :disabled="order.guest.guest.qty==0"
-                    v-bind:class="{'btn-default':order.guest.guest.qty==0}"
-                  >{{order.selectDate !==null?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</button>
-                </div>
-                <div class="row m-0 p-0 text-muted">
-                  <p class="my-1 text-08">
-                    <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />Xac nhan don hang tuc thi
-                  </p>
-                  <p class="my-1 text-08">
-                    <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />Nhan bao gia trong vong 1 ngay lam viec
-                  </p>
-                  <p class="my-1 text-08">
-                    <font-awesome-icon icon="medal" class="text-center text-08 mr-2" />Luon dam bao gia tot nhat va dich vu tot nhat
-                  </p>
-                </div>
-              </div>
-              <div class="card-footer p-3 py-2 border-top">
-                <div
-                  class="row w-100 m-0 p-0 d-flex text-08 text-muted justify-content-between align-items-center"
-                >
-                  <span>
-                    <font-awesome-icon icon="fire-alt" class="text-center text-08 mr-2" />8K+ người đã đặt
-                  </span>
-                  <span class="star font-weight-bold text-info">
-                    {{tourDetailByLang.tourId.voteScore}}
-                    <font-awesome-icon
-                      icon="star"
-                      class="text-center text-06"
-                      v-for="star in tourDetailByLang.tourId.star"
-                      v-bind:key="'start'+star"
-                    />
-                    {{`(${tourDetailByLang.tourId.voteStatus})`}}
-                  </span>
+                    <span class="star font-weight-bold text-info">
+                      {{tourDetailByLang.tourId.voteScore}}
+                      <font-awesome-icon
+                        icon="star"
+                        class="text-center text-06"
+                        v-for="star in tourDetailByLang.tourId.star"
+                        v-bind:key="'start'+star"
+                      />
+                      {{`(${tourDetailByLang.tourId.voteStatus})`}}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="container-fluid my-0 mt-2 py-4 second-background">
+        <div class="container p-0">
+          <TopTourPromotionComponent :isTitle="true" :paginationEnabled="false"></TopTourPromotionComponent>  
+        </div>
+      </div>
   </div>
 </template>
 
@@ -410,6 +415,8 @@ import CityService from "@/api/CityService";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import TourService from "@/api/TourService";
+import HotelService from "@/api/HotelService";
+
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
 function randomArray(array) {
@@ -435,7 +442,12 @@ export default {
       componentFactory: () =>
         import("@/components/BackgroundHeaderComponent.vue"),
       loading: SkeletonBox
-    })
+    }),
+    TopTourPromotionComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/TopTourPromotionComponent.vue"),
+      loading: SkeletonBox
+    }),
   },
   name: "TourDetailComponent",
   props: {
@@ -444,6 +456,7 @@ export default {
   data() {
     return {
       tourDetail: [],
+      top10PromotionHotel: [],
       selectedPayment: {},
       componentLoaded: false,
       sectionActive: "thongtin",
@@ -460,6 +473,7 @@ export default {
   },
   created() {
     this.initial(this.$route.query.tourid);
+    this.getPromotionHotel();
   },
   methods: {
     async initial(tourId) {
@@ -468,6 +482,10 @@ export default {
       this.tourDetail = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
       this.componentLoaded = true;
+    },
+    async getPromotionHotel() {
+      const responsehotel = await HotelService.getTop10PromotionHotel();
+      this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 9);
     },
     plusPerson(person) {
       person.qty++;
@@ -478,6 +496,14 @@ export default {
     onChangeDate(data) {
       this.order.selectDate = moment(data).format("YYYY/DD/MM");
       console.log(this.order.selectDate);
+    },
+    selectPackage(){
+      if (this.order.selectDate ==null) {
+        window.location.href = "#chon";
+      }
+      else {
+        this.$router.push(`/tourdetail/confirm?tourid=${this.tourDetail[0].tourId._id}`)
+      }
     }
   },
   computed: {
