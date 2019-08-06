@@ -14,47 +14,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-12">
-                  <div class="form-group bmd-form-group mb-0">
-                    <label class="bmd-label-floating">
-                      Your name
-                      *
-                    </label>
-                    <input type="text" class="form-control" aria-label="Username" />
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group bmd-form-group mb-0">
-                    <label class="bmd-label-floating">
-                      Email
-                      *
-                    </label>
-                    <input type="text" class="form-control" aria-label="Username" />
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group bmd-form-group mb-0">
-                    <label class="bmd-label-floating">Phone</label>
-                    <input type="text" class="form-control" aria-label="Username" />
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group bmd-form-group mb-0">
-                    <label class="bmd-label-floating">
-                      Give us
-                      feedback
-                    </label>
-                    <input type="text" class="form-control" aria-label="Username" />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 d-flex text-center align-items-center justify-content-start">
-                  <button class="btn btn-info btn-search-fly btn-sm">
-                    <i class="fas fa-plane-departure"></i>Send
-                    us
-                  </button>
-                </div>
+               <DefaultContactFormComponent :isTitle="false"></DefaultContactFormComponent>
               </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -299,10 +259,12 @@
 
 <script>
 import PaymentComponent from '@/components/PaymentComponent.vue';
+import DefaultContactFormComponent from '@/components/DefaultContactFormComponent.vue'
 
 export default {
   components: {
     PaymentComponent,
+    DefaultContactFormComponent,
   },
   name: 'FooterComponent',
   props: {

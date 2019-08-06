@@ -1,6 +1,6 @@
 <template>
   <div class="defaultcontactform">
-    <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
+    <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center" v-if="isTitle">
       <span class="text-08 text-danger font-weight-bold">Any question, contact us</span>
     </div>
     <div class="row m-0 p-0 d-flex flex-column justify-content-around">
@@ -41,6 +41,7 @@ export default {
   name: "DefaultContactFormComponent",
   props: {
       menuCode: String,
+      isTitle:true,
   },
   components: {
     ToastComponent:lazyLoadComponent({
