@@ -48,7 +48,7 @@
                         v-bind:src="tservice.travelServiceImages.length>0?`/${tservice.travelServiceImages[0].filePath}`:'/img/defaultloading.gif'"
                         v-bind:alt="tservice.travelServiceName"
                       />
-                      <div class="card-img-overlay  d-flex align-items-center card-body-center">
+                      <div class="card-img-overlay  d-flex align-items-center justify-content-center card-body-center">
                         <h4
                           class="card-title text-08 text-center text-white"
                         >{{tservice.travelServiceName}}</h4>
