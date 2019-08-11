@@ -38,7 +38,7 @@
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':mice.miceImages.length==0}"
-                    v-bind:src="mice.miceImages.length>0?`/${mice.miceImages[0].filePath}`:'/img/defaultloading.gif'"
+                    v-bind:src="mice.miceImages.length>0?`/webmp/${mice.miceImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                     v-bind:alt="mice.miceName"
                   />
                   <div class="card-img-overlay card-body-center d-flex align-items-center justify-content-center">
@@ -148,7 +148,6 @@ export default {
       });
 
       const numFruits = await Promise.all(promises);
-      console.log(this.areaCountry);
       this.areaCountry = numFruits;
     },
     async getMICE() {

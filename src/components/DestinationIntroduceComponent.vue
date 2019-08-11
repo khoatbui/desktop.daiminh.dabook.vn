@@ -44,7 +44,7 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>Hieu them ve Thai Lan</b>
+                <b>Hieu them ve {{destination.destinationName}}</b>
               </h4>
             </div>
             <div class="col-8">
@@ -57,7 +57,7 @@
                   v-for="(pac,ides) in destination.destinationImages"
                   v-bind:key="ides"
                 >
-                  <img class="image-des-img" v-bind:src="`/${pac.filePath}`" v-bind:alt="pac.fileName" />
+                  <img class="image-des-img" v-bind:src="`/webmp/${pac.filePath.slice(0, -3)}webp`" v-bind:alt="pac.fileName" />
                 </slide>
               </carousel>
             </div>

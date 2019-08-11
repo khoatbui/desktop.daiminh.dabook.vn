@@ -38,7 +38,7 @@
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}"
-                    v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
+                    v-bind:src="st.travelStyleImages.length>0?`/webmp/${st.travelStyleImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                     v-bind:alt="st.travelStyleName"
                   />
                   <div class="card-img-overlay card-body-center d-flex align-items-center justify-content-center">
@@ -70,7 +70,7 @@
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
-                    v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+                    v-bind:src="ht.roomTypeId.roomImages.length>0?`/webmp/${ht.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                     v-bind:alt="ht.roomTypeId.roomTypeName"
                   />
                   <div class="card-img-overlay card-body-center d-flex align-items-center justify-content-center">

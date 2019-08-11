@@ -16,9 +16,9 @@
           <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-city h-100"
              v-bind:class="{'small-loading-img':city.cityImages.length==0}"
-            v-bind:src="city.cityImages.length>0?`/${city.cityImages[0].filePath}`:'/img/defaultloading.gif'"
+            v-bind:src="city.cityImages.length>0?`/webmp/${city.cityImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
             v-bind:alt="city.cityImages[0].fileName" />
-            <div class="card-body-bottom-left text-left">
+            <div class="card-body-bottom-left text-left" >
               <h4 class="card-title text-white">{{city.cityName}}</h4>
               <p class="card-text text-white"><b>15</b> điểm đến | <b>60</b> khách sạn </p>
             </div>

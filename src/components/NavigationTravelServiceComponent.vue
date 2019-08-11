@@ -45,7 +45,7 @@
                       <img
                         class="w-100 h-100"
                         v-bind:class="{'small-loading-img':tservice.travelServiceImages.length==0}"
-                        v-bind:src="tservice.travelServiceImages.length>0?`/${tservice.travelServiceImages[0].filePath}`:'/img/defaultloading.gif'"
+                        v-bind:src="tservice.travelServiceImages.length>0?`/webmp/${tservice.travelServiceImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                         v-bind:alt="tservice.travelServiceName"
                       />
                       <div class="card-img-overlay  d-flex align-items-center justify-content-center card-body-center">
@@ -80,7 +80,7 @@
                       <img
                         class="w-100 h-100"
                         v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
-                        v-bind:src="ht.roomTypeId.roomImages.length>0?`/${ht.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+                        v-bind:src="ht.roomTypeId.roomImages.length>0?`/webmp/${ht.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                         v-bind:alt="ht.roomTypeId.roomTypeName"
                       />
                       <div class="card-img-overlay d-flex align-items-center justify-content-center card-body-center">

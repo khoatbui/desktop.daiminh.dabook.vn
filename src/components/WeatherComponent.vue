@@ -1,5 +1,5 @@
 <template>
-  <div class="weather">
+  <div class="weather" v-if="componentLoaded">
     <div class="card weather-card m-0 h-100">
       <div class="card-body text-08">
         <div class="row">
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
         moment:moment,
+        componentLoaded: false,
         currentWeather: {},
         weather5Day: {},
         currentDate: moment().format("MM-DD-YYYY HH:MM"),
@@ -68,16 +69,14 @@ export default {
   },
   mounted() {
     this.initial();
-    this.initital5Day();
   },
   methods: {
     async initial() {
       const response = await WeatherService.getWeatherByCity("HALONG");
       this.currentWeather = response.data;
-    },
-    async initital5Day() {
       const respon5day = await WeatherService.get5DayWeatherByCityId("1581129");
       this.weather5Day = respon5day.data;
+      this.componentLoaded = true;
     },
     showHide5Day(){
         this.isShow5Day=!this.isShow5Day

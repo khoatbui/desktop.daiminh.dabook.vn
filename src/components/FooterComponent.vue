@@ -10,7 +10,7 @@
                   <img class="footer-logo" src="/img/main_logo_text.png" alt />
                 </div>
                 <div class="col-6">
-                  <img class="footer-logo" src="/img/logo dabook.png" alt />
+                  <img class="footer-logo" src="/img/logo_dabook_white.jpg" alt />
                 </div>
               </div>
               <div class="row">

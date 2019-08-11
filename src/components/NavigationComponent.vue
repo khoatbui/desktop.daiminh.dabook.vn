@@ -90,6 +90,9 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item text-info text-x1 font-bold animation-jump">
+              <font-awesome-icon icon="headset" class="text-08 text-center ml-2 mr-1" />19001542
+          </li>
         </ul>
       </div>
     </div>
@@ -151,4 +154,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.animation-jump {
+  -webkit-animation: jump  1s infinite; /* Safari 4.0 - 8.0 */
+  animation:jump 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes jump {
+  0%   {transform: translateY(0px);}
+  25%  {transform: translateY(2px);}
+  50%  {transform: translateY(4px);}
+  100% {transform: translateY(2px);}
+}
+
+/* Standard syntax */
+@keyframes jump {
+  0%   {transform: translateY(0px);}
+  25%  {transform: translateY(2px);}
+  50%  {transform: translateY(4px);}
+  100% {transform: translateY(2px);}
+}
 </style>

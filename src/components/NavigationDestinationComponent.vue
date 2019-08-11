@@ -53,7 +53,7 @@
                         <img
                         class="w-100 h-100"
                         v-bind:class="{'small-loading-img':des.destinationImages.length==0}"
-                        v-bind:src="des.destinationImages.length>0?`/${des.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
+                        v-bind:src="des.destinationImages.length>0?`/webmp/${des.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                         v-bind:alt="des.destinationName"
                         />
                         <div class="card-img-overlay card-body-center">
@@ -137,7 +137,6 @@ export default {
       });
 
       const numFruits = await Promise.all(promises);
-      console.log(this.areaCountry);
       this.areaCountry = numFruits;
     },
     async getDestinationByArea(areaId) {

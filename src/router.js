@@ -14,7 +14,16 @@ const FITView = () => import('./views/FITView.vue');
 const TourDetailView = () => import('./views/TourDetailView.vue');
 const TourDetail = () => import('./components/TourDetailComponent.vue');
 const TourDetailConfirm = () => import('./components/TourDetailConfirmComponent.vue');
-const TourDetailRequest = () => import('./components/TourDetailRequestComponent.vue');
+const HotelDetailView = () => import('./views/HotelDetailView.vue');
+const HotelDetail = () => import('./components/HotelDetailComponent.vue');
+const HotelDetailConfirm = () => import('./components/HotelDetailConfirmComponent.vue');
+const HotelPackageDetailView = () => import('./views/HotelPackageDetailView.vue');
+const HotelPackageDetail = () => import('./components/HotelPackageDetailComponent.vue');
+const RoomTypeDetailView = () => import('./views/RoomTypeDetailView.vue');
+const HotelRoomTypePackageDetail = () => import('./components/HotelRoomTypeDetailComponent.vue');
+const CarDetailView = () => import('./views/CarDetailView.vue');
+const CarDetail = () => import('./components/CarDetailComponent.vue');
+const CarDetailConfirm = () => import('./components/CarDetailConfirmComponent.vue');
 
 Vue.use(Router);
 
@@ -95,14 +104,73 @@ export default new Router({
           component: TourDetailConfirm,
         },
         {
-          path: 'request',
-          name: 'tourdetailrequest',
-          component: TourDetailRequest,
-        },
-        {
           path: '',
           name: 'tourdetailsection',
           component: TourDetail,
+        },
+      ],
+    },
+    {
+      path: '/hoteldetail',
+      component: HotelDetailView,
+      children: [
+        {
+          path: 'confirm',
+          name: 'hoteldetail',
+          component: HotelDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'hoteldetailsection',
+          component: HotelDetail,
+        },
+      ],
+    },
+    {
+      path: '/roomdetail',
+      component: RoomTypeDetailView,
+      children: [
+        {
+          path: 'confirm',
+          name: 'roomdetailconfirm',
+          component: HotelDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'roomdetailsection',
+          component: HotelRoomTypePackageDetail,
+        },
+      ],
+    },
+    {
+      path: '/hotelpackagedetail',
+      component: HotelPackageDetailView,
+      children: [
+        {
+          path: 'confirm',
+          name: 'packagedetail',
+          component: HotelDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'hotelpackagedetailsection',
+          component: HotelPackageDetail,
+        },
+      ],
+    },
+    {
+      path: '/cardetail',
+      component: CarDetailView,
+      children: [
+        {
+          path: 'confirm',
+          name: 'cardetail',
+          component: CarDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'cardetailsection',
+          component: CarDetail,
         },
       ],
     },

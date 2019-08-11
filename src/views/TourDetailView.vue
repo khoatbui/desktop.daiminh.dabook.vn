@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail">
     <NavigationComponent :isTran="false" :isFixed="false"></NavigationComponent>
-    <router-view></router-view>
+    <router-view ></router-view>
     <FooterComponent></FooterComponent>
   </div>
 </template>
@@ -13,7 +13,7 @@ import SkeletonBox from '@/components/SkeletonBox.vue';
 import NavigationComponent from '@/components/NavigationComponent.vue';
 
 export default {
-  name: "home",
+  name: "TourDetailView",
   components: {
     NavigationComponent,
     FooterComponent:lazyLoadComponent({

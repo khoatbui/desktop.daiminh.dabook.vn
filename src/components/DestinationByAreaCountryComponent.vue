@@ -25,7 +25,7 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':destination[0].destinationImages.length==0}"  v-bind:src="destination[0].destinationImages.length>0?`/${destination[0].destinationImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':destination[0].destinationImages.length==0}"  v-bind:src="destination[0].destinationImages.length>0?`/webmp/${destination[0].destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="destination[0].destinationName" />
              <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
@@ -43,7 +43,7 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in destination" v-bind:key="ides">
           <div class="card card-package m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.destinationImages.length==0}"  v-bind:src="pac.destinationImages.length>0?`/${pac.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.destinationImages.length==0}"  v-bind:src="pac.destinationImages.length>0?`/webmp/${pac.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="pac.destinationName" />
              <div class="card-body w-100 p-2">
               <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center">
@@ -102,10 +102,8 @@ export default {
   methods: {
     async initial() {
       this.$store.commit('showHideLoading', true);
-      console.log(this.area);
       const response = await DestinationService.getDestinationByAreaCountry(this.area._id);
       this.destination = randomArray(response.data);
-      console.log(this.destination);
       this.$store.commit('showHideLoading', false);
     },
     redirectToDestination(des){

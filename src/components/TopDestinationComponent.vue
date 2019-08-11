@@ -13,7 +13,7 @@
             <div class="card card-des m-1 flex-grow-1 d-inline-block" @click="redirectToDestination(page)" v-for="(page,ipage) in destinations.slice(index, index+size)" v-bind:key="ipage">
               <img class="card-img image-des" 
                v-bind:class="{'small-loading-img':page.destinationImages.length==0}"
-               v-bind:src="page.destinationImages.length>0?`/${page.destinationImages[0].filePath}`:'/img/defaultloading.gif'"
+               v-bind:src="page.destinationImages.length>0?`/webmp/${page.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
             v-bind:alt="page.destinationIntro" />
               <div class="card-body-center">
                 <h4 class="card-title text-white">{{page.destinationName}}</h4>

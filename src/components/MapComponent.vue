@@ -1,11 +1,13 @@
 <template>
-  <div class="intro-component">
+  <div class="map-component">
     <div class="row m-0 p-0">
       <div class="col-12 m-0 p-0 parent-absolute">
-        <img class="w-100" src="/img/background/bg_10.jpg" alt />
+        <div class="w-100 card-img-top image-package" v-html="map">
+
+        </div>
         <div class="left-bottom-absolute text-center text-white">
           <button class="image-view-btn shadow text-x06">
-            <font-awesome-icon icon="image" class="text-center" /> Xem hinh
+            <font-awesome-icon icon="image" class="text-center" /> View more
           </button>
         </div>
       </div>
@@ -15,8 +17,10 @@
 
 <script>
 export default {
-  name: 'TourDetailImageComponent',
-  props: {},
+  name: 'MapComponent',
+  props: {
+    map: String,
+  },
   data() {
     return {};
   },
@@ -27,17 +31,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.default-card{
+    display: none !important;
+}
 .parent-absolute {
   position: relative;
   overflow: hidden;
   border-radius: 5px;
-  height: 300px;
+  max-height: 300px;
   overflow: hidden;
+}
+.parent-absolute::after,.parent-absolute::before{
+    content: " ";
+    position: absolute;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
 }
 .left-bottom-absolute {
   position: absolute;
   bottom: 10px;
   left: 10px;
+  z-index: 10001;
 }
 .intro-component img {
   background-size: cover;

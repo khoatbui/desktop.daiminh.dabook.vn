@@ -20,11 +20,11 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="packages[0].roomTypeId.roomImages.length>0?`/${packages[0].roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package"  v-bind:src="packages[0].roomTypeId.roomImages.length>0?`/webmp/${packages[0].roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="packages[0].roomTypeId.roomImages[0].fileName" />
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="packages[0].supplierId.supplierImages.length>0?`/${packages[0].supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
+                <img class="img-supplier" v-bind:src="packages[0].supplierId.supplierImages.length>0?`/webmp/${packages[0].supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
                  {{packages[0].supplierId.supplierName}}</h6>
               <h6 class="card-title m-0">{{packages[0].hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="packages[0].roomTypeId.roomTypeName"></p>
@@ -37,11 +37,11 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomTypeImages.length>0?`/${pac.roomTypeId.roomTypeImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomTypeImages.length>0?`/webmp/${pac.roomTypeId.roomTypeImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomTypeImages[0].fileName" />
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/${pac.supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
+                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</h6>
               <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>

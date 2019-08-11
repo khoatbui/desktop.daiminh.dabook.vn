@@ -19,7 +19,7 @@
         <VideoComponent></VideoComponent>
       </div>
       <div class="container pt-4">
-        <TopHotelPromotionComponent></TopHotelPromotionComponent>
+        <TopHotelPromotionComponent :isTitle="true"></TopHotelPromotionComponent>
       </div>
       <div class="container pt-4">
         <IntroduceDaiMinhComponent></IntroduceDaiMinhComponent>

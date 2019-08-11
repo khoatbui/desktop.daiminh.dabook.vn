@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
       <div class="container py-4 my-0">
-        <TourDetailImageComponent></TourDetailImageComponent>
+        <ModalDetailImageComponent :imgs="tourDetailByLang.tourId.tourImages"></ModalDetailImageComponent>
       </div>
       <div class="container py-4 my-0 custom-sticky-component">
         <div class="row m-0 p-0">
@@ -357,12 +357,13 @@
                     >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
                   </div>
                   <div class="row m-0 p-0">
-                    <button
+                    <a
                       class="btn btn-danger text-nomal w-100"
                       :disabled="order.guest.guest.qty==0"
                       v-bind:class="{'btn-default':order.guest.guest.qty==0}"
+                      href="#chon"
                       @click="selectPackage"
-                    >{{order.selectDate !==null?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</button>
+                    >{{order.selectDate !==null?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</a>
                   </div>
                   <div class="row m-0 p-0 text-muted">
                     <p class="my-1 text-08">
@@ -433,9 +434,9 @@ export default {
     DateTimePicker,
     Carousel,
     Slide,
-    TourDetailImageComponent: lazyLoadComponent({
+    ModalDetailImageComponent: lazyLoadComponent({
       componentFactory: () =>
-        import("@/components/TourDetailImageComponent.vue"),
+        import("@/components/ModalDetailImageComponent.vue"),
       loading: SkeletonBox
     }),
     BackgroundHeaderComponent: lazyLoadComponent({
@@ -457,7 +458,6 @@ export default {
     return {
       tourDetail: [],
       top10PromotionHotel: [],
-      selectedPayment: {},
       componentLoaded: false,
       sectionActive: "thongtin",
       startDate: moment(),
@@ -467,15 +467,23 @@ export default {
           child04: { qty: 0 },
           child48: { qty: 0 }
         },
-        selectDate: null
+        selectDate: null,
+        totalPrice:0
       }
     };
+  },
+  watch: {
+    // call again the method if the route changes
+    '$route': 'initialWithParam'
   },
   created() {
     this.initial(this.$route.query.tourid);
     this.getPromotionHotel();
   },
   methods: {
+    initialWithParam() {
+      this.initial(this.$route.query.tourid);
+    },
     async initial(tourId) {
       this.$store.commit("showHideLoading", true);
       const response = await TourService.GetTourDetailById(tourId);
@@ -495,16 +503,18 @@ export default {
     },
     onChangeDate(data) {
       this.order.selectDate = moment(data).format("YYYY/DD/MM");
-      console.log(this.order.selectDate);
     },
     selectPackage(){
       if (this.order.selectDate ==null) {
-        window.location.href = "#chon";
+        location.href = "#chon";
+        $('.calendarTrigger').addClass('border-outline-danger');
       }
       else {
+        this.$store.dispatch('updateTourOrder', this.order);
+        this.$store.dispatch('updateTourDetail', this.tourDetailByLang)
         this.$router.push(`/tourdetail/confirm?tourid=${this.tourDetail[0].tourId._id}`)
       }
-    }
+    },
   },
   computed: {
     tourDetailByLang() {
@@ -527,19 +537,20 @@ export default {
             result[0].tourId.to = intro.to;
           }
         });
-        console.log(result);
         return result[0];
       }
     },
     totalPrice() {
-      return (
+      const totalPr = (
         this.tourDetailByLang.tourId.price * this.order.guest.guest.qty +
         this.tourDetailByLang.tourId.priceChild04 *
           this.order.guest.child04.qty +
         this.tourDetailByLang.tourId.priceChild48 * this.order.guest.child48.qty
       );
+      this.order.totalPrice=totalPr;
+      return totalPr;
     }
-  }
+  },
 };
 </script>
 

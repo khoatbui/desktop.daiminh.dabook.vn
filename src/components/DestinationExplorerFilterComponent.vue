@@ -24,11 +24,11 @@
       </div>
       <div class="row m-0 p-0 pt-3 d-flex flex-wrap justify-content-start align-items-stretch">
           <div class="card filter-card m-2 h-100 d-inline-block" v-for="(pac,ipac) in packages" v-bind:key="ipac">
-            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/${pac.roomTypeId.roomImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomImages[0].fileName" />
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/${pac.supplierId.supplierImages[0].filePath}`:'/img/defaultloading.gif'" alt="">
+                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</h6>
               <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="card filter-card m-2 h-100 d-inline-block" v-for="(tour,ideas) in tours" v-bind:key="'Tour'+ideas">
-            <img class="card-img-top image-package"  v-bind:src="tour.tourImages.length>0?`/${tour.tourImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package"  v-bind:src="tour.tourImages.length>0?`/webmp/${tour.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="tour.tourImages[0].fileName" />
             <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">

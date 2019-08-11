@@ -1,5 +1,5 @@
 <template>
-  <div class="toppackage">
+  <div class="toppackage" v-if="componentLoaded">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">{{travelStyle.travelStyleName}}</h3>
       <div class="row p-0 m-0 d-flex justify-content-end align-items-center">
@@ -11,18 +11,17 @@
       <div class="row p-0 m-0 d-flex align-items-stretch">
         <div class="col-8 m-0 p-1">
           <div class="card m-0 h-100 d-inline-block position-relative">
-            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':travelStyle.travelStyleImages.length==0}" v-bind:src="travelStyle.travelStyleImages.length>0?`/${travelStyle.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':travelStyle.travelStyleImages.length==0}" v-bind:src="travelStyle.travelStyleImages.length>0?`/webmp/${travelStyle.travelStyleImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
             v-bind:alt="travelStyle.travelStyleName" />
             <div class="card-body-center text-left">
               <h4 class="card-title text-white text-x2">{{travelStyle.travelStyleName}}</h4>
               <p class="card-text text-white"><b>200</b> diem den | <b>50</b> khach san | <b>10</b> tour</p>
-              <small class="m-0 text-white">Chuong trinh keo dai den ngay {{bookingDate}}</small>
             </div>
           </div>
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':tour[0].tourImages.length==0}"  v-bind:src="tour[0].tourImages.length>0?`/${tour[0].tourImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':tour[0].tourImages.length==0}"  v-bind:src="tour[0].tourImages.length>0?`/webmp/${tour[0].tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="tour[0].tourName" />
              <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
@@ -41,7 +40,7 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in tour" v-bind:key="ides">
           <div class="card card-package m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.tourImages.length==0}"  v-bind:src="pac.tourImages.length>0?`/${pac.tourImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.tourImages.length==0}"  v-bind:src="pac.tourImages.length>0?`/webmp/${pac.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="pac.tourName" />
              <div class="card-body w-100 p-2">
               <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center cursor-pointer"  @click="redirectToDestination(pac)">
@@ -91,7 +90,8 @@ export default {
     return {
       tour: [],
       bookingDate: moment().format('MM-DD-YYYY'),
-      moment:moment
+      moment:moment,
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -100,11 +100,10 @@ export default {
   methods: {
     async initial() {
       this.$store.commit('showHideLoading', true);
-      console.log(this.travelStyle);
       const response = await TourService.getTourPackageByStyle(this.travelStyle._id);
       this.tour = randomArray(response.data);
-      console.log(this.tour);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded = true;
     },
     redirectToDestination(des){
        this.$router.push(

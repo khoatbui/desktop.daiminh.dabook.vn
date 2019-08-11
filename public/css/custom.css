@@ -743,10 +743,10 @@
     width: 30px !important;
     height: 30px !important;
     border-radius: 50%;
-    background-color: #00bcd4 !important;
-    border:none;
+    background-color: #FFF !important;
+    border:0.5px solid #00bcd4 !important;
     cursor: pointer;
-    color: #FFFFFF;
+    color: #00bcd4;
 }
 .btn-plus:hover{
     box-shadow: 2px 7px 11px -5px rgba(0,0,0,.47);
