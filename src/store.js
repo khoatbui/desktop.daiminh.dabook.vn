@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import app from './main';
 
 Vue.use(Vuex);
 
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     updateHotelOrder(state, payload) {
       state.hotel.order = payload;
     },
+    SET_LANG(state, payload) {
+      app.$i18n.locale = payload;
+    },
   },
   actions: {
     updateTourOrder({ commit }, order) {
@@ -56,6 +60,9 @@ export default new Vuex.Store({
     },
     updateHotelPackageDetail({ commit }, order) {
       commit('updateHotelOrder', order);
+    },
+    setLang({ commit }, payload) {
+      commit('SET_LANG', payload);
     },
   },
 });

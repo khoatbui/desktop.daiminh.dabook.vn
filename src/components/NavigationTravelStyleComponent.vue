@@ -7,7 +7,7 @@
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
-    >Travel Style</a>
+    >{{$t('na_travelstyle')}}</a>
     <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
       <div class="row m-1">
         <div class="col-3 m-0 p-2 pr-4 border-right">

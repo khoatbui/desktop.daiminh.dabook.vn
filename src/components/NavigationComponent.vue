@@ -22,7 +22,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a href="/index.html" class="nav-link">
-              <i class="fa fa-menu"></i> Home
+              <i class="fa fa-menu"></i> {{$t('na_home')}}
             </a>
           </li>
           <NavigationDestinationComponent></NavigationDestinationComponent>
@@ -31,30 +31,26 @@
           <NavigationMICEComponent></NavigationMICEComponent>
           <li class="nav-item">
             <a href="/tour/fit.html" class="nav-link">
-              <i class="fa fa-menu"></i> FIT
+              <i class="fa fa-menu"></i> {{$t('na_fit')}}
             </a>
           </li>
           <li class="nav-item">
             <a href="/function/aboutus.html" class="nav-link">
               <i class="fa fa-menu"></i>
-              About Us
+             {{$t('na_aboutus')}}
             </a>
           </li>
           <li class="nav-item">
             <ul class="navbar-nav">
-              <li class="hide">
-                <a href="#" class="nav-link">
-                  <img class="language-icon" src="/img/language/vietnam.png" alt /> | VI
-                </a>
-              </li>
-              <li class="hide">
-                <a href="#" class="nav-link">
-                  <img class="language-icon" src="/img/language/united-kingdom.png" alt /> | EN
-                </a>
-              </li>
-              <li class="active">
-                <a href="#" class="nav-link">
-                  <img class="language-icon" src="/img/language/south-korea.png" alt /> | KO
+              <li
+                :class="{'hide':getLang !=la.value}"
+                v-for="(la,i) in optionLangs"
+                v-bind:key="'lang'+i"
+                @click="callSetLangActions(la)"
+              >
+                <a class="nav-link">
+                  <img class="language-icon" :src="la.img" :alt="la.text" />
+                  | {{la.text}}
                 </a>
               </li>
             </ul>
@@ -91,7 +87,7 @@
             </ul>
           </li>
           <li class="nav-item text-info text-x1 font-bold animation-jump">
-              <font-awesome-icon icon="headset" class="text-08 text-center ml-2 mr-1" />19001542
+            <font-awesome-icon icon="headset" class="text-08 text-center ml-2 mr-1" />19001542
           </li>
         </ul>
       </div>
@@ -100,9 +96,9 @@
 </template>
 
 <script>
-import moment from 'moment';
-import lazyLoadComponent from '@/utils/lazy-load-component'
-import SkeletonBox from '@/components/SkeletonBox.vue';
+import moment from "moment";
+import lazyLoadComponent from "@/utils/lazy-load-component";
+import SkeletonBox from "@/components/SkeletonBox.vue";
 
 function randomArray(array) {
   const array2 = [];
@@ -118,25 +114,29 @@ export default {
   name: "NavigationComponent",
   components: {
     NavigationDestinationComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/NavigationDestinationComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import("@/components/NavigationDestinationComponent.vue"),
+      loading: SkeletonBox
     }),
     NavigationTravelStyleComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/NavigationTravelStyleComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import("@/components/NavigationTravelStyleComponent.vue"),
+      loading: SkeletonBox
     }),
     NavigationTravelServiceComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/NavigationTravelServiceComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import("@/components/NavigationTravelServiceComponent.vue"),
+      loading: SkeletonBox
     }),
     NavigationMICEComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/NavigationMICEComponent.vue'),
-      loading: SkeletonBox,
-    }),
+      componentFactory: () =>
+        import("@/components/NavigationMICEComponent.vue"),
+      loading: SkeletonBox
+    })
   },
   props: {
     isTran: true,
-    isFixed: true,
+    isFixed: true
   },
   data() {
     return {
@@ -144,34 +144,87 @@ export default {
         "navbar-color-on-scroll navbar-transparent": this.isTran,
         "navbar-no-transparent": !this.isTran,
         "fixed-top": this.isFixed,
-        "mb-0": !this.isFixed,
+        "mb-0": !this.isFixed
       },
+      optionLangs: [
+        {
+          text: "VI",
+          img: "/img/language/vietnam.png",
+          value: "vn"
+        },
+        {
+          text: "EN",
+          img: "/img/language/united-kingdom.png",
+          value: "en"
+        },
+        {
+          text: "KO",
+          img: "/img/language/south-korea.png",
+          value: "ko"
+        }
+      ]
     };
   },
   mounted() {},
-  methods: {}
+  methods: {
+    callSetLangActions(item) {
+      console.log(item);
+      if (item.value === "en") {
+        this.$store.dispatch("setLang", "ko");
+        return;
+      } else if (item.value === "ko") {
+        this.$store.dispatch("setLang", "vn");
+        return;
+      } else {
+        this.$store.dispatch("setLang", "en");
+        return;
+      }
+    }
+  },
+  computed: {
+    getLang() {
+      console.log(this.$i18n.locale);
+      return this.$i18n.locale;
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .animation-jump {
-  -webkit-animation: jump  1s infinite; /* Safari 4.0 - 8.0 */
-  animation:jump 1s infinite;
+  -webkit-animation: jump 1s infinite; /* Safari 4.0 - 8.0 */
+  animation: jump 1s infinite;
 }
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes jump {
-  0%   {transform: translateY(0px);}
-  25%  {transform: translateY(2px);}
-  50%  {transform: translateY(4px);}
-  100% {transform: translateY(2px);}
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(2px);
+  }
 }
 
 /* Standard syntax */
 @keyframes jump {
-  0%   {transform: translateY(0px);}
-  25%  {transform: translateY(2px);}
-  50%  {transform: translateY(4px);}
-  100% {transform: translateY(2px);}
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(2px);
+  }
 }
 </style>

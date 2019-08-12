@@ -22,9 +22,9 @@
                  {{pac.supplierId.supplierName}}</span>
                 <span class="badge badge-pill badge-danger shadow"><font-awesome-icon icon="hotel" class="text-06 text-center" /></span>
               </h6>
-              <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(pac.hotelId)">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
-              <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 price-text m-0 cursor-pointer"  @click="redirectToHotelDetail(pac.hotelId)">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
             </div>
           </div>
@@ -88,6 +88,11 @@ export default {
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
     },
+    redirectToHotelDetail(des){
+       this.$router.push(
+        `/hoteldetail?hotelid=${des._id}`
+      );
+    }
   },
   computed: {
       getTitle() {

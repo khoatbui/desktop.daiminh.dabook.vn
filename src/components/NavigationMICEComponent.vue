@@ -7,7 +7,7 @@
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
-    >MICE</a>
+    >{{$t('na_mice')}}</a>
     <div class="dropdown-menu fullwidth-mega-menu" aria-labelledby="navbarDropdownMenuLink">
       <div class="row m-1">
         <div class="col-2 m-0 p-2 pr-4 border-right">
