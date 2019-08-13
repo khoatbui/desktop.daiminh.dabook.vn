@@ -25,6 +25,9 @@ const CarDetailView = () => import('./views/CarDetailView.vue');
 const CarDetail = () => import('./components/CarDetailComponent.vue');
 const CarDetailConfirm = () => import('./components/CarDetailConfirmComponent.vue');
 
+const TourView = () => import('./views/TourView.vue');
+const TourAllComponent = () => import('./components/TourAllComponent.vue');
+
 Vue.use(Router);
 
 export default new Router({
@@ -171,6 +174,22 @@ export default new Router({
           path: '',
           name: 'cardetailsection',
           component: CarDetail,
+        },
+      ],
+    },
+    {
+      path: '/tour',
+      component: TourView,
+      children: [
+        {
+          path: 'search',
+          name: 'toursearch',
+          component: CarDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'tourview',
+          component: TourAllComponent,
         },
       ],
     },

@@ -3,7 +3,7 @@ import axios from 'axios';
 const api = 'http://103.237.144.222:3000';
 const Tour = {
   getAllTour() {
-    return axios.get(`${api}/tour/`);
+    return axios.get(`${api}/tourlist/`);
   },
   getTopTour() {
     return axios.get(`${api}/tour/m/getlisttourpromotion`);

@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail">
     <NavigationComponent :isTran="false" :isFixed="false"></NavigationComponent>
-    <router-view ></router-view>
+    <router-view></router-view>
     <FooterComponent></FooterComponent>
   </div>
 </template>

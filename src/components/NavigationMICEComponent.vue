@@ -23,9 +23,9 @@
         </div>
         <div class="col-6 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold">ACTIVITIES</span>
+            <span class="text-08 text-danger font-weight-bold text-uppercase">ACTIVITIES</span>
             <span class="text-08 text-danger cursor-pointer" @click="redirectToAllMICE">
-              View all
+              {{$t('btn_showall')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
             </span>
           </div>
@@ -66,9 +66,9 @@
         </div>
         <div class="col-2 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold">DESTINATION</span>
+            <span class="text-08 text-danger font-weight-bold text-uppercase">{{$t('na_destination')}}</span>
             <span class="text-08 text-danger" @click="redirectToAllDestination">
-              View all
+              {{$t('btn_showall')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
             </span>
           </div>

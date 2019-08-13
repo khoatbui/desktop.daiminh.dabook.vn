@@ -1,6 +1,6 @@
 <template>
   <div class="tour-view">
-    <NavigationComponent :isTran="false" :isFixed="true"></NavigationComponent>
+    <NavigationComponent :isTran="false" :isFixed="false"></NavigationComponent>
     <router-view></router-view>
     <FooterComponent></FooterComponent>
   </div>

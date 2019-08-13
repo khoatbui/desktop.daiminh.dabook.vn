@@ -11,6 +11,9 @@ body{
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
+  .text-main-color{
+    color: #333333 !important;
+  }
   .text-06{
     font-size: 0.6rem !important;
   }

@@ -43,17 +43,17 @@
             <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.tourImages.length==0}"  v-bind:src="pac.tourImages.length>0?`/webmp/${pac.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="pac.tourName" />
              <div class="card-body w-100 p-2">
-              <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center cursor-pointer"  @click="redirectToDestination(pac)">
+              <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center cursor-pointer"  @click="redirectToTourDetail(pac)">
                <span class="flex-grow">{{pac.destinationId.destinationName}}</span>
                <span class="badge badge-pill badge-danger shadow" v-if="pac.isHot"><font-awesome-icon icon="fire-alt" class="text-06 text-center" /></span>
                <span class="badge badge-pill badge-danger shadow" v-if="pac.isPromotion"><font-awesome-icon icon="tag" class="text-06 text-center" /><font-awesome-icon icon="percent" class="text-06 text-center" /></span>
               </h6>
-              <h6 class="card-title m-0 cursor-pointer" @click="redirectToDestination(pac)">{{pac.tourName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
               <div class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></div>
               <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
                <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted m-0 text-success">Cap nhap tu {{moment(pac.createDate).format('YYYY.MM.DD')}}</small>
-                <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToDestination(pac)"/>
+                <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTourDetail(pac)"/>
                </div>
             </div>
           </div>
@@ -105,9 +105,9 @@ export default {
       this.$store.commit('showHideLoading', false);
       this.componentLoaded = true;
     },
-    redirectToDestination(des){
+    redirectToTourDetail(des){
        this.$router.push(
-        `/tour/detail?tourid=${des._id}`
+        `/tourdetail?tourid=${des._id}`
       );
     }
   },

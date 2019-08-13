@@ -33,7 +33,7 @@
                 >
                 <span class="text-08 text-danger font-weight-bold">{{area.areaCountryName}}</span>
                 <span class="text-08 text-danger cursor-pointer" @click="redirectToAllDestination">
-                    View all
+                    {{$t('btn_showall')}}
                     <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
                 </span>
                 </div>

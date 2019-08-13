@@ -27,25 +27,32 @@
           </div>
         </div>
         <div class="col-3 d-flex justify-content-between border-right m-0 p-2">
-          <date-time-picker :singleDate="false" ref="rtime" id="itime" class="w-100" @onChange="onChangeDate" />
+          <AirbnbDatetimePickerComponent :customclass="'border-0'"></AirbnbDatetimePickerComponent>
         </div>
-        <div class="col-3 d-flex justify-content-between border-right m-0 p-2 dropdown">
+        <div class="col-3 d-flex justify-content-between border-right m-0 p-2 dropdown" v-bind:class="{'show showing':dropdown.price}">
           <button
             class="btn custom-btn-md w-100 text-08 hidden-outof-text custom-btn-outline-default dropdown-toggle text-nomal d-flex justify-content-between align-items-center p-0 m-0"
             type="button"
             id="dropdownPrice"
-            data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            @click="dropdown.price=!dropdown.price"
           >
             <span>Muc gia</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
-          <div class="dropdown-menu dropdown-menu-left w-100" aria-labelledby="dropdownPrice">
-            <a class="dropdown-item cursor-pointer">Dat nhieu nhat</a>
-            <a class="dropdown-item cursor-pointer">Gia thu thap den cao</a>
-            <a class="dropdown-item cursor-pointer">Danh gia cao nhat</a>
-            <a class="dropdown-item cursor-pointer">Them gan day</a>
+          <div class="dropdown-menu dropdown-menu-left w-100 p-2 pt-4" v-bind:class="{'show showing':dropdown.price,'hide hideing':!dropdown.price}" aria-labelledby="dropdownPrice">
+              <div class="row m-0 p-0 w-100 py-4">
+                <div class="col-12">
+              <vue-slider v-model="filter.price" :tooltip="'always'" :min="100000" :max="30000000" :tooltip-formatter="priceformat"></vue-slider>
+                </div>
+              </div>
+              <div class="row m-0 p-0 w-100">
+                <div class="col-12 d-flex justify-content-end align-items-center">
+                <button class="btn btn-sm btn-outline-danger text-nomal"  @click="dropdown.price=!dropdown.price">Cancel</button>
+                <button class="btn btn-sm btn-info text-nomal"  @click="dropdown.price=!dropdown.price">Ok</button>
+                </div>
+              </div>
           </div>
         </div>
         <div class="col-3 d-flex justify-content-between border-right m-0 p-2">
@@ -145,6 +152,7 @@ import HotelService from "@/api/HotelService";
 import TourService from "@/api/TourService";
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
+import AirbnbDatetimePickerComponent from '@/components/AirbnbDatetimePickerComponent.vue';
 
 function randomArray(array) {
   const array2 = [];
@@ -159,7 +167,8 @@ export default {
   components: {
     Carousel,
     Slide,
-    DateTimePicker
+    DateTimePicker,
+    AirbnbDatetimePickerComponent
   },
   name: "DestinationExplorerFilterComponent",
   props: {
@@ -168,10 +177,23 @@ export default {
   },
   data() {
     return {
+      dropdown:{
+        price:false,
+      },
       packages: [],
       tours: [],
       bookingDate: moment().format("MM-DD-YYYY"),
-      title: "Top hotel promotion today"
+      title: "Top hotel promotion today",
+      priceformat:  v => {return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v)},
+      filter: {
+        price:  [200000, 10500000],
+        promotion:true,
+        date: {
+          startDate: '',
+          endDate: ''
+        },
+        sortBy: ''
+      }
     };
   },
   mounted() {
@@ -224,13 +246,22 @@ export default {
       } else {
         return "Du lich cung chung toi";
       }
-    }
+    },
+    HotelByFilter() {
+
+    },
+    TourByFilter() {
+
+    },
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.price-slider{
+  padding:30px 0px;
+}
 .card-package {
   width: 220px;
 }

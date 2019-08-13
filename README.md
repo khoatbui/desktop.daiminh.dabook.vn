@@ -36,3 +36,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Library
 https://ssense.github.io/vue-carousel/
+https://nightcatsama.github.io/vue-slider-component/#/
+https://www.vuescript.com/airbnb-style-date-picker-vue-js/

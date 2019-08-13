@@ -1,5 +1,5 @@
 <template>
-  <div class="hotel-view">
+  <div class="default-search-view">
   </div>
 </template>
 
@@ -7,7 +7,7 @@
 // @ is an alias to /src
 
 export default {
-  name: 'HotelView',
+  name: 'DefaultSearchView',
   components: {
   },
 };
