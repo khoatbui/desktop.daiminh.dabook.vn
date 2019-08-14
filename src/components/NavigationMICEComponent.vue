@@ -13,17 +13,14 @@
         <div class="col-2 m-0 p-2 pr-4 border-right">
           <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
           <p class="text-left text-08">
-            Meetings, Incentives, Conferences, Events
-            Chung toi co the dap ung tat ca cac yeu cau cua ban.
+            {{$t('navi_mice_intro')}}
           </p>
-          <small class="text-06">
-            <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
-            <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de duoc tu van, hoac chat truc tiep voi chung toi
+          <small class="text-06" v-html="$t('navi_mice_call')">
           </small>
         </div>
         <div class="col-6 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold text-uppercase">ACTIVITIES</span>
+            <span class="text-08 text-danger font-weight-bold text-uppercase">{{$t('navi_mice_activity')}}</span>
             <span class="text-08 text-danger cursor-pointer" @click="redirectToAllMICE">
               {{$t('btn_showall')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />

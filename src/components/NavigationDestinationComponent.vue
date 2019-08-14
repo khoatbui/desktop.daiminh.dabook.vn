@@ -13,12 +13,9 @@
         <div class="col-2 m-0 p-2 pr-4 border-right">
             <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
             <p class="text-left text-08">
-            Hang tram diem den tuyet voi tren dat nuoc VietNam bao gom Tay Bac, Me Kong, Mien Trung
-            Mien Nam, va cac tinh Bac Trung Bo. Chung toi luon co nhung dich vu tuyet voi
+            {{$t('navi_destination_intro')}}
             </p>
-            <small class="text-06">
-            <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
-            <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de duoc tu van, hoac chat truc tiep voi chung toi
+            <small class="text-06" v-html="$t('navi_destination_call')">
             </small>
         </div>
         <div class="col-8 m-0 p-0">

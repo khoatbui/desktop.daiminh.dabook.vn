@@ -2,14 +2,14 @@
   <div class="intro-component">
     <div class="row m-0 p-0">
       <div class="col-12 p-0 m-0 text-left">
-        <h3 class="title text-left m-0">Introduce about DaiMinh</h3>
-        <p>Cung kham pha va trai nghiem cac dich vu cua DaiMinh Travel</p>
+        <h3 class="title text-left m-0">{{$t('pintroduce_title_h3')}}</h3>
+        <p>{{$t('pintroduce_title_explain')}}</p>
       </div>
       <div class="col-12 m-0 p-0 parent-absolute">
         <img class="w-100" src="/img/background/bg_10.jpg" alt />
         <div class="center-absolute text-center text-white">
           <button class="explorer-btn shadow text-x06">
-            EXPLORE US
+            {{$t('pintroduce_btn_exploreus')}}
             <font-awesome-icon icon="play" class="text-center" />
           </button>
         </div>

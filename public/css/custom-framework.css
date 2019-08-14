@@ -160,6 +160,7 @@ body{
   /* LOADING */
   .small-loading-img{
     width :30px !important;
+    min-width: 30px !important;
     height: 30px !important;
   }
 /* ===========STICKY============= */
@@ -333,4 +334,8 @@ textarea.custom-form-input {
 }
 .scroll-select-item.active{
   color: #dc3545;
+}
+/* ============VUEAX CUSTOM================= */
+.vs-pagination--ul{
+  margin :0 !important;
 }

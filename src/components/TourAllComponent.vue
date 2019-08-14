@@ -20,15 +20,16 @@
                 <h6 class="text-left text-x1 font-bold border-bottom">Muc gia (vnd)</h6>
                 <p
                   class="text-left text-07 text-nomal text-muted"
-                >{{priceformat(filter.price[0]) + ' - ' + priceformat(filter.price[1])}}</p>
+                >{{priceformat(filterCondition.price.filterPrice[0]) + ' - ' + priceformat(filterCondition.price.filterPrice[1])}}</p>
               </div>
               <div class="card-body p-0 py-2">
                 <vue-slider
-                  v-model="filter.price"
+                  v-model="filterCondition.price.filterPrice"
                   :tooltip="'none'"
-                  :min="100000"
-                  :max="30000000"
+                  :min="filterCondition.price.minPrice"
+                  :max="filterCondition.price.maxPrice"
                   :tooltip-formatter="priceformat"
+                  @change="changeFilterAction"
                 ></vue-slider>
               </div>
             </div>
@@ -46,7 +47,7 @@
                     :key="'affsa'+i"
                   >
                     <vs-checkbox
-                      v-model="filter.travelStyle"
+                      v-model="filterCondition.travelStyle.filterTravelStyle"
                       :vs-value="style"
                     >{{style.travelStyleName}}</vs-checkbox>
                   </div>
@@ -56,7 +57,14 @@
           </div>
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
-              <div class="card-title cursor-pointer" data-toggle="collapse" href="#collapseDestination" role="button" aria-expanded="false" aria-controls="collapseDestination">
+              <div
+                class="card-title cursor-pointer"
+                data-toggle="collapse"
+                href="#collapseDestination"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseDestination"
+              >
                 <h6 class="text-left text-x1 font-bold border-bottom">Destination</h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseDestination">
@@ -67,7 +75,7 @@
                     :key="'affsa'+i"
                   >
                     <vs-checkbox
-                      v-model="filter.destination"
+                      v-model="filterCondition.destination.filterDestination"
                       :vs-value="des"
                     >{{des.destinationName}}</vs-checkbox>
                   </div>
@@ -88,7 +96,7 @@
             <div class="col-12 w-100 m-0 p-0">
               <div
                 class="card w-100 shadow-none my-3 tour-card"
-                v-for="(tour,i) in tourListByLang"
+                v-for="(tour,i) in paginatedData"
                 :key="'tsja'+i"
               >
                 <div class="row h-100 p-0 m-0">
@@ -162,6 +170,14 @@
                   </div>
                 </div>
               </div>
+              <div class="p-2 bg-white">
+                <vs-pagination
+                  :total="pageCount"
+                  v-model="pageNumber"
+                  prev-icon="arrow_back"
+                  next-icon="arrow_forward"
+                ></vs-pagination>
+              </div>
             </div>
           </div>
         </div>
@@ -213,7 +229,7 @@ export default {
       componentFactory: () =>
         import("@/components/ModalDetailImageComponent.vue"),
       loading: SkeletonBox
-    }),
+    })
   },
   name: "TourAllComponent",
   props: {
@@ -222,28 +238,36 @@ export default {
   data() {
     return {
       componentLoaded: false,
-      imgBackground : [{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_01.jpg'
-      },{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_02.jpg'
-      },{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_03.jpg'
-      },{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_04.jpg'
-      },{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_05.jpg'
-      },{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_06.jpg'
-      },{
-        fileName:'daiminh travel',
-        filePath:'img/background/bg_07.jpg'
-      }],
+      imgBackground: [
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_01.jpg"
+        },
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_02.jpg"
+        },
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_03.jpg"
+        },
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_04.jpg"
+        },
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_05.jpg"
+        },
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_06.jpg"
+        },
+        {
+          fileName: "daiminh travel",
+          filePath: "img/background/bg_07.jpg"
+        }
+      ],
       priceformat: v => {
         return new Intl.NumberFormat("vi-VN", {
           style: "currency",
@@ -253,17 +277,33 @@ export default {
       tourList: [],
       travelStyle: [],
       destination: [],
-      filter: {
-        price: [200000, 10500000],
-        travelStyle: [],
-        destination: [],
-        promotion: true,
+      filterCondition: {
+        price: {
+          filterPrice: [200000, 10500000],
+          minPrice: 100000,
+          maxPrice: 30000000,
+          isFilter: false
+        },
+        travelStyle: {
+          filterTravelStyle: [],
+          isFilter: false
+        },
+        destination: {
+          filterDestination: [],
+          isFilter: false
+        },
+        promotion: {
+          filterPromotion: true,
+          isFilter: false
+        },
         date: {
-          startDate: "",
-          endDate: ""
+          filterDate: { startDate: "", endDate: "" },
+          isFilter: false
         },
         sortBy: ""
-      }
+      },
+      pageNumber: 1,
+      size: 10
     };
   },
   watch: {},
@@ -281,7 +321,6 @@ export default {
       const response = await TourService.getAllTour();
       this.tourList = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
-      console.log(this.tourList);
       this.componentLoaded = true;
     },
     async getTravelStyle() {
@@ -293,16 +332,74 @@ export default {
       this.destination = randomArray(response.data);
     },
     redirectToTourDetail(des) {
-       this.$router.push(
-        `/tourdetail?tourid=${des._id}`
-      );
+      this.$router.push(`/tourdetail?tourid=${des._id}`);
+    },
+    changeFilterAction() {
+      this.filterCondition.price.isFilter = true;
+      console.log(this.filterCondition.price.filterPrice);
+    },
+    resetFilter() {
+      console.log("s");
     }
   },
   computed: {
     tourListByLang() {
       return this.tourList;
+    },
+    filterTourList() {
+      if (this.componentLoaded == false) {
+        return this.tourListByLang;
+      }
+      var that = this;
+      return this.tourListByLang.filter(function(item) {
+        return (
+          ((item.price >= that.changeFilterPrice[0] &&
+            item.price <= that.changeFilterPrice[1]) ||
+            that.filterCondition.price.isFilter == false) &&
+          (that.changeFilterTravelStyle.filter(function(styleItem) {
+            return styleItem._id == item.travelStyleId._id;
+          }).length > 0 ||
+            that.filterCondition.travelStyle.isFilter == false) &&
+          (that.changeFilterDestination.filter(function(desItem) {
+            return desItem._id == item.destinationId._id;
+          }).length > 0 ||
+            that.filterCondition.destination.isFilter == false)
+        );
+      });
+    },
+    pageCount() {
+      let l = this.tourList.length,
+        s = this.size;
+      return Math.ceil(l / s);
+    },
+    paginatedData() {
+      const start = this.pageNumber === 1 ? 0 : this.pageNumber * this.size,
+        end = start + this.size;
+      return randomArray(this.filterTourList.slice(start, end));
+    },
+    changeFilterTravelStyle() {
+      // getter
+      if (this.filterCondition.travelStyle.filterTravelStyle.length === 0) {
+        this.filterCondition.travelStyle.isFilter = false;
+      } else {
+        this.filterCondition.travelStyle.isFilter = true;
+      }
+      return this.filterCondition.travelStyle.filterTravelStyle;
+    },
+    changeFilterDestination() {
+      // getter
+      if (this.filterCondition.destination.filterDestination.length === 0) {
+        this.filterCondition.destination.isFilter = false;
+      } else {
+        this.filterCondition.destination.isFilter = true;
+      }
+      return this.filterCondition.destination.filterDestination;
+    },
+    changeFilterPrice() {
+      return this.filterCondition.price.filterPrice;
     }
-  }
+  },
+  watch: {}
 };
 </script>
 

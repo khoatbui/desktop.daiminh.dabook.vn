@@ -26,6 +26,9 @@ const Hotel = {
   getPackageByHotel(hotelId) {
     return axios.get(`${api}/packagehotelrel/m/getpackagebyhotel/${hotelId}`);
   },
+  getAllPackage() {
+    return axios.get(`${api}/packagehotelrel/m/getallpackage`);
+  },
   getPackageById(packageId) {
     return axios.get(`${api}/packagehotelrel/m/getpackagedetail/${packageId}`);
   },

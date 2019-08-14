@@ -170,13 +170,13 @@
               <h4>Service</h4>
               <ul class="d-flex flex-column">
                 <li>
-                  <a href="service/travelservice.html">Travel</a>
+                  <a href="travelservice/travel">Travel</a>
                 </li>
                 <li>
-                  <a href="service/visaservice.html">Visa</a>
+                  <a href="travelservice/visa">Visa</a>
                 </li>
                 <li>
-                  <a href="service/lawandinvest.html">Legal & Investment Consultancy</a>
+                  <a href="travelservice/invest">Legal & Investment Consultancy</a>
                 </li>
               </ul>
             </div>
@@ -241,19 +241,6 @@
           </div>
         </div>
       </footer>
-
-      <!-- <div class="widget-component">
-        <ul class="d-flex flex-column">
-          <li class="special-margin">
-            <a class="btn btn-info btn-fab btn-round" href="tel:19001542">
-             <font-awesome-icon
-                        icon="phone"
-                        class="text-center text-08"
-                      />
-            </a>
-          </li>
-        </ul>
-      </div> -->
     </div>
   </div>
 </template>

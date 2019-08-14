@@ -4,9 +4,9 @@
       <h3 class="title text-left m-0">Top city</h3>
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
-          <p>Cùng Dabook bắt đầu hành trình của bạn</p>
+          <p>Let's travel with Dabook</p>
           <a class="link-des text-danger">
-              Xem thêm
+              Show more
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
         </div>

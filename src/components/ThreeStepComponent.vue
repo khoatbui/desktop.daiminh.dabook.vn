@@ -6,7 +6,7 @@
           <div class="row align-items-center">
             <font-awesome-icon icon="medal" class="col-12 col-md-3 col-lg-2 col-xl-2 text-x3" />
             <div class="col-12 col-md-9 col-lg-10 col-xl-10 row">
-              <h5>Competitive Pricing</h5>
+              <h5>We Proud</h5>
               <p class="mb-0">We are celebrating our 15th anniversary in Travel Industry</p>
               <p>We are top agent: Asiana since 2014, Korean Air since 2015, Bamboo Airway 2019, and Vietnam Airline as soon as this Christmas</p>
             </div>
@@ -19,7 +19,7 @@
               class="col-12 col-md-3 col-lg-2 col-xl-2 text-x3"
             />
             <div class="col-12 col-md-9 col-lg-10 col-xl-10 row">
-              <h5>Award-Winning Service</h5>
+              <h5>CARE is our nature</h5>
               <p class="mb-0">
                 We are dynamic and We CARE about you and your Tour
                 24h and non-stop
@@ -32,7 +32,7 @@
           <div class="row align-items-center">
             <font-awesome-icon icon="globe-asia" class="col-12 col-md-3 col-lg-2 col-xl-2 text-x3" />
             <div class="col-12 col-md-9 col-lg-10 col-xl-10 row">
-              <h5>Worldwide Coverage</h5>
+              <h5>Hi-tech advantages</h5>
               <p class="mb-0">Real-time and World-wide air ticket searching</p>
               <p class="mb-0">Competitive & Comparable Fares</p>
               <p>Various & Secured Payment Methods</p>

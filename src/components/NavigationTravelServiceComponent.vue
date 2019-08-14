@@ -13,13 +13,9 @@
         <div class="col-2 m-0 p-2 pr-4 border-right">
           <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
           <p class="text-left text-08">
-            Ngoai tour va ve, chung toi cung cap cac dich vu lien quan toi du lich nhu khach san,
-            xe, bao hiem, visa voi muc gia uu dai va dich vu hoan hao, xin hay lien he voi chung toi
-            de duoc tu van tot nhat
+           {{$t('navi_travelservice_intro')}}
           </p>
-          <small class="text-06">
-            <font-awesome-icon icon="headset" class="text-08 text-center" />Goi ngay
-            <span class="text-danger text-08 font-weight-bold">19001542</span> 24/7 de duoc tu van, hoac chat truc tiep voi chung toi
+          <small class="text-06" v-html="$t('navi_travelservice_call')">
           </small>
         </div>
         <div class="col-8 m-0 p-2 border-right">
