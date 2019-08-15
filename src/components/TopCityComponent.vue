@@ -1,12 +1,12 @@
 <template>
   <div class="topcity">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0">Top city</h3>
+      <h3 class="title text-left m-0">{{$t('ptopcity_title_h3')}}</h3>
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
-          <p>Let's travel with Dabook</p>
+          <p>{{$t('ptopcity_title_explain')}}</p>
           <a class="link-des text-danger">
-              Show more
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
         </div>
@@ -20,7 +20,7 @@
             v-bind:alt="city.cityImages[0].fileName" />
             <div class="card-body-bottom-left text-left" >
               <h4 class="card-title text-white">{{city.cityName}}</h4>
-              <p class="card-text text-white"><b>15</b> điểm đến | <b>60</b> khách sạn </p>
+              <p class="card-text text-white"><b>15</b> {{$t('general_destination')}} | <b>60</b> {{$t('general_hotel')}} </p>
             </div>
           </div>
         </slide>

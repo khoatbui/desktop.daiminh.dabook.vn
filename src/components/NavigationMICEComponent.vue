@@ -12,15 +12,14 @@
       <div class="row m-1">
         <div class="col-2 m-0 p-2 pr-4 border-right">
           <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
-          <p class="text-left text-08">
-            {{$t('navi_mice_intro')}}
-          </p>
-          <small class="text-06" v-html="$t('navi_mice_call')">
-          </small>
+          <p class="text-left text-08">{{$t('navi_mice_intro')}}</p>
+          <small class="text-06" v-html="$t('navi_mice_call')"></small>
         </div>
         <div class="col-6 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold text-uppercase">{{$t('navi_mice_activity')}}</span>
+            <span
+              class="text-08 text-danger font-weight-bold text-uppercase"
+            >{{$t('navi_mice_activity')}}</span>
             <span class="text-08 text-danger cursor-pointer" @click="redirectToAllMICE">
               {{$t('btn_showall')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
@@ -29,7 +28,11 @@
           <div
             class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
           >
-            <div class="card nav-25-card my-1" v-for="(mice,iMice) in mices" v-bind:key="iMice">
+            <div
+              class="card nav-25-card my-1"
+              v-for="(mice,iMice) in miceByLang"
+              v-bind:key="iMice"
+            >
               <div class="row h-100 nav-style-card-filter">
                 <a class="nav-card-link h-100 cursor-pointer" @click="redirectToMICE(mice)">
                   <img
@@ -38,7 +41,9 @@
                     v-bind:src="mice.miceImages.length>0?`/webmp/${mice.miceImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                     v-bind:alt="mice.miceName"
                   />
-                  <div class="card-img-overlay card-body-center d-flex align-items-center justify-content-center">
+                  <div
+                    class="card-img-overlay card-body-center d-flex align-items-center justify-content-center"
+                  >
                     <h4 class="card-title text-08 text-center text-white">{{mice.miceName}}</h4>
                   </div>
                 </a>
@@ -49,7 +54,7 @@
                   <div class="w-100 d-flex justify-content-between align-items-center text-right">
                     <small
                       class="text-06 text-default"
-                    >Update {{moment(mice.createDate).format('YYYY.MM.DD')}}</small>
+                    >{{$t('general_update')}} {{moment(mice.createDate).format('YYYY.MM.DD')}}</small>
                     <font-awesome-icon
                       icon="arrow-right"
                       class="text-1 text-center text-danger cursor-pointer"
@@ -63,7 +68,9 @@
         </div>
         <div class="col-2 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold text-uppercase">{{$t('na_destination')}}</span>
+            <span
+              class="text-08 text-danger font-weight-bold text-uppercase"
+            >{{$t('na_destination')}}</span>
             <span class="text-08 text-danger" @click="redirectToAllDestination">
               {{$t('btn_showall')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
@@ -72,7 +79,7 @@
           <div
             class="row w-100 p-0 m-0 d-flex flex-row justify-content-between align-items-stretch flex-wrap"
           >
-            <div class="text-left" v-for="(ar,iAr) in areaCountry" v-bind:key="iAr">
+            <div class="text-left" v-for="(ar,iAr) in areaByLang" v-bind:key="iAr">
               <a
                 href="#"
                 class="nav-card-link m-0 p-0 cursor-pointer"
@@ -95,6 +102,7 @@
 
 <script>
 import moment from "moment";
+import i18n from "@/lang/i18n";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import MICEService from "@/api/MICEService";
@@ -117,7 +125,7 @@ export default {
       componentFactory: () =>
         import("@/components/DefaultContactFormComponent.vue"),
       loading: SkeletonBox
-    }),
+    })
   },
   props: {},
   data() {
@@ -128,14 +136,19 @@ export default {
       },
       areaCountry: [],
       mices: [],
-      moment: moment
+      moment: moment,
+      componentLoaded: false
     };
   },
   mounted() {
-    this.getAreaCountry();
-    this.getMICE();
+    this.initial();
   },
   methods: {
+    async initial() {
+      await this.getAreaCountry();
+      await this.getMICE();
+      this.componentLoaded = true;
+    },
     async getAreaCountry() {
       const resArea = await AreaCountryService.getAllAreaCountry();
       this.areaCountry = resArea.data;
@@ -168,6 +181,44 @@ export default {
     },
     redirectToAllDestination() {
       this.$router.push(`/destination`);
+    }
+  },
+  computed: {
+    miceByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.mices.forEach(element => {
+        element.miceIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.miceName = area.miceName;
+            element.miceIntro= area.miceIntro;
+          }
+        });
+      });
+      return this.mices;
+    },
+    areaByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.areaCountry.forEach(element => {
+        element.destinations.forEach(des => {
+          des.destinationIntros.forEach(desIntro => {
+            if (desIntro.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+              des.destinationIntro = desIntro.destinationIntro;
+              des.destinationName = desIntro.destinationName;
+            }
+          });
+        });
+
+        element.areaCountryIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.areaCountryName = area.areaCountryName;
+          }
+        });
+      });
+      return this.areaCountry;
     }
   }
 };
@@ -227,7 +278,7 @@ export default {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 100%;
-  height:100%;
+  height: 100%;
 }
 .mice-card-body-bottom {
   width: 100%;
@@ -247,11 +298,11 @@ export default {
   padding: 1px !important;
   overflow: hidden !important;
 }
-.card-body-center{
-  position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: #FFFFFF;
+.card-body-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
 }
 </style>

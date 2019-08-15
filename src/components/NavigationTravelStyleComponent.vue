@@ -13,15 +13,14 @@
         <div class="col-3 m-0 p-2 pr-4 border-right">
           <img class="style-logo py-4 d-inline-block" src="/img/logo_gif.gif" alt />
           <p class="text-left text-08">
-            Dai Minh cung cap tat ca cac tour theo style cua ban. Chung toi co cac style theo
-            phong cach co dien, mao hiem,sang trong va doc dao
+            {{$t('navi_travelstyle_intro')}}
           </p>
         </div>
         <div class="col-3 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold">Travel style for you</span>
+            <span class="text-08 text-danger font-weight-bold">{{$t('navi_travelstyle_travelforyou')}}</span>
             <span class="text-08 text-danger cursor-pointer"  @click="redirectToAllTravelStyle">
-              View all
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
             </span>
           </div>
@@ -30,7 +29,7 @@
           >
             <div
               class="card travel-style-card my-1"
-              v-for="(st,iStyle) in travelStyle"
+              v-for="(st,iStyle) in travelStyleByLang"
               v-bind:key="iStyle"
             >
               <div class="row h-100 nav-style-card-filter">
@@ -51,9 +50,9 @@
         </div>
         <div class="col-4 m-0 p-2 border-right">
           <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-            <span class="text-08 text-danger font-weight-bold">Today promotion hotel</span>
+            <span class="text-08 text-danger font-weight-bold">{{$t('navi_travelstyle_todayhotel')}}</span>
             <span class="text-08 text-danger cursor-pointer"  @click="redirectToAllHotel">
-              View all
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
             </span>
           </div>
@@ -62,7 +61,7 @@
           >
             <div
               class="card nav-hotel-card"
-              v-for="(ht,iHotel) in top10PromotionHotel"
+              v-for="(ht,iHotel) in hotelByLang"
               v-bind:key="iHotel"
             >
               <div class="row nav-hotel-card-filter">
@@ -106,6 +105,7 @@
 
 <script>
 import moment from "moment";
+import i18n from '@/lang/i18n';
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import TravelStyleService from "@/api/TravelStyleService";
@@ -143,8 +143,11 @@ export default {
       },
       travelStyle: [],
       top10PromotionHotel: [],
-      top10Cars: [],
-      moment: moment
+      moment: moment,
+      componentLoaded: {
+        travel:false,
+        hotel:false
+      },
     };
   },
   mounted() {
@@ -155,10 +158,12 @@ export default {
     async getTravelStyle() {
       const response = await TravelStyleService.getAllTravelStyle();
       this.travelStyle = response.data;
+      this.componentLoaded.travel=true;
     },
     async getPromotionHotel() {
       const responsehotel = await HotelService.getTop10PromotionHotel();
       this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 9);
+      this.componentLoaded.hotel=true;
     },
     redirectToTravelStyle(travelstyle) {
       this.$router.push(`/travelstyle/detail?travelstyleid=${travelstyle._id}`);
@@ -168,6 +173,35 @@ export default {
     },
     redirectToAllHotel(travelstyle) {
       this.$router.push(`/hotel`);
+    },
+  },
+  computed: {
+    hotelByLang() {
+      if (this.componentLoaded.hotel === false) {
+        return;
+      }
+      this.top10PromotionHotel.forEach(element => {
+        element.hotelId.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelId.hotelName = area.hotelName;
+            element.hotelId.hotelIntro= area.hotelIntro;
+          }
+        });
+      });
+      return this.top10PromotionHotel;
+    },
+    travelStyleByLang() {
+      if (this.componentLoaded.travel === false) {
+        return;
+      }
+      this.travelStyle.forEach(element => {
+        element.travelStyleIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.travelStyleName = area.travelStyleName;
+          }
+        });
+      });
+      return this.travelStyle;
     },
   }
 };

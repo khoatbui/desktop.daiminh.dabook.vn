@@ -13,7 +13,7 @@
         <TopCityComponent></TopCityComponent>
       </div>
       <div class="container pt-4">
-        <TopDestinationComponent></TopDestinationComponent>
+        <TopDestinationComponent :isTitle="true"></TopDestinationComponent>
       </div>
       <div class="container-fluid pt-4 px-0">
         <VideoComponent></VideoComponent>

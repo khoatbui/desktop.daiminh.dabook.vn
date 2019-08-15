@@ -18,12 +18,11 @@
               </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-              <h4>Contact</h4>
+              <h4>{{$t('pfooter_h4_contact')}}</h4>
               <ul class="d-flex flex-column font-nomal">
                 <li>
                   <span>
-                    <i class="fas fa-map-marker-alt mr-2"></i>Lot 118, TT3, My Dinh 1, Nam Tu Liem,
-                    Hanoi
+                    <i class="fas fa-map-marker-alt mr-2"></i>{{$t('pfooter_li_address')}}
                   </span>
                 </li>
                 <li class="text-danger">
@@ -78,22 +77,22 @@
                 </li>
               </ul>
               <hr />
-              <h4>Addition Infomation</h4>
+              <h4>{{$t('pfooter_h4_additioninfo')}}</h4>
               <ul class="d-flex flex-column">
                 <li>
                   <a href="#">
-                    <span >Business Licience :0101472382</span>
+                    <span >{{$t('pfooter_li_businesslicence')}}</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>International Tour Opertor Licience: 01-035/2015/TCDL-GPLHQT</span>
+                    <span>{{$t('pfooter_li_tourlicence')}}</span>
                   </a>
                 </li>
               </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-              <h4>Our partner</h4>
+              <h4>{{$t('pfooter_h4_ourpartner')}}</h4>
               <div class="d-flex justify-content-start align-items-center flex-wrap">
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img
@@ -167,21 +166,21 @@
                 </div>
                 </div>
               <hr />
-              <h4>Service</h4>
+              <h4>{{$t('pfooter_h4_service')}}</h4>
               <ul class="d-flex flex-column">
                 <li>
-                  <a href="travelservice/travel">Travel</a>
+                  <a href="travelservice/travel">{{$t('pfooter_li_travel')}}</a>
                 </li>
                 <li>
-                  <a href="travelservice/visa">Visa</a>
+                  <a href="travelservice/visa">{{$t('pfooter_li_visa')}}</a>
                 </li>
                 <li>
-                  <a href="travelservice/invest">Legal & Investment Consultancy</a>
+                  <a href="travelservice/invest">{{$t('pfooter_li_invest')}}</a>
                 </li>
               </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-              <h4>Certificate</h4>
+              <h4>{{$t('pfooter_h4_certificate')}}</h4>
               <div class="d-flex flex-sm-row align-items-start flex-wrap">
                 <div class="card m-1 w-30 flex-grow-1 p-1">
                   <img class="card-img-top" src="/img/certificate/iata.jpg" alt="Card image cap" />
@@ -215,26 +214,24 @@
                 </div>
               </div>
               <hr />
-              <h4>Payment</h4>
+              <h4>{{$t('pfooter_h4_payment')}}</h4>
              <PaymentComponent></PaymentComponent>
             </div>
           </div>
           <div class="row border-top pt-2">
-            <div class="col-12 col-md-6 text-center text-white">
-              &copy;2019, made with
-              <i class="far fa-heart"></i> by
-              <a href="https://www.dabook.vn/" target="blank">DaiMinh</a> for a better travel.
+            <div class="col-12 col-md-6 text-center text-white" v-html="$t('pfooter_madeby')">
+              
             </div>
             <div class="col-12 col-md-6 text-center footer-policy">
               <ul>
                 <li>
-                  <a href="function/legal.html">Privacy Policy |</a>
+                  <a href="function/legal.html">{{$t('pfooter_privatepolicy')}} |</a>
                 </li>
                 <li>
-                  <a href="function/legal.html">Terms of Use |</a>
+                  <a href="function/legal.html">{{$t('pfooter_term')}} |</a>
                 </li>
                 <li>
-                  <a href="function/contact.html">Contact</a>
+                  <a href="function/contact.html">{{$t('pfooter_contact')}}</a>
                 </li>
               </ul>
             </div>

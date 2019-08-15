@@ -83,8 +83,17 @@
     "ptravelstyle_h6_destination":"Make your style fit",
     "pfit_h6_destination":"Build your trip",
 
+    "ptopcity_title_h3":"Top city",
+    "ptopcity_title_explain":"Let's travel with Dabook",
+
+    "ptopdestination_title_h3":"Top destination",
+    "ptopdestination_title_explain":"Let's travel with Dabook",
+
     "ptophotel_title_h3":"Top hotel promotion today",
     "ptophotel_title_explain":"Let's explorer the best value hotels available",
+
+    "pvideo_title_h3":"New in VietNam",
+    "pvideo_title_explain":"Explore now with promotion code",
 
     "pintroduce_title_h3":"Introduce about DaiMinh",
     "pintroduce_title_explain":"Let's explorer DaiMinh Travel's amazing service",
@@ -98,10 +107,48 @@
 
     "navi_travelservice_intro": "We are able to provide quality travel services with competitive price such as Hotel & Resort, Car & Bus, Travel Insurance, Visa",
     "navi_travelservice_call": "<font-awesome-icon icon='headset' class='text-08 text-center'></font-awesome-icon> Dial <span class='text-danger text-08 font-weight-bold'>19001542</span> available 24/7 for information, or chat with us",
-    
+    "navi_travelservice_service": "Service",
+    "navi_travelservice_todayhotel": "Today promotion hotels",
+    "navi_travelservice_todaycar": "Today promotion cars",
+
+    "navi_travelstyle_intro": "We are able to provide quality travel by your style, with competitive price such as Classic's style, Adventure's style, Luxury's style or Golf tour",
+    "navi_travelstyle_call": "<font-awesome-icon icon='headset' class='text-08 text-center'></font-awesome-icon> Dial <span class='text-danger text-08 font-weight-bold'>19001542</span> available 24/7 for information, or chat with us",
+    "navi_travelstyle_travelforyou": "Travel style for you",
+    "navi_travelstyle_todayhotel": "Today promotion hotels",
+
     "navi_mice_intro": "Thing about MICE in Vietnam, thing about DaiMinh Travel. You just need to dream about your event, we make it happen",
     "navi_mice_call": "<font-awesome-icon icon='headset' class='text-08 text-center'></font-awesome-icon> Dial <span class='text-danger text-08 font-weight-bold'>19001542</span> available 24/7 for information, or chat with us",
     "navi_mice_activity" : "ACTIVITY",
+
+    "pthreestep_title_wepround": "We Proud",
+    "pthreestep_body_wepround": "<p class='mb-0'>We are celebrating our 15th anniversary in Travel Industry</p><p>We are top agent: Asiana since 2014, Korean Air since 2015, Bamboo Airway 2019, and Vietnam Airline as soon as this Christmas</p>",
+    "pthreestep_title_care": "CARE is our nature",
+    "pthreestep_body_care": "<p class='mb-0'>We are dynamic and We CARE about you and your Tour 24h and non-stop</p><p>We aim to be the best - the Amazing Service</p>",
+    "pthreestep_title_hitech": "Hi-tech advantages",
+    "pthreestep_body_hitech": "<p class='mb-0'>Real-time and World-wide air ticket searching</p> <p class='mb-0'>Competitive & Comparable Fares</p> <p>Various & Secured Payment Methods</p>",
+
+    "pfooter_h4_contact" :"Contact",
+    "pfooter_li_address" :"Lot 118, TT3, My Dinh 1, Nam Tu Liem, Hanoi",
+    "pfooter_h4_additioninfo" :"Addition Infomation",
+    "pfooter_li_businesslicence" :"Business Licience :0101472382",
+    "pfooter_li_tourlicence" :"International Tour Opertor Licience: 01-035/2015/TCDL-GPLHQT",
+    "pfooter_h4_ourpartner" :"Our partner",
+    "pfooter_h4_service" :"Service",
+    "pfooter_li_travel" : "Travel",
+    "pfooter_li_visa" : "Visa",
+    "pfooter_li_invest" : "Legal & Investment Consultancy",
+    "pfooter_h4_certificate" :"Certificate",
+    "pfooter_h4_payment" :"Payment",
+    "pfooter_madeby":"&copy;2019, made with <i class='far fa-heart'> </i> by <a href='https://www.dabook.vn/' target='blank'> DaiMinh </a> for a better travel.",
+    "pfooter_privatepolicy":"Privacy Policy",
+    "pfooter_term":"Terms of Use",
+    "pfooter_contact":"Contact",
+
+    "ppayment_bankowner" :"Chủ tài khoản",
+    "ppayment_bankaccount" :"Số tài khoản",
+    "ppayment_banklocation" :"Chi nhánh",
+    "ppayment_btn_bankcopy" :"Bank copy",
+    "ppayment_btn_close" :"Bank copy",
 
     "general_showmore":"Show more",
     "general_destination":"Destination",
@@ -109,5 +156,17 @@
     "general_peoplehavebook":"people have booked",
     "general_availablefrom":"Available from",
     "general_from":"from",
-    "general_to":"to"
+    "general_to":"to",
+    "general_tour":"Tour",
+    "general_hotel":"Hotel",
+    "general_hotel_short":"Hotel",
+    "general_car":"Car",
+    "general_update":"Update",
+
+    "default_contact_form_title":"Any question, contact us",
+    "default_contact_form_yourname":"Your name",
+    "default_contact_form_youremail":"Your email",
+    "default_contact_form_yourphone":"Your phone",
+    "default_contact_form_yourrequest":"Your request",
+    "default_contact_form_btnsendrequest":"Send request"
   }

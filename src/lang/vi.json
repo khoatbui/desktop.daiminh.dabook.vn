@@ -81,5 +81,45 @@
     "pmain_cardtext_topdestination":"Danh sách điểm đến được tìm kiếm nhiều nhất trong tháng",
     "pdes_h6_destination":"Our Global",
     "ptravelstyle_h6_destination":"Make your style fit",
-    "pfit_h6_destination":"Build your trip"
+    "pfit_h6_destination":"Build your trip",
+
+    
+    "ptophotel_title_h3":"Top hotel promotion today",
+    "ptophotel_title_explain":"Let's explorer the best value hotels available",
+
+    "pintroduce_title_h3":"Introduce about DaiMinh",
+    "pintroduce_title_explain":"Let's explorer DaiMinh Travel's amazing service",
+    "pintroduce_btn_exploreus":"EXPLORE US",
+
+    "ptoptour_title_h3":"Top tour promotion today",
+    "ptoptour_title_explain":"Let's explorer the best value tours available",
+    
+    "navi_destination_intro": "A numbers of wonderful destinations all ove the country of Vietnam. Travel with us for Amazing services",
+    "navi_destination_call": "<font-awesome-icon icon='headset' class='text-08 text-center'></font-awesome-icon> Dial <span class='text-danger text-08 font-weight-bold'>19001542</span> available 24/7 for information, or chat with us",
+
+    "navi_travelservice_intro": "We are able to provide quality travel services with competitive price such as Hotel & Resort, Car & Bus, Travel Insurance, Visa",
+    "navi_travelservice_call": "<font-awesome-icon icon='headset' class='text-08 text-center'></font-awesome-icon> Dial <span class='text-danger text-08 font-weight-bold'>19001542</span> available 24/7 for information, or chat with us",
+    
+    "navi_mice_intro": "Thing about MICE in Vietnam, thing about DaiMinh Travel. You just need to dream about your event, we make it happen",
+    "navi_mice_call": "<font-awesome-icon icon='headset' class='text-08 text-center'></font-awesome-icon> Dial <span class='text-danger text-08 font-weight-bold'>19001542</span> available 24/7 for information, or chat with us",
+    "navi_mice_activity" : "ACTIVITY",
+
+    "general_showmore":"Show more",
+    "general_destination":"Destination",
+    "general_views":"Views",
+    "general_peoplehavebook":"people have booked",
+    "general_availablefrom":"Available from",
+    "general_from":"from",
+    "general_to":"to",
+    "general_tour":"Tour",
+    "general_hotel_short":"Ksan",
+    "general_car":"Xe",
+    "general_update":"Cập nhập",
+
+    "default_contact_form_title":"Liên hệ với chúng tôi",
+    "default_contact_form_yourname":"Họ và tên",
+    "default_contact_form_youremail":"Địa chỉ email",
+    "default_contact_form_yourphone":"Số điện thoại",
+    "default_contact_form_yourrequest":"Yêu cầu của bạn",
+    "default_contact_form_btnsendrequest":"Gửi yêu cầu"
   }

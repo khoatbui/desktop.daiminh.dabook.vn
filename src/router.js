@@ -29,6 +29,8 @@ const TourView = () => import('./views/TourView.vue');
 const TourAllComponent = () => import('./components/TourAllComponent.vue');
 const HotelView = () => import('./views/HotelView.vue');
 const HotelAllComponent = () => import('./components/HotelAllComponent.vue');
+const SearchView = () => import('./views/SearchView.vue');
+const SearchAllComponent = () => import('./components/SearchAllComponent.vue');
 
 Vue.use(Router);
 
@@ -208,6 +210,22 @@ export default new Router({
           path: '',
           name: 'tourview',
           component: HotelAllComponent,
+        },
+      ],
+    },
+    {
+      path: '/search',
+      component: SearchView,
+      children: [
+        {
+          path: 'search',
+          name: 'toursearch',
+          component: CarDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'tourview',
+          component: SearchAllComponent,
         },
       ],
     },

@@ -1,12 +1,15 @@
 <template>
   <div class="topdestination">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0">Top destination</h3>
-      <div class="row p-0 m-0 d-flex justify-content-end align-items-center">
+      <h3 class="title text-left m-0"  v-if="isTitle">{{$t('ptopdestination_title_h3')}}</h3>
+      <div class="row p-0 m-0" v-if="isTitle">
+        <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
+          <p>{{$t('ptopdestination_title_explain')}}</p>
           <a class="link-des text-danger">
-              Xem thêm
-              <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
+            {{$t('general_showmore')}}
+            <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
+        </div>
       </div>
       <carousel :per-page="1" :navigation-enabled="true">
         <slide class="m-2 d-flex justify-content-start align-items-center flex-wrap" v-for="index in pageCount" v-bind:key="index">
@@ -14,7 +17,7 @@
               <img class="card-img image-des" 
                v-bind:class="{'small-loading-img':page.destinationImages.length==0}"
                v-bind:src="page.destinationImages.length>0?`/webmp/${page.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-            v-bind:alt="page.destinationIntro" />
+            v-bind:alt="page.destinationName" />
               <div class="card-body-center">
                 <h4 class="card-title text-white">{{page.destinationName}}</h4>
               </div>
@@ -26,6 +29,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from 'vue-carousel';
 import DestinationService from '@/api/DestinationService';
 
@@ -46,6 +50,7 @@ export default {
   name: 'TopDestinationComponent',
   props: {
     msg: String,
+    isTitle:true,
   },
   data() {
     return {

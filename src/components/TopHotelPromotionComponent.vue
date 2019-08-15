@@ -47,6 +47,7 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
+import i18n from "@/lang/i18n";
 import HotelService from '@/api/HotelService';
 
 function randomArray(array) {
@@ -74,6 +75,7 @@ export default {
       packages: [],
       selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -85,6 +87,7 @@ export default {
       const response = await HotelService.getTopPromotionHotel();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
     },
     redirectToHotelDetail(des){
        this.$router.push(
@@ -94,8 +97,19 @@ export default {
   },
   computed: {
     packageByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.packages.forEach(element => {
+        element.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelName = area.hotelName;
+            element.hotelIntro= area.hotelIntro;
+          }
+        });
+      });
       return this.packages;
-    }
+    },
   },
 };
 </script>

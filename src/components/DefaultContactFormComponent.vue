@@ -1,27 +1,27 @@
 <template>
   <div class="defaultcontactform">
     <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center" v-if="isTitle">
-      <span class="text-08 text-danger font-weight-bold">Any question, contact us</span>
+      <span class="text-08 text-danger font-weight-bold">{{$t('default_contact_form_title')}}</span>
     </div>
     <div class="row m-0 p-0 d-flex flex-column justify-content-around">
       <div class="col-12 py-1">
-        <label class="text-06 mb-1" for="iname">Your name</label>
+        <label class="text-06 mb-1" for="iname">{{$t('default_contact_form_yourname')}}</label>
         <input class="custom-form-input" type="text" name="iname" v-model="customInfo.fullName"/>
       </div>
       <div class="col-12 py-1">
-        <label class="text-06 mb-1" for="imail">Your email</label>
+        <label class="text-06 mb-1" for="imail">{{$t('default_contact_form_youremail')}}</label>
         <input class="custom-form-input" type="text" name="imail" v-model="customInfo.email" />
       </div>
       <div class="col-12 py-1">
-        <label class="text-06 mb-1" for="iphone">Your phone</label>
+        <label class="text-06 mb-1" for="iphone">{{$t('default_contact_form_yourphone')}}</label>
         <input class="custom-form-input" type="text" name="iphone" v-model="customInfo.phone" />
       </div>
       <div class="col-12 py-1">
-        <label class="text-06 mb-1" for="imessage">Your request</label>
+        <label class="text-06 mb-1" for="imessage">{{$t('default_contact_form_yourrequest')}}</label>
         <textarea class="custom-form-input" type="text" name="imessage" v-model="customInfo.message"></textarea>
       </div>
       <div class="col-12 py-1 text-right">
-        <button class="btn btn-sm btn-danger border-radius-100">Send request</button>
+        <button class="btn btn-sm btn-danger border-radius-100">{{$t('default_contact_form_btnsendrequest')}}</button>
       </div>
       <div class="col-12 py-1 text-right">
         <small class="text-06">

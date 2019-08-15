@@ -12,7 +12,7 @@
         </div>
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
-        <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
+        <slide class="m-2" v-for="(pac,ides) in tourByLang" v-bind:key="ides">
           <div class="card m-0 h-100 d-inline-block">
             <img
               class="card-img-top image-package"
@@ -46,6 +46,7 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 import moment from "moment";
+import i18n from "@/lang/i18n";
 import TourService from "@/api/TourService";
 
 function randomArray(array) {
@@ -72,7 +73,8 @@ export default {
     return {
       packages: [],
       selectedPayment: {},
-      bookingDate: moment().format("MM-DD-YYYY")
+      bookingDate: moment().format("MM-DD-YYYY"),
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -84,9 +86,26 @@ export default {
       const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
+      this.componentLoaded=true;
     },
     redirectToTourDetail(des) {
       this.$router.push(`/tourdetail?tourid=${des._id}`);
+    }
+  },
+  computed : {
+    tourByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.packages.forEach(element => {
+        element.tourIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tourName = area.tourName;
+            element.tourIntro= area.tourIntro;
+          }
+        });
+      });
+      return this.packages;
     }
   }
 };

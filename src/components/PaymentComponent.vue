@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-if="componentLoaded==true">
     <div class="d-flex flex-sm-row align-items-start flex-wrap">
       <div
         class="card m-1 w-30 flex-grow-1 p-1 cursor-pointer"
@@ -36,15 +36,15 @@
           </div>
           <div class="modal-body text-left">
             <p>
-              <b>Chủ tài khoản :</b>
+              <b>{{$t('ppayment_bankowner')}} :</b>
               {{selectedPayment.bankOwner}}
             </p>
             <p>
-              <b>Số tài khoản :</b>
+              <b>{{$t('ppayment_bankaccount')}} :</b>
               {{selectedPayment.bankAccount}}
             </p>
             <p>
-              <b>Chi nhánh :</b>
+              <b>{{$t('ppayment_banklocation')}} :</b>
               {{selectedPayment.bankLocation}}
             </p>
           </div>
@@ -56,12 +56,12 @@
               id="ihidden-input"
               v-model="selectedPayment.bankAccount"
             />
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{$t('ppayment_btn_close')}}</button>
             <button
               type="button"
               class="btn btn-primary btn-sm btn-info"
               @click="bankCopy"
-            >Bank copy</button>
+            >{{$t('ppayment_btn_bankcopy')}}</button>
           </div>
         </div>
       </div>
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import PaymentService from '@/api/PaymentService';
 
 function randomArray(array) {
@@ -90,6 +91,7 @@ export default {
     return {
       payments: [],
       selectedPayment: {},
+      componentLoaded: false,
     };
   },
   mounted() {
@@ -101,11 +103,29 @@ export default {
       const response = await PaymentService.getAllPayment();
       this.payments = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded = true
     },
     selectPayment(item) {
       this.selectedPayment = item;
     },
     bankCopy() {},
+  },
+  computed: {
+    paymentByLang () {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.payments.forEach(element => {
+        element.bankIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.bankName = area.bankName;
+            element.bankOwner= area.bankOwner;
+            element.bankLocation= area.bankLocation;
+          }
+        });
+      });
+      return this.mices;
+    }
   },
 };
 </script>

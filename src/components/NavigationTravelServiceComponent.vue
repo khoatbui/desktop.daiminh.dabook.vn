@@ -22,7 +22,7 @@
           <div class="row m-0 p-0">
             <div class="col-4 m-0 p-2 border-right">
               <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-                <span class="text-08 text-danger font-weight-bold">Service</span>
+                <span class="text-08 text-danger font-weight-bold">{{$t('navi_travelservice_service')}}</span>
                 <span class="text-08 text-danger cursor-pointer" @click="redirectToAllTravelService">
                  {{$t('btn_showall')}}
                   <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
@@ -33,7 +33,7 @@
               >
                 <div
                   class="card travel-style-card my-1"
-                  v-for="(tservice,iService) in travelServices"
+                  v-for="(tservice,iService) in travelServiceByLang"
                   v-bind:key="iService"
                 >
                   <div class="row h-100 nav-style-card-filter">
@@ -56,7 +56,7 @@
             </div>
             <div class="col-4 m-0 p-2 border-right">
               <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-                <span class="text-08 text-danger font-weight-bold">Today promotion hotel</span>
+                <span class="text-08 text-danger font-weight-bold">{{$t('navi_travelservice_todayhotel')}}</span>
                 <span class="text-08 text-danger cursor-pointer" @click="redirectToAllHotel">
                  {{$t('btn_showall')}}
                   <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
@@ -67,7 +67,7 @@
               >
                 <div
                   class="card nav-50-card d-flex flex-column"
-                  v-for="(ht,iHotel) in top10PromotionHotel"
+                  v-for="(ht,iHotel) in hotelByLang"
                   v-bind:key="iHotel"
                 >
                   <div class="row nav-hotel-card-filter">
@@ -104,7 +104,7 @@
             </div>
             <div class="col-4 m-0 p-2">
               <div class="row w-100 p-0 m-0 mb-2 d-flex justify-content-between align-items-center">
-                <span class="text-08 text-danger font-weight-bold">Today promotion car</span>
+                <span class="text-08 text-danger font-weight-bold">{{$t('navi_travelservice_todaycar')}}</span>
                 <span class="text-08 text-danger cursor-pointer"  @click="redirectToAllCar">
                   {{$t('btn_showall')}}
                   <font-awesome-icon icon="chevron-right" class="text-07 text-center" />
@@ -113,7 +113,7 @@
               <div
                 class="row w-100 p-0 m-0 d-flex flex-row justify-content-start align-items-start flex-wrap"
               >
-                <div class="card nav-50-card d-flex flex-column" v-for="(car,iCar) in top10Cars" v-bind:key="iCar">
+                <div class="card nav-50-card d-flex flex-column" v-for="(car,iCar) in carByLang" v-bind:key="iCar">
                   <div class="row nav-hotel-card-filter">
                     <a class="nav-card-link max-height-150 h-100 cursor-pointer" @click="redirectToCar(car)">
                       <img
@@ -157,6 +157,7 @@
 
 <script>
 import moment from "moment";
+import i18n from '@/lang/i18n';
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import TravelStyleService from "@/api/TravelStyleService";
@@ -166,6 +167,7 @@ import TravelService from "@/api/TravelService";
 import MICEService from "@/api/MICEService";
 import DestinationService from "@/api/DestinationService";
 import AreaCountryService from "@/api/AreaCountryService";
+
 function randomArray(array) {
   const array2 = [];
   while (array.length !== 0) {
@@ -197,7 +199,12 @@ export default {
       top10PromotionHotel: [],
       top10Cars: [],
       travelServices: [],
-      moment: moment
+      moment: moment,
+      componentLoaded: {
+        travel:false,
+        car:false,
+        hotel:false
+      },
     };
   },
   mounted() {
@@ -209,14 +216,17 @@ export default {
     async getTravelService() {
       const responseservice = await TravelService.getAllTravelService();
       this.travelServices = randomArray(responseservice.data);
+      this.componentLoaded.travel=true;
     },
     async getCarPromotion() {
       const resDes = await CarService.getTop10PromotionCar();
       this.top10Cars = randomArray(resDes.data).slice(0, 4);
+      this.componentLoaded.car=true;
     },
     async getPromotionHotel() {
       const responsehotel = await HotelService.getTop10PromotionHotel();
       this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 4);
+      this.componentLoaded.hotel=true;
     },
     redirectToCar(car) {
       this.$router.push(`/car/detail?carid=${car._id}`);
@@ -240,6 +250,50 @@ export default {
       this.$router.push(
         `/car`
       );
+    },
+  },
+  computed: {
+    hotelByLang() {
+      if (this.componentLoaded.hotel === false) {
+        return;
+      }
+      this.top10PromotionHotel.forEach(element => {
+        element.hotelId.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelId.hotelName = area.hotelName;
+            element.hotelId.hotelIntro= area.hotelIntro;
+          }
+        });
+      });
+      return this.top10PromotionHotel;
+    },
+    carByLang() {
+      if (this.componentLoaded.car === false) {
+        return;
+      }
+      this.top10Cars.forEach(element => {
+        element.tripIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tripName = area.tripName;
+            element.fromLocation= area.fromLocation;
+            element.toLocation= area.toLocation;
+          }
+        });
+      });
+      return this.top10Cars;
+    },
+    travelServiceByLang() {
+      if (this.componentLoaded.travel === false) {
+        return;
+      }
+      this.travelServices.forEach(element => {
+        element.travelServiceIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.travelServiceName = area.travelServiceName;
+          }
+        });
+      });
+      return this.travelServices;
     },
   }
 };

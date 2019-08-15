@@ -20,6 +20,9 @@ const Tour = {
   GetTourDetailById(tourId) {
     return axios.get(`${api}/tourdetail/m/gettourdetailbyid/${tourId}`);
   },
+  GetTourBySearch(key) {
+    return axios.post(`${api}/tourlist/m/getalltourbysearch`, { keyword: key });
+  },
 };
 
 export default Tour;

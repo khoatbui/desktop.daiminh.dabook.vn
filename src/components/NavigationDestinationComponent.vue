@@ -22,7 +22,7 @@
             <div class="row m-0 p-0">
             <div
                 class="col-4 m-0 p-2 border-right"
-                v-for="(area,iArea) in areaCountry"
+                v-for="(area,iArea) in areaByLang"
                 v-bind:key="iArea"
             >
                 <div
@@ -63,13 +63,13 @@
                     <div class="row m-0 p-0">
                     <div class="hotel-card-body-bottom text-06">
                         <a class="nav-card-link cursor-pointer">
-                        <span class="text-08 font-weight-bold m-0">Tour</span>
+                        <span class="text-08 font-weight-bold m-0">{{$t('general_tour')}}</span>
                         </a> |
                         <a class="nav-card-link cursor-pointer">
-                        <span class="text-08 font-weight-bold m-0">Hotel</span>
+                        <span class="text-08 font-weight-bold m-0">{{$t('general_hotel_short')}}</span>
                         </a> |
                         <a class="nav-card-link cursor-pointer">
-                        <span class="text-08 font-weight-bold m-0">Car</span>
+                        <span class="text-08 font-weight-bold m-0">{{$t('general_car')}}</span>
                         </a>
                     </div>
                     </div>
@@ -88,6 +88,7 @@
 
 <script>
 import moment from 'moment';
+import i18n from '@/lang/i18n';
 import lazyLoadComponent from '@/utils/lazy-load-component'
 import SkeletonBox from '@/components/SkeletonBox.vue';
 import DestinationService from "@/api/DestinationService";
@@ -119,6 +120,7 @@ export default {
       },
       areaCountry: [],
       moment:moment,
+      componentLoaded: false,
     };
   },
   mounted() {
@@ -135,6 +137,7 @@ export default {
 
       const numFruits = await Promise.all(promises);
       this.areaCountry = numFruits;
+      this.componentLoaded=true;
     },
     async getDestinationByArea(areaId) {
       const resDes = await DestinationService.getDestinationByAreaCountry(
@@ -150,7 +153,31 @@ export default {
     redirectToAllDestination() {
       this.$router.push(`/destination`);
     },
-  }
+  },
+  computed: {
+    areaByLang() {
+      if (this.componentLoaded===false) {
+        return;
+      }
+      this.areaCountry.forEach(element => {
+        element.destinations.forEach(des => {
+          des.destinationIntros.forEach(desIntro => {
+            if (desIntro.lang.toUpperCase()===i18n.locale.toUpperCase()) {
+              des.destinationIntro=desIntro.destinationIntro;
+              des.destinationName=desIntro.destinationName;
+            }
+          })
+        });
+
+        element.areaCountryIntros.forEach(area => {
+          if (area.lang.toUpperCase()===i18n.locale.toUpperCase()) {
+              element.areaCountryName=area.areaCountryName;
+            }
+        })
+      });
+      return this.areaCountry;
+    },
+  },
 };
 </script>
 

@@ -43,6 +43,7 @@
           <li class="nav-item">
             <ul class="navbar-nav">
               <li
+              class="cursor-pointer"
                 :class="{'hide':getLang !=la.value}"
                 v-for="(la,i) in optionLangs"
                 v-bind:key="'lang'+i"
@@ -148,11 +149,6 @@ export default {
       },
       optionLangs: [
         {
-          text: "VI",
-          img: "/img/language/vietnam.png",
-          value: "vn"
-        },
-        {
           text: "EN",
           img: "/img/language/united-kingdom.png",
           value: "en"
@@ -173,7 +169,7 @@ export default {
         this.$store.dispatch("setLang", "ko");
         return;
       } else if (item.value === "ko") {
-        this.$store.dispatch("setLang", "vn");
+        this.$store.dispatch("setLang", "en");
         return;
       } else {
         this.$store.dispatch("setLang", "en");

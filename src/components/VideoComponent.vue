@@ -4,8 +4,8 @@
           <div class="col-12 m-0 p-0 parent-absolute">
               <img class="w-100" src="https://res.klook.com/image/upload/q_60/v1465888536/web3.0/how_to_use.webp" alt="">
               <div class="center-absolute text-center text-white">
-                  <h3 class="text-x4"><b>New in VietNam</b></h3>
-                  <p class="text-x2">Explore now with promotion code</p>
+                  <h3 class="text-x4"><b>{{$t('pvideo_title_h3')}}</b></h3>
+                  <p class="text-x2">{{$t('pvideo_title_explain')}}</p>
                 <button class="video-btn shadow" data-toggle="modal" data-target="#videoModal">
                 <font-awesome-icon icon="play" class="text-x3 text-center" />
                 </button>

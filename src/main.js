@@ -9,7 +9,7 @@ import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker';
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css';
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
-import { vsCheckbox, vsIcon, vsPagination } from 'vuesax';
+import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
 import 'material-icons/iconfont/material-icons.css';
 import App from './App.vue';
@@ -38,9 +38,8 @@ const datepickerOptions = {
 
 // make sure we can use it in our components
 Vue.use(AirbnbStyleDatepicker, datepickerOptions);
-Vue.use(vsCheckbox);
-Vue.use(vsIcon);
-Vue.use(vsPagination);
+Vue.use(Vuesax);
+
 const app = new Vue({
   el: '#app',
   i18n,

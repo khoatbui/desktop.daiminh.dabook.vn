@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import vnMessage from './vn.json';
+import viMessage from './vi.json';
 import enMessage from './en.json';
 import koMessage from './ko.json';
 
 Vue.use(VueI18n);
 
 const messages = {
-  vn: vnMessage,
+  vi: viMessage,
   en: enMessage,
   ko: koMessage,
 };
