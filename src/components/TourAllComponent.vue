@@ -85,10 +85,29 @@
           </div>
         </div>
         <div class="col-9 m-0 p-0 pl-3 text-left">
-          <div class="row w-100 m-0 p-0">
-            <div class="col-12 w-100 m-0 p-0">
-              <div class="card shadow-none">
-                <div class="card-body m-0 p-0"></div>
+           <div class="row w-100 m-0 p-0">
+            <div class="col-12 w-100 m-0 my-2 p-0">
+              <div class="card shadow-none m-0">
+                <div class="card-body m-0 p-2 d-flex flex-row justify-content-between align-items-center">
+                  <span>
+                    <span
+                      class="text-x1 text-info font-bold"
+                    >{{tourList.length}}</span> {{$t('general_label_resultfound')}}
+                  </span>
+                  <vs-dropdown>
+                    <a class="a-icon" href="#">
+                     {{$t('pdestinationexplore_filter_sort')}}
+                      <vs-icon class icon="expand_more"></vs-icon>
+                    </a>
+
+                    <vs-dropdown-menu>
+                      <vs-dropdown-item @click="filterCondition.sortBy = 'PRICE'">{{$t('general_label_sortby_price')}}</vs-dropdown-item>
+                      <vs-dropdown-item @click="filterCondition.sortBy = 'NAME'">{{$t('general_label_sortby_name')}}</vs-dropdown-item>
+                      <vs-dropdown-item @click="filterCondition.sortBy = 'POPULAR'" >{{$t('general_label_sortby_popular')}}</vs-dropdown-item>
+                      <vs-dropdown-item @click="filterCondition.sortBy = 'VOTE'">{{$t('general_label_sortby_vote')}}</vs-dropdown-item>
+                    </vs-dropdown-menu>
+                  </vs-dropdown>
+                </div>
               </div>
             </div>
           </div>
@@ -96,7 +115,7 @@
             <div class="col-12 w-100 m-0 p-0">
               <div
                 class="card w-100 shadow-none my-3 tour-card"
-                v-for="(tour,i) in paginatedData"
+                v-for="(tour,i) in sortTour"
                 :key="'tsja'+i"
               >
                 <div class="row h-100 p-0 m-0">
@@ -409,6 +428,35 @@ export default {
     },
     changeFilterPrice() {
       return this.filterCondition.price.filterPrice;
+    },
+     sortTour() {
+      if (this.filterCondition.sortBy==="PRICE" && typeof this.paginatedData !== 'undefined') {
+        this.paginatedData.sort(function(x, y) {
+        return y.price- x.price;
+      });
+      }
+      else if (this.filterCondition.sortBy==="NAME" && typeof this.paginatedData !== 'undefined') {
+        this.paginatedData.sort(function ( a, b ) {
+          if ( a.tourName < b.tourName ){
+            return -1;
+          }
+          if ( a.tourName > b.tourName ){
+            return 1;
+          }
+          return 0;
+        });
+      }
+      else if (this.filterCondition.sortBy==="POPULAR" && typeof this.paginatedData !== 'undefined') {
+        this.paginatedData.sort(function(x, y) {
+        return y.order- x.order;
+      });
+      }
+      else if (this.filterCondition.sortBy==="VOTE" && typeof this.paginatedData !== 'undefined') {
+        this.paginatedData.sort(function(x, y) {
+        return y.voteScore- x.voteScore;
+      });
+      }
+      return this.paginatedData;
     }
   },
   watch: {}
@@ -436,5 +484,8 @@ export default {
 }
 .con-vs-checkbox {
   justify-content: start !important;
+}
+.a-icon,.a-icon:hover,.a-icon:focus,.a-icon:active,.a-icon:visited{
+  color:rgba(0,0,0,0.87) !important;
 }
 </style>
