@@ -377,6 +377,7 @@
 <script>
 import moment from "moment";
 import _ from "underscore";
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from "vue-carousel";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
@@ -425,7 +426,7 @@ export default {
       loading: SkeletonBox
     })
   },
-  name: "TourAllComponent",
+  name: "SearchAllComponent",
   props: {
     msg: String
   },
