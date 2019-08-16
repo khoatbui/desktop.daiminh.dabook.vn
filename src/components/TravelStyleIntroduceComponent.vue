@@ -1,7 +1,7 @@
 <template>
   <div class="topcity">
     <div class="section text-left pt-0 pb-4">
-      <h4 class="title text-left m-0 p-3">Ban se thich</h4>
+      <h4 class="title text-left m-0 p-3">{{$t('pdestinationintro_title')}}</h4>
       <div class="row m-0 p-0 d-flex align-items-stretch">
         <div class="col-8">
           <div class="row m-0 p-0 text-08 h-100">
@@ -11,7 +11,7 @@
             <div
               class="col-12 m-0 p-0 d-flex justify-content-start align-items-center flex-grow-1"
             >
-              <span class="text-success font-weight-bold px-2">Dung bo lo :</span> <span class="text-muted px-2">Kỳ quan thiên nhiên</span> <span class="text-muted px-2"> Lịch sử và Văn hóa</span>
+              <span class="text-success font-weight-bold px-2">{{$t('pdestinationintro_dontmiss')}} :</span> <span class="text-muted px-2">Kỳ quan thiên nhiên</span> <span class="text-muted px-2"> Lịch sử và Văn hóa</span>
               <span class="text-muted px-2"> Diem den khong the bo qua</span>
             </div>
             <div
@@ -20,7 +20,7 @@
               data-target="#travelStyleIntroModal"
             >
               <p class="text-center border-top font-weight-bold text-info">
-                Xem them
+                {{$t('general_showmore')}}
                 <font-awesome-icon icon="chevron-down" class="text-center" />
               </p>
             </div>
@@ -44,17 +44,17 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>Hieu them ve {{travelStyle.travelStyleName}}</b>
+                <b>{{$t('pdestinationintro_exploremore')}} {{styleByLang.travelStyleName}}</b>
               </h4>
             </div>
             <div class="col-8">
-              <div v-html="travelStyle.travelStyleIntro"></div>
+              <div v-html="styleByLang.travelStyleIntro"></div>
             </div>
             <div class="col-4">
               <carousel class="image-des" :per-page="1" :navigation-enabled="false" :paginationEnabled="false">
                 <slide
                   class="m-2"
-                  v-for="(pac,ides) in travelStyle.travelStyleImages"
+                  v-for="(pac,ides) in styleByLang.travelStyleImages"
                   v-bind:key="ides"
                 >
                   <img class="image-des-img" v-bind:src="`/webmp/${pac.filePath.slice(0, -3)}webp`" v-bind:alt="pac.fileName" />
@@ -65,12 +65,12 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>Thong tin chung</b>
+                <b>{{$t('pdestinationintro_defaultinfo')}}</b>
               </h4>
             </div>
             <div class="col-4">
               <p>
-                <b>Mui gio</b>
+                <b>{{$t('pdestinationintro_timezone')}}</b>
               </p>
               <p>GMT +07</p>
               <p>
@@ -79,7 +79,7 @@
             </div>
             <div class="col-4">
               <p>
-                <b>Tien te</b>
+                <b>{{$t('pdestinationintro_money')}}</b>
               </p>
               <p>Vietnamdong</p>
               <p>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-4">
               <p>
-                <b>Thoi gian tuyet nhat de vi vu</b>
+                <b>{{$t('pdestinationintro_timetotravel')}}</b>
               </p>
               <p>THG 7 + 8</p>
               <p>
@@ -99,7 +99,7 @@
           <div class="row m-0 p-2">
             <div class="col-12">
               <h4>
-                <b>Hot promotion</b>
+                <b>{{$t('generail_hotpromotion')}}</b>
               </h4>
             </div>
             <div class="col-12">
@@ -113,6 +113,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import lazyLoadComponent from '@/utils/lazy-load-component'
 import SkeletonBox from '@/components/SkeletonBox.vue';
 import { Carousel, Slide } from 'vue-carousel';
@@ -149,6 +150,7 @@ export default {
     return {
       citys: [],
       selectedPayment: {},
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -160,8 +162,20 @@ export default {
       const response = await CityService.getTopCity();
       this.citys = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
     },
   },
+  computed :{
+    styleByLang() {
+        this.travelStyle.travelStyleIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.travelStyleName = area.travelStyleName;
+            element.travelStyleIntro= area.travelStyleIntro;
+          }
+        });
+      return this.travelStyle;
+    }
+  }
 };
 </script>
 

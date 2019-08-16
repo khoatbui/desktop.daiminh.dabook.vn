@@ -36,15 +36,14 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-            <h1 class="text-center text-white title mb-0">Amazing Service</h1>
+            <h1 class="text-center text-white title mb-0">{{$t('pbackgroundheader_title_h1')}}</h1>
             <h4 class="title text-white text-center mt-0">
-              You can get an additional 10% discount on your first
-              reservation.
+              {{$t('pbackgroundheader_body_h4')}}
             </h4>
           </div>
         </div>
         <div class="col-md-7 ml-auto mr-auto">
-          <MainSearchComponent></MainSearchComponent>
+          <MainSearchComponent :defaultopen="false"></MainSearchComponent>
         </div>
       </div>
     </div>

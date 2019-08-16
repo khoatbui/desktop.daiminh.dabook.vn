@@ -5,7 +5,7 @@
       <div class="row p-0 m-0 " v-if="isTitle">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>{{$t('ptophotel_title_explain')}}</p>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger" @click="redirectToAllHotel">
               {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -92,6 +92,11 @@ export default {
     redirectToHotelDetail(des){
        this.$router.push(
         `/hoteldetail?hotelid=${des._id}`
+      );
+    },
+    redirectToAllHotel() {
+       this.$router.push(
+        `/hotel`
       );
     }
   },

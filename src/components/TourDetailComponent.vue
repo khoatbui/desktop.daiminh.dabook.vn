@@ -14,56 +14,56 @@
                   href="#thongtin"
                   @click="sectionActive='thongtin'"
                   v-bind:class="{'section-active':sectionActive=='thongtin'}"
-                >Thong tin</a>
+                >{{$t('general_sticky_tab_info')}}</a>
               </li>
               <li>
                 <a
                   href="#danhgia"
                   @click="sectionActive='danhgia'"
                   v-bind:class="{'section-active':sectionActive=='danhgia'}"
-                >Danh gia</a>
+                >{{$t('general_sticky_tab_vote')}}</a>
               </li>
               <li>
                 <a
                   href="#chon"
                   @click="sectionActive='chon'"
                   v-bind:class="{'section-active':sectionActive=='chon'}"
-                >Chon</a>
+                >{{$t('general_sticky_tab_roomselect')}}</a>
               </li>
               <li>
                 <a
                   href="#program"
                   @click="sectionActive='program'"
                   v-bind:class="{'section-active':sectionActive=='program'}"
-                >Program</a>
+                >{{$t('general_sticky_tab_program')}}</a>
               </li>
               <li>
                 <a
                   href="#service"
                   @click="sectionActive='service'"
                   v-bind:class="{'section-active':sectionActive=='service'}"
-                >Service Include</a>
+                >{{$t('general_sticky_tab_serviceinclude')}}</a>
               </li>
               <li>
                 <a
                   href="#nonservice"
                   @click="sectionActive='nonservice'"
                   v-bind:class="{'section-active':sectionActive=='nonservice'}"
-                >Service Not Include</a>
+                >{{$t('general_sticky_tab_servicenotinclude')}}</a>
               </li>
               <li>
                 <a
                   href="#shouldtake"
                   @click="sectionActive='shouldtake'"
                   v-bind:class="{'section-active':sectionActive=='shouldtake'}"
-                >Should Take</a>
+                >{{$t('general_sticky_tab_shouldtake')}}</a>
               </li>
               <li>
                 <a
                   href="#map"
                   @click="sectionActive='map'"
                   v-bind:class="{'section-active':sectionActive=='map'}"
-                >Ban do</a>
+                >{{$t('general_sticky_tab_map')}}</a>
               </li>
             </ul>
           </div>
@@ -77,30 +77,30 @@
                 class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center border-bottom border-info"
               >
                 <span class="d-flex align-items-center">
-                  <font-awesome-icon icon="calendar" class="text-center mr-2" />Thoi luong hanh trinh : 1gio
+                  <font-awesome-icon icon="calendar" class="text-center mr-2" />{{$t('general_label_timelenght')}} : 1gio
                 </span>
                 <span class="d-flex align-items-center">
-                  <font-awesome-icon icon="tag" class="text-center mr-2" />Ve theo tour co dinh
+                  <font-awesome-icon icon="tag" class="text-center mr-2" />{{$t('general_label_ticket')}}
                 </span>
                 <span class="d-flex align-items-center">
-                  <font-awesome-icon icon="times-circle" class="text-center mr-2" />Khong the doi ve
+                  <font-awesome-icon icon="times-circle" class="text-center mr-2" />{{$t('general_label_noticketchange')}}
                 </span>
               </div>
               <div class="row m-0 p-0 py-4 text-08">{{tourDetailByLang.tourId.tourIntro}}</div>
             </div>
             <div class="section-tour py-2" id="danhgia">
               <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-                <h3 class="text-xh1 info-title font-weight-bold">Danh gia</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_vote')}}</h3>
               </div>
               <div
                 class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center"
               >
-                <p>Hien chua co danh gia nao cho tour nay</p>
+                <p>{{$t('general_sticky_tab_vote_empty')}}</p>
               </div>
             </div>
             <div class="section-tour py-2 second-background" id="chon">
               <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-                <h3 class="text-xh1 info-title font-weight-bold">Chon</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_roomselect')}}</h3>
               </div>
               <div
                 class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center"
@@ -134,7 +134,7 @@
                               class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
                             >
                               <p class="mb-0">
-                                <span class="text-08 font-bold">Nguoi lon</span>
+                                <span class="text-08 font-bold">{{$t('general_label_guest')}}</span>
                                 <span class="text-07 text-muted">( Age 13-99)</span>
                               </p>
                               <p
@@ -146,7 +146,7 @@
                               <p
                                 class="text-07 text-danger mb-0"
                                 v-show="order.guest.guest.qty==0"
-                              >Toi thieu 1 nguoi lon</p>
+                              >{{$t('general_label_less1')}}</p>
                             </div>
                             <div
                               class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
@@ -182,7 +182,7 @@
                               class="col-6 m-0 p-0 flex-column d-flex justify-content-between align-items-start"
                             >
                               <p class="mb-0">
-                                <span class="text-08 font-bold">Tre em</span>
+                                <span class="text-08 font-bold">{{$t('general_label_child04')}}</span>
                                 <span class="text-07 text-muted">( Age 00 - 04)</span>
                               </p>
                               <p
@@ -221,7 +221,7 @@
                               class="col-6 m-0 p-0 flex-column d-flex justify-content-between align-items-start"
                             >
                               <p class="mb-0">
-                                <span class="text-08 font-bold">Tre em</span>
+                                <span class="text-08 font-bold">{{$t('general_label_child48')}}</span>
                                 <span class="text-07 text-muted">( Age 04 - 08)</span>
                               </p>
                               <p
@@ -264,31 +264,31 @@
             </div>
             <div class="section-tour py-2" id="program">
               <div class="row m-0 p-0 py-2">
-                <h3 class="text-xh1 info-title font-weight-bold">Program</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_program')}}</h3>
               </div>
               <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.program"></div>
             </div>
             <div class="section-tour py-2" id="service">
               <div class="row m-0 p-0 py-2">
-                <h3 class="text-xh1 info-title font-weight-bold">Service Include</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_serviceinclude')}}</h3>
               </div>
               <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.serviceInclude"></div>
             </div>
             <div class="section-tour py-2" id="nonservice">
               <div class="row m-0 p-0 py-2">
-                <h3 class="text-xh1 info-title font-weight-bold">Service Not Include</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_servicenotinclude')}}</h3>
               </div>
               <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.serviceNotInclude">></div>
             </div>
             <div class="section-tour py-2" id="shouldtake">
               <div class="row m-0 p-0 py-2">
-                <h3 class="text-xh1 info-title font-weight-bold">Should Take</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_shouldtake')}}</h3>
               </div>
               <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.shouldTake"></div>
             </div>
             <div class="section-tour py-2" id="map">
               <div class="row m-0 p-0 py-2">
-                <h3 class="text-xh1 info-title font-weight-bold">Ban do</h3>
+                <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_map')}}</h3>
               </div>
               <div class="row p-0 m-0 py-2 text-08">
                 <div class="map border-radius-10 w-100">
@@ -310,7 +310,7 @@
                 <div class="card-body p-3">
                   <div class="row m-0 p-0" v-if="order.selectDate ==null">
                     <p>
-                      <span class="text-09 font-weight-bold text-muted pr-2">tu</span>
+                      <span class="text-09 font-weight-bold text-muted pr-2">{{$t('general_from')}}</span>
                       <span
                         class="text-xh1 font-bold"
                       >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
@@ -334,14 +334,14 @@
                     </p>
                     <p class="text-09 text-muted mb-0">09/08/2019</p>
                     <p class="text-09 text-muted mb-0">
-                      <span class="pr-2">Nguoi lon x {{order.guest.guest.qty}}</span>
+                      <span class="pr-2">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
                       <span class="pr-2">
-                        Tre em
+                        {{$t('general_label_child04')}}
                         <span class="text-07">(0-4)</span>
                         x {{order.guest.child04.qty}}
                       </span>
                       <span>
-                        Tre em
+                        {{$t('general_label_child48')}}
                         <span class="text-07">(4-8)</span>
                         x {{order.guest.child48.qty}}
                       </span>
@@ -351,7 +351,7 @@
                     class="row m-0 p-0 py-4 justify-content-between align-items-center"
                     v-if="order.selectDate !==null"
                   >
-                    <span class="text-09 text-muted mb-0">Tong tien</span>
+                    <span class="text-09 text-muted mb-0">{{$t('general_label_total')}}</span>
                     <span
                       class="text-xh1 text-info font-bold"
                     >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
@@ -367,13 +367,13 @@
                   </div>
                   <div class="row m-0 p-0 text-muted">
                     <p class="my-1 text-08">
-                      <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />Xac nhan don hang tuc thi
+                      <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />X{{$t('photelpackagedetail_text_confirm')}}
                     </p>
                     <p class="my-1 text-08">
-                      <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />Nhan bao gia trong vong 1 ngay lam viec
+                      <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />{{$t('photelpackagedetail_text_receiveorder')}}
                     </p>
                     <p class="my-1 text-08">
-                      <font-awesome-icon icon="medal" class="text-center text-08 mr-2" />Luon dam bao gia tot nhat va dich vu tot nhat
+                      <font-awesome-icon icon="medal" class="text-center text-08 mr-2" />{{$t('photelpackagedetail_text_bestservice')}}
                     </p>
                   </div>
                 </div>
@@ -382,7 +382,7 @@
                     class="row w-100 m-0 p-0 d-flex text-08 text-muted justify-content-between align-items-center"
                   >
                     <span>
-                      <font-awesome-icon icon="fire-alt" class="text-center text-08 mr-2" />8K+ người đã đặt
+                      <font-awesome-icon icon="fire-alt" class="text-center text-08 mr-2" />8K+ {{$t('general_peoplehavebook')}}
                     </span>
                     <span class="star font-weight-bold text-info">
                       {{tourDetailByLang.tourId.voteScore}}
@@ -410,6 +410,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import moment from "moment";
 import { Carousel, Slide } from "vue-carousel";
 import CityService from "@/api/CityService";

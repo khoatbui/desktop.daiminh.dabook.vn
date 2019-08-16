@@ -11,33 +11,33 @@
         <div class="card-body">
           <div class="row p-2 text-left">
             <div class="col-12 border-bottom p-0">
-              <h5 class="my-1">Diem den noi tieng</h5>
+              <h5 class="my-1">{{$t('pmainsearch_title_popup')}}</h5>
             </div>
           </div>
           <div class="row p-2 text-left" v-if="isSearch==false">
             <div class="col-6 p-1" v-for="(des,i) in destinations" :key="'sfs'+i">
-              <p class="cursor-pointer" @click="redirectToDestination(des)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="map-marker-alt"/>{{des.destinationName}}
+              <p class="cursor-pointer hidden-outof-text" @click="redirectToDestination(des)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="map-marker-alt"/>{{des.destinationName}}
                 <span class="text-07 text-center text-danger font-bold"><font-awesome-icon class="mx-2" icon="fire-alt"/>HOT</span>
               </p>
             </div>
           </div>
           <div class="row p-2 text-left">
             <div class="col-6 p-1" v-for="(des,i) in destinationListByLang" :key="'sfs'+i">
-              <p class="cursor-pointer" @click="redirectToDestination(des)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="map-marker-alt"/>{{des.destinationName}}
+              <p class="cursor-pointer hidden-outof-text" @click="redirectToDestination(des)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="map-marker-alt"/>{{des.destinationName}}
                 <span class="text-07 text-center text-danger font-bold"><font-awesome-icon class="mx-2" icon="fire-alt"/>HOT</span>
               </p>
             </div>
           </div>
           <div class="row p-2 text-left">
             <div class="col-6 p-1" v-for="(tour,i) in tourByLang" :key="'sfs'+i">
-              <p class="cursor-pointer" @click="redirectToTourDetail(tour)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="umbrella-beach"/>{{tour.tourName}}
+              <p class="cursor-pointer hidden-outof-text" @click="redirectToTourDetail(tour)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="umbrella-beach"/>{{tour.tourName}}
                 <span class="text-07 text-center text-danger font-bold" v-if="tour.isPromotion"><font-awesome-icon class="mx-2" icon="fire-alt"/>HOT</span>
               </p>
             </div>
           </div>
           <div class="row p-2 text-left">
             <div class="col-6 p-1" v-for="(hotel,i) in hotelByLang" :key="'sfs'+i">
-              <p class="cursor-pointer" @click="redirectToHotelDetail(hotel)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="hotel"/>{{hotel.hotelName}}
+              <p class="cursor-pointer hidden-outof-text" @click="redirectToHotelDetail(hotel)"><font-awesome-icon class="mx-2 text-07 text-muted" icon="hotel"/>{{hotel.hotelName}}
                 <span class="text-07 text-center text-danger font-bold" v-if="hotel.isPromotion"><font-awesome-icon class="mx-2" icon="fire-alt"/>HOT</span>
               </p>
             </div>
@@ -56,11 +56,11 @@ import SearchService from "@/api/SearchService"
 
 export default {
   components: {
-    PaymentComponent
+    PaymentComponent,
   },
   name: "MainSearchComponent",
   props: {
-    msg: String
+    defaultopen:false,
   },
   data() {
     return {
@@ -74,7 +74,7 @@ export default {
         tour:false,
         destination:false},
       isSearch:false,
-      magic_flag:false
+      magic_flag:this.defaultopen
     };
   },
   mounted() {

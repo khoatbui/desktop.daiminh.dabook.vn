@@ -40,64 +40,69 @@
 
 <script>
 // @ is an alias to /src
-import lazyLoadComponent from '@/utils/lazy-load-component'
+import lazyLoadComponent from '@/utils/lazy-load-component';
 import SkeletonBox from '@/components/SkeletonBox.vue';
 import NavigationComponent from '@/components/NavigationComponent.vue';
 export default {
   name: 'home',
   components: {
-     NavigationComponent,
-    FooterComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/FooterComponent.vue'),
-      loading: SkeletonBox,
-    }),
-    IntroDaiMinhComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/IntroDaiMinhComponent.vue'),
-      loading: SkeletonBox,
-    }),
-    VideoComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/VideoComponent.vue'),
-      loading: SkeletonBox,
-    }),
-    TopDestinationComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/TopDestinationComponent.vue'),
-      loading: SkeletonBox,
-    }),
-    TopCityComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/TopCityComponent.vue'),
-      loading: SkeletonBox,
-    }),
-    TopHotelPromotionComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/TopHotelPromotionComponent.vue'),
-      loading: SkeletonBox,
-    }),
+    NavigationComponent,
     BackgroundHeaderComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/BackgroundHeaderComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import('@/components/BackgroundHeaderComponent.vue'),
+      loading: SkeletonBox
     }),
     ThreeStepComponent: lazyLoadComponent({
       componentFactory: () => import('@/components/ThreeStepComponent.vue'),
-      loading: SkeletonBox,
+      loading: SkeletonBox
+    }),
+    TopCityComponent: lazyLoadComponent({
+      componentFactory: () => import('@/components/TopCityComponent.vue'),
+      loading: SkeletonBox
+    }),
+    TopDestinationComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import('@/components/TopDestinationComponent.vue'),
+      loading: SkeletonBox
+    }),
+    VideoComponent: lazyLoadComponent({
+      componentFactory: () => import('@/components/VideoComponent.vue'),
+      loading: SkeletonBox
+    }),
+    TopHotelPromotionComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import('@/components/TopHotelPromotionComponent.vue'),
+      loading: SkeletonBox
     }),
     TopTourPromotionComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/TopTourPromotionComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import('@/components/TopTourPromotionComponent.vue'),
+      loading: SkeletonBox
     }),
     IntroduceDaiMinhComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/IntroduceDaiMinhComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import('@/components/IntroduceDaiMinhComponent.vue'),
+      loading: SkeletonBox
     }),
     HorizontalAdsComponent: lazyLoadComponent({
       componentFactory: () => import('@/components/HorizontalAdsComponent.vue'),
-      loading: SkeletonBox,
+      loading: SkeletonBox
     }),
     AdsWithHotelPromotionComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/AdsWithHotelPromotionComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import('@/components/AdsWithHotelPromotionComponent.vue'),
+      loading: SkeletonBox
     }),
-  },
+    IntroDaiMinhComponent: lazyLoadComponent({
+      componentFactory: () => import('@/components/IntroDaiMinhComponent.vue'),
+      loading: SkeletonBox
+    }),
+    FooterComponent: lazyLoadComponent({
+      componentFactory: () => import('@/components/FooterComponent.vue'),
+      loading: SkeletonBox
+    })
+  }
 };
 </script>
 <style scoped  lang="scss">
-
 </style>

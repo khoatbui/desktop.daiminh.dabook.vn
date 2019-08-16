@@ -17,7 +17,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Muc gia (vnd)</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_price')}}</h6>
                 <p
                   class="text-left text-07 text-nomal text-muted"
                 >{{priceformat(filterCondition.price.filterPrice[0]) + ' - ' + priceformat(filterCondition.price.filterPrice[1])}}</p>
@@ -37,7 +37,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Travel Style</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_style')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -65,7 +65,7 @@
                 aria-expanded="false"
                 aria-controls="collapseDestination"
               >
-                <h6 class="text-left text-x1 font-bold border-bottom">Destination</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_destination')}}</h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseDestination">
                 <div class="row p-0 m-0">
@@ -193,6 +193,7 @@
 
 <script>
 import moment from "moment";
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from "vue-carousel";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
@@ -303,7 +304,7 @@ export default {
         sortBy: ""
       },
       pageNumber: 1,
-      size: 10
+      size: 10,
     };
   },
   watch: {},
@@ -344,6 +345,17 @@ export default {
   },
   computed: {
     tourListByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.tourList.forEach(element => {
+        element.tourIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tourName = area.tourName;
+            element.tourIntro= area.tourIntro;
+          }
+        });
+      });
       return this.tourList;
     },
     filterTourList() {

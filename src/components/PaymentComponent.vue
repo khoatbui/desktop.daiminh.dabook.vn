@@ -28,7 +28,7 @@
         <div class="modal-content">
           <div class="modal-header border-bottom pb-3 text-left">
             <h6 class="modal-title" id="bankModalLabel">
-              <span class="badge badge-success">{{selectedPayment.bankCode}}</span>THÔNG TIN TÀI KHOẢN CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ VÀ DU LỊCH ĐẠI MINH
+              <span class="badge badge-success">{{selectedPayment.bankCode}}</span>{{$t('ppayment_title')}}
             </h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>

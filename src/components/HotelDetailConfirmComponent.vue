@@ -4,11 +4,11 @@
       <div class="row">
         <div class="col-8">
           <div class="row m-0 p-0 text-08 align-items-center">
-            <span class="font-bold mr-4">Xac nhan thong tin</span>
+            <span class="font-bold mr-4">{{$t('general_label_confirm')}}</span>
             <font-awesome-icon icon="chevron-right" class="text-center text-06 text-1 mr-4" />
-            <span class="mr-4 text-muted">Thanh toan</span>
+            <span class="mr-4 text-muted">{{$t('general_label_payment')}}</span>
             <font-awesome-icon icon="chevron-right" class="text-center text-06 text-1 mr-4" />
-            <span class="text-muted">Hoan tat</span>
+            <span class="text-muted">{{$t('general_label_finish')}}</span>
           </div>
           <div class="row m-0 p-0 custom-sticky-component">
             <div class="card bg-white mb-1 shadow-none" id="ithongtindathang">
@@ -24,7 +24,7 @@
                   >
                     <h3
                       class="text-x1 text-muted font-bold text-left border-left-bold pl-2"
-                    >Thong tin nguoi dat hang</h3>
+                    >{{$t('general_label_buyer')}}</h3>
                     <font-awesome-icon
                       icon="chevron-down"
                       class="text-center text-muted text-08 text-1"
@@ -38,7 +38,7 @@
                         class="text-08 mb-1"
                         for="ifirstname"
                         v-bind:class="formCheck.firstName.label"
-                      >Ten</label>
+                      >{{$t('general_label_firstname')}}</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
@@ -52,7 +52,7 @@
                         class="text-08 mb-1"
                         for="ilastname"
                         v-bind:class="formCheck.lastName.label"
-                      >Ho</label>
+                      >{{$t('general_label_last_name')}}</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
@@ -64,7 +64,7 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-4 text-left">
-                      <label class="text-08 mb-1" for="icountry">Quoc gia</label>
+                      <label class="text-08 mb-1" for="icountry">{{$t('general_label_country')}}</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
@@ -77,7 +77,7 @@
                         class="text-08 mb-1"
                         for="iphone"
                         v-bind:class="formCheck.phone.label"
-                      >So dien thoai</label>
+                      >{{$t('general_label_phone')}}</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
@@ -93,7 +93,7 @@
                         class="text-08 mb-1"
                         for="iemail"
                         v-bind:class="formCheck.email.label"
-                      >Email</label>
+                      >{{$t('general_label_email')}}</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
@@ -112,7 +112,7 @@
                         aria-expanded="false"
                         aria-controls="collapseDiscount"
                         @click="finishThongTinKhachHang"
-                      >Tiep tuc</button>
+                      >{{$t('general_btn_tieptuc')}}</button>
                     </div>
                   </div>
                 </div>
@@ -131,7 +131,7 @@
                   >
                     <h3
                       class="text-x1 text-muted font-bold border-left-bold text-left pl-2"
-                    >Nhap ma giam gia</h3>
+                    >{{$t('general_label_discount')}}</h3>
                     <font-awesome-icon
                       icon="chevron-down"
                       class="text-center text-muted text-08 text-1"
@@ -155,7 +155,7 @@
                           aria-expanded="false"
                           aria-controls="collapsePickup"
                           @click="finishMaGiamGia"
-                        >Xac nhan</button>
+                        >{{$t('general_btn_confirm')}}</button>
                       </div>
                     </div>
                   </div>
@@ -175,7 +175,7 @@
                   >
                     <h3
                       class="text-x1 text-muted font-bold border-left-bold text-left pl-2"
-                    >Message cho chung toi</h3>
+                    >{{$t('general_label_messageus')}}</h3>
                     <font-awesome-icon
                       icon="chevron-down"
                       class="text-center text-muted text-08 text-1"
@@ -185,7 +185,7 @@
                 <div class="collapse" id="collapsePickup">
                   <div class="row mb-3">
                     <div class="col-8 text-left">
-                      <label class="text-08 mb-1" for="imessage">Thong tin khac</label>
+                      <label class="text-08 mb-1" for="imessage">{{$t('general_label_anotherquestion')}}</label>
                       <textarea
                         class="custom-form-input custom-form-text-md border-radius-5"
                         type="text"
@@ -203,7 +203,7 @@
                         aria-expanded="false"
                         aria-controls="collapsePayment"
                         @click="finishThongTinDuaDon"
-                      >Tiep tuc</button>
+                      >{{$t('general_btn_tieptuc')}}</button>
                     </div>
                   </div>
                 </div>
@@ -222,7 +222,7 @@
                   >
                     <h3
                       class="text-x1 text-muted font-bold border-left-bold text-left pl-2"
-                    >Phuong thuc thanh toan</h3>
+                    >{{$t('general_label_paymentmethod')}}</h3>
                     <font-awesome-icon
                       icon="chevron-down"
                       class="text-center text-muted text-08 text-1"
@@ -231,13 +231,7 @@
                 </div>
                 <div class="collapse" id="collapsePayment">
                   <div class="row mb-3">
-                    <div class="col-12 text-left">
-                      <p
-                        class="text-08 text-danger"
-                      >Luu y: Gia tren chi de tham khao,chung to se gui cho quy khach gia uu dai nhat</p>
-                      <p
-                        class="text-08 text-danger"
-                      >Sau khi nhan confirm tu chung toi,quy khach vui long chuyen khoan theo cac ngan hang sau</p>
+                    <div class="col-12 text-left" v-html="$t('general_body_paymentnote')">
                       <PaymentComponent></PaymentComponent>
                     </div>
                   </div>
@@ -252,11 +246,11 @@
                       class="btn btn-danger text-nomal"
                       :disabled="bookingResult.requestStatus"
                       @click="requestBooking"
-                    >Hoan tat</button>
+                    >{{$t('general_btn_completed')}}</button>
                   </div>
                   <div class="col-6 text-right">
                     <p>
-                      <span class="text-09 font-weight-bold text-muted pr-2">tu</span>
+                      <span class="text-09 font-weight-bold text-muted pr-2">{{$t('general_from')}}</span>
                       <span
                         class="text-xh1 font-bold text-info"
                       >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedHotel.order.totalPrice)}}</span>
@@ -284,34 +278,34 @@
                   <h3 class="text-xh1">{{selectedHotel.order.hotel.hotelName}} | {{selectedHotel.order.roomType.roomTypeName}} </h3>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Goi dich vu</span>
+                  <span class="text-07">{{$t('general_label_package')}}</span>
                   <p>{{selectedHotel.order.package.packageId.packageName}}</p>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Ngay</span>
+                  <span class="text-07">{{$t('general_label_date')}}</span>
                   <p>{{selectedHotel.order.checkInDate}} | {{selectedHotel.order.checkOutDate}}</p>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Khach</span>
+                  <span class="text-07">{{$t('general_label_guest')}}</span>
                   <p>
-                    <span class="font-bold">Nguoi lon</span>
+                    <span class="font-bold">{{$t('general_label_guest')}}</span>
                     x {{selectedHotel.order.guest.guest.qty}}
                     <span
                       class="font-bold ml-2"
-                    >Tre em(0-4)</span>
+                    >{{$t('general_label_child04')}}</span>
                     x {{selectedHotel.order.guest.child04.qty}}
                     <span
                       class="font-bold ml-2"
-                    >Tre em(4-8)</span>
+                    >{{$t('general_label_child48')}}</span>
                     x {{selectedHotel.order.guest.child48.qty}}
                   </p>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Tong so tien</span>
+                  <span class="text-07">{{$t('general_label_total')}}</span>
                   <p>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedHotel.order.totalPrice)}}</p>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Luu y</span>
+                  <span class="text-07">{{$t('general_label_note')}}</span>
                   <div class="text-08" v-html="selectedHotel.order.package.packageId.note"></div>
                 </div>
                 <div class="col-12 m-0 p-0 text-left">
@@ -343,7 +337,7 @@
         <div class="modal-content">
           <div class="modal-header border-bottom pb-3 text-left">
             <h6 class="modal-title" id="bookingModalLabel">
-              <span class="badge badge-success">{{bookingResult.orderStatus}}</span> CẢM ƠN BẠN ĐÃ SỬ DỤNG DỊCH VỤ CỦA CHUNG TÔI
+              <span class="badge badge-success">{{bookingResult.orderStatus}}</span> {{$t('general_label_thankyouusingservice')}}
             </h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -351,12 +345,12 @@
           </div>
           <div class="modal-body text-left">
             <p>
-              <b>TransactionCode :</b>
+              <b>{{$t('general_label_transactioncode')}} :</b>
               {{bookingResult.transactionCode}}
             </p>
             <p
               class="text-mutedt text-08"
-            >Chung toi se lien lac lai trong vong {{bookingResult.replyTime}} tieng</p>
+            >{{$t('general_label_wewillcontactat')}} {{bookingResult.replyTime}} {{$t('general_label_hour')}}</p>
           </div>
           <div class="modal-footer">
             <input
@@ -366,12 +360,12 @@
               id="ihidden-input"
               v-model="bookingResult.transactionCode"
             />
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{$t('general_btn_close')}}</button>
             <button
               type="button"
               class="btn btn-primary btn-sm btn-info"
               @click="transactionCopy"
-            >copy Code</button>
+            >{{$t('general_btn_copycode')}}</button>
           </div>
         </div>
       </div>

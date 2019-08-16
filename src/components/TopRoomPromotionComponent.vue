@@ -1,18 +1,18 @@
 <template>
   <div class="toppackage">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0" v-if="isTitle">Top room promotion today</h3>
+      <h3 class="title text-left m-0" v-if="isTitle">{{$t('ptoproompackage_title_h3')}}</h3>
       <div class="row p-0 m-0 " v-if="isTitle">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
-          <p>Cung kham pha nhung khach san va resort 5* noi tieng</p>
-          <a class="link-des text-danger">
-              Xem thêm
+          <p>{{$t('ptoproompackage_title_body')}}</p>
+          <a class="link-des text-danger" @click="redirectToAllHotel">
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
         </div>
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
-        <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
+        <slide class="m-2" v-for="(pac,ides) in packageByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
             <img class="card-img-top image-package"
             v-bind:class="{'small-loading-img':pac.roomTypeId.roomImages.length==0}"
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
 import HotelService from '@/api/HotelService';
@@ -74,6 +75,7 @@ export default {
       packages: [],
       selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -85,13 +87,41 @@ export default {
       const response = await HotelService.getTopPromotionHotelPackage();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded = true
     },
     redirectToHotelDetail(des){
        this.$router.push(
         `/hoteldetail?hotelid=${des._id}`
       );
+    },
+    redirectToAllHotel() {
+      this.$router.push(
+        `/hotel`
+      );
     }
   },
+  computed: {
+    packageByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.packages.forEach(element => {
+        element.hotelId.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelId.hotelName = area.hotelName;
+            element.hotelId.hotelIntro= area.hotelIntro;
+          }
+        });
+        element.roomTypeId.roomTypeIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.roomTypeId.roomTypeName = area.roomTypeName;
+            element.roomTypeId.roomTypeIntro= area.roomTypeIntro;
+          }
+        });
+      });
+      return this.packages;
+    },
+  }
 };
 </script>
 

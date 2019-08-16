@@ -1,9 +1,28 @@
 <template>
   <div id="app">
     <router-view/>
+    <SpinnerComponent></SpinnerComponent>
   </div>
 </template>
-
+<script>
+import SpinnerComponent from '@/components/SpinnerComponent.vue';
+export default {
+  components: {
+    SpinnerComponent,
+  },
+  name: 'App',
+  props: {
+  },
+  data() {
+    return {
+    };
+  },
+  mounted() {
+  },
+  methods: {
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: 'Quicksand', sans-serif !important;

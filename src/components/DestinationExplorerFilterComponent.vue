@@ -1,10 +1,10 @@
 <template>
-  <div class="toppackage">
+  <div class="toppackage" v-if="componentLoaded">
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0">{{getTitle}}</h3>
       <div class="row m-2 p-0 bg-white border border-radius-none text-08">
         <div class="col-6 border-right border-bottom m-0 p-2">
-          <span>Dia diem</span>
+          <span>{{$t('pdestinationexplore_filter_location')}}</span>
           <span class="ml-auto">{{destination.destinationName}}</span>
         </div>
         <div class="col-6 border-bottom d-flex justify-content-between m-0 p-2 dropdown">
@@ -16,14 +16,14 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span>Loc theo theo loai</span>
+            <span>{{$t('pdestinationexplore_filter_filtetype')}}</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
           <div class="dropdown-menu dropdown-menu-left w-100" aria-labelledby="dropdownSort">
-            <a class="dropdown-item cursor-pointer">Dat nhieu nhat</a>
-            <a class="dropdown-item cursor-pointer">Gia thu thap den cao</a>
-            <a class="dropdown-item cursor-pointer">Danh gia cao nhat</a>
-            <a class="dropdown-item cursor-pointer">Them gan day</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_booked')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_price')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_voted')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_create')}}</a>
           </div>
         </div>
         <div class="col-3 d-flex justify-content-between border-right m-0 p-2">
@@ -38,7 +38,7 @@
             aria-expanded="false"
             @click="dropdown.price=!dropdown.price"
           >
-            <span>Muc gia</span>
+            <span>{{$t('pdestinationexplore_filter_price')}}</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
           <div class="dropdown-menu dropdown-menu-left w-100 p-2 pt-4" v-bind:class="{'show showing':dropdown.price,'hide hideing':!dropdown.price}" aria-labelledby="dropdownPrice">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="col-3 d-flex justify-content-between border-right m-0 p-2">
-          <span>Promotion</span>
+          <span>{{$t('pdestinationexplore_filter_promotion')}}</span>
           <span>
             <font-awesome-icon icon="chevron-down" class="text-center" />
           </span>
@@ -70,21 +70,21 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span>Sap xep theo</span>
+            <span>{{$t('pdestinationexplore_filter_sort')}}</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
           <div class="dropdown-menu dropdown-menu-left w-100" aria-labelledby="dropdownSort">
-            <a class="dropdown-item cursor-pointer">Dat nhieu nhat</a>
-            <a class="dropdown-item cursor-pointer">Gia thu thap den cao</a>
-            <a class="dropdown-item cursor-pointer">Danh gia cao nhat</a>
-            <a class="dropdown-item cursor-pointer">Them gan day</a>
+           <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_booked')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_price')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_voted')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_create')}}</a>
           </div>
         </div>
       </div>
       <div class="row m-0 p-0 pt-3 d-flex flex-wrap justify-content-start align-items-stretch">
         <div
           class="card filter-card m-2 h-100 d-inline-block"
-          v-for="(pac,ipac) in packages"
+          v-for="(pac,ipac) in packageByLang"
           v-bind:key="ipac"
         >
           <img
@@ -112,12 +112,12 @@
             <h2
               class="text-x1 price-text m-0"
             >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
-            <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
+            <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
           </div>
         </div>
         <div
           class="card filter-card m-2 h-100 d-inline-block"
-          v-for="(tour,ideas) in tours"
+          v-for="(tour,ideas) in tourByLang"
           v-bind:key="'Tour'+ideas"
         >
           <img
@@ -136,8 +136,8 @@
             <p class="card-text intro-package hidden-outof-text" v-html="tour.tourIntro"></p>
             <h2
               class="text-x1 price-text m-0"
-            >from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour.price)}}</h2>
-            <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
+            >{{$t('general_from')}}  {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour.price)}}</h2>
+            <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
           </div>
         </div>
       </div>
@@ -148,6 +148,7 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 import moment from "moment";
+import i18n from "@/lang/i18n";
 import HotelService from "@/api/HotelService";
 import TourService from "@/api/TourService";
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
@@ -193,7 +194,8 @@ export default {
           endDate: ''
         },
         sortBy: ''
-      }
+      },
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -215,6 +217,7 @@ export default {
       const responsetour = await TourService.getTopPromotionTourPackage();
       this.tours = randomArray(responsetour.data);
       this.$store.commit("showHideLoading", false);
+      this.componentLoaded=true;
     },
     async initialByDestination(destinationId) {
       this.$store.commit("showHideLoading", true);
@@ -227,6 +230,7 @@ export default {
       );
       this.tours = randomArray(responsetour.data);
       this.$store.commit("showHideLoading", false);
+      this.componentLoaded=true;
     },
     redirectToTourDetail(des) {
       this.$router.push(`/tourdetail?tourid=${des._id}`);
@@ -246,6 +250,40 @@ export default {
       } else {
         return "Du lich cung chung toi";
       }
+    },
+    tourByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.tours.forEach(element => {
+        element.tourIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tourName = area.tourName;
+            element.tourIntro= area.tourIntro;
+          }
+        });
+      });
+      return this.tours;
+    },
+    packageByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.packages.forEach(element => {
+        element.hotelId.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelId.hotelName = area.hotelName;
+            element.hotelId.hotelIntro= area.hotelIntro;
+          }
+        });
+        element.roomTypeId.roomTypeIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.roomTypeId.roomTypeName = area.roomTypeName;
+            element.roomTypeId.roomTypeIntro= area.roomTypeIntro;
+          }
+        });
+      });
+      return this.packages;
     },
     HotelByFilter() {
 

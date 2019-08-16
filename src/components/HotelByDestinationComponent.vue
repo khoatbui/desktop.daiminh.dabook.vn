@@ -4,15 +4,15 @@
       <h3 class="title text-left m-0">{{getTitle}}</h3>
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
-          <p>Cung kham pha nhung khach san va resort 5* noi tieng</p>
+          <p>{{$t('photelbydestination_title_body')}}</p>
           <a class="link-des text-danger">
-              Xem thêm
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
         </div>
       </div>
       <carousel :per-page="5" :navigation-enabled="true">
-        <slide class="m-2" v-for="(pac,ides) in packages" v-bind:key="ides">
+        <slide class="m-2" v-for="(pac,ides) in packageListByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
             <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomImages[0].fileName" />
@@ -25,7 +25,7 @@
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(pac.hotelId)">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
               <h2 class="text-x1 price-text m-0 cursor-pointer"  @click="redirectToHotelDetail(pac.hotelId)">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
-              <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
+              <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
         </slide>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
 import HotelService from '@/api/HotelService';
@@ -64,6 +65,7 @@ export default {
       selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
       title: "Top hotel promotion today",
+      componentLoaded:false,
     };
   },
   mounted() {
@@ -81,12 +83,14 @@ export default {
       const response = await HotelService.getTopPromotionHotelPackage();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
     },
     async initialByDestination(destinationId) {
       this.$store.commit('showHideLoading', true);
       const response = await HotelService.getHotelPackageByDestination(destinationId);
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
     },
     redirectToHotelDetail(des){
        this.$router.push(
@@ -103,6 +107,26 @@ export default {
                return 'Top hotel promotion today'
            }
       },
+      packageListByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.packages.forEach(element => {
+        element.hotelId.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelId.hotelName = area.hotelName;
+            element.hotelId.hotelIntro= area.hotelIntro;
+          }
+        });
+        element.roomTypeId.roomTypeIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.roomTypeId.roomTypeName = area.roomTypeName;
+            element.roomTypeId.roomTypeIntro= area.roomTypeIntro;
+          }
+        });
+      });
+      return this.packages;
+    },
   }
 };
 </script>

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="brand text-center">
-                        <h4 class="my-0 font-weight-bold">Tim kiem diem den theo style cua ban <font-awesome-icon icon="chevron-down" class="text-center" /></h4>
+                        <h4 class="my-0 font-weight-bold">{{$t('ptravelstylebackground_title')}}<font-awesome-icon icon="chevron-down" class="text-center" /></h4>
                         <h1 class="text-center text-white title my-0">{{travelstyle.travelStyleName}}</h1>
                     </div>
                 </div>

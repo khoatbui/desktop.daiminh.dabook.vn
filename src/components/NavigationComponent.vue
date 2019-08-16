@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a href="/index.html" class="nav-link">
+            <a href="/" class="nav-link">
               <i class="fa fa-menu"></i> {{$t('na_home')}}
             </a>
           </li>
@@ -30,12 +30,12 @@
           <NavigationTravelServiceComponent></NavigationTravelServiceComponent>
           <NavigationMICEComponent></NavigationMICEComponent>
           <li class="nav-item">
-            <a href="/tour/fit.html" class="nav-link">
+            <a href="/fit" class="nav-link">
               <i class="fa fa-menu"></i> {{$t('na_fit')}}
             </a>
           </li>
           <li class="nav-item">
-            <a href="/function/aboutus.html" class="nav-link">
+            <a href="/aboutus" class="nav-link">
               <i class="fa fa-menu"></i>
              {{$t('na_aboutus')}}
             </a>

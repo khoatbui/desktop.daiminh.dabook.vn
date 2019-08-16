@@ -4,7 +4,7 @@
       <h3 class="title text-left m-0" v-if="isTitle">{{getTitle}}</h3>
       <div class="row p-0 m-0 d-flex justify-content-end align-items-center" v-if="isTitle">
           <a class="link-des text-danger">
-              Xem thêm
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
       </div>
@@ -18,8 +18,8 @@
                <span>{{pac.to}} | {{pac.tourTypeId.tourTypeName}}</span> <span class="badge badge-pill badge-danger shadow"><font-awesome-icon icon="umbrella-beach" class="text-06 text-center" /></span></h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
                <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
-              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
-              <small class="text-muted m-0 text-success">Có thể đặt từ ngày {{bookingDate}}</small>
+              <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
         </slide>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
 import TourService from '@/api/TourService';
@@ -59,6 +60,7 @@ export default {
       packages: [],
       selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
+      componentLoaded:false
     };
   },
   mounted() {
@@ -76,12 +78,14 @@ export default {
       const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
     },
     async initialByDestination(destinationId) {
       this.$store.commit('showHideLoading', true);
       const response = await TourService.getTourPackageByDestination();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
     },
     redirectToTourDetail(des){
        this.$router.push(
@@ -98,6 +102,20 @@ export default {
                return 'Top tour promotion today'
            }
       },
+      tourByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.packages.forEach(element => {
+        element.tourIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tourName = area.tourName;
+            element.tourIntro= area.tourIntro;
+          }
+        });
+      });
+      return this.packages;
+    },
   },
 };
 </script>

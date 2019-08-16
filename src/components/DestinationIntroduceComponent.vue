@@ -20,7 +20,7 @@
               data-target="#destinationIntroModal"
             >
               <p class="text-center border-top font-weight-bold text-info">
-                Xem them
+                {{$t('general_showmore')}}
                 <font-awesome-icon icon="chevron-down" class="text-center" />
               </p>
             </div>
@@ -44,7 +44,7 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>Hieu them ve {{destination.destinationName}}</b>
+                <b>{{$t('pdestinationintro_exploremore')}} {{destination.destinationName}}</b>
               </h4>
             </div>
             <div class="col-8">
@@ -65,12 +65,12 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>Thong tin chung</b>
+                <b>{{$t('pdestinationintro_defaultinfo')}}</b>
               </h4>
             </div>
             <div class="col-4">
               <p>
-                <b>Mui gio</b>
+                <b>{{$t('pdestinationintro_timezone')}}</b>
               </p>
               <p>GMT +07</p>
               <p>
@@ -79,7 +79,7 @@
             </div>
             <div class="col-4">
               <p>
-                <b>Tien te</b>
+                <b>{{$t('pdestinationintro_money')}}</b>
               </p>
               <p>Vietnamdong</p>
               <p>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-4">
               <p>
-                <b>Thoi gian tuyet nhat de vi vu</b>
+                <b>{{$t('pdestinationintro_timetotravel')}}</b>
               </p>
               <p>THG 7 + 8</p>
               <p>
@@ -99,7 +99,7 @@
           <div class="row m-0 p-2">
             <div class="col-12">
               <h4>
-                <b>Hot promotion</b>
+                <b>{{$t('generail_hotpromotion')}}</b>
               </h4>
             </div>
             <div class="col-12">

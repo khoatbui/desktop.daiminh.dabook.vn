@@ -5,7 +5,7 @@
       <div class="row p-0 m-0" v-if="isTitle">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>{{$t('ptoptour_title_explain')}}</p>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger" @click="redirectToAllTour">
             {{$t('general_showmore')}}
             <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -90,6 +90,9 @@ export default {
     },
     redirectToTourDetail(des) {
       this.$router.push(`/tourdetail?tourid=${des._id}`);
+    },
+    redirectToAllTour() {
+      this.$router.push(`/tour`);
     }
   },
   computed : {

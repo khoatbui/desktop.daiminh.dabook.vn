@@ -5,7 +5,7 @@
       <div class="row p-0 m-0" v-if="isTitle">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>{{$t('ptopdestination_title_explain')}}</p>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger" @click="redirectToAllDestination">
             {{$t('general_showmore')}}
             <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -73,6 +73,11 @@ export default {
     redirectToDestination(des){
        this.$router.push(
         `/destination/detail?destinationid=${des._id}`
+      );
+    },
+    redirectToAllDestination(){
+       this.$router.push(
+        `/destination`
       );
     }
   },

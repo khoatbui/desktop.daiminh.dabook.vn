@@ -4,7 +4,7 @@
       <h3 class="title text-left m-0">{{travelStyle.travelStyleName}}</h3>
       <div class="row p-0 m-0 d-flex justify-content-end align-items-center">
           <a class="link-des text-danger">
-              Xem thêm
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
       </div>
@@ -15,7 +15,7 @@
             v-bind:alt="travelStyle.travelStyleName" />
             <div class="card-body-center text-left">
               <h4 class="card-title text-white text-x2">{{travelStyle.travelStyleName}}</h4>
-              <p class="card-text text-white"><b>200</b> diem den | <b>50</b> khach san | <b>10</b> tour</p>
+              <p class="card-text text-white"><b>200</b> {{$t('general_destination')}} | <b>50</b> {{$t('general_hotel')}} | <b>10</b> {{$t('general_tour')}}</p>
             </div>
           </div>
         </div>
@@ -28,9 +28,9 @@
                {{tour[0].destinationId.destinationName}}</h6>
               <h6 class="card-title m-0 cursor-pointer"  @click="redirectToTour(tour[0])">{{tour[0].tourName}}</h6>
                <p class="card-text intro-package hidden-outof-text" v-html="tour[0].tourIntro"></p>
-               <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour[0].price)}}</h2>
+               <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour[0].price)}}</h2>
                <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
-                <small class="text-muted m-0 text-success">Cap nhap tu {{bookingDate}}</small>
+                <small class="text-muted m-0 text-success">{{$t('general_update')}} {{bookingDate}}</small>
                 <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTour(tour[0])"/>
                </div>
             </div>
@@ -50,9 +50,9 @@
               </h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
               <div class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></div>
-              <h2 class="text-x1 price-text m-0">from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
                <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
-                <small class="text-muted m-0 text-success">Cap nhap tu {{moment(pac.createDate).format('YYYY.MM.DD')}}</small>
+                <small class="text-muted m-0 text-success">{{$t('general_update')}} {{moment(pac.createDate).format('YYYY.MM.DD')}}</small>
                 <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTourDetail(pac)"/>
                </div>
             </div>
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import i18n from "@/lang/i18n";
 import { Carousel, Slide } from 'vue-carousel';
 import moment from 'moment';
 import TourService from '@/api/TourService';
@@ -113,6 +114,17 @@ export default {
   },
   computed: {
     tourByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.tour.forEach(element => {
+        element.tourIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tourName = area.tourName;
+            element.tourIntro= area.tourIntro;
+          }
+        });
+      });
       return this.tour;
     }
   }

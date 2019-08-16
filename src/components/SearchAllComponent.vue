@@ -1,5 +1,5 @@
 <template>
-  <div class="tour-all second-background" v-if="componentLoaded">
+  <div class="tour-all second-background">
     <div class="container py-4 my-0">
       <ModalDetailImageComponent :imgs="imgBackground"></ModalDetailImageComponent>
     </div>
@@ -17,7 +17,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Muc gia (vnd)</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_price')}}</h6>
                 <p
                   class="text-left text-07 text-nomal text-muted"
                 >{{priceformat(filterCondition.price.filterPrice[0]) + ' - ' + priceformat(filterCondition.price.filterPrice[1])}}</p>
@@ -37,7 +37,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Loại sản phẩm</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_producttype')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -58,7 +58,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Travel Style</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_style')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -86,7 +86,7 @@
                 aria-expanded="false"
                 aria-controls="collapseDestination"
               >
-                <h6 class="text-left text-x1 font-bold border-bottom">Destination</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_destination')}}</h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseDestination">
                 <div class="row p-0 m-0">
@@ -107,7 +107,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Thương hiệu</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_supplier')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -128,7 +128,7 @@
           <div class="row m-0 p-0" v-if="roomType.length >0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Loại phòng</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_roomType')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -149,7 +149,7 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">Star Rating</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_star')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -173,7 +173,7 @@
                 aria-expanded="false"
                 aria-controls="collapseCity"
               >
-                <h6 class="text-left text-x1 font-bold border-bottom">City</h6>
+                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_city')}}</h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseCity">
                 <div class="row p-0 m-0">
@@ -431,7 +431,10 @@ export default {
   },
   data() {
     return {
-      componentLoaded: false,
+      componentLoaded:{
+        tour:false,
+        hotel:false,
+      },
       imgBackground: [
         {
           fileName: "daiminh travel",
@@ -542,7 +545,7 @@ export default {
       const response = await SearchService.GetTourBySearch(keyword);
       this.tourList = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
-      this.componentLoaded = true;
+      this.componentLoaded.tour = true;
     },
     async getTravelStyle() {
       const response = await TravelStyleService.getAllTravelStyle();
@@ -558,7 +561,7 @@ export default {
       this.packageList = randomArray(response.data);
       console.log(this.packageList);
       this.$store.commit("showHideLoading", false);
-      this.componentLoaded = true;
+      this.componentLoaded.hotel = true;
     },
     async getSupplier() {
       const response = await HotelSupplierService.getAllHotelSupplier();
@@ -583,10 +586,21 @@ export default {
   },
   computed: {
     tourListByLang() {
+      if (this.componentLoaded.tour === false) {
+        return;
+      }
+      this.tourList.forEach(element => {
+        element.tourIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tourName = area.tourName;
+            element.tourIntro= area.tourIntro;
+          }
+        });
+      });
       return this.tourList;
     },
     filterTourList() {
-      if (this.componentLoaded == false) {
+      if (this.componentLoaded.tour == false) {
         return this.tourListByLang;
       }
       var that = this;
@@ -638,11 +652,27 @@ export default {
       return this.filterCondition.price.filterPrice;
     },
     packageListByLang() {
-      console.log(this.packageList)
+      if (this.componentLoaded.hotel === false) {
+        return;
+      }
+      this.packageList.forEach(element => {
+        element.hotelId.hotelIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.hotelId.hotelName = area.hotelName;
+            element.hotelId.hotelIntro= area.hotelIntro;
+          }
+        });
+        element.roomTypeId.roomTypeIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.roomTypeId.roomTypeName = area.roomTypeName;
+            element.roomTypeId.roomTypeIntro= area.roomTypeIntro;
+          }
+        });
+      });
       return this.packageList;
     },
     filterHotelList() {
-      if (this.componentLoaded == false) {
+      if (this.componentLoaded.hotel == false) {
         return this.packageListByLang;
       }
       var that = this;
