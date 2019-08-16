@@ -203,12 +203,12 @@ export default new Router({
       children: [
         {
           path: 'search',
-          name: 'toursearch',
+          name: 'hotelsearch',
           component: CarDetailConfirm,
         },
         {
           path: '',
-          name: 'tourview',
+          name: 'hotelview',
           component: HotelAllComponent,
         },
       ],
@@ -219,12 +219,12 @@ export default new Router({
       children: [
         {
           path: 'search',
-          name: 'toursearch',
+          name: 'allsearch',
           component: CarDetailConfirm,
         },
         {
           path: '',
-          name: 'tourview',
+          name: 'defaultsearch',
           component: SearchAllComponent,
         },
       ],

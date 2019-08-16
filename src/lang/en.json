@@ -264,6 +264,11 @@
     "general_label_timelenght":"Thoi luong hanh trinh ",
     "general_label_ticket":"Ve theo tour co dinh",
     "general_label_noticketchange":"Khong the doi ve ",
+    "general_label_resultfound": "results found",
+    "general_label_sortby_price" :"Price",
+    "general_label_sortby_name" :"Name",
+    "general_label_sortby_popular" :"Popular",
+    "general_label_sortby_vote" :"Vote",
 
     "general_showmore":"Show more",
     "general_destination":"Destination",
