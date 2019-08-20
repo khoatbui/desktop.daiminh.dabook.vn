@@ -2,6 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 
+const CityView = () => import('./views/DestinationView.vue');
+const CityAllComponent = () => import('./components/DestinationAllComponent.vue');
+const CityDetailComponent = () => import('./components/CityDetailComponent.vue');
 const DestinationView = () => import('./views/DestinationView.vue');
 const DestinationAllComponent = () => import('./components/DestinationAllComponent.vue');
 const DestinationDetailComponent = () => import('./components/DestinationDetailComponent.vue');
@@ -67,6 +70,22 @@ export default new Router({
           path: '',
           name: 'destinatioall',
           component: DestinationAllComponent,
+        },
+      ],
+    },
+    {
+      path: '/city',
+      component: CityView,
+      children: [
+        {
+          path: 'detail',
+          name: 'citydetail',
+          component: CityDetailComponent,
+        },
+        {
+          path: '',
+          name: 'cityall',
+          component: CityAllComponent,
         },
       ],
     },

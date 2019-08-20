@@ -223,4 +223,8 @@ export default {
     transform: translateY(2px);
   }
 }
+.navbar{
+  color:#666666 !important;
+  font-size: 14px !important;
+}
 </style>

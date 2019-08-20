@@ -363,11 +363,11 @@
                       v-bind:class="{'btn-default':order.guest.guest.qty==0}"
                       href="#chon"
                       @click="selectPackage"
-                    >{{order.selectDate !==null?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</a>
+                    >{{order.selectDate !==null? $t('general_btn_booknow'):$t('general_btn_selectpackage')}}</a>
                   </div>
                   <div class="row m-0 p-0 text-muted">
                     <p class="my-1 text-08">
-                      <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />X{{$t('photelpackagedetail_text_confirm')}}
+                      <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />{{$t('photelpackagedetail_text_confirm')}}
                     </p>
                     <p class="my-1 text-08">
                       <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />{{$t('photelpackagedetail_text_receiveorder')}}

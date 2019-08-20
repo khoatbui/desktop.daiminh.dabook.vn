@@ -6,7 +6,10 @@ const City = {
     return axios.get(`${api}/city`);
   },
   getTopCity() {
-    return axios.get('http://103.237.144.222:3000/city/m/gettop10city');
+    return axios.get(`${api}/city/m/gettop10city`);
+  },
+  getCityById(cityId) {
+    return axios.get(`${api}/city/m/getcitybyid/${cityId}`);
   },
 };
 

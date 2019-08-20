@@ -5,13 +5,13 @@
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>{{$t('padswithhotel_body_h3')}}</p>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger cursor-pointer" @click="redirectToAllHotel" >
               {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
         </div>
       </div>
-      <div class="row p-0 m-0 d-flex align-items-stretch">
+      <div class="row p-0 m-0 d-flex align-items-stretch" v-if="typeof ads !='undefined'">
         <div class="col-8 m-0 p-1">
           <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':ads[0].adsImages.length==0}"  v-bind:src="ads[0].adsImages.length>0?`/${ads[0].adsImages[0].filePath}`:'/img/defaultloading.gif'"
@@ -20,15 +20,15 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="hotelByLang[0].roomTypeId.roomImages.length>0?`/webmp/${hotelByLang[0].roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="hotelByLang[0].roomTypeId.roomImages[0].fileName" />
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="hotelByLang[0].roomTypeId.roomImages.length>0?`/webmp/${hotelByLang[0].roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="hotelByLang[0].roomTypeId.roomImages[0].fileName"  @click="redirectToHotelDetail(hotelByLang[0].hotelId)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
                 <img class="img-supplier" v-bind:src="hotelByLang[0].supplierId.supplierImages.length>0?`/webmp/${hotelByLang[0].supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
                  {{hotelByLang[0].supplierId.supplierName}}</h6>
-              <h6 class="card-title m-0">{{hotelByLang[0].hotelId.hotelName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(hotelByLang[0].hotelId)">{{hotelByLang[0].hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="hotelByLang[0].roomTypeId.roomTypeName"></p>
-              <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotelByLang[0].price)}}</h2>
+              <h2 class="text-x1 price-text text-info m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotelByLang[0].price)}}</h2>
               <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
@@ -37,15 +37,15 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in hotelByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomTypeImages.length>0?`/webmp/${pac.roomTypeId.roomTypeImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.roomTypeId.roomTypeImages[0].fileName" />
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.roomTypeId.roomImages[0].fileName" @click="redirectToHotelDetail(pac.hotelId)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
                 <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</h6>
-              <h6 class="card-title m-0">{{pac.hotelId.hotelName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(pac.hotelId)">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
-              <h2 class="text-x1 price-text m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 price-text text-info m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
@@ -96,11 +96,23 @@ export default {
       this.$store.commit('showHideLoading', true);
       const response = await HotelService.getTopPromotionHotelPackage();
       this.packages = randomArray(response.data);
+      console.log(this.packages);
       const responseads = await AdsService.getAllAds();
       this.ads = randomArray(responseads.data);
+      console.log(this.ads);
       this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
     },
+    redirectToHotelDetail(des){
+       this.$router.push(
+        `/hoteldetail?hotelid=${des._id}`
+      );
+    },
+    redirectToAllHotel() {
+       this.$router.push(
+        `/hotel`
+      );
+    }
   },
   computed: {
     hotelByLang() {

@@ -5,7 +5,7 @@
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <div v-html="areaByLang.areaCountryIntro"></div>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger cursor-pointer" @click="redirectToAllDestination">
               {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -15,7 +15,7 @@
         <div class="col-8 m-0 p-1">
           <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':areaByLang.areaCountryImages.length==0}" v-bind:src="areaByLang.areaCountryImages.length>0?`/${areaByLang.areaCountryImages[0].filePath}`:'/img/defaultloading.gif'"
-            v-bind:alt="areaByLang.areaCountryName" />
+            v-bind:alt="areaByLang.areaCountryName"/>
             <div class="card-body-center text-left">
               <h4 class="card-title text-white text-x2">{{areaByLang.areaCountryName}}</h4>
               <p class="card-text text-white"><b>200</b> {{$t('general_destination')}} | <b>50</b> {{$t('general_hotel')}} | <b>10</b> {{$t('general_tour')}}</p>
@@ -25,8 +25,8 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':destinationByLang[0].destinationImages.length==0}"  v-bind:src="destinationByLang[0].destinationImages.length>0?`/webmp/${destinationByLang[0].destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="destinationByLang[0].destinationName" />
+            <img class="card-img-top image-package cursor-pointer" v-bind:class="{'small-loading-img':destinationByLang[0].destinationImages.length==0}"  v-bind:src="destinationByLang[0].destinationImages.length>0?`/webmp/${destinationByLang[0].destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="destinationByLang[0].destinationName"  @click="redirectToDestination(destinationByLang[0])"/>
              <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
                {{destinationByLang[0].cityId.cityName}}</h6>
@@ -112,6 +112,11 @@ export default {
     redirectToDestination(des){
        this.$router.push(
         `/destination/detail?destinationid=${des._id}`
+      );
+    },
+    redirectToAllDestination () {
+      this.$router.push(
+        `/destination`
       );
     }
   },

@@ -5,7 +5,7 @@
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>{{$t('ptopcity_title_explain')}}</p>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger" @click="redirectToAllCity">
               {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -14,12 +14,13 @@
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(city,ides) in citys" v-bind:key="ides">
           <div class="card m-0 h-100 d-inline-block position-relative">
-            <img class="card-img image-city h-100"
+            <img class="card-img image-city h-100 cursor-pointer"
              v-bind:class="{'small-loading-img':city.cityImages.length==0}"
             v-bind:src="city.cityImages.length>0?`/webmp/${city.cityImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-            v-bind:alt="city.cityImages[0].fileName" />
+            v-bind:alt="city.cityImages[0].fileName" 
+            @click="redirectToCity(city)"/>
             <div class="card-body-bottom-left text-left" >
-              <h4 class="card-title text-white">{{city.cityName}}</h4>
+              <h4 class="card-title text-white" @click="redirectToCity(city)">{{city.cityName}}</h4>
               <p class="card-text text-white"><b>15</b> {{$t('general_destination')}} | <b>60</b> {{$t('general_hotel')}} </p>
             </div>
           </div>
@@ -67,6 +68,16 @@ export default {
       this.citys = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
     },
+    redirectToCity(des) {
+       this.$router.push(
+        `/city/detail?cityid=${des._id}`
+      );
+    },
+    redirectToAllCity(des) {
+       this.$router.push(
+        `/city`
+      );
+    }
   },
 };
 </script>

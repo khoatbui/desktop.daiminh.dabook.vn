@@ -15,10 +15,11 @@
         <slide class="m-2" v-for="(pac,ides) in tourByLang" v-bind:key="ides">
           <div class="card m-0 h-100 d-inline-block">
             <img
-              class="card-img-top image-package"
+              class="card-img-top image-package cursor-pointer"
               v-bind:class="{'small-loading-img':pac.tourImages.length==0}"
               v-bind:src="pac.tourImages.length>0?`/webmp/${pac.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
               v-bind:alt="pac.tourImages[0].fileName"
+              @click="redirectToTourDetail(pac)"
             />
             <div class="card-body p-2">
               <h6
@@ -30,7 +31,7 @@
               >{{pac.tourName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
               <h2
-                class="text-x1 price-text m-0"
+                class="text-x1 price-text text-info m-0"
               >{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small
                 class="text-muted m-0 text-success"

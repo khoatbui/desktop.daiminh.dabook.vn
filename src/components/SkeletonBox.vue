@@ -24,7 +24,7 @@ export default {
     width: {
       // Make it possible to define a fixed
       // width instead of using a random one.
-      default: null,
+      default: 80,
       type: String
     }
   },

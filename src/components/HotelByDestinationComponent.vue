@@ -5,7 +5,7 @@
       <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
           <p>{{$t('photelbydestination_title_body')}}</p>
-          <a class="link-des text-danger">
+          <a class="link-des text-danger" @click="redirectToAllHotel">
               {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -14,8 +14,8 @@
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(pac,ides) in packageListByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.roomTypeId.roomImages[0].fileName" />
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.roomTypeId.roomImages[0].fileName"  @click="redirectToHotelDetail(pac.hotelId)"/>
             <div class="card-body p-2">
               <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
                 <span><img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
@@ -95,6 +95,11 @@ export default {
     redirectToHotelDetail(des){
        this.$router.push(
         `/hoteldetail?hotelid=${des._id}`
+      );
+    },
+    redirectToAllHotel () {
+      this.$router.push(
+        `/hotel`
       );
     }
   },

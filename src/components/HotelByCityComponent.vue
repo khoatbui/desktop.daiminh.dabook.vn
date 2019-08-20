@@ -1,39 +1,31 @@
 <template>
-  <div class="toppackage">
+  <div class="toppackage" v-cloak v-if="packages.length>0">
     <div class="section text-left pt-0 pb-4">
-      <h3 class="title text-left m-0" v-if="isTitle">{{$t('ptophotelpackage_title_h3')}}</h3>
-      <div class="row p-0 m-0 " v-if="isTitle">
+      <h3 class="title text-left m-0">{{getTitle}}</h3>
+      <div class="row p-0 m-0 ">
         <div class="col-12 p-0 m-0 d-flex justify-content-between align-items-center">
-          <p>{{$t('ptophotelpackage_title_body')}}</p>
+          <p>{{$t('photelbycity_title_body')}}</p>
           <a class="link-des text-danger" @click="redirectToAllHotel">
-             {{$t('general_showmore')}}
+              {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
         </div>
       </div>
-      <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
-        <slide class="m-2" v-for="(pac,ides) in packageByLang" v-bind:key="ides">
+      <carousel :per-page="5" :navigation-enabled="true">
+        <slide class="m-2" v-for="(pac,ides) in packageListByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package cursor-pointer"
-            v-bind:class="{'small-loading-img':pac.roomTypeId.roomImages.length==0}"
-            v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.roomTypeId.roomImages[0].fileName" @click="redirectToHotelPackageDetail(pac)"/>
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.roomTypeId.roomImages[0].fileName"  @click="redirectToHotelDetail(pac.hotelId)"/>
             <div class="card-body p-2">
-               <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
-             <span><img class="img-supplier"
-              v-bind:class="{'small-loading-img':pac.supplierId.supplierImages.length==0}"
-              v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
+              <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
+                <span><img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</span>
-                 <span class="badge badge-pill badge-danger shadow" v-if="pac.isPromote"><font-awesome-icon icon="tag" class="text-06 text-center" /><font-awesome-icon icon="percent" class="text-06 text-center" /></span>
-                 </h6>
-              <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelPackageDetail(pac)">{{pac.hotelId.hotelName}}</h6>
+                <span class="badge badge-pill badge-danger shadow"><font-awesome-icon icon="hotel" class="text-06 text-center" /></span>
+              </h6>
+              <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(pac.hotelId)">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
-              <small class="text-muted m-0"><font-awesome-icon icon="bolt" class=" mr-2 text-07"/>{{pac.hotelId.booked}} nguoi da dat</small>
-              <p class="d-flex justify-content-between align-items-center">
-                <span class="text-info text-07">
-                  <font-awesome-icon icon="star" v-for="star in pac.star" :key="star"/> ({{pac.view}} views)</span>
-                  <h2 class="text-x1 price-text text-info m-0">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
-              </p>
+              <h2 class="text-x1 price-text m-0 cursor-pointer"  @click="redirectToHotelDetail(pac.hotelId)">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
         </slide>
@@ -62,22 +54,28 @@ export default {
     Carousel,
     Slide,
   },
-  name: 'TopHotelPackagePromotionComponent',
+  name: 'HotelByCityComponent',
   props: {
     msg: String,
-    isTitle:true,
-    paginationEnabled:true,
+    city:{},
   },
   data() {
     return {
       packages: [],
       selectedPayment: {},
       bookingDate: moment().format('MM-DD-YYYY'),
+      title: "Top hotel promotion today",
       componentLoaded:false,
     };
   },
   mounted() {
-    this.initial();
+      if (typeof this.city._id !=='undefined' && this.city._id !== "") {
+        this.initialByCity(this.city._id);
+        this.title = `Hot hotel in ${this.city.cityName}`
+      }
+      else {
+        this.initial();
+      }
   },
   methods: {
     async initial() {
@@ -85,21 +83,36 @@ export default {
       const response = await HotelService.getTopPromotionHotelPackage();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
-      this.componentLoaded = true
+      this.componentLoaded=true;
     },
-    redirectToHotelPackageDetail(des){
+    async initialByCity(cityId) {
+      this.$store.commit('showHideLoading', true);
+      const response = await HotelService.getHotelPackageByCity(cityId);
+      this.packages = randomArray(response.data);
+      this.$store.commit('showHideLoading', false);
+      this.componentLoaded=true;
+    },
+    redirectToHotelDetail(des){
        this.$router.push(
-        `/hotelpackagedetail?hotelpackageid=${des._id}`
+        `/hoteldetail?hotelid=${des._id}`
       );
     },
-    redirectToAllHotel(){
-       this.$router.push(
+    redirectToAllHotel () {
+      this.$router.push(
         `/hotel`
       );
     }
   },
   computed: {
-    packageByLang() {
+      getTitle() {
+           if (typeof this.city._id !=='undefined' && this.city._id !== "") {
+               return `Hot hotel in ${this.city.cityName}`
+           }
+           else {
+               return 'Top hotel promotion today'
+           }
+      },
+      packageListByLang() {
       if (this.componentLoaded === false) {
         return;
       }
@@ -127,7 +140,6 @@ export default {
 <style scoped lang="scss">
 .card-package{
     width: 220px;
-    overflow: hidden;
 }
 .intro-package{
     width: 100px;

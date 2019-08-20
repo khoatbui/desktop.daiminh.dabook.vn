@@ -21,27 +21,27 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':tour[0].tourImages.length==0}"  v-bind:src="tour[0].tourImages.length>0?`/webmp/${tour[0].tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="tour[0].tourName" />
+            <img class="card-img-top image-package cursor-pointer" v-bind:class="{'small-loading-img':tourByLang[0].tourImages.length==0}"  v-bind:src="tourByLang[0].tourImages.length>0?`/webmp/${tourByLang[0].tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="tourByLang[0].tourName" @click="redirectToTour(tourByLang[0])"/>
              <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
-               {{tour[0].destinationId.destinationName}}</h6>
-              <h6 class="card-title m-0 cursor-pointer"  @click="redirectToTour(tour[0])">{{tour[0].tourName}}</h6>
-               <p class="card-text intro-package hidden-outof-text" v-html="tour[0].tourIntro"></p>
-               <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour[0].price)}}</h2>
+               {{tourByLang[0].destinationId.destinationName}}</h6>
+              <h6 class="card-title m-0 cursor-pointer"  @click="redirectToTour(tourByLang[0])">{{tourByLang[0].tourName}}</h6>
+               <p class="card-text intro-package hidden-outof-text" v-html="tourByLang[0].tourIntro"></p>
+               <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tourByLang[0].price)}}</h2>
                <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted m-0 text-success">{{$t('general_update')}} {{bookingDate}}</small>
-                <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTour(tour[0])"/>
+                <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTour(tourByLang[0])"/>
                </div>
             </div>
           </div>
         </div>
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
-        <slide class="m-2" v-for="(pac,ides) in tour" v-bind:key="ides">
+        <slide class="m-2" v-for="(pac,ides) in tourByLang" v-bind:key="ides">
           <div class="card card-package m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.tourImages.length==0}"  v-bind:src="pac.tourImages.length>0?`/webmp/${pac.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.tourName" />
+            <img class="card-img-top image-package cursor-pointer" v-bind:class="{'small-loading-img':pac.tourImages.length==0}"  v-bind:src="pac.tourImages.length>0?`/webmp/${pac.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+          v-bind:alt="pac.tourName" @click="redirectToTour(pac)"/>
              <div class="card-body w-100 p-2">
               <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center cursor-pointer"  @click="redirectToTourDetail(pac)">
                <span class="flex-grow">{{pac.destinationId.destinationName}}</span>

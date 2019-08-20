@@ -11,6 +11,9 @@ body{
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
+  .text-muted {
+    color: #999999 !important;
+  }
   .text-main-color{
     color: #333333 !important;
   }
@@ -54,6 +57,10 @@ body{
 }
 .height-150{
   max-height: 150px !important;
+  overflow: hidden;
+}
+.height-250{
+  height: 250px !important;
   overflow: hidden;
 }
 /* ==============SCROLL NGANG================== */

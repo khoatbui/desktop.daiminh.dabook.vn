@@ -4,8 +4,8 @@
       <h3 class="title text-left m-0">{{getTitle}}</h3>
       <div class="row m-2 p-0 bg-white border border-radius-none text-08">
         <div class="col-6 border-right border-bottom m-0 p-2">
-          <span>{{$t('pdestinationexplore_filter_location')}}</span>
-          <span class="ml-auto">{{destination.destinationName}}</span>
+          <span>{{$t('pcityexplore_filter_location')}}</span>
+          <span class="ml-auto">{{city.cityName}}</span>
         </div>
         <div class="col-6 border-bottom d-flex justify-content-between m-0 p-2 dropdown">
            <button
@@ -16,14 +16,14 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span>{{$t('pdestinationexplore_filter_filtetype')}}</span>
+            <span>{{$t('pcityexplore_filter_filtetype')}}</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
           <div class="dropdown-menu dropdown-menu-left w-100" aria-labelledby="dropdownSort">
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_booked')}}</a>
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_price')}}</a>
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_voted')}}</a>
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_create')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_booked')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_price')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_voted')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_create')}}</a>
           </div>
         </div>
         <div class="col-3 d-flex justify-content-between border-right m-0 p-2">
@@ -38,7 +38,7 @@
             aria-expanded="false"
             @click="dropdown.price=!dropdown.price"
           >
-            <span>{{$t('pdestinationexplore_filter_price')}}</span>
+            <span>{{$t('pcityexplore_filter_price')}}</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
           <div class="dropdown-menu dropdown-menu-left w-100 p-2 pt-4" v-bind:class="{'show showing':dropdown.price,'hide hideing':!dropdown.price}" aria-labelledby="dropdownPrice">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="col-3 d-flex justify-content-between border-right m-0 p-2">
-          <span>{{$t('pdestinationexplore_filter_promotion')}}</span>
+          <span>{{$t('pcityexplore_filter_promotion')}}</span>
           <span>
             <font-awesome-icon icon="chevron-down" class="text-center" />
           </span>
@@ -70,14 +70,14 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span>{{$t('pdestinationexplore_filter_sort')}}</span>
+            <span>{{$t('pcityexplore_filter_sort')}}</span>
             <font-awesome-icon icon="chevron-down" class="text-center text-1" />
           </button>
           <div class="dropdown-menu dropdown-menu-left w-100" aria-labelledby="dropdownSort">
-           <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_booked')}}</a>
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_price')}}</a>
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_voted')}}</a>
-            <a class="dropdown-item cursor-pointer">{{$t('pdestinationexplore_filter_filtetype_create')}}</a>
+           <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_booked')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_price')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_voted')}}</a>
+            <a class="dropdown-item cursor-pointer">{{$t('pcityexplore_filter_filtetype_create')}}</a>
           </div>
         </div>
       </div>
@@ -173,10 +173,10 @@ export default {
     DateTimePicker,
     AirbnbDatetimePickerComponent
   },
-  name: "DestinationExplorerFilterComponent",
+  name: "CityExplorerFilterComponent",
   props: {
     msg: String,
-    destination: {}
+    city: {}
   },
   data() {
     return {
@@ -202,11 +202,11 @@ export default {
   },
   mounted() {
     if (
-      typeof this.destination._id !== "undefined" &&
-      this.destination._id !== ""
+      typeof this.city._id !== "undefined" &&
+      this.city._id !== ""
     ) {
-      this.initialByDestination(this.destination._id);
-      this.title = `Lam gi khi den ${this.destination.destinationName}`;
+      this.initialByCity(this.city._id);
+      this.title = `Lam gi khi den ${this.city.cityName}`;
     } else {
       this.initial();
     }
@@ -221,14 +221,14 @@ export default {
       this.$store.commit("showHideLoading", false);
       this.componentLoaded=true;
     },
-    async initialByDestination(destinationId) {
+    async initialByCity(cityId) {
       this.$store.commit("showHideLoading", true);
-      const response = await HotelService.getHotelPackageByDestination(
-        destinationId
+      const response = await HotelService.getHotelPackageByCity(
+        cityId
       );
       this.packages = randomArray(response.data);
-      const responsetour = await TourService.getTourPackageByDestination(
-        destinationId
+      const responsetour = await TourService.getTourPackageByCity(
+        cityId
       );
       this.tours = randomArray(responsetour.data);
       this.$store.commit("showHideLoading", false);
@@ -245,10 +245,10 @@ export default {
   computed: {
     getTitle() {
       if (
-        typeof this.destination._id !== "undefined" &&
-        this.destination._id !== ""
+        typeof this.city._id !== "undefined" &&
+        this.city._id !== ""
       ) {
-        return `Hot hotel in ${this.destination.destinationName}`;
+        return `Hot hotel in ${this.city.cityName}`;
       } else {
         return "Du lich cung chung toi";
       }

@@ -14,6 +14,9 @@ const Tour = {
   getTourPackageByDestination(destinationId) {
     return axios.get(`${api}/tourlist/m/getalltourbydestination/${destinationId}`);
   },
+  getTourPackageByCity(cityId) {
+    return axios.get(`${api}/tourlist/m/getalltourbycity/${cityId}`);
+  },
   getTourPackageByStyle(travelStyleId) {
     return axios.get(`${api}/tourlist/m/getalltourbystyle/${travelStyleId}`);
   },

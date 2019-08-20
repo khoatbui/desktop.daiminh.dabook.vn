@@ -1,23 +1,23 @@
 <template>
   <div class="topcity">
     <div class="section text-left pt-0 pb-4">
-      <h4 class="title text-left m-0 p-3">{{$t('general_label_whatwelove')+ ' ' + destination.destinationName}} </h4>
+      <h4 class="title text-left m-0 p-3">Ban se thich</h4>
       <div class="row m-0 p-0 d-flex align-items-stretch">
         <div class="col-8">
           <div class="row m-0 p-0 text-08 h-100">
             <div class="col-12 m-0 px-0 pb-2">
-              <div class="shot-intro" v-html="destination.destinationIntro"></div>
+              <div class="shot-intro" v-html="city.cityIntro"></div>
             </div>
             <div
               class="col-12 m-0 p-0 d-flex justify-content-start align-items-center flex-grow-1"
             >
-              <span class="text-success font-weight-bold px-2">{{$t('general_label_dontmiss')}} :</span> <span class="text-muted px-2">{{$t('general_label_historyandcuture')}}</span> <span class="text-muted px-2"> {{$t('general_label_urban')}}</span>
-              <span class="text-muted px-2">{{$t('general_label_art')}}</span>
+              <span class="text-success font-weight-bold px-2">Dung bo lo :</span> <span class="text-muted px-2">Kỳ quan thiên nhiên</span> <span class="text-muted px-2"> Lịch sử và Văn hóa</span>
+              <span class="text-muted px-2"> Diem den khong the bo qua</span>
             </div>
             <div
               class="col-12 mt-auto text-align-center w-100 p-0 m-0 cursor-pointer"
               data-toggle="modal"
-              data-target="#destinationIntroModal"
+              data-target="#cityIntroModal"
             >
               <p class="text-center border-top font-weight-bold text-info">
                 {{$t('general_showmore')}}
@@ -33,10 +33,10 @@
     </div>
     <div
       class="modal fade"
-      id="destinationIntroModal"
+      id="cityIntroModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="destinationIntroModalLabel"
+      aria-labelledby="cityIntroModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog vw-85" role="document">
@@ -44,17 +44,17 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>{{$t('pdestinationintro_exploremore')}} {{destination.destinationName}}</b>
+                <b>{{$t('pcityintro_exploremore')}} {{city.cityName}}</b>
               </h4>
             </div>
             <div class="col-8">
-              <div v-html="destination.destinationIntro"></div>
+              <div v-html="city.cityIntro"></div>
             </div>
             <div class="col-4">
               <carousel class="image-des" :per-page="1" :navigation-enabled="false" :paginationEnabled="false">
                 <slide
                   class="m-2"
-                  v-for="(pac,ides) in destination.destinationImages"
+                  v-for="(pac,ides) in city.cityImages"
                   v-bind:key="ides"
                 >
                   <img class="image-des-img" v-bind:src="`/webmp/${pac.filePath.slice(0, -3)}webp`" v-bind:alt="pac.fileName" />
@@ -65,12 +65,12 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>{{$t('pdestinationintro_defaultinfo')}}</b>
+                <b>{{$t('pcityintro_defaultinfo')}}</b>
               </h4>
             </div>
             <div class="col-4">
               <p>
-                <b>{{$t('pdestinationintro_timezone')}}</b>
+                <b>{{$t('pcityintro_timezone')}}</b>
               </p>
               <p>GMT +07</p>
               <p>
@@ -79,7 +79,7 @@
             </div>
             <div class="col-4">
               <p>
-                <b>{{$t('pdestinationintro_money')}}</b>
+                <b>{{$t('pcityintro_money')}}</b>
               </p>
               <p>Vietnamdong</p>
               <p>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-4">
               <p>
-                <b>{{$t('pdestinationintro_timetotravel')}}</b>
+                <b>{{$t('pcityintro_timetotravel')}}</b>
               </p>
               <p>THG 7 + 8</p>
               <p>
@@ -140,10 +140,10 @@ export default {
       loading: SkeletonBox,
     }),
   },
-  name: 'DestinationIntroComponent',
+  name: 'CityIntroComponent',
   props: {
     msg: String,
-    destination: {},
+    city: {},
   },
   data() {
     return {

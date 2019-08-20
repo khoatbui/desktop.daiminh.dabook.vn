@@ -121,10 +121,11 @@
                 <div class="row h-100 p-0 m-0">
                   <div class="col-4 img-card h-100 p-0 m-0">
                     <img
-                      class="image-package"
+                      class="image-package cursor-pointer"
                       v-bind:class="{'small-loading-img':tour.tourImages.length==0}"
                       v-bind:src="tour.tourImages.length>0?`/webmp/${tour.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
                       v-bind:alt="tour.tourName"
+                       @click="redirectToTourDetail(tour)"
                     />
                   </div>
                   <div class="col-8 p-3 m-0">

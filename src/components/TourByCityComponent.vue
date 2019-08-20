@@ -53,7 +53,7 @@ export default {
     msg: String,
     isTitle:true,
     paginationEnabled:true,
-    destination:{},
+    city:{},
   },
   data() {
     return {
@@ -64,9 +64,9 @@ export default {
     };
   },
   mounted() {
-      if (typeof this.destination._id !=='undefined' && this.destination._id !== "") {
-        this.initialByDestination(this.destination._id);
-        this.title = `Hot tour in ${this.destination.destinationName}`
+      if (typeof this.city._id !=='undefined' && this.city._id !== "") {
+        this.initialByCity(this.city._id);
+        this.title = `Hot tour in ${this.city.cityName}`
       }
       else {
         this.initial();
@@ -80,9 +80,9 @@ export default {
       this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
     },
-    async initialByDestination(destinationId) {
+    async initialByCity(cityId) {
       this.$store.commit('showHideLoading', true);
-      const response = await TourService.getTourPackageByDestination();
+      const response = await TourService.getTourPackageByCity();
       this.packages = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
@@ -95,8 +95,8 @@ export default {
   },
   computed: {
       getTitle() {
-           if (typeof this.destination._id !=='undefined' && this.destination._id !== "") {
-               return `Hot tour in ${this.destination.destinationName}`
+           if (typeof this.city._id !=='undefined' && this.city._id !== "") {
+               return `Hot tour in ${this.city.cityName}`
            }
            else {
                return 'Top tour promotion today'

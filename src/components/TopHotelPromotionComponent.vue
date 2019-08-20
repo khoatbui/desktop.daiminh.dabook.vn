@@ -14,10 +14,10 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
         <slide class="m-2" v-for="(pac,ides) in packageByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package"
+            <img class="card-img-top image-package cursor-pointer"
             v-bind:class="{'small-loading-img':pac.hotelImages.length==0}"
             v-bind:src="pac.hotelImages.length>0?`/webmp/${pac.hotelImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
-          v-bind:alt="pac.hotelImages[0].fileName" />
+          v-bind:alt="pac.hotelImages[0].fileName" @click="redirectToHotelDetail(pac)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
              <span><img class="img-supplier"

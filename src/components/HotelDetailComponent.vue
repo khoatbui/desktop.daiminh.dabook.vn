@@ -340,14 +340,14 @@
                   </p>
                   <p class="text-09 text-muted mb-0">in {{order.checkInDate}} | out {{order.checkOutDate}}</p>
                   <p class="text-09 text-muted mb-0">
-                    <span class="pr-2">{{$t(general_label_guest)}} x {{order.guest.guest.qty}}</span>
+                    <span class="pr-2">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
                     <span class="pr-2">
-                      {{$t(general_label_child04)}} 
+                      {{$t('general_label_child04')}} 
                       <span class="text-07">(0-4)</span>
                       x {{order.guest.child04.qty}}
                     </span>
                     <span>
-                      {{$t(general_label_child48)}} 
+                      {{$t('general_label_child48')}} 
                       <span class="text-07">(4-8)</span>
                       x {{order.guest.child48.qty}}
                     </span>
@@ -369,17 +369,17 @@
                     v-bind:class="{'btn-default':order.guest.guest.qty==0}"
                     href="#chon"
                     @click="selectHotelPackage"
-                  >{{formCheck.usingDefaultData ==false?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</a>
+                  >{{formCheck.usingDefaultData ==false? $t('general_btn_booknow'):$t('general_btn_selectpackage')}}</a>
                 </div>
                 <div class="row m-0 p-0 text-muted">
                   <p class="my-1 text-08">
-                    <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />Xac nhan don hang tuc thi
+                    <font-awesome-icon icon="bolt" class="text-center text-info text-08 mr-2" />{{$t('photelpackagedetail_text_confirm')}}
                   </p>
                   <p class="my-1 text-08">
-                    <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />Nhan bao gia trong vong 1 ngay lam viec
+                    <font-awesome-icon icon="paper-plane" class="text-center text-08 mr-2" />{{$t('photelpackagedetail_text_receiveorder')}}
                   </p>
                   <p class="my-1 text-08">
-                    <font-awesome-icon icon="medal" class="text-center text-08 mr-2" />Luon dam bao gia tot nhat va dich vu tot nhat
+                    <font-awesome-icon icon="medal" class="text-center text-08 mr-2" />{{$t('photelpackagedetail_text_bestservice')}}
                   </p>
                 </div>
               </div>
