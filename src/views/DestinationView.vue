@@ -1,7 +1,7 @@
 <template>
   <div class="destination">
     <NavigationComponent :isTran="false" :isFixed="true"></NavigationComponent>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
     <FooterComponent></FooterComponent>
   </div>
 </template>
