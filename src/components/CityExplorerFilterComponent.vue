@@ -89,7 +89,7 @@
         >
           <img
             class="card-img-top image-package cursor-pointer"
-            v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            v-bind:src="pac.roomTypeId.roomImages.length>0?`/smimg/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
             v-bind:alt="pac.roomTypeId.roomImages[0].fileName"
             click="redirectToHotelDetail(pac.hotelId)"
           />
@@ -97,7 +97,7 @@
             <h6 class="card-title m-0 text-color-50 text-06">
               <img
                 class="img-supplier"
-                v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                 alt
               />
               {{pac.supplierId.supplierName}}
@@ -123,7 +123,7 @@
         >
           <img
             class="card-img-top image-package cursor-pointer"
-            v-bind:src="tour.tourImages.length>0?`/webmp/${tour.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            v-bind:src="tour.tourImages.length>0?`/smimg/${tour.tourImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
             v-bind:alt="tour.tourImages[0].fileName"
              @click="redirectToTourDetail(tour)"
           />

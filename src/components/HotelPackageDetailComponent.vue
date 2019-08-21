@@ -57,7 +57,7 @@
                   <img
                     class="img-supplier"
                     v-bind:class="{'small-loading-img':packageDetailByLang.supplierId.supplierImages.length==0}"
-                    v-bind:src="packageDetailByLang.supplierId.supplierImages.length>0?`/webmp/${packageDetailByLang.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="packageDetailByLang.supplierId.supplierImages.length>0?`/smimg/${packageDetailByLang.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                     v-bind:alt="packageDetailByLang.supplierId.supplierName"
                   />
                 </span>

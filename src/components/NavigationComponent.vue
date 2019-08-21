@@ -224,7 +224,10 @@ export default {
   }
 }
 .navbar{
-  color:#666666 !important;
   font-size: 14px !important;
+  color:#3c4858 !important;
+}
+.navbar.navbar-expand-lg.navbar-color-on-scroll.fixed-top.navbar-transparent{
+  color:#FFFFFF !important;
 }
 </style>

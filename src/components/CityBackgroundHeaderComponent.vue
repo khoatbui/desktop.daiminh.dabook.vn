@@ -12,7 +12,7 @@
         class="w-100"
         v-for="(img,i) in city.cityImages"
         v-bind:key="i"
-        v-bind:src="`/webmp/${img.filePath.slice(0, -3)}webp`"
+        v-bind:src="`/${img.filePath}`"
         v-bind:alt="img.fileName"
       />
     </carouselab>
@@ -54,7 +54,7 @@
                   <img
                     class="card-img image-des cursor-pointer city-des-img"
                     v-bind:class="{'small-loading-img':des.destinationImages.length==0}"
-                    v-bind:src="des.destinationImages.length>0?`/webmp/${des.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="des.destinationImages.length>0?`/smimg/${des.destinationImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                     v-bind:alt="des.destinationName"
                   />
                   <div class="card-body-center">

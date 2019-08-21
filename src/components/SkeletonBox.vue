@@ -25,7 +25,7 @@ export default {
       // Make it possible to define a fixed
       // width instead of using a random one.
       default: 80,
-      type: String
+      type: Number
     }
   },
   computed: {
@@ -33,12 +33,7 @@ export default {
       // Either use the given fixed width or
       // a random width between the given min
       // and max values.
-      return (
-        this.width ||
-        `${Math.floor(
-          Math.random() * (this.maxWidth - this.minWidth) + this.minWidth
-        )}%`
-      );
+      return this.width || `${Math.floor((Math.random() * (this.maxWidth - this.minWidth)) + this.minWidth)}%`;
     }
   }
 };

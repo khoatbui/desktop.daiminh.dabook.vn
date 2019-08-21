@@ -41,7 +41,7 @@
                       <img
                         class="w-100 h-100"
                         v-bind:class="{'small-loading-img':tservice.travelServiceImages.length==0}"
-                        v-bind:src="tservice.travelServiceImages.length>0?`/webmp/${tservice.travelServiceImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                        v-bind:src="tservice.travelServiceImages.length>0?`/${tservice.travelServiceImages[0].filePath}`:'/img/defaultloading.gif'"
                         v-bind:alt="tservice.travelServiceName"
                       />
                       <div class="card-img-overlay  d-flex align-items-center justify-content-center card-body-center">
@@ -76,7 +76,7 @@
                       <img
                         class="w-100 h-100"
                         v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
-                        v-bind:src="ht.roomTypeId.roomImages.length>0?`/webmp/${ht.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                        v-bind:src="ht.roomTypeId.roomImages.length>0?`/smimg/${ht.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                         v-bind:alt="ht.roomTypeId.roomTypeName"
                       />
                       <div class="card-img-overlay d-flex align-items-center justify-content-center card-body-center">
@@ -233,7 +233,7 @@ export default {
     },
     redirectToTravelService(travelservice) {
       this.$router.push(
-        `/travelservice/detail?travelserviceid=${travelservice._id}`
+        `${travelservice.router}`
       );
     },
     redirectToAllTravelService() {
@@ -392,6 +392,7 @@ export default {
 .max-height-150{
   max-height: 150px;
   overflow: hidden;
+  height: 100px !important;
 }
 .card-body-center{
   position:absolute;

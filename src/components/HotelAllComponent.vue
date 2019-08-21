@@ -161,7 +161,7 @@
                     <img
                       class="image-package cursor-pointer"
                       v-bind:class="{'small-loading-img':hotel[0].hotelId.hotelImages.length==0}"
-                      v-bind:src="hotel[0].hotelId.hotelImages.length>0?`/webmp/${hotel[0].hotelId.hotelImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                      v-bind:src="hotel[0].hotelId.hotelImages.length>0?`/smimg/${hotel[0].hotelId.hotelImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                       v-bind:alt="hotel[0].hotelId.hotelName"
                        @click="redirectToTourDetail(hotel[0].hotelId)"
                     />

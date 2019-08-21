@@ -1,7 +1,7 @@
 <template>
   <div class="main-index h-400" data-parallax="true">
     <carousel :items="1" :autoplay="true" :nav="false" :dots="false" :loop="true" class="w-100 m-0 p-0">
-        <img class="w-100" v-for="(img,i) in travelstyle.travelStyleImages" v-bind:key="i" v-bind:src="`/webmp/${img.filePath.slice(0, -3)}webp`"
+        <img class="w-100" v-for="(img,i) in travelstyle.travelStyleImages" v-bind:key="i" v-bind:src="`/${img.filePath}`"
             v-bind:alt="img.fileName">
     </carousel>
         <div class="w-75 card-body-center">

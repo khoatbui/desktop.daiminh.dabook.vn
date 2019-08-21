@@ -1,9 +1,12 @@
 <template>
   <div class="destinationmain">
-    <DestinationBackgroundHeaderComponent :destination="destination" ></DestinationBackgroundHeaderComponent>
+    <BackgroundHeaderComponent :destination="destination" ></BackgroundHeaderComponent>
     <div class="main-body">
       <div class="container pt-4">
-        <DestinationIntroduceComponent v-bind:destination="destination"></DestinationIntroduceComponent>
+        <HorizontalAdsComponent :adstype="'ALL'" :paginationEnabled="false" :navigationEnabled="false"></HorizontalAdsComponent>
+      </div>
+      <div class="container pt-4" v-for="(area,i) in areaCountry" v-bind:key="i">
+        <DestinationByAreaCountryComponent :area="area"></DestinationByAreaCountryComponent>
       </div>
       <div class="container pt-4">
         <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
@@ -21,7 +24,7 @@
         <DestinationExplorerFilterComponent :destination="destination"></DestinationExplorerFilterComponent>
       </div>
       <div class="container pt-4">
-        <TopHotelPromotionComponent  :isTitle="true" :paginationEnabled="false"></TopHotelPromotionComponent>
+        <TopHotelPromotionComponent></TopHotelPromotionComponent>
       </div>
       <div class="container pt-4">
         <IntroduceDaiMinhComponent></IntroduceDaiMinhComponent>
@@ -41,9 +44,10 @@
 import lazyLoadComponent from '@/utils/lazy-load-component'
 import SkeletonBox from '@/components/SkeletonBox.vue';
 import DestinationService from '@/api/DestinationService';
+import AreaCountryService from '@/api/AreaCountryService';
 
 export default {
-  name: 'DestinationDetailComponent',
+  name: 'destinationmain',
   components: {
     VideoComponent:lazyLoadComponent({
       componentFactory: () => import('@/components/VideoComponent.vue'),
@@ -57,8 +61,8 @@ export default {
       componentFactory: () => import('@/components/TopHotelPromotionComponent.vue'),
       loading: SkeletonBox,
     }),
-    DestinationBackgroundHeaderComponent:lazyLoadComponent({
-      componentFactory: () => import('@/components/DestinationBackgroundHeaderComponent.vue'),
+    BackgroundHeaderComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/BackgroundHeaderComponent.vue'),
       loading: SkeletonBox,
     }),
     TopTourPromotionComponent:lazyLoadComponent({
@@ -77,8 +81,8 @@ export default {
       componentFactory: () => import('@/components/AdsWithHotelPromotionComponent.vue'),
       loading: SkeletonBox,
     }),
-    DestinationIntroduceComponent:lazyLoadComponent({
-      componentFactory: () => import('@/components/DestinationIntroduceComponent.vue'),
+    DestinationByAreaCountryComponent:lazyLoadComponent({
+      componentFactory: () => import('@/components/DestinationByAreaCountryComponent.vue'),
       loading: SkeletonBox,
     }),
     TourByDestinationComponent:lazyLoadComponent({
@@ -92,32 +96,21 @@ export default {
   },
   data() {
     return {
+      destinationId:this.$route.query.destinationid,
       destination:{},
+      areaCountry:[]
     };
   },
-  watch: {
-    // call again the method if the route changes
-    '$route': 'initialParam'
-  },
   mounted() {
-         this.initialParam();
+         this.initial();
   },
   methods: {
-    initialParam (){
-      this.initial(this.$route.query.destinationid);
-    },
-      async initial(destinationId) {
+      async initial() {
       this.$store.commit('showHideLoading', true);
-      const response = await DestinationService.getDestinationById(destinationId);
-      this.destination =response.data;
-      console.log(this.destination);
+      const response = await AreaCountryService.getAllAreaCountry();
+      this.areaCountry =response.data;
       this.$store.commit('showHideLoading', false);
     }
   },
-  computed:{
-    destinationByLang (){
-      return this.destination;
-    }
-  }
 };
 </script>

@@ -13,6 +13,8 @@ const TravelStyleAllComponent = () => import('./components/TravelStyleAllCompone
 const TravelStyleDetailComponent = () => import('./components/TravelStyleDetailComponent.vue');
 const TravelServiceView = () => import('./views/TravelServiceView.vue');
 const MICEView = () => import('./views/MICEView.vue');
+const MICEAllComponent = () => import('./components/MICEAllComponent.vue');
+const MICEDetailComponent = () => import('./components/MICEDetailComponent.vue');
 const FITView = () => import('./views/FITView.vue');
 const TourDetailView = () => import('./views/TourDetailView.vue');
 const TourDetail = () => import('./components/TourDetailComponent.vue');
@@ -34,6 +36,8 @@ const HotelView = () => import('./views/HotelView.vue');
 const HotelAllComponent = () => import('./components/HotelAllComponent.vue');
 const SearchView = () => import('./views/SearchView.vue');
 const SearchAllComponent = () => import('./components/SearchAllComponent.vue');
+
+const VisaDetailComponent = () => import('./components/VisaDetailComponent.vue');
 
 Vue.use(Router);
 
@@ -109,11 +113,50 @@ export default new Router({
       path: '/travelservice',
       name: 'travelservice',
       component: TravelServiceView,
+      children: [
+        {
+          path: 'visa',
+          name: 'visaservice',
+          component: VisaDetailComponent,
+        },
+        {
+          path: 'insurance',
+          name: 'insuranceservice',
+          component: TravelStyleDetailComponent,
+        },
+        {
+          path: 'car',
+          name: 'carservice',
+          component: TravelStyleDetailComponent,
+        },
+        {
+          path: 'hotel',
+          name: 'hotelservice',
+          component: HotelAllComponent,
+        },
+        {
+          path: '',
+          name: 'travelserviceall',
+          component: TravelStyleAllComponent,
+        },
+      ],
     },
     {
       path: '/mice',
       name: 'mice',
       component: MICEView,
+      children: [
+        {
+          path: 'detail',
+          name: 'micedetail',
+          component: MICEDetailComponent,
+        },
+        {
+          path: '',
+          name: 'miceall',
+          component: MICEAllComponent,
+        },
+      ],
     },
     {
       path: '/fit',

@@ -2,7 +2,7 @@
   <div class="intro-component">
     <div class="row m-0 p-0">
       <div class="col-12 m-0 p-0 parent-absolute">
-        <img class="w-100 card-img-top image-modal" v-bind:class="{'small-loading-img':imgs.length==0}"  v-bind:src="imgs.length>0?`/webmp/${imgs[0].filePath.slice(0, -3)}webp`:'/img/background/bg_10.jpg'"
+        <img class="w-100 card-img-top image-modal" v-bind:class="{'small-loading-img':imgs.length==0}"  v-bind:src="imgs.length>0?`/${imgs[0].filePath}`:'/img/background/bg_10.jpg'"
           v-bind:alt="imgs[0].fileName"  />
         <div class="left-top-absolute text-center text-white">
           <button class="image-view-btn shadow text-x06">

@@ -1,7 +1,7 @@
 <template>
   <div class="topcity">
     <div class="section text-left pt-0 pb-4">
-      <h4 class="title text-left m-0 p-3">{{$t('general_label_whatwelove')+ ' ' + destination.destinationName}} </h4>
+      <h4 class="title text-left m-0 p-3 text-uppercase">{{$t('general_label_whatwelove')+ ' ' + destination.destinationName}} </h4>
       <div class="row m-0 p-0 d-flex align-items-stretch">
         <div class="col-8">
           <div class="row m-0 p-0 text-08 h-100">
@@ -57,7 +57,7 @@
                   v-for="(pac,ides) in destination.destinationImages"
                   v-bind:key="ides"
                 >
-                  <img class="image-des-img" v-bind:src="`/webmp/${pac.filePath.slice(0, -3)}webp`" v-bind:alt="pac.fileName" />
+                  <img class="image-des-img" v-bind:src="`/smimg/${pac.filePath.slice(0, -3)}jpg`" v-bind:alt="pac.fileName" />
                 </slide>
               </carousel>
             </div>
@@ -150,6 +150,9 @@ export default {
       citys: [],
       selectedPayment: {},
     };
+  },
+  watch: {
+    '$route': 'initial'
   },
   mounted() {
     this.initial();

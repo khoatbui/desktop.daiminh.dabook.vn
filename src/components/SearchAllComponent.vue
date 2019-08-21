@@ -243,7 +243,7 @@
                     <img
                       class="image-package"
                       v-bind:class="{'small-loading-img':tour.tourImages.length==0}"
-                      v-bind:src="tour.tourImages.length>0?`/webmp/${tour.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                      v-bind:src="tour.tourImages.length>0?`/smimg/${tour.tourImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                       v-bind:alt="tour.tourName"
                     />
                   </div>
@@ -323,7 +323,7 @@
                     <img
                       class="image-package"
                       v-bind:class="{'small-loading-img':hotel[0].hotelId.hotelImages.length==0}"
-                      v-bind:src="hotel[0].hotelId.hotelImages.length>0?`/webmp/${hotel[0].hotelId.hotelImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                      v-bind:src="hotel[0].hotelId.hotelImages.length>0?`/smimg/${hotel[0].hotelId.hotelImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                       v-bind:alt="hotel[0].hotelId.hotelName"
                     />
                   </div>

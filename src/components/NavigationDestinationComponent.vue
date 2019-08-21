@@ -44,13 +44,13 @@
                 >
                     <div class="row h-100 p-0 m-0 nav-style-card-filter">
                     <a
-                        class="nav-card-link h-100 cursor-pointer"
+                        class="nav-card-link cursor-pointer"
                         @click="redirectToDestination(des)"
                     >
                         <img
                         class="w-100 h-100"
                         v-bind:class="{'small-loading-img':des.destinationImages.length==0}"
-                        v-bind:src="des.destinationImages.length>0?`/webmp/${des.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                        v-bind:src="des.destinationImages.length>0?`/smimg/${des.destinationImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                         v-bind:alt="des.destinationName"
                         />
                         <div class="card-img-overlay card-body-center">
@@ -59,19 +59,6 @@
                         >{{des.destinationName}}</h4>
                         </div>
                     </a>
-                    </div>
-                    <div class="row m-0 p-0">
-                    <div class="hotel-card-body-bottom text-06">
-                        <a class="nav-card-link cursor-pointer">
-                        <span class="text-08 font-weight-bold m-0">{{$t('general_tour')}}</span>
-                        </a> |
-                        <a class="nav-card-link cursor-pointer">
-                        <span class="text-08 font-weight-bold m-0">{{$t('general_hotel_short')}}</span>
-                        </a> |
-                        <a class="nav-card-link cursor-pointer">
-                        <span class="text-08 font-weight-bold m-0">{{$t('general_car')}}</span>
-                        </a>
-                    </div>
                     </div>
                 </div>
                 </div>
@@ -207,6 +194,8 @@ export default {
   background-color: #ffffff;
   color: #205072;
   font-weight: 700;
+  height: 70px !important;
+  width: 100% !important;
 }
 .nav-card-link:hover {
   box-shadow: none;
@@ -234,5 +223,6 @@ export default {
     left: 50%;
     transform: translate(-50%,-50%);
     color: #FFFFFF;
+    white-space: nowrap;
 }
 </style>

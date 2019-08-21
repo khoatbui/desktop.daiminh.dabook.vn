@@ -17,7 +17,7 @@
             <img
               class="card-img-top image-package cursor-pointer"
               v-bind:class="{'small-loading-img':pac.tourImages.length==0}"
-              v-bind:src="pac.tourImages.length>0?`/webmp/${pac.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+              v-bind:src="pac.tourImages.length>0?`/${pac.tourImages[0].filePath}`:'/img/defaultloading.gif'"
               v-bind:alt="pac.tourImages[0].fileName"
               @click="redirectToTourDetail(pac)"
             />

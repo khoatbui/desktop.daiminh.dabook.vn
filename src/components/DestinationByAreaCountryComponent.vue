@@ -14,7 +14,7 @@
       <div class="row p-0 m-0 d-flex align-items-stretch">
         <div class="col-8 m-0 p-1">
           <div class="card m-0 h-100 d-inline-block position-relative">
-            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':areaByLang.areaCountryImages.length==0}" v-bind:src="areaByLang.areaCountryImages.length>0?`/${areaByLang.areaCountryImages[0].filePath}`:'/img/defaultloading.gif'"
+            <img class="card-img image-ads h-100" v-bind:class="{'small-loading-img':areaByLang.areaCountryImages.length==0}" v-bind:src="areaByLang.areaCountryImages.length>0?`/smimg/${areaByLang.areaCountryImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
             v-bind:alt="areaByLang.areaCountryName"/>
             <div class="card-body-center text-left">
               <h4 class="card-title text-white text-x2">{{areaByLang.areaCountryName}}</h4>
@@ -25,7 +25,7 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package cursor-pointer" v-bind:class="{'small-loading-img':destinationByLang[0].destinationImages.length==0}"  v-bind:src="destinationByLang[0].destinationImages.length>0?`/webmp/${destinationByLang[0].destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package cursor-pointer" v-bind:class="{'small-loading-img':destinationByLang[0].destinationImages.length==0}"  v-bind:src="destinationByLang[0].destinationImages.length>0?`/smimg/${destinationByLang[0].destinationImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
           v-bind:alt="destinationByLang[0].destinationName"  @click="redirectToDestination(destinationByLang[0])"/>
              <div class="card-body p-2">
                 <h6 class="card-title m-0 text-color-50 text-06">
@@ -43,7 +43,7 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in destinationByLang" v-bind:key="ides">
           <div class="card card-package m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.destinationImages.length==0}"  v-bind:src="pac.destinationImages.length>0?`/webmp/${pac.destinationImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package" v-bind:class="{'small-loading-img':pac.destinationImages.length==0}"  v-bind:src="pac.destinationImages.length>0?`/smimg/${pac.destinationImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
           v-bind:alt="pac.destinationName" />
              <div class="card-body w-100 p-2">
               <h6 class="card-title m-0 text-color-50 text-06  d-flex justify-content-between align-items-center">

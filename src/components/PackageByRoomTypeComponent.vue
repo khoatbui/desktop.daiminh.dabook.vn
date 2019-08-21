@@ -13,11 +13,11 @@
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
         <slide class="m-2" v-for="(pac,ides) in packageByLang" v-bind:key="ides">
-          <div class="card m-0 height-250 d-inline-block position-relative">
+          <div class="card m-0 height-200 d-inline-block position-relative">
               <!-- v-bind:src="pac.roomImages.length>0?`/${pac.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
               <img class="card-img image-packages h-100 cursor-pointer" 
                v-bind:class="{'small-loading-img':pac.roomTypeId.roomImages.length==0}"
-               v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+               v-bind:src="pac.roomTypeId.roomImages.length>0?`/smimg/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
             v-bind:alt="pac.roomTypeId.roomTypeIntro"  @click="redirectToPackage(pac)"/>
               <div class="card-body-bottom-left cursor-pointer" @click="redirectToPackage(pac)">
                 <h4 class="card-title text-white">{{pac.packageId.packageName}}</h4>

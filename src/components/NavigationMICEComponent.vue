@@ -38,7 +38,7 @@
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':mice.miceImages.length==0}"
-                    v-bind:src="mice.miceImages.length>0?`/webmp/${mice.miceImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="mice.miceImages.length>0?`/smimg/${mice.miceImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                     v-bind:alt="mice.miceName"
                   />
                   <div

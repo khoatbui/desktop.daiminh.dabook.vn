@@ -20,11 +20,11 @@
         </div>
         <div class="col-4 m-0 p-1">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package cursor-pointer"  v-bind:src="hotelByLang[0].roomTypeId.roomImages.length>0?`/webmp/${hotelByLang[0].roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="hotelByLang[0].roomTypeId.roomImages.length>0?`/smimg/${hotelByLang[0].roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
           v-bind:alt="hotelByLang[0].roomTypeId.roomImages[0].fileName"  @click="redirectToHotelDetail(hotelByLang[0].hotelId)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="hotelByLang[0].supplierId.supplierImages.length>0?`/webmp/${hotelByLang[0].supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
+                <img class="img-supplier" v-bind:src="hotelByLang[0].supplierId.supplierImages.length>0?`/smimg/${hotelByLang[0].supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'" alt="">
                  {{hotelByLang[0].supplierId.supplierName}}</h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(hotelByLang[0].hotelId)">{{hotelByLang[0].hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="hotelByLang[0].roomTypeId.roomTypeName"></p>
@@ -37,11 +37,11 @@
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
         <slide class="m-2" v-for="(pac,ides) in hotelByLang" v-bind:key="ides">
           <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/smimg/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomImages[0].fileName" @click="redirectToHotelDetail(pac.hotelId)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06">
-                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
+                <img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(pac.hotelId)">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>

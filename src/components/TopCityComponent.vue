@@ -16,7 +16,7 @@
           <div class="card m-0 h-100 d-inline-block position-relative">
             <img class="card-img image-city h-100 cursor-pointer"
              v-bind:class="{'small-loading-img':city.cityImages.length==0}"
-            v-bind:src="city.cityImages.length>0?`/webmp/${city.cityImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            v-bind:src="city.cityImages.length>0?`/smimg/${city.cityImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
             v-bind:alt="city.cityImages[0].fileName" 
             @click="redirectToCity(city)"/>
             <div class="card-body-bottom-left text-left" >

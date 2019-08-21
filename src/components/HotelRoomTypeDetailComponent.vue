@@ -58,7 +58,7 @@
                   <img
                     class="img-supplier"
                     v-bind:class="{'small-loading-img':roomDetailByLang.supplierId.supplierImages.length==0}"
-                    v-bind:src="roomDetailByLang.supplierId.supplierImages.length>0?`/webmp/${roomDetailByLang.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="roomDetailByLang.supplierId.supplierImages.length>0?`/smimg/${roomDetailByLang.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                     :alt="roomDetailByLang.supplierId.supplierName"
                   />
                 </span>

@@ -15,13 +15,13 @@
               <span class="pr-2 text-x1">{{currentWeather.main.temp}} &deg;</span>
               <span class="text-muted text-06">{{currentWeather.main.temp_max}}&deg;</span>
             </p>
-            <p class="text-08">{{currentDate}}(Gio dia phuong)</p>
+            <p class="text-08">{{currentDate}}({{$t('general_label_localtime')}})</p>
           </div>
         </div>
       </div>
       <div class="card-footer position-relative bg-transparent border-success text-center">
         <small class="border-top text-center m-0 text-center w-100 cursor-pointer" @click="showHide5Day">
-          Xem thoi tiet 7 ngay tiep theo
+          {{$t('general_label_shownext7day')}}
           <font-awesome-icon icon="chevron-down" class="text-center" />
         </small>
       <div class="absolute-card card" v-show="isShow5Day">

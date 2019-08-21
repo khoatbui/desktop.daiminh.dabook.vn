@@ -37,7 +37,7 @@
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':st.travelStyleImages.length==0}"
-                    v-bind:src="st.travelStyleImages.length>0?`/webmp/${st.travelStyleImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="st.travelStyleImages.length>0?`/${st.travelStyleImages[0].filePath}`:'/img/defaultloading.gif'"
                     v-bind:alt="st.travelStyleName"
                   />
                   <div class="card-img-overlay card-body-center d-flex align-items-center justify-content-center">
@@ -69,7 +69,7 @@
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
-                    v-bind:src="ht.roomTypeId.roomImages.length>0?`/webmp/${ht.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="ht.roomTypeId.roomImages.length>0?`/smimg/${ht.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                     v-bind:alt="ht.roomTypeId.roomTypeName"
                   />
                   <div class="card-img-overlay card-body-center d-flex align-items-center justify-content-center">
@@ -162,7 +162,7 @@ export default {
     },
     async getPromotionHotel() {
       const responsehotel = await HotelService.getTop10PromotionHotel();
-      this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 9);
+      this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 8);
       this.componentLoaded.hotel=true;
     },
     redirectToTravelStyle(travelstyle) {
@@ -240,8 +240,8 @@ export default {
   color: #205072;
 }
 .nav-hotel-card {
-  width: 18% !important;
-  margin: 1%;
+  width: 23.2% !important;
+  margin: 0.65%;
   flex-shrink: 1;
   flex-grow: 1;
   box-shadow: none;

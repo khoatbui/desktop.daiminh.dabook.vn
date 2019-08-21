@@ -58,7 +58,7 @@
                   <img
                     class="img-supplier"
                     v-bind:class="{'small-loading-img':hotelDetailByLang.supplierId.supplierImages.length==0}"
-                    v-bind:src="hotelDetailByLang.supplierId.supplierImages.length>0?`/webmp/${hotelDetailByLang.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                    v-bind:src="hotelDetailByLang.supplierId.supplierImages.length>0?`/smimg/${hotelDetailByLang.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                     alt
                   />
                   {{hotelDetailByLang.supplierId.supplierName}}

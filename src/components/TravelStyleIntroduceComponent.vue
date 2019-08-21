@@ -57,7 +57,7 @@
                   v-for="(pac,ides) in styleByLang.travelStyleImages"
                   v-bind:key="ides"
                 >
-                  <img class="image-des-img" v-bind:src="`/webmp/${pac.filePath.slice(0, -3)}webp`" v-bind:alt="pac.fileName" />
+                  <img class="image-des-img" v-bind:src="`/smimg/${pac.filePath.slice(0, -3)}jpg`" v-bind:alt="pac.fileName" />
                 </slide>
               </carousel>
             </div>

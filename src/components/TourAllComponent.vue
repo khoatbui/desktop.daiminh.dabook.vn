@@ -123,7 +123,7 @@
                     <img
                       class="image-package cursor-pointer"
                       v-bind:class="{'small-loading-img':tour.tourImages.length==0}"
-                      v-bind:src="tour.tourImages.length>0?`/webmp/${tour.tourImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+                      v-bind:src="tour.tourImages.length>0?`/${tour.tourImages[0].filePath}`:'/img/defaultloading.gif'"
                       v-bind:alt="tour.tourName"
                        @click="redirectToTourDetail(tour)"
                     />

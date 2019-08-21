@@ -13,11 +13,11 @@
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
         <slide class="m-2" v-for="(room,ides) in roomTypeByLang" v-bind:key="ides">
-          <div class="card m-0 height-250 d-inline-block position-relative">
+          <div class="card m-0 height-200 d-inline-block position-relative">
               <!-- v-bind:src="room.roomImages.length>0?`/${room.roomImages[0].filePath}`:'/img/defaultloading.gif'" -->
               <img class="card-img image-roomtype h-100 cursor-pointer" 
                v-bind:class="{'small-loading-img':room.roomImages.length==0}"
-               v-bind:src="room.roomImages.length>0?`/webmp/${room.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+               v-bind:src="room.roomImages.length>0?`/smimg/${room.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
             v-bind:alt="room.roomTypeIntro" 
              @click="redirectToRoomType(room)"/>
               <div class="card-body-bottom-left cursor-pointer" @click="redirectToRoomType(room)">

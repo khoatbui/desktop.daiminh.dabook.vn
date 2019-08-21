@@ -8,6 +8,9 @@ const TravelService = {
   getTravelServiceById(parram) {
     return axios.get(`${api}/travelservice/m/gettravelservicebyid/${parram}`);
   },
+  getTravelServiceByCode(parram) {
+    return axios.get(`${api}/travelservice/m/gettravelservicebycode/${parram}`);
+  },
 };
 
 export default TravelService;

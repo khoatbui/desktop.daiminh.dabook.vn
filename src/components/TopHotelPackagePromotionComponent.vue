@@ -16,13 +16,13 @@
           <div class="card  m-0 h-100 d-inline-block">
             <img class="card-img-top image-package cursor-pointer"
             v-bind:class="{'small-loading-img':pac.roomTypeId.roomImages.length==0}"
-            v-bind:src="pac.roomTypeId.roomImages.length>0?`/webmp/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'"
+            v-bind:src="pac.roomTypeId.roomImages.length>0?`/smimg/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomImages[0].fileName" @click="redirectToHotelPackageDetail(pac)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
              <span><img class="img-supplier"
               v-bind:class="{'small-loading-img':pac.supplierId.supplierImages.length==0}"
-              v-bind:src="pac.supplierId.supplierImages.length>0?`/webmp/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}webp`:'/img/defaultloading.gif'" alt="">
+              v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</span>
                  <span class="badge badge-pill badge-danger shadow" v-if="pac.isPromote"><font-awesome-icon icon="tag" class="text-06 text-center" /><font-awesome-icon icon="percent" class="text-06 text-center" /></span>
                  </h6>
