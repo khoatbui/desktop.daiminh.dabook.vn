@@ -211,7 +211,6 @@ import { Carousel, Slide } from "vue-carousel";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import TravelService from "@/api/TravelService";
-import CheckBoxGroup from "@/components/CheckboxGroupComponent.vue";
 import DropdownListComponent from "@/components/DropdownListComponent.vue";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
@@ -221,7 +220,6 @@ export default {
   components: {
     Carousel,
     Slide,
-    CheckBoxGroup,
     DropdownListComponent,
     ModalDetailImageComponent: lazyLoadComponent({
       componentFactory: () =>

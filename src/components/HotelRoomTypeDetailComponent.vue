@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="roomDetailByLang.roomImages"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="roomDetailByLang.roomImages"  :root="'lgimg/'"></ModalDetailImageComponent>
     </div>
     <div class="container-fluid my-0 mt-2 py-4 second-background">
       <div class="container p-0">
@@ -304,7 +304,7 @@
             <div class="card">
               <div class="card-body p-3">
                 <div class="row m-0 p-0" v-if="formCheck.packageSelect==true">
-                  <ModalDetailImageComponent :imgs="order.roomType.roomImages"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="order.roomType.roomImages"  :root="'lgimg/'"></ModalDetailImageComponent>
                 </div>
                 <div class="row m-0 p-0" v-if="order.checkInDate ==null">
                   <p>
@@ -415,7 +415,6 @@ import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import TourService from "@/api/TourService";
 import HotelService from "@/api/HotelService";
-import CheckBoxGroup from '@/components/CheckboxGroupComponent.vue'
 import DropdownListComponent from '@/components/DropdownListComponent.vue'
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
@@ -440,7 +439,6 @@ export default {
     DateTimePicker,
     Carousel,
     Slide,
-    CheckBoxGroup,
     DropdownListComponent,
     ModalDetailImageComponent: lazyLoadComponent({
       componentFactory: () =>

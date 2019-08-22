@@ -13,16 +13,16 @@
       </div>
       <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="paginationEnabled">
         <slide class="m-2" v-for="(pac,ides) in packageByLang" v-bind:key="ides">
-          <div class="card  m-0 h-100 d-inline-block">
+          <div class="card width-minmax-250 m-0 h-100 d-inline-block">
             <img class="card-img-top image-package cursor-pointer"
             v-bind:class="{'small-loading-img':pac.hotelImages.length==0}"
-            v-bind:src="pac.hotelImages.length>0?`/smimg/${pac.hotelImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
+            v-bind:src="pac.hotelImages.length>0?`/smimg/${pac.hotelImages[0].filePath.slice(0, -(pac.hotelImages[0].fileName.split('.').pop().length))}jpg`:'/img/defaultloading.gif'"
           v-bind:alt="pac.hotelImages[0].fileName" @click="redirectToHotelDetail(pac)"/>
             <div class="card-body p-2">
                <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
              <span><img class="img-supplier"
               v-bind:class="{'small-loading-img':pac.supplierId.supplierImages.length==0}"
-              v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'" alt="">
+              v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.slice(0, -(pac.supplierId.supplierImages[0].fileName.split('.').pop().length))}jpg`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</span>
                  <span class="badge badge-pill badge-danger shadow" v-if="pac.isPromote"><font-awesome-icon icon="tag" class="text-06 text-center" /><font-awesome-icon icon="percent" class="text-06 text-center" /></span>
                  </h6>
@@ -130,6 +130,8 @@ export default {
 }
 .image-package{
     height: 200px;
+    width: auto;
+    min-width:100% !important;
 }
 .price-text{
   font-weight: 900;
@@ -140,5 +142,10 @@ export default {
   height: 20px;
   border-radius: 50%;
   border:none
+}
+.width-minmax-250{
+  min-width: 250px;
+  max-width: 250px;
+  overflow: hidden;
 }
 </style>

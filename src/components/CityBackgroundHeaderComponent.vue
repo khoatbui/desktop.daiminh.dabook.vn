@@ -125,7 +125,6 @@ export default {
     if (typeof this.city._id === "undefined") {
       this.initial(this.$route.query.cityid);
     } else {
-                console.log('b');
       this.initial(this.city._id);
     }
   },
@@ -134,7 +133,6 @@ export default {
       this.$store.commit("showHideLoading", true);
       const response = await DestinationService.getDestinationByCity(cityId);
       this.destinations = randomArray(response.data);
-      console.log(this.destinations);
       this.$store.commit("showHideLoading", false);
     }
   },

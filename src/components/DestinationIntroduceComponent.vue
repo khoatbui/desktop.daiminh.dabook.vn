@@ -1,17 +1,19 @@
 <template>
-  <div class="topcity">
+  <div class="topcity" v-if="componentLoaded">
     <div class="section text-left pt-0 pb-4">
-      <h4 class="title text-left m-0 p-3 text-uppercase">{{$t('general_label_whatwelove')+ ' ' + destination.destinationName}} </h4>
+      <h4
+        class="title text-left m-0 p-3 text-uppercase"
+      >{{$t('general_label_whatwelove')+ ' ' + destinationByLang.destinationName}}</h4>
       <div class="row m-0 p-0 d-flex align-items-stretch">
         <div class="col-8">
           <div class="row m-0 p-0 text-08 h-100">
             <div class="col-12 m-0 px-0 pb-2">
-              <div class="shot-intro" v-html="destination.destinationIntro"></div>
+              <div class="shot-intro" v-html="destinationByLang.destinationIntro"></div>
             </div>
-            <div
-              class="col-12 m-0 p-0 d-flex justify-content-start align-items-center flex-grow-1"
-            >
-              <span class="text-success font-weight-bold px-2">{{$t('general_label_dontmiss')}} :</span> <span class="text-muted px-2">{{$t('general_label_historyandcuture')}}</span> <span class="text-muted px-2"> {{$t('general_label_urban')}}</span>
+            <div class="col-12 m-0 p-0 d-flex justify-content-start align-items-center flex-grow-1">
+              <span class="text-success font-weight-bold px-2">{{$t('general_label_dontmiss')}} :</span>
+              <span class="text-muted px-2">{{$t('general_label_historyandcuture')}}</span>
+              <span class="text-muted px-2">{{$t('general_label_urban')}}</span>
               <span class="text-muted px-2">{{$t('general_label_art')}}</span>
             </div>
             <div
@@ -44,20 +46,29 @@
           <div class="row m-0 p-2 border-bottom">
             <div class="col-12">
               <h4>
-                <b>{{$t('pdestinationintro_exploremore')}} {{destination.destinationName}}</b>
+                <b>{{$t('pdestinationintro_exploremore')}} {{destinationByLang.destinationName}}</b>
               </h4>
             </div>
             <div class="col-8">
-              <div v-html="destination.destinationIntro"></div>
+              <div v-html="destinationByLang.destinationIntro"></div>
             </div>
             <div class="col-4">
-              <carousel class="image-des" :per-page="1" :navigation-enabled="false" :paginationEnabled="false">
+              <carousel
+                class="image-des"
+                :per-page="1"
+                :navigation-enabled="false"
+                :paginationEnabled="false"
+              >
                 <slide
                   class="m-2"
-                  v-for="(pac,ides) in destination.destinationImages"
+                  v-for="(pac,ides) in destinationByLang.destinationImages"
                   v-bind:key="ides"
                 >
-                  <img class="image-des-img" v-bind:src="`/smimg/${pac.filePath.slice(0, -3)}jpg`" v-bind:alt="pac.fileName" />
+                  <img
+                    class="image-des-img"
+                    v-bind:src="`/smimg/${pac.filePath.slice(0, -3)}jpg`"
+                    v-bind:alt="pac.fileName"
+                  />
                 </slide>
               </carousel>
             </div>
@@ -113,10 +124,12 @@
 </template>
 
 <script>
-import lazyLoadComponent from '@/utils/lazy-load-component'
-import SkeletonBox from '@/components/SkeletonBox.vue';
-import { Carousel, Slide } from 'vue-carousel';
-import CityService from '@/api/CityService';
+import i18n from "@/lang/i18n";
+import lazyLoadComponent from "@/utils/lazy-load-component";
+import SkeletonBox from "@/components/SkeletonBox.vue";
+import { Carousel, Slide } from "vue-carousel";
+import CityService from "@/api/CityService";
+import DestinationService from "@/api/DestinationService";
 
 function randomArray(array) {
   const array2 = [];
@@ -131,40 +144,64 @@ export default {
   components: {
     Carousel,
     Slide,
-    TopTourPromotionComponent:lazyLoadComponent({
-      componentFactory: () => import('@/components/TopTourPromotionComponent.vue'),
-      loading: SkeletonBox,
+    TopTourPromotionComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/TopTourPromotionComponent.vue"),
+      loading: SkeletonBox
     }),
-    WeatherComponent:lazyLoadComponent({
-      componentFactory: () => import('@/components/WeatherComponent.vue'),
-      loading: SkeletonBox,
-    }),
+    WeatherComponent: lazyLoadComponent({
+      componentFactory: () => import("@/components/WeatherComponent.vue"),
+      loading: SkeletonBox
+    })
   },
-  name: 'DestinationIntroComponent',
+  name: "DestinationIntroComponent",
   props: {
     msg: String,
-    destination: {},
+    destination: {}
   },
   data() {
     return {
+      destinationData:this.destination,
       citys: [],
       selectedPayment: {},
+      componentLoaded: false
     };
   },
   watch: {
-    '$route': 'initial'
+    $route: "initial"
   },
   mounted() {
     this.initial();
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      this.$store.commit("showHideLoading", true);
       const response = await CityService.getTopCity();
       this.citys = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
-    },
+      if (Object.keys(this.destinationData).length === 0) {
+        const responsedes = await DestinationService.getDestinationById(
+          this.$route.query.destinationid
+        );
+        this.destinationData = responsedes.data;
+      }
+      this.$store.commit("showHideLoading", false);
+      this.componentLoaded = true;
+    }
   },
+  computed: {
+    destinationByLang() {
+      if (this.componentLoaded == false) {
+        return;
+      }
+      this.destinationData.destinationIntros.forEach(element => {
+        if (element.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+          this.destinationData.destinationName = element.destinationName;
+          this.destinationData.destinationIntro = element.destinationIntro;
+        }
+      });
+      return this.destinationData;
+    }
+  }
 };
 </script>
 
@@ -173,9 +210,9 @@ export default {
 .image-des {
   height: 200px !important;
 }
-.image-des-img{
+.image-des-img {
   height: 200px !important;
-  width:auto !important;
+  width: auto !important;
 }
 .card-body-bottom-left {
   position: absolute;

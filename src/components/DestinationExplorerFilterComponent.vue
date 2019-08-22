@@ -111,7 +111,7 @@
               v-html="pac.roomTypeId.roomTypeName"
             ></p>
             <h2
-              class="text-x1 price-text m-0"
+              class="text-x1 price-text m-0 text-info"
             >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
             <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
           </div>
@@ -123,7 +123,7 @@
         >
           <img
             class="card-img-top image-package cursor-pointer"
-            v-bind:src="tour.tourImages.length>0?`/smimg/${tour.tourImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
+            v-bind:src="tour.tourImages.length>0?`/${tour.tourImages[0].filePath}`:'/img/defaultloading.gif'"
             v-bind:alt="tour.tourImages[0].fileName"
              @click="redirectToTourDetail(tour)"
           />
@@ -138,7 +138,7 @@
             <p class="card-text intro-package hidden-outof-text" v-html="tour.tourIntro"></p>
             <h2
               class="text-x1 price-text m-0"
-            >{{$t('general_from')}}  {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour.price)}}</h2>
+            >{{$t('general_from')}}  <span class="text-info">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tour.price)}}</span></h2>
             <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
           </div>
         </div>

@@ -164,7 +164,6 @@ export default {
   mounted() {},
   methods: {
     callSetLangActions(item) {
-      console.log(item);
       if (item.value === "en") {
         this.$store.dispatch("setLang", "ko");
         return;
@@ -179,7 +178,6 @@ export default {
   },
   computed: {
     getLang() {
-      console.log(this.$i18n.locale);
       return this.$i18n.locale;
     }
   }

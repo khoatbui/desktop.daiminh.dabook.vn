@@ -362,7 +362,6 @@ export default {
       const responseservice = await BlogService.getBlogByMICEId(id);
       this.miceBlog = responseservice.data;
       this.componentLoaded.miceBlog = true;
-      console.log(this.miceBlog);
     },
     formChecking() {
       if (this.customer.firstName.length === 0) {

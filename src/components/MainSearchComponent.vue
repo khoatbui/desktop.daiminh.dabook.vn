@@ -111,16 +111,20 @@ export default {
        this.$router.push(
         `/destination/detail?destinationid=${des._id}`
       );
+            this.$emit('searchclick');
     },
     redirectToTourDetail(tour) {
        this.$router.push(`/tourdetail?tourid=${tour._id}`);
+             this.$emit('searchclick');
     },
     redirectToHotelDetail(hotel) {
        this.$router.push(`/hoteldetail?hotelid=${hotel._id}`);
+             this.$emit('searchclick');
     },
     redirectToSearchView(){
       if (this.key.length>0) {
-              this.$router.push(`/search?key=${this.key}`);
+        this.$router.push(`/search?key=${this.key}`);
+                this.$emit('searchclick');
       }
     }
   },

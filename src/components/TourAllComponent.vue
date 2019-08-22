@@ -357,10 +357,8 @@ export default {
     },
     changeFilterAction() {
       this.filterCondition.price.isFilter = true;
-      console.log(this.filterCondition.price.filterPrice);
     },
     resetFilter() {
-      console.log("s");
     }
   },
   computed: {

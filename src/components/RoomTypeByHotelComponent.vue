@@ -76,8 +76,6 @@ export default {
       const response = await HotelService.getRoomTypeByHotel(hotelid);
       this.roomType = randomArray(response.data);
       this.$store.commit('showHideLoading', false);
-      console.log('room');
-      console.log(this.roomType);
       this.componentLoaded=true;
     },
     redirectToRoomType(des){

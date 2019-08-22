@@ -96,10 +96,8 @@ export default {
       this.$store.commit('showHideLoading', true);
       const response = await HotelService.getTopPromotionHotelPackage();
       this.packages = randomArray(response.data);
-      console.log(this.packages);
       const responseads = await AdsService.getAllAds();
       this.ads = randomArray(responseads.data);
-      console.log(this.ads);
       this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
     },

@@ -110,7 +110,6 @@ export default {
       this.$store.commit('showHideLoading', true);
       const response = await DestinationService.getDestinationById(destinationId);
       this.destination =response.data;
-      console.log(this.destination);
       this.$store.commit('showHideLoading', false);
     }
   },

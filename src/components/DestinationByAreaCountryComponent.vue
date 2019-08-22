@@ -136,7 +136,6 @@ export default {
       return this.destination;
     },
     areaByLang() {
-      console.log(this.area);
       this.area.areaCountryIntros.forEach(ar => {
         if (ar.lang.toUpperCase() === i18n.locale.toUpperCase()) {
           this.area.areaCountryName = ar.areaCountryName;

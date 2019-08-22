@@ -3,7 +3,7 @@
     <div class="section text-left pt-0 pb-4">
       <h3 class="title text-left m-0" v-if="isTitle">{{getTitle}}</h3>
       <div class="row p-0 m-0 d-flex justify-content-end align-items-center" v-if="isTitle">
-          <a class="link-des text-danger">
+          <a class="link-des text-danger" @click="redirectToAllTour">
               {{$t('general_showmore')}}
               <font-awesome-icon icon="chevron-right" class="text-08 text-center" />
           </a>
@@ -18,7 +18,7 @@
                <span>{{pac.to}} | {{pac.tourTypeId.tourTypeName}}</span> <span class="badge badge-pill badge-danger shadow"><font-awesome-icon icon="umbrella-beach" class="text-06 text-center" /></span></h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
                <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
-              <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 price-text m-0">{{$t('general_from')}}<span class="text-info"> {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</span></h2>
               <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
@@ -90,6 +90,11 @@ export default {
     redirectToTourDetail(des){
        this.$router.push(
         `/tourdetail?tourid=${des._id}`
+      );
+    },
+    redirectToAllTour() {
+      this.$router.push(
+        `/tour`
       );
     }
   },

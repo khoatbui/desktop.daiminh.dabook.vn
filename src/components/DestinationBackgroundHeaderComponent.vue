@@ -28,7 +28,7 @@
         <div class="modal-content">
           <div class="row">
             <div class="col-12 mr-auto ml-auto">
-              <MainSearchComponent :defaultopen="true"></MainSearchComponent>
+              <MainSearchComponent :defaultopen="defaultOpen" v-on:searchclick="closeModal"></MainSearchComponent>
             </div>
           </div>
         </div>
@@ -53,11 +53,16 @@ export default {
   },
   data() {
     return {
+      defaultOpen:true,
     };
   },
   mounted() {
   },
   methods: {
+    closeModal () {
+      console.log('a');
+      $("#searchModal").modal('hide');
+    }
   },
 };
 </script>

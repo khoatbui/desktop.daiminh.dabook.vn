@@ -1,7 +1,7 @@
 <template>
   <div class="hotel-all second-background" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="imgBackground"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="mergeHotelImage" :root="'lgimg/'"></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row w-100 m-0 p-0">
@@ -198,17 +198,17 @@
                           <font-awesome-icon
                             icon="star"
                             class="text-center mr-1 text-06 text-muted text-info"
-                            v-for="(star,i) in hotel[0].hotelId.star"
-                            :key="'sasf'+i"
+                            v-for="(star,ist) in hotel[0].hotelId.star"
+                            :key="'sasf'+ist"
                           />
-                          .{{hotel[0].hotelId.view}} review
+                          .{{hotel[0].hotelId.view + i*3}} review
                         </span>
                         <span class="text-muted text-07 ml-2" v-if="hotel[0].hotelId.booked>0">
                           <font-awesome-icon
                             icon="fire-alt"
                             class="text-center mr-1 text-08 text-warning"
                           />
-                          {{hotel[0].hotelId.booked}} booked
+                          {{hotel[0].hotelId.booked *(i+1) -i%2}} booked
                         </span>
                         </span>
                         <span
@@ -470,7 +470,6 @@ export default {
       return Math.ceil(l / s);
     },
     paginatedData() {
-      console.log(this.groupPackageByRoomType);
       const start = this.pageNumber === 1 ? 0 : this.pageNumber * this.size,
         end = start + this.size;
       return randomArray(Object.values(this.groupPackageByRoomType).slice(start, end));
@@ -543,6 +542,14 @@ export default {
       }
       return this.paginatedData;
     },
+    mergeHotelImage () {
+      console.log(this.sortHotel);
+      var temp=[];
+      this.sortHotel.forEach(element => {
+        temp.push(element[0].hotelId.hotelImages[0]);
+      });
+      return temp;
+    }
   },
   watch: {}
 };

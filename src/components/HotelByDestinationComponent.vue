@@ -13,18 +13,18 @@
       </div>
       <carousel :per-page="5" :navigation-enabled="true">
         <slide class="m-2" v-for="(pac,ides) in packageListByLang" v-bind:key="ides">
-          <div class="card  m-0 h-100 d-inline-block">
-            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/smimg/${pac.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
+          <div class="card width-minmax-250 m-0 h-100 d-inline-block">
+            <img class="card-img-top image-package cursor-pointer"  v-bind:src="pac.roomTypeId.roomImages.length>0?`/smimg/${pac.roomTypeId.roomImages[0].filePath.substr(0, pac.roomTypeId.roomImages[0].filePath.lastIndexOf('.')) || pac.roomTypeId.roomImages[0].filePath}.jpg`:'/img/defaultloading.gif'"
           v-bind:alt="pac.roomTypeId.roomImages[0].fileName"  @click="redirectToHotelDetail(pac.hotelId)"/>
             <div class="card-body p-2">
               <h6 class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center">
-                <span><img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'" alt="">
+                <span><img class="img-supplier" v-bind:src="pac.supplierId.supplierImages.length>0?`/smimg/${pac.supplierId.supplierImages[0].filePath.substr(0, pac.supplierId.supplierImages[0].filePath.lastIndexOf('.')) || pac.supplierId.supplierImages[0].filePath}.jpg`:'/img/defaultloading.gif'" alt="">
                  {{pac.supplierId.supplierName}}</span>
                 <span class="badge badge-pill badge-danger shadow"><font-awesome-icon icon="hotel" class="text-06 text-center" /></span>
               </h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToHotelDetail(pac.hotelId)">{{pac.hotelId.hotelName}}</h6>
               <p class="card-text intro-package hidden-outof-text" v-html="pac.roomTypeId.roomTypeName"></p>
-              <h2 class="text-x1 price-text m-0 cursor-pointer"  @click="redirectToHotelDetail(pac.hotelId)">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 price-text text-info m-0 cursor-pointer"  @click="redirectToHotelDetail(pac.hotelId)">{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>
@@ -146,6 +146,8 @@ export default {
 }
 .image-package{
     height: 200px;
+    width: auto;
+    min-width: 100%;
 }
 .price-text{
   font-weight: 900;
@@ -156,5 +158,10 @@ export default {
   height: 20px;
   border-radius: 50%;
   border:none
+}
+.width-minmax-250{
+  min-width: 250px;
+  max-width: 250px;
+  overflow: hidden;
 }
 </style>
