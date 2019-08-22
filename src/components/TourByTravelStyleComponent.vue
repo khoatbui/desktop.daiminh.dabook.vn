@@ -28,7 +28,7 @@
                {{tourByLang[0].destinationId.destinationName}}</h6>
               <h6 class="card-title m-0 cursor-pointer"  @click="redirectToTour(tourByLang[0])">{{tourByLang[0].tourName}}</h6>
                <p class="card-text intro-package hidden-outof-text" v-html="tourByLang[0].tourIntro"></p>
-               <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tourByLang[0].price)}}</h2>
+               <h2 class="text-x1 text-info price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tourByLang[0].price)}}</h2>
                <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted m-0 text-success">{{$t('general_update')}} {{bookingDate}}</small>
                 <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTour(tourByLang[0])"/>
@@ -50,7 +50,7 @@
               </h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
               <div class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></div>
-              <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 text-info price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
                <div class="row p-0 m-0 d-flex justify-content-between align-items-center">
                 <small class="text-muted m-0 text-success">{{$t('general_update')}} {{moment(pac.createDate).format('YYYY.MM.DD')}}</small>
                 <font-awesome-icon icon="arrow-right" class="text-1 text-center text-danger cursor-pointer" @click="redirectToTourDetail(pac)"/>

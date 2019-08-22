@@ -2,22 +2,20 @@
   <div class="intro-component">
     <div class="row m-0 p-0">
       <div class="col-12 m-0 p-0 parent-absolute">
-        <!--           v-bind:src="imgs.length>0?`/${root}${imgs[0].filePath}`:'/img/background/bg_10.jpg'" -->
-        <div
-          class="w-100 card-img-top image-modal"
-          v-bind:class="{'small-loading-img':imgs.length==0}"
-          v-bind:style="{ backgroundImage: 'url(' + imgs.length>0?`/${root}${imgs[0].filePath}`:'/img/background/bg_10.jpg' + ')',backgroundSize: 'cover'}"
-          v-bind:alt="imgs[0].fileName"
+         <div
+          class="w-100 h-100 card-img-top image-modal"
+          v-bind:class="{'small-loading-img':imgsDataReload.length==0}"
+          v-bind:style="imgsDataReload"
         ></div>
         <div class="left-top-absolute text-center text-white">
-          <button
-            class="image-view-btn shadow text-x06"
+          <a
+            class="image-view-btn shadow text-x06 py-2 cursor-pointer"
             data-toggle="modal"
             data-target="#imageModal"
-            @click="isShowModal=!isShowModal"
+            href="#imageModal"
           >
             <font-awesome-icon icon="image" class="text-center" />Xem hinh
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -36,12 +34,11 @@
             <carousel
               :per-page="1"
               :navigation-enabled="true"
-              :paginationEnabled="true"
-            v-if="isShowModal">
+              :paginationEnabled="true">
               <slide class="m-2" v-for="(img,ides) in imgs" v-bind:key="ides">
                 <div
                   class="card-img-top image-package cursor-pointer"
-                  v-bind:style="{ backgroundImage: 'url(' + `/${root}${img.filePath}` + ')',backgroundSize: 'cover'}"
+                  v-bind:style="getBackgroundImage(img)"
                   v-bind:alt="img.fileName"
                 ></div>
               </slide>
@@ -68,21 +65,38 @@ export default {
   },
   data() {
     return {
-      isShowModal:false
+      imgsData:this.imgs,
     };
   },
-  mounted() {},
-  methods: {}
+  mounted() {
+  },
+  methods: {
+    getBackgroundImage(item) {
+    return  {
+        backgroundImage: `url("/${this.root}${item.filePath}")`,
+        backgroundSize: 'cover',
+        height:'100% !important',
+        minHeight:'70vh !important',
+        backgroundPosition: 'center',
+      }
+    }
+  },
+  computed :{
+    imgsDataReload() {
+     return  {
+        backgroundImage: `url("/${this.root}${this.imgs[0].filePath}")`,
+        backgroundSize: 'cover',
+        height:'100% !important',
+        minHeight:'300px !important',
+        backgroundPosition: 'center',
+      }
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.image-modal {
-  position: relative;
-  bottom: 100%;
-  left: 0px;
-}
 .parent-absolute {
   position: relative;
   overflow: hidden;

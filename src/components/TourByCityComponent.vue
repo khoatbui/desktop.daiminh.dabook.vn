@@ -18,7 +18,7 @@
                <span>{{pac.to}} | {{pac.tourTypeId.tourTypeName}}</span> <span class="badge badge-pill badge-danger shadow"><font-awesome-icon icon="umbrella-beach" class="text-06 text-center" /></span></h6>
               <h6 class="card-title m-0 cursor-pointer" @click="redirectToTourDetail(pac)">{{pac.tourName}}</h6>
                <p class="card-text intro-package hidden-outof-text" v-html="pac.tourIntro"></p>
-              <h2 class="text-x1 price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
+              <h2 class="text-x1 text-info price-text m-0">{{$t('general_from')}} {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(pac.price)}}</h2>
               <small class="text-muted m-0 text-success">{{$t('general_availablefrom')}} {{bookingDate}}</small>
             </div>
           </div>

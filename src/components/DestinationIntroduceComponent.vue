@@ -221,8 +221,9 @@ export default {
   color: #ffffff;
 }
 .shot-intro {
-  height: 48px;
+  height: 72px;
   text-overflow: clip;
   overflow: hidden;
+  line-height: 24px;
 }
 </style>

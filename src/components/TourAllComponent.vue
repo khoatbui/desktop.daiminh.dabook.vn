@@ -1,7 +1,7 @@
 <template>
   <div class="tour-all second-background" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="imgBackground"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="imgBackground" :root="''"></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row w-100 m-0 p-0">

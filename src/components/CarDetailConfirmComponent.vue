@@ -308,7 +308,7 @@
             <div class="card-body">
               <div class="row m-0 p-0 mb-4">
                 <div class="col-12 m-0 p-0 height-150">
-                  <ModalDetailImageComponent :imgs="selectedTour.tourDetail.tourId.tourImages"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="selectedTour.tourDetail.tourId.tourImages" :root="''"></ModalDetailImageComponent>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
                   <h3 class="text-xh1">{{selectedTour.tourDetail.tourId.tourName}}</h3>

@@ -543,7 +543,6 @@ export default {
       return this.paginatedData;
     },
     mergeHotelImage () {
-      console.log(this.sortHotel);
       var temp=[];
       this.sortHotel.forEach(element => {
         temp.push(element[0].hotelId.hotelImages[0]);

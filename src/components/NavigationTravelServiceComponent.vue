@@ -228,6 +228,9 @@ export default {
       this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 4);
       this.componentLoaded.hotel=true;
     },
+    redirectToHotel(ht) {
+       this.$router.push(`/hotel/detail?hoteid=${ht._id}`);
+    },
     redirectToCar(car) {
       this.$router.push(`/car/detail?carid=${car._id}`);
     },

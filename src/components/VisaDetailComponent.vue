@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="travelServicesByLang.travelServiceImages"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="travelServicesByLang.travelServiceImages" :root="''"></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row m-0 p-0">
