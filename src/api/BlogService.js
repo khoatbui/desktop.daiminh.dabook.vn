@@ -17,6 +17,9 @@ const Blog = {
   getAllBlogType() {
     return axios.get(`${api}/blogtype/getused`);
   },
+  getBlogById(parram) {
+    return axios.get(`${api}/bloglist/m/getbloglistbyid/${parram}`);
+  },
   getBlogDetailById(parram) {
     return axios.get(`${api}/blogdetail/m/getblogdetailbyid/${parram}`);
   },

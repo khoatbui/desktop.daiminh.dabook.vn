@@ -7,61 +7,41 @@
       <div class="row w-100 m-0 p-0">
         <div class="col-8 m-0 p-0 pr-3 text-left">
           <div class="row w-100 m-0 p-0">
-            <div class="col-12 w-100 m-0 my-2 p-0">
+            <div class="col-12 w-100 m-0 mt-2 p-0">
               <div class="card shadow-none m-0">
-                <div
-                  class="card-body m-0 p-2 px-4 d-flex flex-row justify-content-between align-items-center"
-                >
-                  <span>
-                    <span class="text-x1 text-info font-bold">{{blogListByLang.length}}</span>
-                    {{$t('general_label_resultfound')}}
-                  </span>
-                  <div class="d-flex align-items-center">
-                    <ul class="ul-nonestyle d-flex justify-content-around m-0 mx-4">
-                      <li class="mx-1 cursor-pointer">
-                        <font-awesome-icon icon="list" class="text-x1 text-center text-muted" />
-                      </li>
-                      <li class="mx-1 cursor-pointer">
-                        <font-awesome-icon icon="th-large" class="text-x1 text-center text-muted" />
-                      </li>
-                    </ul>
-                    <vs-dropdown>
-                      <a class="a-icon" href="#">
-                        {{$t('pdestinationexplore_filter_sort')}}
-                        <vs-icon class icon="expand_more"></vs-icon>
-                      </a>
-
-                      <vs-dropdown-menu>
-                        <vs-dropdown-item
-                          @click="filterCondition.sortBy = 'PRICE'"
-                        >{{$t('general_label_sortby_price')}}</vs-dropdown-item>
-                        <vs-dropdown-item
-                          @click="filterCondition.sortBy = 'NAME'"
-                        >{{$t('general_label_sortby_name')}}</vs-dropdown-item>
-                        <vs-dropdown-item
-                          @click="filterCondition.sortBy = 'POPULAR'"
-                        >{{$t('general_label_sortby_popular')}}</vs-dropdown-item>
-                        <vs-dropdown-item
-                          @click="filterCondition.sortBy = 'VOTE'"
-                        >{{$t('general_label_sortby_vote')}}</vs-dropdown-item>
-                      </vs-dropdown-menu>
-                    </vs-dropdown>
-                  </div>
+                <div class="card-body m-0 p-2 px-4">
+                  <p class="m-0">
+                    {{blog.blogTypeId.blogTypeName}}
+                    <span
+                      v-if="blog.destinationId !=null"
+                    >/ {{blog.destinationId.destinationName}}</span>
+                    <span v-if="blog.travelStyleId !=null">/ {{blog.travelStyleId.travelStyleName}}</span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row w-100 m-0 p-0"  v-if="componentLoaded.blogDetailList">
+          <div class="row w-100 m-0 p-0" v-if="componentLoaded.blogDetailList">
             <div class="col-12 w-100 m-0 p-0">
               <div class="card w-100 shadow-none my-3 tour-card">
                 <div class="row p-4 m-0">
-                    <h2 class="text-x2 font-bold text-nomal border-bottom">{{blogDetailByLang.blogId.blogName}}</h2>
-                    <p class="text-09 text-info">{{moment(blogDetailByLang.createDate).format('YYYY-DD-MM')}} / {{blogDetailByLang.createBy}}</p>
+                  <h2
+                    class="text-x2 font-bold w-100 text-nomal border-bottom"
+                  >{{blogDetailByLang.blogId.blogName}}</h2>
+                  <p class="text-09 w-100 text-info">
+                    {{moment(blogDetailByLang.createDate).format('YYYY-DD-MM')}} /
+                    <span
+                      class="text-muted"
+                    >by</span>
+                    {{blogDetailByLang.createBy}}
+                  </p>
                 </div>
                 <div class="row p-0 m-0">
-                    <img v-bind:class="{'small-loading-img':blogDetailByLang.blogId.blogImages.length==0}"
+                  <img
+                    v-bind:class="{'small-loading-img':blogDetailByLang.blogId.blogImages.length==0}"
                     v-bind:src="blogDetailByLang.blogId.blogImages.length>0?`/${blogDetailByLang.blogId.blogImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
-                    alt>
+                    alt
+                  />
                 </div>
                 <div class="row h-100 p-0 px-4 m-0">
                   <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block01"></div>
@@ -69,6 +49,59 @@
                   <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block03"></div>
                   <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block04"></div>
                   <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block05"></div>
+                </div>
+                <div
+                  class="row h-100 p-0 px-4 pb-4 m-0"
+                  v-if="blog.cta !=null && componentLoaded.blog"
+                >
+                  <button class="btn btn-sm btn-info">{{blog.cta.ctaName}}</button>
+                </div>
+                <div class="row h-100 p-0 px-4 py-4 m-0">
+                  <p class="font-bold w-100 text-09 border-top">{{$t('general_label_sharethis')}}</p>
+                  <div class="text-07">
+                    <button
+                      class="btn text-07 text-nomal custom-btn-sm p-2 text-white bg-primary border-radius-100"
+                    >facebook</button>
+                    <button
+                      class="btn text-07 text-nomal custom-btn-sm p-2 text-white bg-danger border-radius-100"
+                    >instagram</button>
+                    <button
+                      class="btn text-07 text-nomal custom-btn-sm p-2 text-primary bg-warning border-radius-100"
+                    >kakao</button>
+                    <button
+                      class="btn text-07 text-nomal custom-btn-sm p-2 text-white bg-success border-radius-100"
+                    >naver</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row w-100 m-0 p-0">
+            <div class="col-12 w-100 m-0 p-0">
+              <DabookCardComponent></DabookCardComponent>
+            </div>
+          </div>
+          <div class="row w-100 m-0 p-0" v-if="componentLoaded.blog && componentLoaded.blogList">
+            <div class="col-12 w-100 m-0 p-0">
+              <div class="card w-100 shadow-none my-3 tour-card">
+                <div class="row p-4 m-0">
+                  <h4 class="font-bold text-nomal border-bottom">{{$t('general_label_relatedpost')}}</h4>
+                </div>
+                <div class="row p-4 m-0">
+                  <div
+                    class="col-12 m-0 pb-2 p-0"
+                    v-for="(blog,i) in blogRelateByLang"
+                    :key="'wrw'+i"
+                  >
+                    <h6
+                      class="text-info text-nomal w-100 m-0 hidden-outof-text cursor-pointer"
+                      @click="redirectToDetailBlog(blog)"
+                    >{{blog.blogName}}</h6>
+                    <p
+                      class="text-08 text-muted one-line hidden-outof-text"
+                      v-html="blog.blogIntro"
+                    ></p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -85,27 +118,27 @@
               <div class="card-body p-0 py-2">
                 <ul class="ul-nonestyle d-flex justify-content-between align-items-center">
                   <li>
-                    <a href="#">
+                    <a href="https://www.facebook.com/daiminh.dabook.vn/" target="_blank">
                       <img src="/img/social/facebook.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://blog.naver.com/godud2004" target="_blank">
                       <img src="/img/social/naver.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://www.instagram.com/p/B1dkSA3gEUe/?utm_source=ig_web_copy_link" target="_blank">
                       <img src="/img/social/instagram.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" target="_blank">
                       <img src="/img/social/kakao.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" target="_blank">
                       <img src="/img/social/zalo.png" alt />
                     </a>
                   </li>
@@ -144,7 +177,7 @@
                     <div class="card related-card shadow-none my-2">
                       <div class="card-body p-0">
                         <div class="row m-0 p-0">
-                          <div class="col-5 m-0 p-0">
+                          <div class="col-5 m-0 p-0 overflow-hidden">
                             <img
                               class="related-blog-img cursor-pointer"
                               :src="blog.blogImages.length>0?`/${blog.blogImages[0].filePath}`:'/img/background/bg_01.jpg'"
@@ -165,80 +198,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row m-0 p-0">
-            <div class="card shadow-none my-2 p-3">
-              <div class="card-title">
-                <h6
-                  class="text-left text-x1 font-bold border-bottom"
-                >{{$t('ptourall_filter_category')}}</h6>
-              </div>
-              <div class="card-body p-0 py-2">
-                <div class="row p-0 m-0">
-                  <div
-                    class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(type,i) in blogTypeListByLang"
-                    :key="'affsa'+i"
-                  >
-                    <vs-checkbox
-                      v-model="filterCondition.blogTypeList.filterBlogTypeList"
-                      :vs-value="type"
-                    >{{type.blogTypeName}}</vs-checkbox>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row m-0 p-0">
-            <div class="card shadow-none my-2 p-3">
-              <div
-                class="card-title cursor-pointer"
-                data-toggle="collapse"
-                href="#collapseDestination"
-                role="button"
-                aria-expanded="false"
-                aria-controls="collapseDestination"
-              >
-                <h6
-                  class="text-left text-x1 font-bold border-bottom"
-                >{{$t('ptourall_filter_destination')}}</h6>
-              </div>
-              <div class="card-body p-0 py-2 collapse hide" id="collapseDestination">
-                <div class="row p-0 m-0">
-                  <div
-                    class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(des,i) in destination"
-                    :key="'affsa'+i"
-                  >
-                    <vs-checkbox
-                      v-model="filterCondition.destination.filterDestination"
-                      :vs-value="des"
-                    >{{des.destinationName}}</vs-checkbox>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row m-0 p-0">
-            <div class="card shadow-none my-2 p-3">
-              <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('ptourall_filter_tag')}}</h6>
-              </div>
-              <div class="card-body p-0 py-2">
-                <div class="row p-0 m-0">
-                  <div
-                    class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(type,i) in blogTypeListByLang"
-                    :key="'affsa'+i"
-                  >
-                    <vs-checkbox
-                      v-model="filterCondition.blogTypeList.filterBlogTypeList"
-                      :vs-value="type"
-                    >{{type.blogTypeName}}</vs-checkbox>
                   </div>
                 </div>
               </div>
@@ -314,7 +273,6 @@ import SkeletonBox from "@/components/SkeletonBox.vue";
 import TourService from "@/api/TourService";
 import BlogService from "@/api/BlogService";
 import TravelStyleService from "@/api/TravelStyleService";
-import DestinationService from "@/api/DestinationService";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
@@ -345,7 +303,12 @@ export default {
       componentFactory: () =>
         import("@/components/ModalDetailImageComponent.vue"),
       loading: SkeletonBox
-    })
+    }),
+    DabookCardComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/DabookCardComponent.vue"),
+      loading: SkeletonBox
+    }),
   },
   name: "BlogAllComponent",
   props: {
@@ -357,8 +320,8 @@ export default {
       moment: moment,
       componentLoaded: {
         blogList: false,
-        blogTypeList: false,
-        blogDetailList: false
+        blogDetailList: false,
+        blog: false
       },
       imgBackground: [
         {
@@ -398,43 +361,36 @@ export default {
       },
       blogList: [],
       blogDetailList: [],
-      blogTypeList: [],
-      tourList: [],
-      travelStyle: [],
-      destination: [],
+      blog: {},
       filterCondition: {
-        blogTypeList: {
-          filterBlogTypeList: [],
-          isFilter: false
-        },
-        destination: {
-          filterDestination: [],
-          isFilter: false
-        },
         sortBy: ""
       },
       pageNumber: 1,
       size: 10
     };
   },
-  watch: {},
   created() {
     this.initialAll();
   },
   methods: {
     initialAll() {
       this.initial(this.$route.query.blogid);
-      this.getBlogType();
+      this.getBlogById(this.$route.query.blogid);
       this.getBlogList();
-      this.getDestination();
     },
     async initial(id) {
       this.$store.commit("showHideLoading", true);
       const response = await BlogService.getBlogDetailById(id);
       this.blogDetailList = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
-      console.log(this.blogDetailList);
       this.componentLoaded.blogDetailList = true;
+    },
+    async getBlogById(id) {
+      this.$store.commit("showHideLoading", true);
+      const response = await BlogService.getBlogById(id);
+      this.blog = response.data;
+      this.componentLoaded.blog = true;
+      this.$store.commit("showHideLoading", false);
     },
     async getBlogList() {
       this.$store.commit("showHideLoading", true);
@@ -443,19 +399,8 @@ export default {
       this.$store.commit("showHideLoading", false);
       this.componentLoaded.blogList = true;
     },
-    async getBlogType() {
-      this.$store.commit("showHideLoading", true);
-      const response = await BlogService.getAllBlogType();
-      this.blogTypeList = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
-      this.componentLoaded.blogTypeList = true;
-    },
-    async getDestination() {
-      const response = await DestinationService.getAllDestination();
-      this.destination = randomArray(response.data);
-    },
     redirectToDetailBlog(des) {
-      this.$router.push(`/blog/blogdetail?blogid=${des._id}`);
+      this.$router.push(`/blog/detail?blogid=${des._id}`);
     },
     changeFilterAction() {
       this.filterCondition.price.isFilter = true;
@@ -477,6 +422,15 @@ export default {
       });
       return this.blogList;
     },
+    blogRelateByLang() {
+      if (this.componentLoaded.blog === false) {
+        return;
+      }
+      var that = this;
+      return this.blogListByLang.filter(function(blogs) {
+        return blogs.blogTypeId._id == that.blog.blogTypeId._id;
+      });
+    },
     blogDetailByLang() {
       if (this.componentLoaded.blogDetailList === false) {
         return;
@@ -489,16 +443,15 @@ export default {
       });
       return this.blogDetailList[0];
     },
-    blogTypeListByLang() {
-      return this.blogTypeList;
-    },
     pageCount() {
       let l = this.blogList.length,
         s = this.size;
       return Math.ceil(l / s);
     }
   },
-  watch: {}
+  watch: {
+    $route: "initialAll"
+  }
 };
 </script>
 

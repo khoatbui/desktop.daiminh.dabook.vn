@@ -130,6 +130,9 @@ body{
   .overflow-nomal{
     overflow: visible !important;
   }
+  .overflow-hidden{
+    overflow: hidden !important;
+  }
   .border-radius-10{
     border-radius: 10px !important;
     overflow: hidden;
@@ -274,6 +277,10 @@ textarea.custom-form-input {
 .custom-btn-md{
   height: 40px;
   line-height: 10px;
+}
+.custom-btn-sm{
+  height: 20px;
+  line-height: 5px;
 }
 .custom-btn-outline-default{
   background:#FFF !important;

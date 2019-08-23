@@ -114,27 +114,27 @@
               <div class="card-body p-0 py-2">
                 <ul class="ul-nonestyle d-flex justify-content-between align-items-center">
                   <li>
-                    <a href="#">
+                    <a href="https://www.facebook.com/daiminh.dabook.vn/" target="_blank">
                       <img src="/img/social/facebook.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://blog.naver.com/godud2004" target="_blank">
                       <img src="/img/social/naver.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://www.instagram.com/p/B1dkSA3gEUe/?utm_source=ig_web_copy_link" target="_blank">
                       <img src="/img/social/instagram.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" target="_blank">
                       <img src="/img/social/kakao.png" alt />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" target="_blank">
                       <img src="/img/social/zalo.png" alt />
                     </a>
                   </li>
@@ -173,7 +173,7 @@
                     <div class="card related-card shadow-none my-2">
                       <div class="card-body p-0">
                         <div class="row m-0 p-0">
-                          <div class="col-5 m-0 p-0">
+                          <div class="col-5 m-0 p-0 overflow-hidden">
                             <img
                               class="related-blog-img cursor-pointer"
                               :src="blog.blogImages.length>0?`/${blog.blogImages[0].filePath}`:'/img/background/bg_01.jpg'"
