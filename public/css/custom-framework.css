@@ -323,6 +323,12 @@ textarea.custom-form-input {
 .one-line{
   white-space: nowrap;
 }
+.two-line {
+  height: 2rem;
+  line-height: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 .scroll-ngang::-webkit-scrollbar {
   width: 0px;
   background: transparent;

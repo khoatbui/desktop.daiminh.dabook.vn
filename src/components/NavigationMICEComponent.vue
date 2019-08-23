@@ -305,4 +305,7 @@ export default {
   transform: translate(-50%, -50%);
   color: #ffffff;
 }
+.nav-item a,.nav-item.fullwidth-dropdown a{
+  font-weight: bold !important;
+}
 </style>

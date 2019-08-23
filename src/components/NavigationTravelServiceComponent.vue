@@ -229,7 +229,7 @@ export default {
       this.componentLoaded.hotel=true;
     },
     redirectToHotel(ht) {
-       this.$router.push(`/hotel/detail?hoteid=${ht._id}`);
+       this.$router.push(`/hoteldetail?hoteid=${ht._id}`);
     },
     redirectToCar(car) {
       this.$router.push(`/car/detail?carid=${car._id}`);
@@ -403,5 +403,8 @@ export default {
     left: 50%;
     transform: translate(-50%,-50%);
     color: #FFFFFF;
+}
+.nav-item a,.nav-item.fullwidth-dropdown a{
+  font-weight: bold !important;
 }
 </style>

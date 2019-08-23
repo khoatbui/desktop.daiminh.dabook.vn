@@ -110,6 +110,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.height-200{
+  height: 150px !important;
+}
 .card-body-bottom-left {
   position: absolute;
   bottom: 10px;

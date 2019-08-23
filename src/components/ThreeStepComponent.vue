@@ -6,7 +6,7 @@
           <div class="row align-items-center">
             <font-awesome-icon icon="medal" class="col-12 col-md-3 col-lg-2 col-xl-2 text-x3" />
             <div class="col-12 col-md-9 col-lg-10 col-xl-10 row">
-              <h5>{{$t('pthreestep_title_wepround')}}</h5>
+              <h5 class="w-100">{{$t('pthreestep_title_wepround')}}</h5>
               <div class="p-0 m-0" v-html="$t('pthreestep_body_wepround')"></div>
             </div>
           </div>
@@ -18,7 +18,7 @@
               class="col-12 col-md-3 col-lg-2 col-xl-2 text-x3"
             />
             <div class="col-12 col-md-9 col-lg-10 col-xl-10 row">
-              <h5>{{$t('pthreestep_title_care')}}</h5>
+              <h5 class="w-100">{{$t('pthreestep_title_care')}}</h5>
               <div class="p-0 m-0" v-html="$t('pthreestep_body_care')"></div>
             </div>
           </div>
@@ -27,7 +27,7 @@
           <div class="row align-items-center">
             <font-awesome-icon icon="globe-asia" class="col-12 col-md-3 col-lg-2 col-xl-2 text-x3" />
             <div class="col-12 col-md-9 col-lg-10 col-xl-10 row">
-              <h5>{{$t('pthreestep_title_hitech')}}</h5>
+              <h5 class="w-100">{{$t('pthreestep_title_hitech')}}</h5>
               <div class="p-0 m-0" v-html="$t('pthreestep_body_hitech')"></div>
             </div>
           </div>

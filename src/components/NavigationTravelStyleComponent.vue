@@ -65,7 +65,7 @@
               v-bind:key="iHotel"
             >
               <div class="row nav-hotel-card-filter">
-                <a class="nav-card-link max-height-150 h-100 cursor-pointer" @click="redirectToHotel(ht)">
+                <a class="nav-card-link max-height-150 h-100 cursor-pointer" @click="redirectToHotel(ht.hotelId)">
                   <img
                     class="w-100 h-100"
                     v-bind:class="{'small-loading-img':ht.roomTypeId.roomImages.length==0}"
@@ -81,13 +81,13 @@
               </div>
               <div class="row m-0 p-0">
                 <div class="hotel-card-body-bottom text-06">
-                  <p class="text-08 font-weight-bold m-0">{{ht.hotelId.hotelName}}</p>
+                  <p class="text-08 font-weight-bold m-0 hidden-overflow">{{ht.hotelId.hotelName}}</p>
                   <div class="w-100 d-flex justify-content-between align-items-center">
-                    <span class="w-50">{{ht.roomTypeId.roomTypeName}}</span>
+                    <span class="w-75 hidden-overflow">{{ht.roomTypeId.roomTypeName}}</span>
                     <font-awesome-icon
                       icon="arrow-right"
                       class="text-1 text-center text-danger cursor-pointer"
-                      @click="redirectToHotel(ht)"
+                      @click="redirectToHotel(ht.hotelId)"
                     />
                   </div>
                 </div>
@@ -164,6 +164,9 @@ export default {
       const responsehotel = await HotelService.getTop10PromotionHotel();
       this.top10PromotionHotel = randomArray(responsehotel.data).slice(0, 8);
       this.componentLoaded.hotel=true;
+    },
+    redirectToHotel(hotel) {
+this.$router.push(`/hoteldetail?hotelid=${hotel._id}`);
     },
     redirectToTravelStyle(travelstyle) {
       this.$router.push(`/travelstyle/detail?travelstyleid=${travelstyle._id}`);
@@ -292,6 +295,7 @@ export default {
 .max-height-150{
   max-height: 150px;
   overflow: hidden;
+  height: 70px !important;
 }
 .card-body-center{
   position:absolute;
@@ -299,5 +303,12 @@ export default {
     left: 50%;
     transform: translate(-50%,-50%);
     color: #FFFFFF;
+}
+.hidden-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-item a,.nav-item.fullwidth-dropdown a{
+  font-weight: bold !important;
 }
 </style>

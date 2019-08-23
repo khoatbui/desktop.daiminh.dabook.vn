@@ -22,28 +22,33 @@
               <ul class="d-flex flex-column font-nomal">
                 <li>
                   <span>
-                    <i class="fas fa-map-marker-alt mr-2"></i>{{$t('pfooter_li_address')}}
+                    <font-awesome-icon icon="map-marked" class="text-center mr-2" />
+                    {{$t('pfooter_li_address')}}
                   </span>
                 </li>
-                <li class="text-danger">
+                <li>
                   <span>
-                    <i class="fab fa-hotjar mr-2"></i> 19001542
+                    <font-awesome-icon icon="fire-alt" class="text-center mr-2" />
+                     19001542
                   </span>
                 </li>
 
                 <li>
                   <span>
-                    <i class="fas fa-phone mr-2"></i>0243-562-3777/778
+                    <font-awesome-icon icon="phone" class="text-center mr-2" />
+                    </i>0243-562-3777/778
                   </span>
                 </li>
                 <li>
                   <span>
-                    <i class="fas fa-fax mr-2"></i>0243-562-3772
+                    <font-awesome-icon icon="fax" class="text-center mr-2" />
+                    0243-562-3772
                   </span>
                 </li>
                 <li>
                   <span>
-                    <i class="fas fa-envelope mr-2"></i> contact@daiminhtravel.com
+                    <font-awesome-icon icon="envelope" class="text-center mr-2" />
+                    contact@daiminhtravel.com
                   </span>
                 </li>
                 <li>
@@ -229,6 +234,9 @@
                 </li>
                 <li>
                   <a href="function/legal.html">{{$t('pfooter_term')}} |</a>
+                </li>
+                <li>
+                  <a href="/blog">{{$t('pfooter_blog')}} |</a>
                 </li>
                 <li>
                   <a href="function/contact.html">{{$t('pfooter_contact')}}</a>

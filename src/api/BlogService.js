@@ -11,6 +11,15 @@ const Blog = {
   getBlogByMICEId(parram) {
     return axios.get(`${api}/bloglist/m/getbloglistbymiceid/${parram}`);
   },
+  getAllBlog() {
+    return axios.get(`${api}/bloglist/getusedblog`);
+  },
+  getAllBlogType() {
+    return axios.get(`${api}/blogtype/getused`);
+  },
+  getBlogDetailById(parram) {
+    return axios.get(`${api}/blogdetail/m/getblogdetailbyid/${parram}`);
+  },
 };
 
 export default Blog;

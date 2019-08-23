@@ -39,6 +39,10 @@ const SearchAllComponent = () => import('./components/SearchAllComponent.vue');
 
 const VisaDetailComponent = () => import('./components/VisaDetailComponent.vue');
 
+const BlogView = () => import('./views/BlogView.vue');
+const BlogAllComponent = () => import('./components/BlogAllComponent.vue');
+const BlogDetailComponent = () => import('./components/BlogDetailComponent.vue');
+
 Vue.use(Router);
 
 export default new Router({
@@ -288,6 +292,22 @@ export default new Router({
           path: '',
           name: 'defaultsearch',
           component: SearchAllComponent,
+        },
+      ],
+    },
+    {
+      path: '/blog',
+      component: BlogView,
+      children: [
+        {
+          path: 'detail',
+          name: 'blogdetail',
+          component: BlogDetailComponent,
+        },
+        {
+          path: '',
+          name: 'blogall',
+          component: BlogAllComponent,
         },
       ],
     },

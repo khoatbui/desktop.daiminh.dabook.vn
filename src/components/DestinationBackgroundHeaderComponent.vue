@@ -60,7 +60,6 @@ export default {
   },
   methods: {
     closeModal () {
-      console.log('a');
       $("#searchModal").modal('hide');
     }
   },

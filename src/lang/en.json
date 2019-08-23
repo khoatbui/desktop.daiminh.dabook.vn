@@ -1,5 +1,6 @@
 {
-  "na_home":"Home",
+"na_home":"Home",
+"na_blog":"Explore with DaiMinh",
 "na_destination":"Destination",
 "na_travelstyle":"Travel style",
 "na_travelservice":"Travel Services",
@@ -127,7 +128,7 @@
 "pthreestep_body_hitech":"<p class='mb-0'>Real-time and World-wide air ticket searching</p> <p class='mb-0'>Competitive & Comparable Fares</p> <p>Various & Secured Payment Methods</p>",
 
 "pfooter_h4_contact":"Contact",
-"pfooter_li_address":"Lot 118",
+"pfooter_li_address":"Lot 118, TT3, My Dinh 1, Nam Tu Liem, Hanoi",
 "pfooter_h4_additioninfo":"Additional Infomation",
 "pfooter_li_businesslicence":"Business License :0101472382",
 "pfooter_li_tourlicence":"International Tour Opertor License: 01-035/2015/TCDL-GPLHQT",
@@ -138,10 +139,11 @@
 "pfooter_li_invest":"Legal & Investment Consultancy",
 "pfooter_h4_certificate":"Certificate",
 "pfooter_h4_payment":"Payment",
-"pfooter_madeby":"&copy;2019",
+"pfooter_madeby":"&copy;2019, Made by DaiMinh for better travel",
 "pfooter_privatepolicy":"Privacy Policy",
 "pfooter_term":"Terms of Use",
 "pfooter_contact":"Contact",
+"pfooter_blog":"Blog",
 
 "ppayment_title":"Dai Minh Bank Accounts Information",
 "ppayment_bankowner":"Benificial",
@@ -232,6 +234,14 @@
 "ptourall_filter_destination":"Destination",
 "ptourall_filter_star":"Star Rating",
 "ptourall_filter_producttype":"Product type",
+"ptourall_filter_followus":"Follow us on",
+"ptourall_filter_hotblog":"Hot blogs",
+"ptourall_filter_category":"Category",
+"ptourall_filter_tag":"Tags",
+"ptourall_filter_facebook":"Facebook",
+"ptourall_filter_naver":"Naver",
+"ptourall_filter_instagram":"Instagram",
+"ptourall_filter_kakao":"Kakao",
 
 "ptravelstylebackground_title":"Find a destination fits your travel style",
 
@@ -325,5 +335,8 @@
 "default_contact_form_youremail":"Your email",
 "default_contact_form_yourphone":"Your phone",
 "default_contact_form_yourrequest":"Your request",
-"default_contact_form_btnsendrequest":"Send request"
+"default_contact_form_btnsendrequest":"Send request",
+"general_hothoteltourin":"Hot hotel, tour in ",
+"general_travelwithus" : "Travel with us",
+"general_company_intro":"<p>Dai Minh Trading, Service and Tourism Company Limited <img class='small-logo' style='height: 30px' src='img/new_logo.jpg' alt=''/> established in April 2004 in Hanoi.</p><p>The company is proud to serve travelers and investors in the last 15 years, and aims to become the leading Destination Management Company in Vietnam, continues the mission to provide quality services: domestic and international air tickets; package tours, tailor-made tours; domestic and international golf tours; provides visa services and travel insurance; etc.</p><p>We have perfected the technical infrastructure to best serve our customers on the basis of digital applications - Online Service.</p><p>The core value of the company lies in Reputation, Connection, and Technology, to help customers save time and lower cost. We understand that customers now need: Fast, Accurate, Convenient, Secured services as well as Various Methodologies of Purchase - Delivery - and Payment.</p><br /><p>We are proud to be a member of IATA, International Air Transport Association.</p><p>We are proud to be enlisted in the Top Agents of Asiana Airlines, Korean Air and Vietnam Airlines' routes between Korea and Vietnam for 15 consecutive years.</p><p>We are recently granted as 1st Level Distributor of Bamboo Airways.</p><p>We are pleased to be the agent providing Air tickets and Travel services for more than 3000 regular customers and organizations such as Lotte hotel, Lotte E&C, Hyundai Aluminum, Samsung Welstory, Korean Embassy in Hanoi, Korean International School in Hanoi, Dongyang E&C and more.</p><p>Dai Minh Travel has a Ticket Office in My Dinh, Vietnam with 25 dynamic employees who serve 24/7 and hotline <span class='text-rose font-weight-bold'><i class='fab fa-hotjar mr-1'></i>19001542</span> available at any time. Our ticket delivery staffs are also eager to serve you. We seek to provide accurate consultancy and dedicated guidance to our customers.</p><p>Our Online Booking System – Dabook.vn  <img class='small-logo' style='height: 30px' src='img/logo dabook.png' alt=''/> born to be your trust-worthy 24h and nonstop Assistant for searching tickets; comparing fares & routes; reserving; and more</p><p>Besides, our sister company T&H Law Firm <img class='small-logo' style='height: 30px' src='img/new_logo_lawfirm.jpg' alt=''/> is able to provide quallity legal and investment consultancy.</p><p>Dai Minh Travel Company’s Head Quarter bases in My Dinh, Hanoi <img class='small-logo' style='height: 30px' src='img/new_logo.jpg' alt=''/> . You can also find our tour desk at Lotte Hotel in Lieu Giai, a 5-star hotel.</p><p>Contact us:</p><p><ul class='contact-letter'><li>Headquarters: Dai Minh Trading Services and Tourism Co., Ltd</li><li><ul><li>Address: Lot 118, TT3, My Dinh 1, Nam Tu Liem, Hanoi</li><li>Tel: 024-5623777 / 778</li><li>Fax: 024-5623772</li></ul></li><li>Call center: <span class='text-rose font-weight-bold'><i class='fab fa-hotjar mr-1'> </i>19001542</span></li></ul></p>"
   }

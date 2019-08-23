@@ -225,4 +225,7 @@ export default {
     color: #FFFFFF;
     white-space: nowrap;
 }
+.nav-item a,.nav-item.fullwidth-dropdown a{
+  font-weight: bold !important;
+}
 </style>

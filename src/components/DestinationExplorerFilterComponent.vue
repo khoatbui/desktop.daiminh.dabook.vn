@@ -248,9 +248,9 @@ export default {
         typeof this.destination._id !== "undefined" &&
         this.destination._id !== ""
       ) {
-        return `Hot hotel in ${this.destination.destinationName}`;
+        return `${this.$t('general_hothoteltourin')} ${this.destination.destinationName}`;
       } else {
-        return "Du lich cung chung toi";
+        return this.$t('general_travelwithus');
       }
     },
     tourByLang() {

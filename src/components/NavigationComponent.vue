@@ -228,4 +228,7 @@ export default {
 .navbar.navbar-expand-lg.navbar-color-on-scroll.fixed-top.navbar-transparent{
   color:#FFFFFF !important;
 }
+.nav-item a,.nav-item.fullwidth-dropdown a{
+  font-weight: bold !important;
+}
 </style>
