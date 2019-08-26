@@ -7,7 +7,7 @@
         <ThreeStepComponent></ThreeStepComponent>
       </div>
       <div class="container pt-4">
-        <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
+        <HorizontalAdsComponent :adstype="'ALL'"></HorizontalAdsComponent>
       </div>
       <div class="container pt-4">
         <TopCityComponent></TopCityComponent>
@@ -29,6 +29,9 @@
       </div>
       <div class="container pt-4">
         <AdsWithHotelPromotionComponent></AdsWithHotelPromotionComponent>
+      </div>
+      <div class="container pt-4">
+        <BlogListMultiCardComponent></BlogListMultiCardComponent>
       </div>
       <div class="container pt-4">
         <IntroDaiMinhComponent></IntroDaiMinhComponent>
@@ -77,6 +80,11 @@ export default {
     TopTourPromotionComponent: lazyLoadComponent({
       componentFactory: () =>
         import('@/components/TopTourPromotionComponent.vue'),
+      loading: SkeletonBox
+    }),
+    BlogListMultiCardComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import('@/components/BlogListMultiCardComponent.vue'),
       loading: SkeletonBox
     }),
     IntroduceDaiMinhComponent: lazyLoadComponent({

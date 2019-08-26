@@ -50,7 +50,6 @@ export default {
   },
   name: 'TopCityComponent',
   props: {
-    msg: String,
   },
   data() {
     return {

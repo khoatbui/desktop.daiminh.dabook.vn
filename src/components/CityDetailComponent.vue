@@ -6,7 +6,7 @@
         <CityIntroduceComponent :city="city"></CityIntroduceComponent>
       </div>
       <div class="container pt-4">
-        <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
+        <HorizontalAdsComponent :adstype="'FLIGHTADS'"></HorizontalAdsComponent>
       </div>
       <div class="container pt-4">
         <HotelByCityComponent :city="city"></HotelByCityComponent>

@@ -43,6 +43,11 @@ const BlogView = () => import('./views/BlogView.vue');
 const BlogAllComponent = () => import('./components/BlogAllComponent.vue');
 const BlogDetailComponent = () => import('./components/BlogDetailComponent.vue');
 
+const AdsView = () => import('./views/AdsView.vue');
+const AdsAllComponent = () => import('./components/AdsAllComponent.vue');
+const AdsDetailComponent = () => import('./components/AdsDetailComponent.vue');
+
+
 Vue.use(Router);
 
 export default new Router({
@@ -308,6 +313,22 @@ export default new Router({
           path: '',
           name: 'blogall',
           component: BlogAllComponent,
+        },
+      ],
+    },
+    {
+      path: '/ads',
+      component: AdsView,
+      children: [
+        {
+          path: 'detail',
+          name: 'blogdetail',
+          component: AdsDetailComponent,
+        },
+        {
+          path: '',
+          name: 'blogall',
+          component: AdsAllComponent,
         },
       ],
     },

@@ -1,9 +1,9 @@
 <template>
   <div class="tour-all second-background">
-    <div class="container py-4 my-0" v-if="componentLoaded.blogDetailList">
-      <ModalDetailImageComponent :imgs="blogDetailByLang.blogId.blogImages" :root="''"></ModalDetailImageComponent>
+    <div class="container py-4 my-0" v-if="componentLoaded.adsDetailList">
+      <ModalDetailImageComponent :imgs="adsDetailByLang.adsId.adsImages" :root="''"></ModalDetailImageComponent>
     </div>
-    <div class="container py-4 my-0 custom-sticky-component" v-if="componentLoaded.blog">
+    <div class="container py-4 my-0 custom-sticky-component" v-if="componentLoaded.ads">
       <div class="row w-100 m-0 p-0">
         <div class="col-8 m-0 p-0 pr-3 text-left">
           <div class="row w-100 m-0 p-0">
@@ -11,29 +11,21 @@
               <div class="card shadow-none m-0">
                 <div class="card-body m-0 p-2 px-4">
                   <p class="m-0">
-                    {{blog.blogTypeId.blogTypeName}}
-                    <span
-                      v-if="blog.destinationId !=null"
-                    >/ {{blog.destinationId.destinationName}}</span>
-                    <span v-if="blog.travelStyleId !=null">/ {{blog.travelStyleId.travelStyleName}}</span>
+                    {{ads.adsTypeId.adsTypeName}}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row w-100 m-0 p-0" v-if="componentLoaded.blogDetailList">
+          <div class="row w-100 m-0 p-0" v-if="componentLoaded.adsDetailList">
             <div class="col-12 w-100 m-0 p-0">
               <div class="card w-100 shadow-none my-3 tour-card">
                 <div class="row p-4 m-0">
                   <h2
                     class="text-x2 font-bold w-100 text-nomal border-bottom"
-                  >{{blogDetailByLang.blogId.blogName}}</h2>
+                  >{{adsDetailByLang.adsId.adsName}}</h2>
                   <p class="text-09 w-100 text-info">
-                    {{moment(blogDetailByLang.createDate).format('YYYY-DD-MM')}} /
-                    <span
-                      class="text-muted"
-                    >by</span>
-                    {{blogDetailByLang.createBy}}
+                   <span class="bg-danger text-white font-bold text-left p-2 border-radius-100">{{moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')>0?`${moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')} days left`:'End'}}</span>
                   </p>
                 </div>
                 <div class="row p-0 m-0">
@@ -46,33 +38,33 @@
                     class="w-100 m-0 p-0 banner_filter"
                   >
                     <img
-                      v-for="(img,i) in blogDetailByLang.blogId.blogImages"
+                      v-for="(img,i) in adsDetailByLang.adsId.adsImages"
                       :key="'iii'+i"
                       class="w-100"
                       v-bind:src="`/${img.filePath}`"
                       :alt="img.fileName"
                     />
                      <img
-                      v-if="blogDetailByLang.blogId.blogImages.length==0"
+                      v-if="adsDetailByLang.adsId.adsImages.length==0"
                       :key="'iii'+i"
                       class="w-100"
-                      v-bind:class="{'small-loading-img':blogDetailByLang.blogId.blogImages.length==0}"
+                      v-bind:class="{'small-loading-img':adsDetailByLang.adsId.adsImages.length==0}"
                       v-bind:src="'/img/defaultloading.gif'"
                     />
                   </carouselss>
                 </div>
                 <div class="row h-100 p-0 px-4 m-0">
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block01"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block02"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block03"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block04"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block05"></div>
+                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block01"></div>
+                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block02"></div>
+                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block03"></div>
+                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block04"></div>
+                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block05"></div>
                 </div>
                 <div
                   class="row h-100 p-0 px-4 pb-4 m-0"
-                  v-if="blog.ctaId !=null && componentLoaded.blog"
+                  v-if="ads.ctaId !=null && componentLoaded.ads"
                 >
-                  <a class="btn btn-sm btn-info text-white" :href="blog.link">{{blog.ctaId.ctaName}}</a>
+                  <a class="btn btn-sm btn-info text-white" :href="ads.link">{{ads.ctaId.ctaName}}</a>
                 </div>
                 <div class="row h-100 p-0 px-4 py-4 m-0">
                   <p class="font-bold w-100 text-09 border-top">{{$t('general_label_sharethis')}}</p>
@@ -99,7 +91,7 @@
               <DabookCardComponent></DabookCardComponent>
             </div>
           </div>
-          <div class="row w-100 m-0 p-0" v-if="componentLoaded.blog && componentLoaded.blogList">
+          <div class="row w-100 m-0 p-0" v-if="componentLoaded.ads && componentLoaded.adsList">
             <div class="col-12 w-100 m-0 p-0">
               <div class="card w-100 shadow-none my-3 tour-card">
                 <div class="row p-4 m-0">
@@ -108,24 +100,21 @@
                 <div class="row p-4 m-0">
                   <div
                     class="col-12 m-0 pb-2 p-0"
-                    v-for="(blog,i) in blogRelateByLang"
+                    v-for="(ads,i) in adsRelateByLang"
                     :key="'wrw'+i"
                   >
                     <h6
                       class="text-info text-nomal w-100 m-0 hidden-outof-text cursor-pointer"
-                      @click="redirectToDetailBlog(blog)"
-                    >{{blog.blogName}}</h6>
+                      @click="redirectToDetailAds(ads)"
+                    >{{ads.adsName}}</h6>
                     <p
                       class="text-08 text-muted two-line hidden-outof-text"
-                      v-html="blog.blogIntro"
+                      v-html="ads.adsIntro"
                     ></p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row w-100 m-0 p-0">
-            <BlogListComponent></BlogListComponent>
           </div>
         </div>
         <div class="col-4 m-0 p-0 pl-3">
@@ -144,7 +133,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="https://blog.naver.com/godud2004" target="_blank">
+                    <a href="https://ads.naver.com/godud2004" target="_blank">
                       <img src="/img/social/naver.png" alt />
                     </a>
                   </li>
@@ -184,18 +173,18 @@
             </div>
           </div>
 
-          <div class="row m-0 p-0" v-if="componentLoaded.blogList">
+          <div class="row m-0 p-0" v-if="componentLoaded.adsList">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
                 <h6
                   class="text-left text-x1 font-bold border-bottom"
-                >{{$t('ptourall_filter_hotblog')}}</h6>
+                >{{$t('ptourall_filter_hotads')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row m-0 p-0">
                   <div
                     class="col-12 m-0 p-0"
-                    v-for="(blog,i) in blogListByLang.slice(0,5)"
+                    v-for="(ads,i) in adsListByLang.slice(0,5)"
                     :key="'sadf'+i"
                   >
                     <div class="card related-card shadow-none my-2">
@@ -203,21 +192,21 @@
                         <div class="row m-0 p-0">
                           <div class="col-5 m-0 p-0 overflow-hidden">
                             <img
-                              class="related-blog-img cursor-pointer"
-                              :src="blog.blogImages.length>0?`/${blog.blogImages[0].filePath}`:'/img/background/bg_01.jpg'"
-                              :alt="blog.blogName"
-                              @click="redirectToDetailBlog(blog)"
+                              class="related-ads-img cursor-pointer"
+                              :src="ads.adsImages.length>0?`/${ads.adsImages[0].filePath}`:'/img/background/bg_01.jpg'"
+                              :alt="ads.adsName"
+                              @click="redirectToDetailAds(ads)"
                             />
                           </div>
                           <div class="col-7 p-0 px-2 text-left">
                             <h6
                               class="one-line m-0 text-info cursor-pointer"
-                              @click="redirectToDetailBlog(blog)"
-                            >{{blog.blogName}}</h6>
-                            <div class="text-muted two-line text-08" v-html="blog.blogIntro"></div>
+                              @click="redirectToDetailAds(ads)"
+                            >{{ads.adsName}}</h6>
+                            <div class="text-muted two-line text-08" v-html="ads.adsIntro"></div>
                             <div
                               class="text-muted two-line text-06"
-                            >{{moment(blog.createDate).format('YYYY-DD-MM')}}</div>
+                            >{{moment(ads.createDate).format('YYYY-DD-MM')}}</div>
                           </div>
                         </div>
                       </div>
@@ -295,9 +284,7 @@ import carouselss from "vue-owl-carousel";
 import { Carousel, Slide } from "vue-carousel";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
-import TourService from "@/api/TourService";
-import BlogService from "@/api/BlogService";
-import TravelStyleService from "@/api/TravelStyleService";
+import AdsService from "@/api/AdsService";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
@@ -334,12 +321,8 @@ export default {
       componentFactory: () => import("@/components/DabookCardComponent.vue"),
       loading: SkeletonBox
     }),
-    BlogListComponent: lazyLoadComponent({
-      componentFactory: () => import("@/components/BlogListComponent.vue"),
-      loading: SkeletonBox
-    }),
   },
-  name: "BlogAllComponent",
+  name: "AdsAllComponent",
   props: {
     msg: String
   },
@@ -348,9 +331,9 @@ export default {
       search: "",
       moment: moment,
       componentLoaded: {
-        blogList: false,
-        blogDetailList: false,
-        blog: false
+        adsList: false,
+        adsDetailList: false,
+        ads: false
       },
       imgBackground: [
         {
@@ -388,9 +371,9 @@ export default {
           currency: "VND"
         }).format(v);
       },
-      blogList: [],
-      blogDetailList: [],
-      blog: {},
+      adsList: [],
+      adsDetailList: [],
+      ads: {},
       filterCondition: {
         sortBy: ""
       },
@@ -403,34 +386,34 @@ export default {
   },
   methods: {
     initialAll() {
-      this.initial(this.$route.query.blogid);
-      this.getBlogById(this.$route.query.blogid);
-      this.getBlogList();
+      this.initial(this.$route.query.adsid);
+      this.getAdsList();
+      this.getAdsById(this.$route.query.adsid);
     },
     async initial(id) {
       this.$store.commit("showHideLoading", true);
-      const response = await BlogService.getBlogDetailById(id);
-      this.blogDetailList = randomArray(response.data);
+      const response = await AdsService.getAdsDetailById(id);
+      this.adsDetailList = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
-      this.componentLoaded.blogDetailList = true;
+      this.componentLoaded.adsDetailList = true;
     },
-    async getBlogById(id) {
+    async getAdsById(id) {
       this.$store.commit("showHideLoading", true);
-      const response = await BlogService.getBlogById(id);
-      this.blog = response.data;
-      console.log(this.blog);
-      this.componentLoaded.blog = true;
+      const response = await AdsService.getAdsById(id);
+      this.ads = response.data;
+      this.componentLoaded.ads = true;
       this.$store.commit("showHideLoading", false);
     },
-    async getBlogList() {
+    async getAdsList() {
       this.$store.commit("showHideLoading", true);
-      const response = await BlogService.getAllBlog();
-      this.blogList = randomArray(response.data);
+      const response = await AdsService.getAllAds();
+      this.adsList = randomArray(response.data);
+      console.log( this.adsList);
       this.$store.commit("showHideLoading", false);
-      this.componentLoaded.blogList = true;
+      this.componentLoaded.adsList = true;
     },
-    redirectToDetailBlog(des) {
-      this.$router.push(`/blog/detail?blogid=${des._id}`);
+    redirectToDetailAds(des) {
+      this.$router.push(`/ads/detail?adsid=${des._id}`);
     },
     changeFilterAction() {
       this.filterCondition.price.isFilter = true;
@@ -438,42 +421,40 @@ export default {
     resetFilter() {}
   },
   computed: {
-    blogListByLang() {
-      if (this.componentLoaded.blogList === false) {
+    adsListByLang() {
+      if (this.componentLoaded.adsList === false) {
         return;
       }
-      this.blogList.forEach(element => {
-        element.blogIntros.forEach(area => {
+      this.adsList.forEach(element => {
+        element.adsIntros.forEach(area => {
           if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
-            element.blogName = area.blogName;
-            element.blogIntro = area.blogIntro;
+            element.adsName = area.adsName;
+            element.adsIntro = area.adsIntro;
           }
         });
       });
-      return this.blogList;
+      return this.adsList;
     },
-    blogRelateByLang() {
-      if (this.componentLoaded.blog === false) {
+    adsRelateByLang() {
+      if (this.componentLoaded.ads === false) {
         return;
       }
       var that = this;
-      return this.blogListByLang.filter(function(blogs) {
-        return blogs.blogTypeId._id == that.blog.blogTypeId._id;
+      return this.adsListByLang.filter(function(adss) {
+        return adss.adsTypeId._id == that.ads.adsTypeId._id;
       });
     },
-    blogDetailByLang() {
-      if (this.componentLoaded.blogDetailList === false) {
+    adsDetailByLang() {
+      if (this.componentLoaded.adsDetailList === false) {
         return;
       }
-      console.log(this.blogDetailList);
-      var temp = this.blogDetailList.filter(function(blogs) {
-        return blogs.lang.toUpperCase() === i18n.locale.toUpperCase();
+      var temp = this.adsDetailList.filter(function(adss) {
+        return adss.lang.toUpperCase() === i18n.locale.toUpperCase();
       });
-      console.log(temp);
       return temp[0];
     },
     pageCount() {
-      let l = this.blogList.length,
+      let l = this.adsList.length,
         s = this.size;
       return Math.ceil(l / s);
     }
@@ -520,7 +501,7 @@ export default {
 .ul-nonestyle li a img {
   height: 40px;
 }
-.related-blog-img {
+.related-ads-img {
   height: 80px;
   width: auto;
   min-width: 100%;

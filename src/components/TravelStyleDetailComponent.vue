@@ -6,7 +6,7 @@
         <TravelStyleIntroduceComponent :travelStyle="travelStyle"></TravelStyleIntroduceComponent>
       </div>
       <div class="container pt-4">
-        <HorizontalAdsComponent :adstype="'ANOTHER'"></HorizontalAdsComponent>
+        <HorizontalAdsComponent :adstype="'FLIGHTADS'"></HorizontalAdsComponent>
       </div>
       <div class="container pt-4">
         <TourByTravelStyleComponent :isTitle="true" :paginationEnabled="false" :travelStyle="travelStyle"></TourByTravelStyleComponent>

@@ -224,7 +224,7 @@
             </div>
           </div>
           <div class="row border-top pt-2">
-            <div class="col-12 col-md-6 text-center text-white" v-html="$t('pfooter_madeby')">
+            <div class="col-12 col-md-6 text-08 text-center text-white" v-html="$t('pfooter_madeby')">
               
             </div>
             <div class="col-12 col-md-6 text-center footer-policy">
