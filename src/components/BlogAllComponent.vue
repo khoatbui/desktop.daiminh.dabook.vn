@@ -86,7 +86,7 @@
                       </div>
                       <div class="text-left text-08 text-5line" v-html="blog.blogIntro"></div>
                       <div class="text-right">
-                          <a class="text-info cursor-pointer text-08">Read more <font-awesome-icon icon="arrow-right" class="text-center ml-1" /></a>
+                          <a class="text-info cursor-pointer text-08" @click="redirectToDetailBlog(blog)">Read more <font-awesome-icon icon="arrow-right" class="text-center ml-1" /></a>
                       </div>
                     </div>
                   </div>
@@ -167,7 +167,7 @@
                 <div class="row m-0 p-0">
                   <div
                     class="col-12 m-0 p-0"
-                    v-for="(blog,i) in blogListByLang.slice(0,5)"
+                    v-for="(blog,i) in hotBlogListByLang"
                     :key="'sadf'+i"
                   >
                     <div class="card related-card shadow-none my-2">
@@ -381,6 +381,7 @@ export default {
       componentLoaded:{
         blogList:false,
         blogTypeList:false,
+        hotBlogList:false,
       },
       imgBackground: [
         {
@@ -419,6 +420,7 @@ export default {
         }).format(v);
       },
       blogList: [],
+      hotBlogList:[],
       blogTypeList: [],
       tourList: [],
       travelStyle: [],
@@ -448,6 +450,7 @@ export default {
       this.getBlogType();
       this.getTravelStyle();
       this.getDestination();
+      this.initialHot();
     },
     async initial() {
       this.$store.commit("showHideLoading", true);
@@ -455,6 +458,13 @@ export default {
       this.blogList = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
       this.componentLoaded.blogList = true;
+    },
+    async initialHot() {
+      this.$store.commit("showHideLoading", true);
+      const response = await BlogService.getAllHotBlog();
+      this.hotBlogList = randomArray(response.data);
+      this.$store.commit("showHideLoading", false);
+      this.componentLoaded.hotBlogList = true;
     },
     async getBlogType() {
       this.$store.commit("showHideLoading", true);
@@ -493,6 +503,20 @@ export default {
         });
       });
       return this.blogList;
+    },
+    hotBlogListByLang() {
+      if (this.componentLoaded.hotBlogList === false) {
+        return;
+      }
+      this.hotBlogList.forEach(element => {
+        element.blogIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.blogName = area.blogName;
+            element.blogIntro = area.blogIntro;
+          }
+        });
+      });
+      return this.hotBlogList;
     },
     blogTypeListByLang() {
         return this.blogTypeList;

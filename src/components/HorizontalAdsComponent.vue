@@ -86,8 +86,8 @@ export default {
         backgroundImage: `url("/${item.filePath}")`,
         backgroundSize: "cover",
         height: "100% !important",
-        minHeight: "70vh !important",
-        backgroundPosition: "center"
+        minHeight: "40vh !important",
+        backgroundPosition: "center bottom"
       };
     },
     redirectToAdsDetail(ads) {
