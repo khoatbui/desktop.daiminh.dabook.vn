@@ -9,7 +9,11 @@
         :loop="true"
         class="w-100 m-0 p-0 banner_filter"
       >
-        <div class="card shadow-none overflow-hidden" v-for="(blog,i) in blogListByLang" :key="'aaa'+i">
+        <div
+          class="card shadow-none overflow-hidden"
+          v-for="(blog,i) in blogListByLang"
+          :key="'aaa'+i"
+        >
           <div class="row m-0 p-0">
             <div class="col-3 m-0 p-0">
               <img

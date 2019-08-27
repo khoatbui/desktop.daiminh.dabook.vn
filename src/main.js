@@ -1,8 +1,42 @@
 import Vue from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faUserSecret, faPlay, faSearch, faMedal, faCommentAlt, faGlobeAsia, faChevronRight, faChevronDown, faArrowRight, faCloudSunRain, faUmbrellaBeach, faHotel, faFireAlt, faPercent, faTag, faHeadset, faHeart, faCalendar, faTimesCircle, faPlus, faMinus, faBolt, faPaperPlane, faPencilAlt, faClock,
-  faImage, faStar, faPhone, faMapMarkerAlt, faLemon, faMarker, faFax, faEnvelope, faMapMarked, faList, faThLarge,
+  faUserSecret,
+  faPlay,
+  faSearch,
+  faMedal,
+  faCommentAlt,
+  faGlobeAsia,
+  faChevronRight,
+  faChevronDown,
+  faArrowRight,
+  faCloudSunRain,
+  faUmbrellaBeach,
+  faHotel,
+  faFireAlt,
+  faPercent,
+  faTag,
+  faHeadset,
+  faHeart,
+  faCalendar,
+  faTimesCircle,
+  faPlus,
+  faMinus,
+  faBolt,
+  faPaperPlane,
+  faPencilAlt,
+  faClock,
+  faImage,
+  faStar,
+  faPhone,
+  faMapMarkerAlt,
+  faLemon,
+  faMarker,
+  faFax,
+  faEnvelope,
+  faMapMarked,
+  faList,
+  faThLarge,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker';
@@ -19,7 +53,44 @@ import store from './store';
 import './registerServiceWorker';
 import './assets/app.scss';
 
-library.add(faUserSecret, faPlay, faSearch, faMedal, faCommentAlt, faGlobeAsia, faChevronRight, faChevronDown, faArrowRight, faCloudSunRain, faUmbrellaBeach, faHotel, faFireAlt, faPercent, faTag, faHeadset, faImage, faStar, faHeart, faCalendar, faTimesCircle, faPlus, faMinus, faBolt, faPaperPlane, faPencilAlt, faPhone, faMapMarkerAlt, faLemon, faClock, faMarker, faFax, faEnvelope, faMapMarked, faList, faThLarge);
+library.add(
+  faUserSecret,
+  faPlay,
+  faSearch,
+  faMedal,
+  faCommentAlt,
+  faGlobeAsia,
+  faChevronRight,
+  faChevronDown,
+  faArrowRight,
+  faCloudSunRain,
+  faUmbrellaBeach,
+  faHotel,
+  faFireAlt,
+  faPercent,
+  faTag,
+  faHeadset,
+  faImage,
+  faStar,
+  faHeart,
+  faCalendar,
+  faTimesCircle,
+  faPlus,
+  faMinus,
+  faBolt,
+  faPaperPlane,
+  faPencilAlt,
+  faPhone,
+  faMapMarkerAlt,
+  faLemon,
+  faClock,
+  faMarker,
+  faFax,
+  faEnvelope,
+  faMapMarked,
+  faList,
+  faThLarge,
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('VueSlider', VueSlider);
 Vue.config.productionTip = false;
@@ -45,7 +116,7 @@ const app = new Vue({
   i18n,
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 });
 
 export default app;

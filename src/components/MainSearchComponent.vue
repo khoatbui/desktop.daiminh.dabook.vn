@@ -49,22 +49,22 @@
 </template>
 
 <script>
-import i18n from "@/lang/i18n";
-import PaymentComponent from "@/components/PaymentComponent.vue";
-import DestinationService from "@/api/DestinationService";
-import SearchService from "@/api/SearchService"
+import i18n from '@/lang/i18n';
+import PaymentComponent from '@/components/PaymentComponent.vue';
+import DestinationService from '@/api/DestinationService';
+import SearchService from '@/api/SearchService'
 
 export default {
   components: {
     PaymentComponent,
   },
-  name: "MainSearchComponent",
+  name: 'MainSearchComponent',
   props: {
     defaultopen:false,
   },
   data() {
     return {
-      key:"",
+      key:'',
       destinations:[],
       tourList:[],
       hotelList:[],
@@ -74,7 +74,7 @@ export default {
         tour:false,
         destination:false},
       isSearch:false,
-      magic_flag:this.defaultopen
+      magic_flag:this.defaultopen,
     };
   },
   mounted() {
@@ -126,7 +126,7 @@ export default {
         this.$router.push(`/search?key=${this.key}`);
                 this.$emit('searchclick');
       }
-    }
+    },
   },
   computed :{
     tourByLang() {
@@ -170,8 +170,8 @@ export default {
         });
       });
       return this.destinationList;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -188,7 +188,7 @@ export default {
   box-sizing: border-box;
 }
 .main-search-component:hover{
-  box-shadow: 0 0 7px -4px#f44336;
+  box-shadow: 0 0 7px -4px#00bcd4;
 }
 .main-input-search{
   border-top-left-radius: 5px;
@@ -199,7 +199,7 @@ export default {
   border-bottom-right-radius: 5px;
 }
 .main-input-search,.main-button-search{
-  border:2px solid #f44336;
+  border:2px solid #00bcd4;
   display: inline-block;
   padding: 0 20px;
   height: 100%;
@@ -208,7 +208,7 @@ export default {
 }
 .main-button-search{
   border:none;
-  background-color:#f44336 !important;
+  background-color:#00bcd4 !important;
   font-size: 0.8rem;
   color: #FFFFFF;
   padding: 0 40px;

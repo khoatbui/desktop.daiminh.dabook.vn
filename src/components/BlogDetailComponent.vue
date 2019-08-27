@@ -52,7 +52,7 @@
                       v-bind:src="`/${img.filePath}`"
                       :alt="img.fileName"
                     />
-                     <img
+                    <img
                       v-if="blogDetailByLang.blogId.blogImages.length==0"
                       :key="'iii'+i"
                       class="w-100"
@@ -337,9 +337,9 @@ export default {
     BlogListComponent: lazyLoadComponent({
       componentFactory: () => import("@/components/BlogListComponent.vue"),
       loading: SkeletonBox
-    }),
+    })
   },
-  name: "BlogAllComponent",
+  name: "BlogDetailComponent",
   props: {
     msg: String
   },
@@ -418,7 +418,6 @@ export default {
       this.$store.commit("showHideLoading", true);
       const response = await BlogService.getBlogById(id);
       this.blog = response.data;
-      console.log(this.blog);
       this.componentLoaded.blog = true;
       this.$store.commit("showHideLoading", false);
     },
@@ -462,15 +461,23 @@ export default {
       });
     },
     blogDetailByLang() {
-      if (this.componentLoaded.blogDetailList === false) {
-        return;
-      }
-      console.log(this.blogDetailList);
-      var temp = this.blogDetailList.filter(function(blogs) {
-        return blogs.lang.toUpperCase() === i18n.locale.toUpperCase();
-      });
-      console.log(temp);
-      return temp[0];
+      try {
+        if (this.componentLoaded.blogDetailList === false) {
+          return;
+        }
+        var temp = this.blogDetailList.filter(function(blogs) {
+          return blogs.lang.toUpperCase() === i18n.locale.toUpperCase();
+        });
+        temp.forEach(element => {
+          element.blogId.blogIntros.forEach(blog => {
+            if (blog.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+              element.blogId.blogName = blog.blogName;
+              element.blogId.blogIntro = blog.blogIntro;
+            }
+          });
+        });
+        return temp[0];
+      } catch (error) {}
     },
     pageCount() {
       let l = this.blogList.length,
@@ -485,7 +492,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.banner_filter{
+.banner_filter {
   height: 300px;
   overflow: hidden;
 }

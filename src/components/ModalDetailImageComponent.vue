@@ -2,7 +2,7 @@
   <div class="intro-component">
     <div class="row m-0 p-0">
       <div class="col-12 m-0 p-0 parent-absolute">
-         <div
+        <div
           class="w-100 h-100 card-img-top image-modal"
           v-bind:class="{'small-loading-img':imgsDataReload.length==0}"
           v-bind:style="imgsDataReload"
@@ -31,10 +31,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <carousel
-              :per-page="1"
-              :navigation-enabled="true"
-              :paginationEnabled="true">
+            <carousel :per-page="1" :navigation-enabled="true" :paginationEnabled="true">
               <slide class="m-2" v-for="(img,ides) in imgs" v-bind:key="ides">
                 <div
                   class="card-img-top image-package cursor-pointer"
@@ -65,31 +62,30 @@ export default {
   },
   data() {
     return {
-      imgsData:this.imgs,
+      imgsData: this.imgs
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     getBackgroundImage(item) {
-    return  {
+      return {
         backgroundImage: `url("/${this.root}${item.filePath}")`,
-        backgroundSize: 'cover',
-        height:'100% !important',
-        minHeight:'70vh !important',
-        backgroundPosition: 'center',
-      }
+        backgroundSize: "cover",
+        height: "100% !important",
+        minHeight: "70vh !important",
+        backgroundPosition: "center"
+      };
     }
   },
-  computed :{
+  computed: {
     imgsDataReload() {
-     return  {
+      return {
         backgroundImage: `url("/${this.root}${this.imgs[0].filePath}")`,
-        backgroundSize: 'cover',
-        height:'100% !important',
-        minHeight:'300px !important',
-        backgroundPosition: 'center',
-      }
+        backgroundSize: "cover",
+        height: "100% !important",
+        minHeight: "300px !important",
+        backgroundPosition: "center"
+      };
     }
   }
 };
@@ -127,7 +123,7 @@ export default {
 .modal-dialog {
   max-width: 80vw !important;
 }
-.VueCarousel-inner{
-  flex-basis: 1000px
+.VueCarousel-inner {
+  flex-basis: 10px !important;
 }
 </style>

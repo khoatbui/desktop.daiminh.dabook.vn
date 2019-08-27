@@ -404,7 +404,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
 import TourService from '@/api/TourService';
 import lazyLoadComponent from '@/utils/lazy-load-component';
 import SkeletonBox from '@/components/SkeletonBox.vue';

@@ -10,9 +10,7 @@
             <div class="col-12 w-100 m-0 mt-2 p-0">
               <div class="card shadow-none m-0">
                 <div class="card-body m-0 p-2 px-4">
-                  <p class="m-0">
-                    {{ads.adsTypeId.adsTypeName}}
-                  </p>
+                  <p class="m-0">{{ads.adsTypeId.adsTypeName}}</p>
                 </div>
               </div>
             </div>
@@ -25,7 +23,9 @@
                     class="text-x2 font-bold w-100 text-nomal border-bottom"
                   >{{adsDetailByLang.adsId.adsName}}</h2>
                   <p class="text-09 w-100 text-info">
-                   <span class="bg-danger text-white font-bold text-left p-2 border-radius-100">{{moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')>0?`${moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')} days left`:'End'}}</span>
+                    <span
+                      class="bg-danger text-white font-bold text-left p-2 border-radius-100"
+                    >{{moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')>0?`${moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')} days left`:'End'}}</span>
                   </p>
                 </div>
                 <div class="row p-0 m-0">
@@ -44,7 +44,7 @@
                       v-bind:src="`/${img.filePath}`"
                       :alt="img.fileName"
                     />
-                     <img
+                    <img
                       v-if="adsDetailByLang.adsId.adsImages.length==0"
                       :key="'iii'+i"
                       class="w-100"
@@ -107,10 +107,7 @@
                       class="text-info text-nomal w-100 m-0 hidden-outof-text cursor-pointer"
                       @click="redirectToDetailAds(ads)"
                     >{{ads.adsName}}</h6>
-                    <p
-                      class="text-08 text-muted two-line hidden-outof-text"
-                      v-html="ads.adsIntro"
-                    ></p>
+                    <p class="text-08 text-muted two-line hidden-outof-text" v-html="ads.adsIntro"></p>
                   </div>
                 </div>
               </div>
@@ -320,7 +317,7 @@ export default {
     DabookCardComponent: lazyLoadComponent({
       componentFactory: () => import("@/components/DabookCardComponent.vue"),
       loading: SkeletonBox
-    }),
+    })
   },
   name: "AdsAllComponent",
   props: {
@@ -408,7 +405,7 @@ export default {
       this.$store.commit("showHideLoading", true);
       const response = await AdsService.getAllAds();
       this.adsList = randomArray(response.data);
-      console.log( this.adsList);
+      console.log(this.adsList);
       this.$store.commit("showHideLoading", false);
       this.componentLoaded.adsList = true;
     },
@@ -451,6 +448,14 @@ export default {
       var temp = this.adsDetailList.filter(function(adss) {
         return adss.lang.toUpperCase() === i18n.locale.toUpperCase();
       });
+      temp.forEach(element => {
+        element.adsId.adsIntros.forEach(blog => {
+          if (blog.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.adsId.adsName = blog.adsName;
+            element.adsId.adsIntro = blog.adsIntro;
+          }
+        });
+      });
       return temp[0];
     },
     pageCount() {
@@ -466,7 +471,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.banner_filter{
+.banner_filter {
   height: 300px;
   overflow: hidden;
 }
