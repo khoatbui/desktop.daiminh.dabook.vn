@@ -127,4 +127,7 @@ export default {
 .modal-dialog {
   max-width: 80vw !important;
 }
+.VueCarousel-inner{
+  flex-basis: 1000px
+}
 </style>
