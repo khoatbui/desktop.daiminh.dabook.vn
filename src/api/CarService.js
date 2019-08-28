@@ -11,6 +11,18 @@ const Car = {
   getTop10PromotionCar() {
     return axios.get(`${api}/cardetailprice/m/getallpromotioncarprice`);
   },
+  getCarType() {
+    return axios.get(`${api}/cartype/getused`);
+  },
+  getAllCarTrip() {
+    return axios.get(`${api}/cardetailprice/getused`);
+  },
+  getCarTripById(parram) {
+    return axios.get(`${api}/cardetailprice/getcarpricebyid/${parram}`);
+  },
+  getTransType() {
+    return axios.get(`${api}/cartranstype/getused`);
+  },
 };
 
 export default Car;

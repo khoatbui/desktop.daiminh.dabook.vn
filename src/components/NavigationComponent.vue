@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/">
-          <img src="/img/new_logo.jpg" alt height="50px;" />
+          <img src="/img/new_logo.jpg" alt height="40px;" />
         </a>
         <button
           class="navbar-toggler"

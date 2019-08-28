@@ -26,9 +26,12 @@ const HotelPackageDetailView = () => import('./views/HotelPackageDetailView.vue'
 const HotelPackageDetail = () => import('./components/HotelPackageDetailComponent.vue');
 const RoomTypeDetailView = () => import('./views/RoomTypeDetailView.vue');
 const HotelRoomTypePackageDetail = () => import('./components/HotelRoomTypeDetailComponent.vue');
+
+const CarView = () => import('./views/CarView.vue');
 const CarDetailView = () => import('./views/CarDetailView.vue');
 const CarDetail = () => import('./components/CarDetailComponent.vue');
 const CarDetailConfirm = () => import('./components/CarDetailConfirmComponent.vue');
+const CarAllComponent = () => import('./components/CarAllComponent.vue');
 
 const TourView = () => import('./views/TourView.vue');
 const TourAllComponent = () => import('./components/TourAllComponent.vue');
@@ -69,6 +72,33 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('./views/About.vue'),
+      children: [
+        {
+          path: 'term',
+          name: 'destinationdetail',
+          component: DestinationDetailComponent,
+        },
+        {
+          path: 'policy',
+          name: 'destinationdetail',
+          component: DestinationDetailComponent,
+        },
+        {
+          path: 'help',
+          name: 'destinationdetail',
+          component: DestinationDetailComponent,
+        },
+        {
+          path: 'contact',
+          name: 'destinationdetail',
+          component: DestinationDetailComponent,
+        },
+        {
+          path: 'us',
+          name: 'destinatioall',
+          component: DestinationAllComponent,
+        },
+      ],
     },
     {
       path: '/destination',
@@ -136,7 +166,7 @@ export default new Router({
         {
           path: 'car',
           name: 'carservice',
-          component: TravelStyleDetailComponent,
+          component: CarAllComponent,
         },
         {
           path: 'hotel',
@@ -259,7 +289,7 @@ export default new Router({
         {
           path: 'search',
           name: 'toursearch',
-          component: CarDetailConfirm,
+          component: TourDetailConfirm,
         },
         {
           path: '',
@@ -275,12 +305,28 @@ export default new Router({
         {
           path: 'search',
           name: 'hotelsearch',
-          component: CarDetailConfirm,
+          component: HotelDetailConfirm,
         },
         {
           path: '',
           name: 'hotelview',
           component: HotelAllComponent,
+        },
+      ],
+    },
+    {
+      path: '/car',
+      component: CarView,
+      children: [
+        {
+          path: 'search',
+          name: 'carsearch',
+          component: CarDetailConfirm,
+        },
+        {
+          path: '',
+          name: 'carview',
+          component: CarAllComponent,
         },
       ],
     },

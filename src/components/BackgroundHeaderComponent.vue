@@ -8,29 +8,7 @@
       :loop="true"
       class="w-100 m-0 p-0 banner_filter"
     >
-      <img src="/img/background/bg_01.jpg"/>
-      <img src="/img/background/bg_02.jpg" />
-      <img src="/img/background/bg_03.jpg" />
-      <img src="/img/background/bg_04.jpg" />
-      <img src="/img/background/bg_05.jpg" />
-      <img src="/img/background/bg_06.jpg" />
-      <img src="/img/background/bg_07.jpg" />
-      <img src="/img/background/bg_08.jpg" />
-      <img src="/img/background/bg_09.jpg" />
-      <img src="/img/background/bg_10.jpg" />
-      <img src="/img/background/bg_11.jpg" />
-      <img src="/img/background/bg_12.jpg" />
-      <img src="/img/background/bg_13.jpg" />
-      <img src="/img/background/bg_14.jpg" />
-      <img src="/img/background/bg_15.jpg" />
-      <img src="/img/background/bg_16.jpg" />
-      <img src="/img/background/bg_17.jpg" />
-      <img src="/img/background/bg_18.jpg" />
-      <img src="/img/background/bg_19.jpg" />
-      <img src="/img/background/bg_20.jpg" />
-      <img src="/img/background/bg_21.jpg" />
-      <img src="/img/background/bg_22.jpg" />
-      <img src="/img/background/bg_23.jpg" />
+      <img :src="img.imgPath" v-for="(img,i) in backgroundImage" :key="i"/>
     </carousel>
     <div class="w-75 card-body-center">
       <div class="row">
@@ -53,7 +31,15 @@
 <script>
 import carousel from 'vue-owl-carousel';
 import MainSearchComponent from '@/components/MainSearchComponent.vue';
-
+function randomArray(array) {
+  const array2 = [];
+  while (array.length !== 0) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    array2.push(array[randomIndex]);
+    array.splice(randomIndex, 1);
+  }
+  return array2;
+}
 export default {
   components: {
     MainSearchComponent,
@@ -64,10 +50,41 @@ export default {
     msg: String
   },
   data() {
-    return {};
+    return {
+      background :[
+      {imgPath:"/img/background/bg_01.jpg"},
+      {imgPath:"/img/background/bg_02.jpg" },
+      {imgPath:"/img/background/bg_03.jpg" },
+      {imgPath:"/img/background/bg_04.jpg" },
+      {imgPath:"/img/background/bg_05.jpg" },
+      {imgPath:"/img/background/bg_06.jpg" },
+      {imgPath:"/img/background/bg_07.jpg" },
+      {imgPath:"/img/background/bg_08.jpg" },
+      {imgPath:"/img/background/bg_09.jpg" },
+      {imgPath:"/img/background/bg_10.jpg" },
+      {imgPath:"/img/background/bg_11.jpg" },
+      {imgPath:"/img/background/bg_12.jpg" },
+      {imgPath:"/img/background/bg_13.jpg" },
+      {imgPath:"/img/background/bg_14.jpg" },
+      {imgPath:"/img/background/bg_15.jpg" },
+      {imgPath:"/img/background/bg_16.jpg" },
+      {imgPath:"/img/background/bg_17.jpg" },
+      {imgPath:"/img/background/bg_18.jpg" },
+      {imgPath:"/img/background/bg_19.jpg" },
+      {imgPath:"/img/background/bg_20.jpg" },
+      {imgPath:"/img/background/bg_21.jpg" },
+      {imgPath:"/img/background/bg_22.jpg" },
+      {imgPath:"/img/background/bg_23.jpg" },
+      ]
+    };
   },
   mounted() {},
-  methods: {}
+  methods: {},
+  computed: {
+    backgroundImage() {
+      return randomArray(this.background);
+    }
+  },
 };
 </script>
 

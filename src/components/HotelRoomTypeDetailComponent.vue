@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="roomDetailByLang.roomImages"  :root="'lgimg/'"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="roomDetailByLang.roomImages"  :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
     </div>
     <div class="container-fluid my-0 mt-2 py-4 second-background">
       <div class="container p-0">
@@ -269,7 +269,7 @@
                         <font-awesome-icon icon="chevron-down" class="text-center text-07" />
                       </span>
                       <button
-                        class="btn btn-outline-info custom-btn-md text-nomal custom-btn-outline"
+                        class="btn custom-btn-md text-nomal shadow-none custom-btn-outline-x2 border-radius-5"
                         type="button"
                         data-toggle="collapse"
                         :data-target="`#collapseOne${i}`"
@@ -294,7 +294,7 @@
             </div>
             <div class="row p-0 m-0 py-2 text-08">
               <div class="map border-radius-10 w-100">
-                <MapComponent v-bind:map ="map"></MapComponent>
+                <MapComponent v-bind:map ="packageByLang[0].hotelId.map"></MapComponent>
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@
             <div class="card">
               <div class="card-body p-3">
                 <div class="row m-0 p-0" v-if="formCheck.packageSelect==true">
-                  <ModalDetailImageComponent :imgs="order.roomType.roomImages"  :root="'lgimg/'"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="order.roomType.roomImages"  :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
                 </div>
                 <div class="row m-0 p-0" v-if="order.checkInDate ==null">
                   <p>
@@ -334,12 +334,12 @@
                   <p class="text-09 text-muted mb-0">
                     <span class="pr-2">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
                     <span class="pr-2">
-                      {{$t('general_label_child04')}}
+                      {{$t('general_label_child')}}
                       <span class="text-07">(0-4)</span>
                       x {{order.guest.child04.qty}}
                     </span>
                     <span>
-                      {{$t('general_label_child48')}}
+                      {{$t('general_label_child')}}
                       <span class="text-07">(4-8)</span>
                       x {{order.guest.child48.qty}}
                     </span>
@@ -533,7 +533,7 @@ export default {
     selectHotelPackage() {
       if (this.formCheck.usingDefaultData == true) {
         location.href = "#chon";
-        $('.calendarTrigger').addClass('border-outline-danger');
+        $('.calendarTrigger').addClass('border-outline-danger-x2');
       } else {
         this.$store.dispatch("updateHotelOrder", this.order);
         // this.$store.dispatch("updateHotelPackageDetail", this.order.hotel);
@@ -563,7 +563,7 @@ export default {
     },
     selectRoomTypeDetail(item) {
       if (this.formCheck.timeSelect===false) {
-        $('.calendarTrigger').addClass('border-outline-danger');
+        $('.calendarTrigger').addClass('border-outline-danger-x2');
       }
       this.order.roomType = item.roomTypeId;
       this.formCheck.roomTypeCode=item.roomTypeId.roomTypeCode;
@@ -695,5 +695,11 @@ export default {
   height: 20px;
   border-radius: 50%;
   border: none;
+}
+.collapse{
+display: none ;
+}
+.collapse.show {
+  display: block ;
 }
 </style>

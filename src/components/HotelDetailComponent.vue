@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="hotelDetailByLang.hotelImages" :root="'lgimg/'"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="hotelDetailByLang.hotelImages" :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
     </div>
     <div class="container-fluid my-0 mt-2 py-4 second-background">
       <div class="container p-0">
@@ -51,7 +51,7 @@
         <div class="col-8 m-0 p-0 pr-3 text-left">
           <div class="section-tour py-2" id="thongtin">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3 class="text-xh1 font-weight-bold">{{hotelDetailByLang.hotelName}}</h3>
+              <h3 class="text-xh1">{{hotelDetailByLang.hotelName}}</h3>
               <font-awesome-icon icon="heart" class="text-center text-1" />
             </div>
             <div
@@ -78,7 +78,7 @@
           </div>
           <div class="section-tour py-2" id="danhgia">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_vote')}}</h3>
+              <h3 class="text-xh1 info-title">{{$t('general_sticky_tab_vote')}}</h3>
             </div>
             <div class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center">
               <p>{{$t('general_sticky_tab_vote_empty')}}</p>
@@ -87,7 +87,7 @@
           <div class="section-tour py-2 second-background" id="chon">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
               <h3
-                class="text-xh1 info-title font-weight-bold"
+                class="text-xh1 info-title"
               >{{$t('general_sticky_tab_roomselect')}}</h3>
             </div>
             <div class="row m-0 p-0 py-2">
@@ -99,16 +99,17 @@
                 />
               </div>
             </div>
-            <div class="row m-0 p-2">
+            <div class="row m-0 p-2 accordion"  id="accordionExample">
               <div class="col-12 m-0 p-0" v-for="(pac,i) in groupPackageByRoomType" :key="'hods'+i">
                 <div
-                  class="card my-1 shadow-none"
+                  class="card my-2 shadow-none"
                   :class="{'border-outline-info':pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode}"
                 >
                   <div class="card-body">
                     <div class="row">
                       <div
                         class="col-12 p-0 py-2 d-flex justify-content-between align-items-center"
+                         :id="`headingOne${i}`"
                       >
                         <span
                           class="text-x1 font-bold text-nomal"
@@ -123,8 +124,9 @@
                           >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format((formCheck.usingDefaultData!==true && pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode) ?totalPrice:pac[0].price)}}</span>
                         </span>
                       </div>
+                      <div  :id="`collapseOne${i}`" class="m-0 p-0 w-100 collapse" :aria-labelledby="`headingOne${i}`" data-parent="#accordionExample">
                       <div
-                        class="col-12 m-0 p-0"
+                        class="col-12 m-0 p-0 py-3 border-bottom border-bottom-dash"
                         v-if="pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode"
                       >
                         <div class="row m-0 p-0">
@@ -184,12 +186,26 @@
                         </div>
                       </div>
                       <div
-                        class="col-12 py-3 border-bottom"
+                        class="col-12 p-0 py-3 border-bottom"
                         v-if="pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode"
                       >
                         <div
                           class="row w-100 m-0 p-0 d-flex justify-content-between align-items-center"
                         >
+                        <div class="col-12 m-0 p-0">
+                           <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
+                            <slide class="m-2" v-for="(packa,ides) in pac" v-bind:key="ides">
+                              <div class="card shadow-none pac-card">
+                                <div class="card-body p-0 d-flex justify-content-between flex-column">
+                                   <img class="card-img-top pac-package cursor-pointer"  v-bind:src="packa.roomTypeId.roomImages.length>0?`/smimg/${packa.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
+                                    v-bind:alt="packa.roomTypeId.roomImages[0].fileName"/>
+                                    <vs-radio class="text-06 text-left" v-model="order.package" vs-value="info">{{packa.packageId.packageName}}</vs-radio>
+                                </div>
+                              </div>
+                            </slide>
+                             <slide></slide>
+                           </carousel>
+                        </div>
                           <div class="col-4 p-0 m-0">
                             <DropdownListComponent
                               v-bind:label="'Select package'"
@@ -206,22 +222,24 @@
                           </div>
                         </div>
                       </div>
+                      </div>
                       <div class="col-12 m-0 p-0">
                         <div class="row m-0 p-0 d-flex justify-content-between align-items-center">
-                          <span class="text-muted text-08 cursor-pointer">
+                          <span class="text-muted text-08 cursor-pointer"  data-toggle="collapse" :href="`#collapseExample${i}`" role="button" aria-expanded="false" :aria-controls="`#collapseExample${i}`">
                             {{$t('general_showmore')}}
                             <font-awesome-icon icon="chevron-down" class="text-center text-07" />
                           </span>
                           <button
-                            class="btn btn-outline-info custom-btn-md text-nomal custom-btn-outline"
+                            class="btn custom-btn-md text-nomal shadow-none custom-btn-outline-x2 border-radius-5"
                             type="button"
                             @click="selectRoomTypeDetail(pac[0])"
                             v-if="pac[0].roomTypeId.roomTypeCode!==formCheck.roomTypeCode"
+                            data-toggle="collapse" :data-target="`#collapseOne${i}`" aria-expanded="true" :aria-controls="`collapseOne${i}`"
                           >{{$t('general_select')}}</button>
                         </div>
                         <div
-                          class="collapse row w-100 m-0 p-0"
-                          :id="`collapseInfo${i}`"
+                          class="collapse"
+                          :id="`collapseExample${i}`"
                           v-html="pac[0].roomTypeId.roomTypeIntro"
                         ></div>
                       </div>
@@ -231,253 +249,13 @@
               </div>
             </div>
           </div>
-          <div class="section-tour py-2 second-background" id="chon" v-if="false">
-            <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3
-                class="text-xh1 info-title font-weight-bold"
-              >{{$t('general_sticky_tab_roomselect')}}</h3>
-            </div>
-            <div
-              class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center accordion"
-              id="accordionExample"
-            >
-              <div class="col-4 py-1">
-                <date-time-picker
-                  :singleDate="false"
-                  ref="rcheckinouttime"
-                  @onChange="onChangeDate"
-                />
-              </div>
-              <div
-                class="col-12 px-3 py-1"
-                v-for="(pac,i) in groupPackageByRoomType"
-                :key="'hods'+i"
-              >
-                <div
-                  class="card p-0 m-0 shadow-none"
-                  :id="`headingOne${i}`"
-                  :class="{'border-outline-info':pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode}"
-                >
-                  <div class="row p-0 m-0 bg-white border-radius-5 overflow-nomal">
-                    <div class="col-12 py-2 d-flex justify-content-between align-items-center">
-                      <span class="text-x1 font-bold text-nomal">{{pac[0].roomTypeId.roomTypeName}}</span>
-                      <span>
-                        <span
-                          class="text-07 pr-3 font-weight-bold text-muted text-deco-line-through"
-                        >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format((formCheck.usingDefaultData!==true && pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode) ?totalPrice*1.3:pac[0].price*1.3)}}</span>
-                        <span class="text-08 font-bold text-muted pr-1">tu</span>
-                        <span
-                          class="text-x1 font-bold"
-                        >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format((formCheck.usingDefaultData!==true && pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode) ?totalPrice:pac[0].price)}}</span>
-                      </span>
-                    </div>
-
-                    <div
-                      :id="`collapseOne${i}`"
-                      :aria-labelledby="`headingOne${i}`"
-                      data-parent="#accordionExample"
-                    >
-                      <div
-                        class="col-12 py-3 d-flex justify-content-between align-items-center border-bottom border-bottom-dash"
-                      >
-                        <div class="row w-100 p-0 m-0">
-                          <div class="col-6 p-0 m-0">
-                            <div class="row m-0 p-0">
-                              <div
-                                class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
-                              >
-                                <p class="mb-0">
-                                  <span class="text-08 font-bold">{{$t('general_label_guest')}}</span>
-                                  <span class="text-07 text-muted">( Age 13-99)</span>
-                                </p>
-                                <!-- <p
-                                class="text-09 text-muted mb-0"
-                              >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotelDetailByLang.tourId.price)}} / khach</p>
-                              <p
-                                class="text-07 text-muted text-deco-line-through mb-0"
-                                >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotelDetailByLang.tourId.price*1.3)}}</p>-->
-                                <p
-                                  class="text-07 text-danger mb-0"
-                                  v-show="order.guest.guest.qty==0"
-                                >{{$t('general_label_less1')}}</p>
-                              </div>
-                              <div
-                                class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
-                              >
-                                <div class="row">
-                                  <div class="col-4 text-right p-0">
-                                    <button
-                                      class="btn-plus"
-                                      :disabled="order.guest.guest.qty==0"
-                                      @click="minusPerson(order.guest.guest)"
-                                    >
-                                      <font-awesome-icon icon="minus" class="text-center text-1" />
-                                    </button>
-                                  </div>
-                                  <div class="col-4">
-                                    <input
-                                      class="custom-form-input text-center text-muted"
-                                      v-model="order.guest.guest.qty"
-                                    />
-                                  </div>
-                                  <div class="col-4 text-left p-0">
-                                    <button class="btn-plus" @click="plusPerson(order.guest.guest)">
-                                      <font-awesome-icon icon="plus" class="text-center text-1" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-6 p-0 m-0">
-                            <div class="row m-0 p-0 pb-2 border-bottom">
-                              <div
-                                class="col-6 m-0 p-0 flex-column d-flex justify-content-between align-items-start"
-                              >
-                                <p class="mb-0">
-                                  <span class="text-08 font-bold">{{$t('general_label_child04')}}</span>
-                                  <span class="text-07 text-muted">( Age 00 - 04)</span>
-                                </p>
-                                <!-- <p
-                                class="text-09 text-muted mb-0"
-                                >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotelDetailByLang.tourId.priceChild04)}}/ trẻ em</p>-->
-                              </div>
-                              <div
-                                class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
-                              >
-                                <div class="row">
-                                  <div class="col-4 text-right p-0">
-                                    <button
-                                      class="btn-plus"
-                                      :disabled="order.guest.child04.qty==0"
-                                      @click="minusPerson(order.guest.child04)"
-                                    >
-                                      <font-awesome-icon icon="minus" class="text-center text-1" />
-                                    </button>
-                                  </div>
-                                  <div class="col-4">
-                                    <input
-                                      class="custom-form-input text-center text-muted"
-                                      v-model="order.guest.child04.qty"
-                                    />
-                                  </div>
-                                  <div class="col-4 text-left p-0">
-                                    <button
-                                      class="btn-plus"
-                                      @click="plusPerson(order.guest.child04)"
-                                    >
-                                      <font-awesome-icon icon="plus" class="text-center text-1" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row m-0 p-0 pt-2">
-                              <div
-                                class="col-6 m-0 p-0 flex-column d-flex justify-content-between align-items-start"
-                              >
-                                <p class="mb-0">
-                                  <span class="text-08 font-bold">{{$t('general_label_child48')}}</span>
-                                  <span class="text-07 text-muted">( Age 04 - 08)</span>
-                                </p>
-                                <!-- <p
-                                class="text-09 text-muted mb-0"
-                                >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotelDetailByLang.tourId.priceChild04)}}/ trẻ em</p>-->
-                              </div>
-                              <div class="col-6 m-0 p-0">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                  <div class="col-4 text-right p-0">
-                                    <button
-                                      class="btn-plus"
-                                      :disabled="order.guest.child48.qty==0"
-                                      @click="minusPerson(order.guest.child48)"
-                                    >
-                                      <font-awesome-icon icon="minus" class="text-center text-1" />
-                                    </button>
-                                  </div>
-                                  <div class="col-4">
-                                    <input
-                                      class="custom-form-input text-center text-muted"
-                                      v-model="order.guest.child48.qty"
-                                    />
-                                  </div>
-                                  <div class="col-4 text-left p-0">
-                                    <button
-                                      class="btn-plus"
-                                      @click="plusPerson(order.guest.child48)"
-                                    >
-                                      <font-awesome-icon icon="plus" class="text-center text-1" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 py-3 border-bottom">
-                        <div
-                          class="row w-100 m-0 p-0 d-flex justify-content-between align-items-center"
-                        >
-                          <div class="col-4 p-0 m-0">
-                            <DropdownListComponent
-                              v-bind:label="'Select package'"
-                              v-bind:data="getPackage(pac)"
-                              @select="changePackage($event)"
-                            ></DropdownListComponent>
-                          </div>
-                          <div class="col-4 p-0 m-0 offset-sm-2 offset-md-2">
-                            <DropdownListComponent
-                              v-bind:label="'Select option service'"
-                              v-bind:data="getOptionService(pac)"
-                              @select="order.optionService=$event"
-                            ></DropdownListComponent>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12 py-2 border-bottom">
-                      <div class="row m-0 p-0 d-flex justify-content-between align-items-center">
-                        <span
-                          class="text-muted text-08 cursor-pointer"
-                          data-toggle="collapse"
-                          :href="`#collapseInfo${i}`"
-                          role="button"
-                          aria-expanded="false"
-                          :aria-controls="`collapseInfo${i}`"
-                        >
-                          {{$t('general_showmore')}}
-                          <font-awesome-icon icon="chevron-down" class="text-center text-07" />
-                        </span>
-                        <button
-                          class="btn btn-outline-info custom-btn-md text-nomal custom-btn-outline"
-                          type="button"
-                          data-toggle="collapse"
-                          :data-target="`#collapseOne${i}`"
-                          aria-expanded="true"
-                          :aria-controls="`collapseOne${i}`"
-                          @click="selectRoomTypeDetail(pac[0])"
-                          v-if="pac[0].roomTypeId.roomTypeCode!==formCheck.roomTypeCode"
-                        >{{$t('general_select')}}</button>
-                      </div>
-                      <div
-                        class="collapse row w-100 m-0 p-0"
-                        :id="`collapseInfo${i}`"
-                        v-html="pac[0].roomTypeId.roomTypeIntro"
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="section-tour py-2" id="map">
             <div class="row m-0 p-0 py-2">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_map')}}</h3>
+              <h3 class="text-xh1 info-title">{{$t('general_sticky_tab_map')}}</h3>
             </div>
             <div class="row p-0 m-0 py-2 text-08">
               <div class="map border-radius-10 w-100">
-                <MapComponent v-bind:map="map"></MapComponent>
+                <MapComponent v-bind:map="hotelDetail.map"></MapComponent>
               </div>
             </div>
           </div>
@@ -487,7 +265,7 @@
             <div class="card">
               <div class="card-body p-3">
                 <div class="row m-0 p-0" v-if="formCheck.packageSelect==true">
-                  <ModalDetailImageComponent :imgs="order.roomType.roomImages" :root="'lgimg/'"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="order.roomType.roomImages" :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
                 </div>
                 <div class="row m-0 p-0" v-if="order.checkInDate ==null">
                   <p>
@@ -515,16 +293,16 @@
                   </p>
                   <p
                     class="text-09 text-muted mb-0"
-                  >in {{order.checkInDate}} | out {{order.checkOutDate}}</p>
+                  > <span class="pr-4">in {{order.checkInDate}}</span> |<span class="pl-4"> out {{order.checkOutDate}}</span></p>
                   <p class="text-09 text-muted mb-0">
-                    <span class="pr-2">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
-                    <span class="pr-2">
-                      {{$t('general_label_child04')}}
+                    <span class="pr-4">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
+                    <span class="pr-4">
+                      {{$t('general_label_child')}}
                       <span class="text-07">(0-4)</span>
                       x {{order.guest.child04.qty}}
                     </span>
                     <span>
-                      {{$t('general_label_child48')}}
+                      {{$t('general_label_child')}}
                       <span class="text-07">(4-8)</span>
                       x {{order.guest.child48.qty}}
                     </span>
@@ -679,7 +457,7 @@ export default {
       },
       order: {
         guest: {
-          guest: { qty: 1 },
+          guest: { qty: 0 },
           child04: { qty: 0 },
           child48: { qty: 0 }
         },
@@ -730,7 +508,7 @@ export default {
     selectHotelPackage() {
       if (this.formCheck.usingDefaultData == true) {
         location.href = "#chon";
-        $(".calendarTrigger").addClass("border-outline-danger");
+        $(".calendarTrigger").addClass("border-outline-danger-x2");
       } else {
         this.$store.dispatch("updateHotelOrder", this.order);
         // this.$store.dispatch("updateHotelPackageDetail", this.order.hotel);
@@ -768,7 +546,7 @@ export default {
     },
     selectRoomTypeDetail(item) {
       if (this.formCheck.timeSelect === false) {
-        $(".calendarTrigger").addClass("border-outline-danger");
+        $(".calendarTrigger").addClass("border-outline-danger-x2");
       }
       this.order.roomType = item.roomTypeId;
       this.formCheck.roomTypeCode = item.roomTypeId.roomTypeCode;
@@ -897,5 +675,39 @@ export default {
   height: 20px;
   border-radius: 50%;
   border: none;
+}
+.collapse{
+display: none ;
+}
+.collapse.show {
+  display: block ;
+}
+.pac-card{
+  height: 120px;
+}
+.pac-package{
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+}
+.position-relative::after,.position-relative::before{
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    content: "";
+    background-image: linear-gradient(0deg, #111 0%, #111 100%);
+    z-index: 2;
+    opacity: 0.15;
+}
+.con-vs-radio {
+  justify-content: start;
+  color: #333;
+}
+.VueCarousel-inner{
+  flex-basis: 10px !important;
+  visibility: visible !important;
 }
 </style>

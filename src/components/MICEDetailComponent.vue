@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded.mice">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="miceByLang.miceImages" :root="''"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="miceByLang.miceImages" :root="''" :minheight="'300px'"></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row m-0 p-0">

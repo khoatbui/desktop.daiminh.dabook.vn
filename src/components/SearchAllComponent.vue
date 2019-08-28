@@ -1,7 +1,7 @@
 <template>
   <div class="tour-all second-background">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="imgBackground" :root="''"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="imgBackground" :root="''" :minheight="'300px'"></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row w-100 m-0 p-0">

@@ -58,11 +58,13 @@ export default {
   name: "ModalDetailImageComponent",
   props: {
     imgs: Array,
-    root: String
+    root: String,
+    minheight:String,
   },
   data() {
     return {
-      imgsData: this.imgs
+      imgsData: this.imgs,
+      min_height:this.minheight,
     };
   },
   mounted() {},
@@ -79,11 +81,12 @@ export default {
   },
   computed: {
     imgsDataReload() {
+      console.log(this.min_height);
       return {
         backgroundImage: `url("/${this.root}${this.imgs[0].filePath}")`,
         backgroundSize: "cover",
         height: "100% !important",
-        minHeight: "300px !important",
+        minHeight: `"${this.min_height} !important"`,
         backgroundPosition: "center"
       };
     }

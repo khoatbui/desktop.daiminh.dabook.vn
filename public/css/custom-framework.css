@@ -6,6 +6,10 @@ body {
   color: #333333;
   font-family: 'Quicksand', sans-serif;
 }
+.h1, .h2, .h3, .h4, h1, h2, h3, h4 {
+  font-family: inherit;
+  font-weight: 700;
+}
 .hidden-outof-text {
   white-space: nowrap !important;
   overflow: hidden !important;
@@ -294,6 +298,11 @@ textarea.custom-form-input {
   color: #00bcd4 !important;
   border: 0.5px solid #00bcd4;
 }
+.custom-btn-outline-x2 {
+  background: #fff !important;
+  color: #00bcd4 !important;
+  border: 2px solid #00bcd4;
+}
 .custom-btn-outline:hover,
 .custom-btn-outline:active,
 .custom-btn-outline:focus {
@@ -325,6 +334,9 @@ textarea.custom-form-input {
 }
 .border-outline-danger {
   border: 1px solid #f44336 !important;
+}
+.border-outline-danger-x2{
+  border: 2px solid #f44336 !important;
 }
 .border-outline-info {
   border: 2px solid #00bcd4 !important;
@@ -372,3 +384,11 @@ textarea.custom-form-input {
 .vs-pagination--ul {
   margin: 0 !important;
 }
+
+/* ==========COLLAPSE FIX============== */
+.collapse{
+  display: none ;
+  }
+  .collapse.show {
+    display: block ;
+  }

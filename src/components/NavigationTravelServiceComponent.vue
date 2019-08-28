@@ -229,10 +229,10 @@ export default {
       this.componentLoaded.hotel=true;
     },
     redirectToHotel(ht) {
-       this.$router.push(`/hoteldetail?hoteid=${ht._id}`);
+       this.$router.push(`/hotelpackagedetail?packageid=${ht._id}`);
     },
     redirectToCar(car) {
-      this.$router.push(`/car/detail?carid=${car._id}`);
+      this.$router.push(`/cardetail?tripid=${car._id}`);
     },
     redirectToTravelService(travelservice) {
       this.$router.push(

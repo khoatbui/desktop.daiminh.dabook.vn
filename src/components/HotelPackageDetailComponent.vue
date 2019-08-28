@@ -4,6 +4,7 @@
       <ModalDetailImageComponent
         :imgs="packageDetailByLang.hotelId.hotelImages.concat(packageDetailByLang.roomTypeId.roomImages)"
          :root="'lgimg/'"
+          :minheight="'300px'"
       ></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
@@ -264,13 +265,13 @@
               </div>
             </div>
           </div>
-          <div class="section-tour py-2" id="map">
+          <div class="section-tour py-2" id="map" v-if="componentLoaded">
             <div class="row m-0 p-0 py-2">
               <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_map')}}</h3>
             </div>
             <div class="row p-0 m-0 py-2 text-08">
               <div class="map border-radius-10 w-100">
-                <MapComponent v-bind:map="map"></MapComponent>
+                <MapComponent v-bind:map="packageDetailByLang.hotelId.map"></MapComponent>
               </div>
             </div>
           </div>
@@ -280,7 +281,7 @@
             <div class="card">
               <div class="card-body p-3">
                 <div class="row m-0 p-0" v-if="formCheck.packageSelect==true">
-                  <ModalDetailImageComponent :imgs="order.roomType.roomImages"  :root="'lgimg/'"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="order.roomType.roomImages"  :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
                 </div>
                 <div class="row m-0 p-0" v-if="order.checkInDate ==null">
                   <p>
@@ -312,12 +313,12 @@
                   <p class="text-09 text-muted mb-0">
                     <span class="pr-2">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
                     <span class="pr-2">
-                     {{$t('general_label_child04')}}
+                     {{$t('general_label_child')}}
                       <span class="text-07">(0-4)</span>
                       x {{order.guest.child04.qty}}
                     </span>
                     <span>
-                      {{$t('general_label_child48')}}
+                      {{$t('general_label_child')}}
                       <span class="text-07">(4-8)</span>
                       x {{order.guest.child48.qty}}
                     </span>
@@ -506,7 +507,7 @@ export default {
     selectHotelPackage() {
       if (this.formCheck.usingDefaultData == true) {
         location.href = "#chon";
-        $(".calendarTrigger").addClass("border-outline-danger");
+        $(".calendarTrigger").addClass("border-outline-danger-x2");
       } else {
         this.$store.dispatch("updateHotelOrder", this.order);
         // this.$store.dispatch("updateHotelPackageDetail", this.order.hotel);
@@ -663,5 +664,11 @@ export default {
   height: 20px;
   border-radius: 50%;
   border: none;
+}
+.collapse{
+display: none ;
+}
+.collapse.show {
+  display: block ;
 }
 </style>

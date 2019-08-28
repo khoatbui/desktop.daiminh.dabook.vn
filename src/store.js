@@ -30,6 +30,10 @@ export default new Vuex.Store({
         optionService: {},
       },
     },
+    car: {
+      order: {},
+      carDetail: {},
+    },
   },
   mutations: {
     showHideLoading(state, payload) {
@@ -40,6 +44,12 @@ export default new Vuex.Store({
     },
     updateTourDetail(state, payload) {
       state.tour.tourDetail = payload;
+    },
+    updateCarOrder(state, payload) {
+      state.car.order = payload;
+    },
+    updateCarDetail(state, payload) {
+      state.car.carDetail = payload;
     },
     updateHotelOrder(state, payload) {
       state.hotel.order = payload;
@@ -54,6 +64,12 @@ export default new Vuex.Store({
     },
     updateTourDetail({ commit }, tourDetail) {
       commit('updateTourDetail', tourDetail);
+    },
+    updateCarOrder({ commit }, order) {
+      commit('updateCarOrder', order);
+    },
+    updateCarDetail({ commit }, tourDetail) {
+      commit('updateCarDetail', tourDetail);
     },
     updateHotelOrder({ commit }, order) {
       commit('updateHotelOrder', order);

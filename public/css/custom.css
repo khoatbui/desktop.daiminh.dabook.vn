@@ -75,9 +75,9 @@
     height: 600px !important;
     width: auto;
 }
-.btn:hover{
+/* .btn:hover{
     color: #FFF !important;
-}
+} */
 .form-check .form-check-input:checked~.circle {
     border-color: #019ee2 !important;
 }
@@ -745,7 +745,7 @@
     height: 25px !important;
     border-radius: 50%;
     background-color: #FFF !important;
-    border:0.5px solid #00bcd4 !important;
+    border:1px solid #00bcd4 !important;
     cursor: pointer;
     color: #00bcd4;
 }

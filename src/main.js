@@ -37,7 +37,13 @@ import {
   faMapMarked,
   faList,
   faThLarge,
+  faTextWidth,
+  faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBluetooth,
+  faUsb,
+} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker';
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css';
@@ -90,6 +96,10 @@ library.add(
   faMapMarked,
   faList,
   faThLarge,
+  faTextWidth,
+  faBluetooth,
+  faUsb,
+  faGlobe,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('VueSlider', VueSlider);
@@ -116,7 +126,7 @@ const app = new Vue({
   i18n,
   router,
   store,
-  render: (h) => h(App),
+  render: h => h(App),
 });
 
 export default app;

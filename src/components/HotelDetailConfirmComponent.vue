@@ -272,7 +272,7 @@
             <div class="card-body">
               <div class="row m-0 p-0 mb-4">
                 <div class="col-12 m-0 p-0 height-150">
-                  <ModalDetailImageComponent :imgs="selectedHotel.order.hotel.hotelImages.concat(selectedHotel.order.roomType.roomImages)"  :root="'lgimg/'"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="selectedHotel.order.hotel.hotelImages.concat(selectedHotel.order.roomType.roomImages)"  :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
                   <h3 class="text-xh1">{{selectedHotel.order.hotel.hotelName}} | {{selectedHotel.order.roomType.roomTypeName}} </h3>
@@ -553,5 +553,11 @@ export default {
   bottom: 10px;
   left: 10px;
   color: #ffffff;
+}
+.collapse{
+display: none ;
+}
+.collapse.show {
+  display: block ;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="map-component">
     <div class="row m-0 p-0">
       <div class="col-12 m-0 p-0 parent-absolute">
-        <div class="w-100 card-img-top image-package" v-html="map">
+        <div class="w-100 card-img-top image-package map-child" v-html="map">
 
         </div>
         <div class="left-bottom-absolute text-center text-white">
@@ -70,5 +70,8 @@ export default {
 }
 .image-view-btn:hover {
   opacity: 0.5;
+}
+.map-child:first-child{
+  width: 100% !important;
 }
 </style>

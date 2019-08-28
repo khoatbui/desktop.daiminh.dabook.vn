@@ -286,16 +286,16 @@
                       <span class="text-09 font-weight-bold text-muted pr-2">tu</span>
                       <span
                         class="text-xh1 font-bold text-info"
-                      >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedTour.order.totalPrice)}}</span>
+                      >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedCar.order.totalPrice)}}</span>
                       <span
                         class="text-09 pl-4 font-weight-bold text-muted text-deco-line-through"
-                      >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedTour.order.totalPrice*1.3)}}</span>
+                      >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedCar.order.totalPrice*1.3)}}</span>
                     </p>
                     <p class="text-09 font-bold text-muted">
-                      {{selectedTour.tourDetail.tourId.tourName}}
+                      {{selectedCar.order.carType.carTypeName}}
                       <span
                         class="ml-4 text-07"
-                      >ngay {{selectedTour.order.selectDate}}</span>
+                      >ngay {{selectedCar.order.selectDate}}</span>
                     </p>
                   </div>
                 </div>
@@ -308,41 +308,22 @@
             <div class="card-body">
               <div class="row m-0 p-0 mb-4">
                 <div class="col-12 m-0 p-0 height-150">
-                  <ModalDetailImageComponent :imgs="selectedTour.tourDetail.tourId.tourImages" :root="''"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent :imgs="selectedCar.order.carType.carImages" :root="''" :minheight="`300px`"></ModalDetailImageComponent>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <h3 class="text-xh1">{{selectedTour.tourDetail.tourId.tourName}}</h3>
-                </div>
-                <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Goi dich vu</span>
-                  <p>{{selectedTour.tourDetail.tourId.tourName}}</p>
+                  <h3 class="text-xh1">{{selectedCar.order.package.tripName}}</h3>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
                   <span class="text-07">Ngay</span>
-                  <p>{{selectedTour.order.selectDate}}</p>
-                </div>
-                <div class="col-12 m-0 p-0 text-left border-bottom">
-                  <span class="text-07">Khach</span>
-                  <p>
-                    <span class="font-bold">Nguoi lon</span>
-                    x {{selectedTour.order.guest.guest.qty}}
-                    <span
-                      class="font-bold ml-2"
-                    >Tre em(0-4)</span>
-                    x {{selectedTour.order.guest.child04.qty}}
-                    <span
-                      class="font-bold ml-2"
-                    >Tre em(4-8)</span>
-                    x {{selectedTour.order.guest.child48.qty}}
-                  </p>
+                  <p>{{selectedCar.order.selectDate}}</p>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
                   <span class="text-07">Tong so tien</span>
-                  <p>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedTour.order.totalPrice)}}</p>
+                  <p>{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(selectedCar.order.totalPrice)}}</p>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
                   <span class="text-07">Luu y</span>
-                  <div class="text-08" v-html="selectedTour.tourDetail.shouldTake"></div>
+                  <div class="text-08" v-html="selectedCar.carDetail.shouldTake"></div>
                 </div>
                 <div class="col-12 m-0 p-0 text-left">
                   <span class="text-07">Hotline</span>
@@ -411,7 +392,7 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import TourService from "@/api/TourService";
+import CarService from "@/api/CarService";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 
@@ -484,10 +465,6 @@ export default {
   },
   methods: {
     async initial(tourId) {
-      this.$store.commit("showHideLoading", true);
-      const response = await TourService.GetTourDetailById(tourId);
-      this.citys = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded = true;
     },
     finishThongTinKhachHang() {
@@ -597,9 +574,9 @@ export default {
     transactionCopy() {}
   },
   computed: {
-    selectedTour() {
+    selectedCar() {
       if (!this.componentLoaded) return null;
-      return this.$store.state.tour;
+      return this.$store.state.car;
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="tourDetailByLang.tourId.tourImages" :root="''"></ModalDetailImageComponent>
+      <ModalDetailImageComponent :imgs="tourDetailByLang.tourId.tourImages" :root="''" :minheight="'300px'"></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row m-0 p-0">
@@ -521,7 +521,7 @@ export default {
     selectPackage() {
       if (this.order.selectDate == null) {
         location.href = "#chon";
-        $(".calendarTrigger").addClass("border-outline-danger");
+        $(".calendarTrigger").addClass("border-outline-danger-x2");
       } else {
         this.$store.dispatch("updateTourOrder", this.order);
         this.$store.dispatch("updateTourDetail", this.tourDetailByLang);
@@ -583,5 +583,11 @@ export default {
 .dateTimePickerWrapper .calendarTrigger {
   min-width: 200px !important;
   height: 40px !important;
+}
+.collapse{
+display: none ;
+}
+.collapse.show {
+  display: block ;
 }
 </style>
