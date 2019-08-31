@@ -229,7 +229,7 @@
                 </div>
                 <div class="row m-0 p-0">
                   <a
-                    class="btn btn-danger text-white text-nomal w-100"
+                    class="btn btn-info text-white text-nomal w-100"
                     @click="requestBooking"
                   >{{$t('general_btn_requestadvisory')}}</a>
                 </div>

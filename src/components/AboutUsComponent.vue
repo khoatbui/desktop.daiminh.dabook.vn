@@ -1,6 +1,45 @@
 <template>
-  <div class="about-us">
-    
+  <div class="about-us second-background">
+    <div class="background-gradiend">
+    </div>
+    <div class="container">
+      <div class="row m-0 p-0 align-items-stretch"  v-if="componentLoaded.aboutList">
+        <div class="col-4 m-0 p-0 pr-2">
+          <div class="card shadow-none border-0">
+            <div class="card-body">
+              <div class="row m-0 p-0 text-left">
+                <div class="col-12 m-0 p-0 cursor-pointer" v-for="(ab,i) in aboutList" :key="'kk'+i" @click="getAboutDetail(ab)">
+                  <h4 class="text-nomal text-x1">{{ab.blogName}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <DabookCardComponent></DabookCardComponent>
+          <div class="card border-0">
+            <div class="card-body text-left">
+              <h4>Contact us</h4>
+              <DefaultContactFormComponent></DefaultContactFormComponent>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 m-0 p-0 pl-2">
+           <div class="card shadow-none border-0">
+            <div class="card-body">
+              <div class="row m-0 p-0 text-left" v-if="componentLoaded.aboutDetail">
+                <div class="col-12 p-2 m-0">
+                  <img v-if="aboutDetailByLang.blogId.blogImages.length>0" class="w-100 m-0 p-0 mb-4" :src="aboutDetailByLang.blogId.blogImages[0].filePath" alt="">
+                  <div v-html="aboutDetailByLang.block01"></div>
+                  <div v-html="aboutDetailByLang.block02"></div>
+                  <div v-html="aboutDetailByLang.block03"></div>
+                  <div v-html="aboutDetailByLang.block04"></div>
+                  <div v-html="aboutDetailByLang.block05"></div>
+                </div>
+              </div>
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -10,7 +49,7 @@ import carouselss from "vue-owl-carousel";
 import { Carousel, Slide } from "vue-carousel";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
-import AdsService from "@/api/AdsService";
+import BlogService from "@/api/BlogService";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
@@ -46,7 +85,11 @@ export default {
     DabookCardComponent: lazyLoadComponent({
       componentFactory: () => import("@/components/DabookCardComponent.vue"),
       loading: SkeletonBox
-    })
+    }),
+    DefaultContactFormComponent: lazyLoadComponent({
+      componentFactory: () => import("@/components/DefaultContactFormComponent.vue"),
+      loading: SkeletonBox
+    }),
   },
   name: "AdsAllComponent",
   props: {
@@ -54,57 +97,12 @@ export default {
   },
   data() {
     return {
-      search: "",
-      moment: moment,
-      componentLoaded: {
-        adsList: false,
-        adsDetailList: false,
-        ads: false
-      },
-      imgBackground: [
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_09.jpg"
-        },
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_08.jpg"
-        },
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_06.jpg"
-        },
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_07.jpg"
-        },
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_02.jpg"
-        },
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_01.jpg"
-        },
-        {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_07.jpg"
-        }
-      ],
-      priceformat: v => {
-        return new Intl.NumberFormat("vi-VN", {
-          style: "currency",
-          currency: "VND"
-        }).format(v);
-      },
-      adsList: [],
-      adsDetailList: [],
-      ads: {},
-      filterCondition: {
-        sortBy: ""
-      },
-      pageNumber: 1,
-      size: 10
+      aboutList:[],
+      aboutDetail:[],
+      componentLoaded:{
+        aboutList:false,
+        aboutDetail:false,
+      }
     };
   },
   created() {
@@ -112,86 +110,34 @@ export default {
   },
   methods: {
     initialAll() {
-      this.initial(this.$route.query.adsid);
-      this.getAdsList();
-      this.getAdsById(this.$route.query.adsid);
+      this.getaboutlist();
     },
-    async initial(id) {
+    async getaboutlist() {
       this.$store.commit("showHideLoading", true);
-      const response = await AdsService.getAdsDetailById(id);
-      this.adsDetailList = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
-      this.componentLoaded.adsDetailList = true;
-    },
-    async getAdsById(id) {
-      this.$store.commit("showHideLoading", true);
-      const response = await AdsService.getAdsById(id);
-      this.ads = response.data;
-      this.componentLoaded.ads = true;
+      const response = await BlogService.getBlogByType('5d387ca60c393a0a54e72214');
+      this.aboutList = response.data;
+      this.getAboutDetail(response.data[0]);
+      this.componentLoaded.aboutList=true;
       this.$store.commit("showHideLoading", false);
     },
-    async getAdsList() {
-      this.$store.commit("showHideLoading", true);
-      const response = await AdsService.getAllAds();
-      this.adsList = randomArray(response.data);
-      console.log(this.adsList);
-      this.$store.commit("showHideLoading", false);
-      this.componentLoaded.adsList = true;
-    },
-    redirectToDetailAds(des) {
-      this.$router.push(`/ads/detail?adsid=${des._id}`);
-    },
-    changeFilterAction() {
-      this.filterCondition.price.isFilter = true;
-    },
-    resetFilter() {}
+    async getAboutDetail(item) {
+      const response = await BlogService.getBlogDetailById(item._id);
+      this.aboutDetail = response.data;
+       console.log(this.aboutDetail);
+      this.componentLoaded.aboutDetail=true;
+    }
   },
   computed: {
-    adsListByLang() {
-      if (this.componentLoaded.adsList === false) {
-        return;
-      }
-      this.adsList.forEach(element => {
-        element.adsIntros.forEach(area => {
-          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
-            element.adsName = area.adsName;
-            element.adsIntro = area.adsIntro;
-          }
+   aboutDetailByLang() {
+    if (!this.componentLoaded.aboutDetail) return null;
+    var temp= this.aboutDetail.filter(item => {
+          return (
+            item.lang.toUpperCase() ==
+            this.$store.state.currentLang.toUpperCase()
+          );
         });
-      });
-      return this.adsList;
-    },
-    adsRelateByLang() {
-      if (this.componentLoaded.ads === false) {
-        return;
-      }
-      var that = this;
-      return this.adsListByLang.filter(function(adss) {
-        return adss.adsTypeId._id == that.ads.adsTypeId._id;
-      });
-    },
-    adsDetailByLang() {
-      if (this.componentLoaded.adsDetailList === false) {
-        return;
-      }
-      var temp = this.adsDetailList.filter(function(adss) {
-        return adss.lang.toUpperCase() === i18n.locale.toUpperCase();
-      });
-      temp.forEach(element => {
-        element.adsId.adsIntros.forEach(blog => {
-          if (blog.lang.toUpperCase() === i18n.locale.toUpperCase()) {
-            element.adsId.adsName = blog.adsName;
-            element.adsId.adsIntro = blog.adsIntro;
-          }
-        });
-      });
-      return temp[0];
-    },
-    pageCount() {
-      let l = this.adsList.length,
-        s = this.size;
-      return Math.ceil(l / s);
-    }
+    return temp[0];
+   }
   },
   watch: {
     $route: "initialAll"
@@ -200,47 +146,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.banner_filter {
-  height: 300px;
-  overflow: hidden;
+.container{
+  z-index: 5;
+  position: relative;
 }
-.img-card {
-  overflow: hidden;
+.about-us{
+  position: relative;
 }
-.image-package {
-  height: 160px;
-  width: auto;
-  min-width: 100%;
+.background-gradiend{
+  background-image: url('/img/background/bg_07.jpg');
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 600px;
+  background-size: cover;
+  background-position: bottom;
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 3;
 }
-.text-5line {
-  height: 5rem;
-  line-height: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tour-card {
-  min-height: 150px;
-  overflow: hidden;
-}
-.con-vs-checkbox {
-  justify-content: start !important;
-}
-.a-icon,
-.a-icon:hover,
-.a-icon:focus,
-.a-icon:active,
-.a-icon:visited {
-  color: rgba(0, 0, 0, 0.87) !important;
-}
-.ul-nonestyle li a img {
-  height: 40px;
-}
-.related-ads-img {
-  height: 80px;
-  width: auto;
-  min-width: 100%;
-}
-.related-card {
-  overflow: hidden;
+.background-gradiend::before,.background-gradiend::after{
+  position:absolute;
+  background: linear-gradient(0deg, rgba(250,250,250,1) 0%, rgba(250,250,250,0) 100%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  content: "";
+  bottom: 0;
+  left: 0;
 }
 </style>

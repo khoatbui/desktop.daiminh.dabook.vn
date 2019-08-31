@@ -276,7 +276,7 @@
                 <div class="row">
                   <div class="col-6 text-left">
                     <button
-                      class="btn btn-danger text-nomal"
+                      class="btn btn-info text-nomal"
                       :disabled="bookingResult.requestStatus"
                       @click="requestBooking"
                     >Hoan tat</button>

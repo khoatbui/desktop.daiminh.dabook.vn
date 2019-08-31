@@ -13,7 +13,7 @@
         </div>
         <div class="col-8 m-0 p-0">
           <h4 class="text-info m-0 cursor-pointer" @click="redirectToDabook">Dabook.vn</h4>
-          <p class="text-muted text-08">{{$t('general_label_dabookintro')}}</p>
+          <p class="text-muted text-08 m-0">{{$t('general_label_dabookintro')}}</p>
         </div>
       </div>
     </div>
@@ -35,6 +35,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .dabook-logo {
-  height: 60px;
+  width: 90%;
+  text-align: center;
 }
 </style>

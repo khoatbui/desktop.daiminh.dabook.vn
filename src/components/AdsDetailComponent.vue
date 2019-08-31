@@ -28,7 +28,7 @@
                     >{{moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')>0?`${moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')} days left`:'End'}}</span>
                   </p>
                 </div>
-                <div class="row p-0 m-0">
+                <!-- <div class="row p-0 m-0">
                   <carouselss
                     :items="1"
                     :autoplay="true"
@@ -52,8 +52,8 @@
                       v-bind:src="'/img/defaultloading.gif'"
                     />
                   </carouselss>
-                </div>
-                <div class="row h-100 p-0 px-4 m-0">
+                </div> -->
+                <div class="row h-100 p-0 px-4 m-0 ads-content-block">
                   <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block01"></div>
                   <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block02"></div>
                   <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block03"></div>
@@ -513,5 +513,9 @@ export default {
 }
 .related-card {
   overflow: hidden;
+}
+.ads-content-block img{
+  max-width: 100%;
+  width: 100%;
 }
 </style>

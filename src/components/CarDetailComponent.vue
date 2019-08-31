@@ -223,8 +223,10 @@
           <div class="row m-0 p-0 custom-sticky-top-4rem">
             <div class="card">
               <div class="card-body p-3">
-                 <div class="row m-0 p-0" v-if="order.selectDate !==null">
+                <div class="row m-0 p-0">
+                 <div class="col-12 m-0 p-0 height-150" v-if="order.selectDate !==null">
                   <ModalDetailImageComponent :imgs="order.carType.carImages" :root="''" :minheight="'100px'"></ModalDetailImageComponent>
+                </div>
                 </div>
                 <div class="row m-0 p-0" v-if="order.selectDate ==null">
                   <p>
@@ -267,7 +269,7 @@
                 </div>
                 <div class="row m-0 p-0">
                   <button
-                    class="btn btn-danger text-nomal w-100"
+                    class="btn btn-info text-nomal w-100"
                     @click="selectPackage"
                   >{{order.selectDate !==null?'ĐẶT NGAY':'Chọn gói dịch vụ'}}</button>
                 </div>

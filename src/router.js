@@ -72,33 +72,6 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('./views/About.vue'),
-      children: [
-        {
-          path: 'term',
-          name: 'destinationdetail',
-          component: DestinationDetailComponent,
-        },
-        {
-          path: 'policy',
-          name: 'destinationdetail',
-          component: DestinationDetailComponent,
-        },
-        {
-          path: 'help',
-          name: 'destinationdetail',
-          component: DestinationDetailComponent,
-        },
-        {
-          path: 'contact',
-          name: 'destinationdetail',
-          component: DestinationDetailComponent,
-        },
-        {
-          path: 'us',
-          name: 'destinatioall',
-          component: DestinationAllComponent,
-        },
-      ],
     },
     {
       path: '/destination',

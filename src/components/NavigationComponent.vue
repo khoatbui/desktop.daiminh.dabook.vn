@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/aboutus" class="nav-link">
+            <a href="/about" class="nav-link">
               <i class="fa fa-menu"></i>
              {{$t('na_aboutus')}}
             </a>

@@ -365,7 +365,7 @@
                 </div>
                 <div class="row m-0 p-0">
                   <a
-                    class="btn btn-danger text-nomal w-100"
+                    class="btn btn-info text-nomal w-100"
                     :disabled="order.guest.guest.qty==0"
                     v-bind:class="{'btn-default':order.guest.guest.qty==0}"
                     href="#chon"

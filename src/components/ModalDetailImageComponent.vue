@@ -86,7 +86,7 @@ export default {
         backgroundImage: `url("/${this.root}${this.imgs[0].filePath}")`,
         backgroundSize: "cover",
         height: "100% !important",
-        minHeight: `"${this.min_height} !important"`,
+        minHeight: "300px !important",
         backgroundPosition: "center"
       };
     }

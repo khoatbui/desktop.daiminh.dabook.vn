@@ -304,7 +304,9 @@
             <div class="card">
               <div class="card-body p-3">
                 <div class="row m-0 p-0" v-if="formCheck.packageSelect==true">
+                  <div class="col-12 m-0 p-0 height-150">
                   <ModalDetailImageComponent :imgs="order.roomType.roomImages"  :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
+                  </div>
                 </div>
                 <div class="row m-0 p-0" v-if="order.checkInDate ==null">
                   <p>
@@ -356,7 +358,7 @@
                 </div>
                 <div class="row m-0 p-0">
                   <a
-                    class="btn btn-danger text-nomal w-100"
+                    class="btn btn-info text-nomal w-100"
                     :disabled="order.guest.guest.qty==0"
                     v-bind:class="{'btn-default':order.guest.guest.qty==0}"
                     href="#chon"

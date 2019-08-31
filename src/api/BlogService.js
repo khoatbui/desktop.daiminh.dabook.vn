@@ -23,6 +23,9 @@ const Blog = {
   getBlogById(parram) {
     return axios.get(`${api}/bloglist/m/getbloglistbyid/${parram}`);
   },
+  getBlogByType(parram) {
+    return axios.get(`${api}/bloglist/m/getbloglistbytypeid/${parram}`);
+  },
   getBlogDetailById(parram) {
     return axios.get(`${api}/blogdetail/m/getblogdetailbyid/${parram}`);
   },

@@ -230,16 +230,16 @@
             <div class="col-12 col-md-6 text-center footer-policy">
               <ul>
                 <li>
-                  <a href="function/legal.html">{{$t('pfooter_privatepolicy')}} |</a>
+                  <a href="/about">{{$t('pfooter_privatepolicy')}} |</a>
                 </li>
                 <li>
-                  <a href="function/legal.html">{{$t('pfooter_term')}} |</a>
+                  <a href="/about">{{$t('pfooter_term')}} |</a>
                 </li>
                 <li>
                   <a href="/blog">{{$t('pfooter_blog')}} |</a>
                 </li>
                 <li>
-                  <a href="function/contact.html">{{$t('pfooter_contact')}}</a>
+                  <a href="/about">{{$t('pfooter_contact')}}</a>
                 </li>
               </ul>
             </div>

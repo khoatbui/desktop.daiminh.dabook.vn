@@ -1,7 +1,11 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="hotelDetailByLang.hotelImages" :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
+      <ModalDetailImageComponent
+        :imgs="hotelDetailByLang.hotelImages"
+        :root="'lgimg/'"
+        :minheight="'300px'"
+      ></ModalDetailImageComponent>
     </div>
     <div class="container-fluid my-0 mt-2 py-4 second-background">
       <div class="container p-0">
@@ -86,9 +90,7 @@
           </div>
           <div class="section-tour py-2 second-background" id="chon">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3
-                class="text-xh1 info-title"
-              >{{$t('general_sticky_tab_roomselect')}}</h3>
+              <h3 class="text-xh1 info-title">{{$t('general_sticky_tab_roomselect')}}</h3>
             </div>
             <div class="row m-0 p-0 py-2">
               <div class="col-4 py-1">
@@ -99,7 +101,7 @@
                 />
               </div>
             </div>
-            <div class="row m-0 p-2 accordion"  id="accordionExample">
+            <div class="row m-0 p-2 accordion" id="accordionExample">
               <div class="col-12 m-0 p-0" v-for="(pac,i) in groupPackageByRoomType" :key="'hods'+i">
                 <div
                   class="card my-2 shadow-none"
@@ -109,7 +111,7 @@
                     <div class="row">
                       <div
                         class="col-12 p-0 py-2 d-flex justify-content-between align-items-center"
-                         :id="`headingOne${i}`"
+                        :id="`headingOne${i}`"
                       >
                         <span
                           class="text-x1 font-bold text-nomal"
@@ -124,108 +126,133 @@
                           >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format((formCheck.usingDefaultData!==true && pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode) ?totalPrice:pac[0].price)}}</span>
                         </span>
                       </div>
-                      <div  :id="`collapseOne${i}`" class="m-0 p-0 w-100 collapse" :aria-labelledby="`headingOne${i}`" data-parent="#accordionExample">
                       <div
-                        class="col-12 m-0 p-0 py-3 border-bottom border-bottom-dash"
-                        v-if="pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode"
-                      >
-                        <div class="row m-0 p-0">
-                          <div class="col-6 m-0 p-0 pr-4">
-                            <div class="row m-0 p-0">
-                              <div
-                                class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
-                              >
-                                <p class="mb-0">
-                                  <span class="text-08 font-bold">{{$t('general_label_guest')}}</span>
-                                  <span class="text-07 text-muted">( Age 13-99)</span>
-                                </p>
-                                <p
-                                  class="text-07 text-danger mb-0"
-                                  v-show="order.guest.guest.qty==0"
-                                >{{$t('general_label_less1')}}</p>
-                              </div>
-                              <div
-                                class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
-                              >
-                                <PersonPlusMinusComponent :person="order.guest.guest"></PersonPlusMinusComponent>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-6 m-0 p-0 pl-4">
-                            <div class="row m-0 p-0 pb-2 border-bottom">
-                              <div
-                                class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
-                              >
-                                <p class="mb-0">
-                                  <span class="text-08 font-bold">{{$t('general_label_child04')}}</span>
-                                  <span class="text-07 text-muted">( Age 0-4)</span>
-                                </p>
-                              </div>
-                              <div
-                                class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
-                              >
-                                <PersonPlusMinusComponent :person="order.guest.child04"></PersonPlusMinusComponent>
-                              </div>
-                            </div>
-                            <div class="row m-0 p-0 pt-2">
-                              <div
-                                class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
-                              >
-                                <p class="mb-0">
-                                  <span class="text-08 font-bold">{{$t('general_label_child48')}}</span>
-                                  <span class="text-07 text-muted">( Age 4-8)</span>
-                                </p>
-                              </div>
-                              <div
-                                class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
-                              >
-                                <PersonPlusMinusComponent :person="order.guest.child48"></PersonPlusMinusComponent>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="col-12 p-0 py-3 border-bottom"
-                        v-if="pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode"
+                        :id="`collapseOne${i}`"
+                        class="m-0 p-0 w-100 collapse"
+                        :aria-labelledby="`headingOne${i}`"
+                        data-parent="#accordionExample"
                       >
                         <div
-                          class="row w-100 m-0 p-0 d-flex justify-content-between align-items-center"
+                          class="col-12 m-0 p-0 py-3 border-bottom border-bottom-dash"
+                          v-if="pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode"
                         >
-                        <div class="col-12 m-0 p-0">
-                           <carousel :per-page="5" :navigation-enabled="true" :paginationEnabled="false">
-                            <slide class="m-2" v-for="(packa,ides) in pac" v-bind:key="ides">
-                              <div class="card shadow-none pac-card">
-                                <div class="card-body p-0 d-flex justify-content-between flex-column">
-                                   <img class="card-img-top pac-package cursor-pointer"  v-bind:src="packa.roomTypeId.roomImages.length>0?`/smimg/${packa.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
-                                    v-bind:alt="packa.roomTypeId.roomImages[0].fileName"/>
-                                    <vs-radio class="text-06 text-left" v-model="order.package" vs-value="info">{{packa.packageId.packageName}}</vs-radio>
+                          <div class="row m-0 p-0">
+                            <div class="col-6 m-0 p-0 pr-4">
+                              <div class="row m-0 p-0">
+                                <div
+                                  class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
+                                >
+                                  <p class="mb-0">
+                                    <span class="text-08 font-bold">{{$t('general_label_guest')}}</span>
+                                    <span class="text-07 text-muted">( Age 13-99)</span>
+                                  </p>
+                                  <p
+                                    class="text-07 text-danger mb-0"
+                                    v-show="order.guest.guest.qty==0"
+                                  >{{$t('general_label_less1')}}</p>
+                                </div>
+                                <div
+                                  class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
+                                >
+                                  <PersonPlusMinusComponent :person="order.guest.guest"></PersonPlusMinusComponent>
                                 </div>
                               </div>
-                            </slide>
-                             <slide></slide>
-                           </carousel>
-                        </div>
-                          <div class="col-4 p-0 m-0">
-                            <DropdownListComponent
-                              v-bind:label="'Select package'"
-                              v-bind:data="getPackage(pac)"
-                              @select="changePackage($event)"
-                            ></DropdownListComponent>
+                            </div>
+                            <div class="col-6 m-0 p-0 pl-4">
+                              <div class="row m-0 p-0 pb-2 border-bottom">
+                                <div
+                                  class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
+                                >
+                                  <p class="mb-0">
+                                    <span class="text-08 font-bold">{{$t('general_label_child04')}}</span>
+                                    <span class="text-07 text-muted">( Age 0-4)</span>
+                                  </p>
+                                </div>
+                                <div
+                                  class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
+                                >
+                                  <PersonPlusMinusComponent :person="order.guest.child04"></PersonPlusMinusComponent>
+                                </div>
+                              </div>
+                              <div class="row m-0 p-0 pt-2">
+                                <div
+                                  class="col-6 m-0 p-0 d-flex flex-column justify-content-between align-items-start"
+                                >
+                                  <p class="mb-0">
+                                    <span class="text-08 font-bold">{{$t('general_label_child48')}}</span>
+                                    <span class="text-07 text-muted">( Age 4-8)</span>
+                                  </p>
+                                </div>
+                                <div
+                                  class="col-6 m-0 p-0 d-flex justify-content-between align-items-center"
+                                >
+                                  <PersonPlusMinusComponent :person="order.guest.child48"></PersonPlusMinusComponent>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="col-4 p-0 m-0 offset-sm-2 offset-md-2">
-                            <DropdownListComponent
-                              v-bind:label="'Select option service'"
-                              v-bind:data="getOptionService(pac)"
-                              @select="order.optionService=$event"
-                            ></DropdownListComponent>
+                        </div>
+                        <div
+                          class="col-12 p-0 py-3 border-bottom"
+                          v-if="pac[0].roomTypeId.roomTypeCode==formCheck.roomTypeCode"
+                        >
+                          <div
+                            class="row w-100 m-0 p-0 d-flex justify-content-between align-items-center"
+                          >
+                            <div class="col-12 m-0 p-0">
+                              <carousel
+                                :per-page="5"
+                                :navigation-enabled="true"
+                                :paginationEnabled="false"
+                              >
+                                <slide class="m-2" v-for="(packa,ides) in pac" v-bind:key="ides">
+                                  <div class="card shadow-none pac-card">
+                                    <div
+                                      class="card-body p-0 d-flex justify-content-between flex-column"
+                                    >
+                                      <img
+                                        class="card-img-top pac-package cursor-pointer"
+                                        v-bind:src="packa.roomTypeId.roomImages.length>0?`/smimg/${packa.roomTypeId.roomImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
+                                        v-bind:alt="packa.roomTypeId.roomImages[0].fileName"
+                                      />
+                                      <vs-radio
+                                        class="text-06 text-left"
+                                        v-model="order.package"
+                                        vs-value="info"
+                                      >{{packa.packageId.packageName}}</vs-radio>
+                                    </div>
+                                  </div>
+                                </slide>
+                                <slide></slide>
+                              </carousel>
+                            </div>
+                            <div class="col-4 p-0 m-0">
+                              <DropdownListComponent
+                                v-bind:label="'Select package'"
+                                v-bind:data="getPackage(pac)"
+                                @select="changePackage($event)"
+                              ></DropdownListComponent>
+                            </div>
+                            <div class="col-4 p-0 m-0 offset-sm-2 offset-md-2">
+                              <DropdownListComponent
+                                v-bind:label="'Select option service'"
+                                v-bind:data="getOptionService(pac)"
+                                @select="order.optionService=$event"
+                              ></DropdownListComponent>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       </div>
                       <div class="col-12 m-0 p-0">
                         <div class="row m-0 p-0 d-flex justify-content-between align-items-center">
-                          <span class="text-muted text-08 cursor-pointer"  data-toggle="collapse" :href="`#collapseExample${i}`" role="button" aria-expanded="false" :aria-controls="`#collapseExample${i}`">
+                          <span
+                            class="text-muted text-08 cursor-pointer"
+                            data-toggle="collapse"
+                            :href="`#collapseExample${i}`"
+                            role="button"
+                            aria-expanded="false"
+                            :aria-controls="`#collapseExample${i}`"
+                          >
                             {{$t('general_showmore')}}
                             <font-awesome-icon icon="chevron-down" class="text-center text-07" />
                           </span>
@@ -234,7 +261,10 @@
                             type="button"
                             @click="selectRoomTypeDetail(pac[0])"
                             v-if="pac[0].roomTypeId.roomTypeCode!==formCheck.roomTypeCode"
-                            data-toggle="collapse" :data-target="`#collapseOne${i}`" aria-expanded="true" :aria-controls="`collapseOne${i}`"
+                            data-toggle="collapse"
+                            :data-target="`#collapseOne${i}`"
+                            aria-expanded="true"
+                            :aria-controls="`collapseOne${i}`"
                           >{{$t('general_select')}}</button>
                         </div>
                         <div
@@ -265,7 +295,13 @@
             <div class="card">
               <div class="card-body p-3">
                 <div class="row m-0 p-0" v-if="formCheck.packageSelect==true">
-                  <ModalDetailImageComponent :imgs="order.roomType.roomImages" :root="'lgimg/'" :minheight="'300px'"></ModalDetailImageComponent>
+                  <div class="col-12 m-0 p-0 height-150">
+                    <ModalDetailImageComponent
+                      :imgs="order.roomType.roomImages"
+                      :root="'lgimg/'"
+                      :minheight="'300px'"
+                    ></ModalDetailImageComponent>
+                  </div>
                 </div>
                 <div class="row m-0 p-0" v-if="order.checkInDate ==null">
                   <p>
@@ -291,9 +327,10 @@
                       class="text-center text-info text-08 mr-2"
                     />
                   </p>
-                  <p
-                    class="text-09 text-muted mb-0"
-                  > <span class="pr-4">in {{order.checkInDate}}</span> |<span class="pl-4"> out {{order.checkOutDate}}</span></p>
+                  <p class="text-09 text-muted mb-0">
+                    <span class="pr-4">in {{order.checkInDate}}</span> |
+                    <span class="pl-4">out {{order.checkOutDate}}</span>
+                  </p>
                   <p class="text-09 text-muted mb-0">
                     <span class="pr-4">{{$t('general_label_guest')}} x {{order.guest.guest.qty}}</span>
                     <span class="pr-4">
@@ -319,7 +356,7 @@
                 </div>
                 <div class="row m-0 p-0">
                   <a
-                    class="btn btn-danger text-nomal w-100"
+                    class="btn btn-info text-nomal w-100"
                     :disabled="order.guest.guest.qty==0"
                     v-bind:class="{'btn-default':order.guest.guest.qty==0}"
                     href="#chon"
@@ -676,37 +713,38 @@ export default {
   border-radius: 50%;
   border: none;
 }
-.collapse{
-display: none ;
+.collapse {
+  display: none;
 }
 .collapse.show {
-  display: block ;
+  display: block;
 }
-.pac-card{
+.pac-card {
   height: 120px;
 }
-.pac-package{
+.pac-package {
   top: 0;
   left: 0;
   height: 70px;
   width: 100%;
 }
-.position-relative::after,.position-relative::before{
-    position: absolute;
-    bottom:0;
-    left: 0;
-    width: 100%;
-    height: 30%;
-    content: "";
-    background-image: linear-gradient(0deg, #111 0%, #111 100%);
-    z-index: 2;
-    opacity: 0.15;
+.position-relative::after,
+.position-relative::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  content: "";
+  background-image: linear-gradient(0deg, #111 0%, #111 100%);
+  z-index: 2;
+  opacity: 0.15;
 }
 .con-vs-radio {
   justify-content: start;
   color: #333;
 }
-.VueCarousel-inner{
+.VueCarousel-inner {
   flex-basis: 10px !important;
   visibility: visible !important;
 }
