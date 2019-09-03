@@ -392,3 +392,6 @@ textarea.custom-form-input {
   .collapse.show {
     display: block ;
   }
+.full-img img {
+  width: 100% !important;
+}

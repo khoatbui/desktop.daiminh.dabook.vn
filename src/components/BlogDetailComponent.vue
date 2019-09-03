@@ -62,11 +62,11 @@
                   </carouselss>
                 </div>
                 <div class="row h-100 p-0 px-4 m-0">
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block01"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block02"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block03"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block04"></div>
-                  <div class="col-12 p-0 m-0" v-html="blogDetailByLang.block05"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block01"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block02"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block03"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block04"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block05"></div>
                 </div>
                 <div
                   class="row h-100 p-0 px-4 pb-4 m-0"
