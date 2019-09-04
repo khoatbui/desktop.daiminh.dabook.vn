@@ -17,6 +17,9 @@ const Car = {
   getAllCarTrip() {
     return axios.get(`${api}/cardetailprice/getused`);
   },
+  getCarBySearch(parram) {
+    return axios.post(`${api}/cardetailprice/m/getallcarpricebysearch`, { keyword: parram });
+  },
   getCarTripById(parram) {
     return axios.get(`${api}/cardetailprice/getcarpricebyid/${parram}`);
   },

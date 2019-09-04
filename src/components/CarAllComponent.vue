@@ -1,5 +1,5 @@
 <template>
-  <div class="tour-all second-background" v-if="componentLoaded">
+  <div class="tour-all second-background" v-if="componentLoaded.carList">
     <div class="container py-4 my-0">
       <ModalDetailImageComponent :imgs="backgroundImage" :root="''" :minheight="'300px'"></ModalDetailImageComponent>
     </div>
@@ -87,7 +87,7 @@
                 <div class="row p-0 m-0">
                   <div
                     class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(style,i) in transType"
+                    v-for="(style,i) in transTypeByLang"
                     :key="'affsa'+i"
                   >
                     <vs-checkbox
@@ -232,6 +232,15 @@
                           {{trip.nightTotal}} night
                         </span>
                       </div>
+                      <div class="text-left text-08 m-0 p-0">
+                        <span class="mr-1">
+                          <font-awesome-icon
+                            icon="dharmachakra"
+                            class="text-center mr-2 text-07 text-muted"
+                          />
+                          Driver include
+                        </span>
+                      </div>
                       <div class="text-muted text-06">
                         <p v-if="typeof trip.time !='undefined'">
                           <font-awesome-icon
@@ -334,7 +343,10 @@ export default {
   },
   data() {
     return {
-      componentLoaded: false,
+      componentLoaded:{
+        carList:false,
+        transType:false,
+      },
       imgBackground: [
         {
           fileName: "daiminh travel",
@@ -424,7 +436,7 @@ export default {
       const response = await CarService.getAllCarTrip();
       this.carList = randomArray(response.data);
       this.$store.commit("showHideLoading", false);
-      this.componentLoaded = true;
+      this.componentLoaded.carList = true;
     },
     async getCarType() {
       const response = await CarService.getCarType();
@@ -433,6 +445,7 @@ export default {
     async getTransType() {
       const response = await CarService.getTransType();
       this.transType = randomArray(response.data);
+      this.componentLoaded.transType = true;
     },
     async getDestination() {
       const response = await DestinationService.getAllDestination();
@@ -448,7 +461,7 @@ export default {
   },
   computed: {
     carListByLang() {
-      if (this.componentLoaded === false) {
+      if (this.componentLoaded.carList === false) {
         return;
       }
       this.carList.forEach(element => {
@@ -465,6 +478,20 @@ export default {
         });
       });
       return this.carList;
+    },
+    transTypeByLang() {
+      if (this.componentLoaded.transType === false) {
+        return;
+      }
+      this.transType.forEach(element => {
+        element.carTransTypeIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.carTransTypeName = area.carTransTypeName;
+            element.carTransTypeIntro = area.carTransTypeIntro;
+          }
+        });
+      });
+      return this.transType;
     },
     filterCarList() {
       if (this.componentLoaded == false) {

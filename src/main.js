@@ -39,6 +39,7 @@ import {
   faThLarge,
   faTextWidth,
   faGlobe,
+  faDharmachakra
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBluetooth,
@@ -100,6 +101,7 @@ library.add(
   faBluetooth,
   faUsb,
   faGlobe,
+  faDharmachakra,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('VueSlider', VueSlider);

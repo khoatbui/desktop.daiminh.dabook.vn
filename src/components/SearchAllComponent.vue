@@ -423,6 +423,7 @@ import DestinationService from "@/api/DestinationService";
 import CityService from "@/api/CityService";
 import HotelSupplierService from "@/api/HotelSupplierService";
 import RoomTypeService from "@/api/RoomTypeService";
+import CarService from "@/api/CarService";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
@@ -510,6 +511,7 @@ export default {
       },
       tourList: [],
       travelStyle: [],
+      cars:[],
       destination: [],
       supplier: [],
       roomType: [],
@@ -572,6 +574,7 @@ export default {
     initialAll() {
       this.initialTour(this.$route.query.key);
       this.initialHotelPackage(this.$route.query.key);
+      this.initialCar(this.$route.query.key);
       this.getTravelStyle();
       this.getDestination();
       this.getSupplier();
@@ -591,6 +594,11 @@ export default {
     async getDestination() {
       const response = await DestinationService.getAllDestination();
       this.destination = randomArray(response.data);
+    },
+    async initialCar(keyword) {
+      const response = await CarService.getCarBySearch(keyword);
+      this.cars = randomArray(response.data);
+      console.log(this.cars);
     },
     async initialHotelPackage(keyword) {
       this.$store.commit("showHideLoading", true);
