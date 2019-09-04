@@ -71,7 +71,4 @@ export default {
 .image-view-btn:hover {
   opacity: 0.5;
 }
-.map-child:first-child{
-  width: 100% !important;
-}
 </style>

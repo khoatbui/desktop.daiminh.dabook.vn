@@ -39,7 +39,8 @@ import {
   faThLarge,
   faTextWidth,
   faGlobe,
-  faDharmachakra
+  faDharmachakra,
+  faCar,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBluetooth,
@@ -59,7 +60,9 @@ import i18n from './lang/i18n';
 import store from './store';
 import './registerServiceWorker';
 import './assets/app.scss';
+import vuescroll from 'vuescroll/dist/vuescroll-slide';
 
+Vue.use(vuescroll);
 library.add(
   faUserSecret,
   faPlay,
@@ -102,6 +105,7 @@ library.add(
   faUsb,
   faGlobe,
   faDharmachakra,
+  faCar,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('VueSlider', VueSlider);
@@ -128,7 +132,7 @@ const app = new Vue({
   i18n,
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 });
 
 export default app;

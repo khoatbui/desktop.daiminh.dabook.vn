@@ -593,4 +593,10 @@ export default {
   left: 10px;
   color: #ffffff;
 }
+.collapse{
+  display: none ;
+  }
+  .collapse.show {
+    display: block ;
+  }
 </style>

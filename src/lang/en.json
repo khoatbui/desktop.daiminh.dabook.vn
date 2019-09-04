@@ -346,5 +346,6 @@
   "ptourall_filter_facebook": "Facebook",
   "ptourall_filter_naver": "Naver",
   "ptourall_filter_instagram": "Instagram",
-  "ptourall_filter_kakao": "Kakao"
+  "ptourall_filter_kakao": "Kakao",
+  "general_placeholder_search":"Search by destination, activity, hotel, tour, car, or interest..."
 }

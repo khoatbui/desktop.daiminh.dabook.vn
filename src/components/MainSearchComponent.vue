@@ -2,12 +2,12 @@
   <div class="main-search-component w-100 m-0 d-flex justify-content-center" @focus="magic_flag=true"
         @focusout="magic_flag=false"
         tabindex="0">
-    <input class="main-input-search w-100 flex-grow-1" type="text" v-model="key" v-on:keyup="search" @click="magic_flag=true"/>
+    <input class="main-input-search w-100 flex-grow-1" type="text" v-model="key" v-on:keyup="search" @click="magic_flag=true" :placeholder="`${$t('general_placeholder_search')}`"/>
     <button class="main-button-search cursor-pointer" @click="redirectToSearchView">
       <font-awesome-icon icon="search" class="text-x1 text-center" />
     </button>
     <div class="sugestion w-100 p-0 px-3  m-0" v-if="magic_flag">
-      <div class="card shadow">
+      <div class="card shadow m-0">
         <div class="card-body">
           <div class="row p-2 text-left">
             <div class="col-12 border-bottom p-0">
@@ -75,6 +75,15 @@ export default {
         destination:false},
       isSearch:false,
       magic_flag:this.defaultopen,
+      ops: {
+          vuescroll: {
+            mode:'slide',
+            detectResize:false
+          },
+          scrollPanel: {},
+          rail: {},
+          bar: {}
+        }
     };
   },
   mounted() {
@@ -199,7 +208,7 @@ export default {
   border-bottom-right-radius: 5px;
 }
 .main-input-search,.main-button-search{
-  border:2px solid #00bcd4;
+  border:none;
   display: inline-block;
   padding: 0 20px;
   height: 100%;
@@ -207,21 +216,20 @@ export default {
   box-sizing: border-box;
 }
 .main-button-search{
-  border:none;
+  border:4px solid #00bcd4;
   background-color:#00bcd4 !important;
   font-size: 0.8rem;
   color: #FFFFFF;
-  padding: 0 40px;
+  padding: 0 20px;
 }
 .sugestion{
     position: absolute;
-    top: 20px;
+    top: 50px;
     left: 0;
     z-index: 999999;
 }
 .sugestion .card{
       max-height:350px;
     overflow: hidden;
-    overflow-y: scroll;
 }
 </style>

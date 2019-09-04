@@ -17,7 +17,9 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_price')}}</h6>
+                <h6
+                  class="text-left text-x1 font-bold border-bottom"
+                >{{$t('photelall_filter_price')}}</h6>
                 <p
                   class="text-left text-07 text-nomal text-muted"
                 >{{priceformat(filterCondition.price.filterPrice[0]) + ' - ' + priceformat(filterCondition.price.filterPrice[1])}}</p>
@@ -36,10 +38,22 @@
           </div>
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
-              <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_supplier')}}</h6>
+              <div
+                class="card-title cursor-pointer"
+                data-toggle="collapse"
+                href="#collapseSupplier"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseSupplier"
+              >
+                <h6
+                  class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
+                >
+                  <span>{{$t('photelall_filter_supplier')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
+                </h6>
               </div>
-              <div class="card-body p-0 py-2">
+              <div class="card-body p-0 py-2 collapse show" id="collapseSupplier">
                 <div class="row p-0 m-0">
                   <div
                     class="col-12 p-0 m-0 text-left py-1"
@@ -57,10 +71,22 @@
           </div>
           <div class="row m-0 p-0" v-if="roomType.length >0">
             <div class="card shadow-none my-2 p-3">
-              <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_roomType')}}</h6>
+              <div
+                class="card-title cursor-pointer"
+                data-toggle="collapse"
+                href="#collapseType"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseType"
+              >
+                <h6
+                  class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
+                >
+                  <span>{{$t('photelall_filter_roomType')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
+                </h6>
               </div>
-              <div class="card-body p-0 py-2">
+              <div class="card-body p-0 py-2 collapse hide" id="collapseType">
                 <div class="row p-0 m-0">
                   <div
                     class="col-12 p-0 m-0 text-left py-1"
@@ -79,7 +105,9 @@
           <div class="row m-0 p-0">
             <div class="card shadow-none my-2 p-3">
               <div class="card-title">
-                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_star')}}</h6>
+                <h6
+                  class="text-left text-x1 font-bold border-bottom"
+                >{{$t('photelall_filter_star')}}</h6>
               </div>
               <div class="card-body p-0 py-2">
                 <div class="row p-0 m-0">
@@ -103,7 +131,12 @@
                 aria-expanded="false"
                 aria-controls="collapseCity"
               >
-                <h6 class="text-left text-x1 font-bold border-bottom">{{$t('photelall_filter_city')}}</h6>
+                <h6
+                  class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
+                >
+                  <span>{{$t('photelall_filter_city')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
+                </h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseCity">
                 <div class="row p-0 m-0">
@@ -126,23 +159,34 @@
           <div class="row w-100 m-0 p-0">
             <div class="col-12 w-100 m-0 my-2 p-0">
               <div class="card shadow-none m-0">
-                <div class="card-body m-0 p-2 d-flex flex-row justify-content-between align-items-center">
+                <div
+                  class="card-body m-0 p-2 d-flex flex-row justify-content-between align-items-center"
+                >
                   <span>
                     <span
                       class="text-x1 text-info font-bold"
-                    >{{Object.values(this.groupPackageByRoomType).length}}</span> {{$t('general_label_resultfound')}}
+                    >{{Object.values(this.groupPackageByRoomType).length}}</span>
+                    {{$t('general_label_resultfound')}}
                   </span>
                   <vs-dropdown>
                     <a class="a-icon" href="#">
-                     {{$t('pdestinationexplore_filter_sort')}}
+                      {{$t('pdestinationexplore_filter_sort')}}
                       <vs-icon class icon="expand_more"></vs-icon>
                     </a>
 
                     <vs-dropdown-menu>
-                      <vs-dropdown-item @click="filterCondition.sortBy = 'PRICE'">{{$t('general_label_sortby_price')}}</vs-dropdown-item>
-                      <vs-dropdown-item @click="filterCondition.sortBy = 'NAME'">{{$t('general_label_sortby_name')}}</vs-dropdown-item>
-                      <vs-dropdown-item @click="filterCondition.sortBy = 'POPULAR'" >{{$t('general_label_sortby_popular')}}</vs-dropdown-item>
-                      <vs-dropdown-item @click="filterCondition.sortBy = 'VOTE'">{{$t('general_label_sortby_vote')}}</vs-dropdown-item>
+                      <vs-dropdown-item
+                        @click="filterCondition.sortBy = 'PRICE'"
+                      >{{$t('general_label_sortby_price')}}</vs-dropdown-item>
+                      <vs-dropdown-item
+                        @click="filterCondition.sortBy = 'NAME'"
+                      >{{$t('general_label_sortby_name')}}</vs-dropdown-item>
+                      <vs-dropdown-item
+                        @click="filterCondition.sortBy = 'POPULAR'"
+                      >{{$t('general_label_sortby_popular')}}</vs-dropdown-item>
+                      <vs-dropdown-item
+                        @click="filterCondition.sortBy = 'VOTE'"
+                      >{{$t('general_label_sortby_vote')}}</vs-dropdown-item>
                     </vs-dropdown-menu>
                   </vs-dropdown>
                 </div>
@@ -163,7 +207,7 @@
                       v-bind:class="{'small-loading-img':hotel[0].hotelId.hotelImages.length==0}"
                       v-bind:src="hotel[0].hotelId.hotelImages.length>0?`/smimg/${hotel[0].hotelId.hotelImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                       v-bind:alt="hotel[0].hotelId.hotelName"
-                       @click="redirectToTourDetail(hotel[0].hotelId)"
+                      @click="redirectToTourDetail(hotel[0].hotelId)"
                     />
                   </div>
                   <div class="col-8 p-3 m-0">
@@ -172,7 +216,9 @@
                         class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center cursor-pointer"
                         @click="redirectToTourDetail(hotel[0].hotelId)"
                       >
-                        <h6 class="card-title text-x1 text-main-color m-0 mb-1 cursor-pointer flex-grow">
+                        <h6
+                          class="card-title text-x1 text-main-color m-0 mb-1 cursor-pointer flex-grow"
+                        >
                           <span class="text-info text-x1 mr-2" v-if="hotel[0].hotelId.isHot">
                             <font-awesome-icon icon="bolt" class="text-center" />
                           </span>
@@ -182,7 +228,10 @@
                           <font-awesome-icon icon="heart" class="text-x1 text-center text-muted" />
                         </span>
                       </div>
-                      <div class="text-left text-08 text-2line" v-html="hotel[0].hotelId.hotelIntro"></div>
+                      <div
+                        class="text-left text-08 text-2line"
+                        v-html="hotel[0].hotelId.hotelIntro"
+                      ></div>
                       <div class="text-muted text-06">
                         <p>
                           <font-awesome-icon
@@ -194,22 +243,22 @@
                       </div>
                       <div class="w-100 m-0 p-0 d-flex justify-content-between align-items-end">
                         <span>
-                        <span class="text-07 text-muted mr-2 border-right">
-                          <font-awesome-icon
-                            icon="star"
-                            class="text-center mr-1 text-06 text-muted text-info"
-                            v-for="(star,ist) in hotel[0].hotelId.star"
-                            :key="'sasf'+ist"
-                          />
-                          .{{hotel[0].hotelId.view + i*3}} review
-                        </span>
-                        <span class="text-muted text-07 ml-2" v-if="hotel[0].hotelId.booked>0">
-                          <font-awesome-icon
-                            icon="fire-alt"
-                            class="text-center mr-1 text-08 text-warning"
-                          />
-                          {{hotel[0].hotelId.booked *(i+1) -i%2}} booked
-                        </span>
+                          <span class="text-07 text-muted mr-2 border-right">
+                            <font-awesome-icon
+                              icon="star"
+                              class="text-center mr-1 text-06 text-muted text-info"
+                              v-for="(star,ist) in hotel[0].hotelId.star"
+                              :key="'sasf'+ist"
+                            />
+                            .{{hotel[0].hotelId.view + i*3}} review
+                          </span>
+                          <span class="text-muted text-07 ml-2" v-if="hotel[0].hotelId.booked>0">
+                            <font-awesome-icon
+                              icon="fire-alt"
+                              class="text-center mr-1 text-08 text-warning"
+                            />
+                            {{hotel[0].hotelId.booked *(i+1) -i%2}} booked
+                          </span>
                         </span>
                         <span
                           class="text-x1 price-text m-0 font-bold text-info"
@@ -410,8 +459,7 @@ export default {
     changeFilterAction() {
       this.filterCondition.price.isFilter = true;
     },
-    resetFilter() {
-    }
+    resetFilter() {}
   },
   computed: {
     packageListByLang() {
@@ -422,13 +470,13 @@ export default {
         element.hotelId.hotelIntros.forEach(area => {
           if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
             element.hotelId.hotelName = area.hotelName;
-            element.hotelId.hotelIntro= area.hotelIntro;
+            element.hotelId.hotelIntro = area.hotelIntro;
           }
         });
         element.roomTypeId.roomTypeIntros.forEach(area => {
           if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
             element.roomTypeId.roomTypeName = area.roomTypeName;
-            element.roomTypeId.roomTypeIntro= area.roomTypeIntro;
+            element.roomTypeId.roomTypeIntro = area.roomTypeIntro;
           }
         });
       });
@@ -472,7 +520,9 @@ export default {
     paginatedData() {
       const start = this.pageNumber === 1 ? 0 : this.pageNumber * this.size,
         end = start + this.size;
-      return randomArray(Object.values(this.groupPackageByRoomType).slice(start, end));
+      return randomArray(
+        Object.values(this.groupPackageByRoomType).slice(start, end)
+      );
     },
     changeFilterSupplier() {
       // getter
@@ -514,36 +564,45 @@ export default {
       return this.filterCondition.price.filterPrice;
     },
     sortHotel() {
-      if (this.filterCondition.sortBy==="PRICE" && typeof this.paginatedData !== 'undefined') {
+      if (
+        this.filterCondition.sortBy === "PRICE" &&
+        typeof this.paginatedData !== "undefined"
+      ) {
         this.paginatedData.sort(function(y, x) {
-        return y[0].packageId.price - x[0].packageId.price;
-      });
-      }
-      else if (this.filterCondition.sortBy==="NAME" && typeof this.paginatedData !== 'undefined') {
-        this.paginatedData.sort(function ( a, b ) {
-          if ( a[0].hotelId.hotelName < b[0].hotelId.hotelName ){
+          return y[0].packageId.price - x[0].packageId.price;
+        });
+      } else if (
+        this.filterCondition.sortBy === "NAME" &&
+        typeof this.paginatedData !== "undefined"
+      ) {
+        this.paginatedData.sort(function(a, b) {
+          if (a[0].hotelId.hotelName < b[0].hotelId.hotelName) {
             return -1;
           }
-          if ( a[0].hotelId.hotelName > b[0].hotelId.hotelName ){
+          if (a[0].hotelId.hotelName > b[0].hotelId.hotelName) {
             return 1;
           }
           return 0;
         });
-      }
-      else if (this.filterCondition.sortBy==="POPULAR" && typeof this.paginatedData !== 'undefined') {
+      } else if (
+        this.filterCondition.sortBy === "POPULAR" &&
+        typeof this.paginatedData !== "undefined"
+      ) {
         this.paginatedData.sort(function(x, y) {
-        return y[0].hotelId.view - x[0].hotelId.view;
-      });
-      }
-      else if (this.filterCondition.sortBy==="VOTE" && typeof this.paginatedData !== 'undefined') {
+          return y[0].hotelId.view - x[0].hotelId.view;
+        });
+      } else if (
+        this.filterCondition.sortBy === "VOTE" &&
+        typeof this.paginatedData !== "undefined"
+      ) {
         this.paginatedData.sort(function(x, y) {
-        return y[0].hotelId.booked- x[0].hotelId.booked;
-      });
+          return y[0].hotelId.booked - x[0].hotelId.booked;
+        });
       }
       return this.paginatedData;
     },
-    mergeHotelImage () {
-      var temp=[];
+    mergeHotelImage() {
+      var temp = [];
       this.sortHotel.forEach(element => {
         temp.push(element[0].hotelId.hotelImages[0]);
       });
@@ -576,7 +635,17 @@ export default {
 .con-vs-checkbox {
   justify-content: start !important;
 }
-.a-icon,.a-icon:hover,.a-icon:focus,.a-icon:active,.a-icon:visited{
-  color:rgba(0,0,0,0.87) !important;
+.a-icon,
+.a-icon:hover,
+.a-icon:focus,
+.a-icon:active,
+.a-icon:visited {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+.collapse {
+  display: none;
+}
+.collapse.show {
+  display: block;
 }
 </style>

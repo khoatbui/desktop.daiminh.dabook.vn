@@ -51,6 +51,9 @@
                   <div class="col-12 p-0 m-0 text-left py-1">
                     <vs-checkbox v-model="filterCondition.productType.tour">Tour</vs-checkbox>
                   </div>
+                  <div class="col-12 p-0 m-0 text-left py-1">
+                    <vs-checkbox v-model="filterCondition.productType.car">Car</vs-checkbox>
+                  </div>
                 </div>
               </div>
             </div>
@@ -239,13 +242,18 @@
                 :key="'tsja'+i"
               >
                 <div class="row h-100 p-0 m-0">
-                  <div class="col-4 img-card h-100 p-0 m-0">
+                  <div class="col-4 img-card h-100 p-0 m-0 absolute-parrent">
                     <img
                       class="image-package"
                       v-bind:class="{'small-loading-img':tour.tourImages.length==0}"
                       v-bind:src="tour.tourImages.length>0?`/${tour.tourImages[0].filePath}`:'/img/defaultloading.gif'"
                       v-bind:alt="tour.tourName"
                     />
+                    <div class="absolute-center">
+                          <span class="productype-icon">
+                            <font-awesome-icon icon="umbrella-beach" class="text-center text-x1" />
+                          </span>
+                    </div>
                   </div>
                   <div class="col-8 p-3 m-0">
                     <div class="card-body p-0">
@@ -319,13 +327,18 @@
                 :key="'tsja'+i"
               >
                 <div class="row h-100 p-0 m-0">
-                  <div class="col-4 img-card h-100 p-0 m-0">
+                  <div class="col-4 img-card h-100 p-0 m-0 absolute-parrent">
                     <img
                       class="image-package"
                       v-bind:class="{'small-loading-img':hotel[0].hotelId.hotelImages.length==0}"
                       v-bind:src="hotel[0].hotelId.hotelImages.length>0?`/smimg/${hotel[0].hotelId.hotelImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
                       v-bind:alt="hotel[0].hotelId.hotelName"
                     />
+                    <div class="absolute-center">
+                          <span class="productype-icon">
+                            <font-awesome-icon icon="hotel" class="text-center text-x1" />
+                          </span>
+                    </div>
                   </div>
                   <div class="col-8 p-3 m-0">
                     <div class="card-body p-0">
@@ -380,6 +393,91 @@
                         <span
                           class="text-x1 price-text m-0 font-bold text-info"
                         >from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(hotel[0].packageId.price)}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row w-100 m-0 p-0">
+            <div class="col-12 w-100 m-0 p-0">
+              <div
+                class="card w-100 shadow-none my-3 hotel-card"
+                v-for="(car,i) in carListByLang"
+                :key="'tsja'+i"
+              >
+                <div class="row h-100 p-0 m-0">
+                  <div class="col-4 img-card h-100 p-0 m-0 absolute-parrent">
+                    <img
+                      class="image-package cursor-pointer"
+                       @click="redirectToCarDetail(car)"
+                      v-bind:class="{'small-loading-img':car.cityId.cityImages.length==0}"
+                      v-bind:src="car.cityId.cityImages.length>0?`/smimg/${car.cityId.cityImages[0].filePath.slice(0, -3)}jpg`:'/img/defaultloading.gif'"
+                      v-bind:alt="car.tripName"
+                    />
+                    <div class="absolute-center">
+                          <span class="productype-icon">
+                            <font-awesome-icon icon="car" class="text-center text-x1" />
+                          </span>
+                    </div>
+                  </div>
+                  <div class="col-8 p-3 m-0">
+                    <div class="card-body p-0">
+                      <div
+                        class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-start cursor-pointer"
+                        @click="redirectToCarDetail(car)"
+                      >
+                        <h6
+                          class="card-title text-x1 text-main-color m-0 mb-1 cursor-pointer flex-grow d-flex align-items-start"
+                        >
+                          <span class="text-info text-x1 mr-2" v-if="car.isPromotion">
+                            <font-awesome-icon icon="bolt" class="text-center" />
+                          </span>{{car.tripName}}
+                        </h6>
+                        <span class="shadow">
+                          <font-awesome-icon icon="heart" class="text-x1 text-center text-muted" />
+                        </span>
+                      </div>
+                      <div class="text-muted text-06">
+                        <p>
+                          <font-awesome-icon
+                            icon="medal"
+                            class="text-center mr-2 text-07 text-muted"
+                          />
+                          <span class="text-08">{{car.supplierId.supplierName}}</span>
+                        </p>
+                      </div>
+                      <div
+                        class="text-left text-08 text-2line"
+                        v-html="car.tripIntro"
+                        v-if="typeof car.tripIntro!=='undefined'"
+                      ></div>
+                      <div class="w-100 m-0 p-0 d-flex justify-content-between align-items-end">
+                        <span>
+                          <span class="text-07 text-muted mr-2">
+                            <font-awesome-icon
+                            icon="text-width"
+                            class="text-center mr-2 text-07 text-muted"
+                          />
+                            {{car.kmTotal}} km
+                            <font-awesome-icon
+                            icon="clock"
+                            class="text-center mr-2 text-07 text-muted"
+                          />
+                            {{car.nightTotal}} night
+                          </span>
+                          <span class="text-muted text-07 ml-2" v-if="car.order>0">
+                            <font-awesome-icon
+                              icon="fire-alt"
+                              class="text-center mr-1 text-08 text-warning"
+                            />
+                            {{car.order}} booked
+                          </span>
+                        </span>
+                        <span
+                          class="text-x1 price-text m-0 font-bold text-info"
+                        >from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(car.smallPrice)}} /km</span>
                       </div>
                     </div>
                   </div>
@@ -520,7 +618,8 @@ export default {
       filterCondition: {
         productType: {
           hotel: true,
-          tour: true
+          tour: true,
+          car:true,
         },
         price: {
           filterPrice: [200000, 10500000],
@@ -625,7 +724,10 @@ export default {
     changeFilterAction() {
       this.filterCondition.price.isFilter = true;
     },
-    resetFilter() {}
+    resetFilter() {},
+    redirectToCarDetail(des) {
+      this.$router.push(`/cardetail?tripid=${des._id}`);
+    },
   },
   computed: {
     tourListByLang() {
@@ -641,6 +743,25 @@ export default {
         });
       });
       return this.tourList;
+    },
+    carListByLang() {
+      if (this.componentLoaded.cars === false) {
+        return;
+      }
+      this.cars.forEach(element => {
+        element.tripIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.tripName = area.tripName;
+            element.fromLocation = area.fromLocation;
+            element.toLocation = area.toLocation;
+          }
+        });
+        element.smallPrice=element.priceByCarType[0].price;
+        element.priceByCarType.forEach(price => {
+          element.smallPrice=  element.smallPrice >=price.price ? price.price:element.smallPrice;
+        });
+      });
+      return this.cars;
     },
     filterTourList() {
       if (this.componentLoaded.tour == false) {
@@ -853,7 +974,7 @@ export default {
       });
       }
       return this.paginatedData;
-    }
+    },
   },
   watch: {}
 };
@@ -862,6 +983,7 @@ export default {
 <style scoped lang="scss">
 .img-card {
   overflow: hidden;
+  min-height: 150px;
 }
 .image-package {
   height: 160px;
@@ -886,5 +1008,14 @@ export default {
 }
 .a-icon,.a-icon:hover,.a-icon:focus,.a-icon:active,.a-icon:visited{
   color:rgba(0,0,0,0.87) !important;
+}
+.productype-icon{
+  width: 150px;
+  height: 150px;
+  background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+  color: #FFF;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 3;
 }
 </style>

@@ -230,8 +230,9 @@
                 aria-controls="collapseDestination"
               >
                 <h6
-                  class="text-left text-x1 font-bold border-bottom"
-                >{{$t('ptourall_filter_destination')}}</h6>
+                  class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
+                ><span>{{$t('ptourall_filter_destination')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" /></h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseDestination">
                 <div class="row p-0 m-0">
@@ -570,5 +571,11 @@ export default {
 }
 .related-card {
   overflow: hidden;
+}
+.collapse {
+  display: none;
+}
+.collapse.show {
+  display: block;
 }
 </style>

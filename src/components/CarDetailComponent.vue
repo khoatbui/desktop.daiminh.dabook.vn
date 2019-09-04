@@ -7,30 +7,30 @@
       <div class="row m-0 p-0">
         <div class="col-12 w-100 my-0 p-0 custom-sticky-top sticky-z-index-100 border-bottom">
           <ul
-            class="w-100 d-flex flex-row justify-content-between align-items-center bg-white m-0 p-2 sticky-tab"
+            class="w-100 d-flex flex-row justify-content-start align-items-center bg-white m-0 p-2 sticky-tab"
           >
-            <li>
+            <li class="mr-4">
               <a
                 href="#thongtin"
                 @click="sectionActive='thongtin'"
                 v-bind:class="{'section-active':sectionActive=='thongtin'}"
               >Thong tin</a>
             </li>
-            <li>
+            <li class="mr-4">
               <a
                 href="#danhgia"
                 @click="sectionActive='danhgia'"
                 v-bind:class="{'section-active':sectionActive=='danhgia'}"
               >Danh gia</a>
             </li>
-            <li>
+            <li class="mr-4">
               <a
                 href="#chon"
                 @click="sectionActive='chon'"
                 v-bind:class="{'section-active':sectionActive=='chon'}"
               >Chon</a>
             </li>
-            <li>
+            <li class="mr-4">
               <a
                 href="#map"
                 @click="sectionActive='map'"
@@ -207,14 +207,7 @@
             </div>
             <div class="row p-0 m-0 py-2 text-08">
               <div class="map border-radius-10 w-100">
-                <iframe
-                  class="w-100"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.97785448771!2d105.80194413492788!3d21.02273601629448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1565026713918!5m2!1svi!2s"
-                  height="450"
-                  frameborder="0"
-                  style="border:0"
-                  allowfullscreen
-                ></iframe>
+                <MapComponent v-bind:map="carDetailByLang.map"></MapComponent>
               </div>
             </div>
           </div>
@@ -347,7 +340,12 @@ export default {
       componentFactory: () =>
         import("@/components/TopTourPromotionComponent.vue"),
       loading: SkeletonBox
-    })
+    }),
+    MapComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/MapComponent.vue"),
+      loading: SkeletonBox
+    }),
   },
   name: "CarDetailComponent",
   props: {

@@ -395,3 +395,9 @@ textarea.custom-form-input {
 .full-img img {
   width: 100% !important;
 }
+.map-child iframe{
+  width: 100% !important;
+}
+b, strong {
+  font-weight: bold !important;
+}

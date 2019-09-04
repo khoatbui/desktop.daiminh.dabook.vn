@@ -103,4 +103,15 @@ export default {
   height: 700px !important;
   overflow: hidden;
 }
+.banner_filter::before,.banner_filter::after {
+    background-color: #111;
+    position: absolute;
+    z-index: 2;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+}
 </style>
