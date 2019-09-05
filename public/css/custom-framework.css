@@ -401,3 +401,20 @@ textarea.custom-form-input {
 b, strong {
   font-weight: bold !important;
 }
+
+/* =============CUSTOM BACKGROUN============= */
+.custom-bg-danger {
+  background-image: linear-gradient(
+    to right,
+    #f78ca0 0%,
+    #f9748f 19%,
+    #fd868c 60%,
+    #fe9a8b 100%
+  );
+}
+.custom-bg-primary{
+  background-image: linear-gradient(to right, #625EB1 0%, #1D8FE1 48%, #22E1FF 100%);
+}
+.custom-bg-success{
+  background-image: linear-gradient(to right, #009efd 0%, #2af598 100%);
+}

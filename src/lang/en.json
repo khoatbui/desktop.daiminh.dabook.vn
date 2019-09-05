@@ -274,6 +274,7 @@
   "general_label_anotherquestion": "Other information",
   "general_label_paymentmethod": "Payment methodology",
   "general_label_pickupinfo": "Picking-up / drop-off information",
+  "general_label_dropoff":" Drop-off information",
   "general_label_guidlinelanguage": "Tour-guide's language",
   "general_label_pickuplocation": "Pick-up location",
   "general_body_paymentnote": "<p class='text-08 text-danger'>The price adhere may only apply for a reference. We will update the best price to you shortly.</p><p class='text-08 text-danger'>You can ONLY make payment AFTER receiving a re-confirmation email from us.</p>",
@@ -347,5 +348,11 @@
   "ptourall_filter_naver": "Naver",
   "ptourall_filter_instagram": "Instagram",
   "ptourall_filter_kakao": "Kakao",
-  "general_placeholder_search":"Search by destination, activity, hotel, tour, car, or interest..."
+  "general_placeholder_search":"Search by destination, activity, hotel, tour, car, or interest...",
+  "calltoaction_quote_nocarmatching": "No car matching with you ?",
+  "calltoaction_quote_nohotelmatching": "No hotel matching with you ?",
+  "calltoaction_quote_notourmatching": "No tour matching with you ?",
+  "calltoaction_quote_customyourtrip": "Custom your trip ?",
+  "calltoaction_quote_customyourroom": "Custom your room ?",
+  "calltoaction_button_clickhere": "Click here"
 }

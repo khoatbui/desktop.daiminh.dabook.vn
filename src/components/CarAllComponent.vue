@@ -8,8 +8,15 @@
         <div class="col-3 m-0 p-0 pr-3">
           <div class="row m-0 p-0">
             <div class="card my-2 px-3">
-              <div class="card-body p-0 py-2 font-bold">
-                <AirbnbDatetimePickerComponent :customclass="'border-0'"></AirbnbDatetimePickerComponent>
+              <div class="card-body p-0 py-4 font-bold">
+                <!-- <AirbnbDatetimePickerComponent :customclass="'border-0'"></AirbnbDatetimePickerComponent> -->
+                <input
+                  class="custom-form-input p-1 border-info"
+                  placeholder="Search..."
+                  type="text"
+                  name="iname"
+                  v-model="filterCondition.search"
+                />
               </div>
             </div>
           </div>
@@ -48,8 +55,9 @@
               >
                 <h6
                   class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
-                ><span>{{$t('ptourall_filter_cartype')}}</span>
-                <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
+                >
+                  <span>{{$t('ptourall_filter_cartype')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
                 </h6>
               </div>
               <div class="card-body p-0 py-2 collapse show" id="collapseStyle">
@@ -80,8 +88,10 @@
               >
                 <h6
                   class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
-                ><span>{{$t('ptourall_filter_transtype')}}</span>
-                <font-awesome-icon icon="chevron-down" class="text-06 text-center" /></h6>
+                >
+                  <span>{{$t('ptourall_filter_transtype')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
+                </h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseTransStyle">
                 <div class="row p-0 m-0">
@@ -111,8 +121,10 @@
               >
                 <h6
                   class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
-                ><span>{{$t('ptourall_filter_destination')}}</span>
-                <font-awesome-icon icon="chevron-down" class="text-06 text-center" /></h6>
+                >
+                  <span>{{$t('ptourall_filter_destination')}}</span>
+                  <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
+                </h6>
               </div>
               <div class="card-body p-0 py-2 collapse hide" id="collapseDestination">
                 <div class="row p-0 m-0">
@@ -139,7 +151,7 @@
                   class="card-body m-0 p-2 d-flex flex-row justify-content-between align-items-center"
                 >
                   <span>
-                    <span class="text-x1 text-info font-bold">{{carList.length}}</span>
+                    <span class="text-x1 text-info font-bold">{{sortCar.length}}</span>
                     {{$t('general_label_resultfound')}}
                   </span>
                   <vs-dropdown>
@@ -168,14 +180,17 @@
             </div>
           </div>
           <div class="row w-100 m-0 p-0">
-            <div class="col-12 w-100 m-0 p-0">
-              <div
-                class="card w-100 shadow-none my-3 tour-card"
-                v-for="(trip,i) in sortCar"
-                :key="'tsja'+i"
-              >
+            <div class="col-12 w-100 m-0 p-0" v-for="(trip,i) in sortCar" :key="'tsja'+i">
+              <CarCustomRequestComponent
+                v-if="i==2"
+                class="my-2"
+                :quote="'calltoaction_quote_customyourtrip'"
+                :action="'calltoaction_button_clickhere'"
+                :colapsekey="2"
+              ></CarCustomRequestComponent>
+              <div class="card w-100 shadow-none my-3 tour-card">
                 <div class="row h-100 p-0 m-0">
-                  <div class="col-4 img-card h-100 p-0 m-0">
+                  <div class="col-4 img-card h-100 p-0 m-0 absolute-parrent">
                     <img
                       class="image-package cursor-pointer"
                       v-bind:class="{'small-loading-img':trip.cityId.cityImages.length==0}"
@@ -183,6 +198,11 @@
                       v-bind:alt="trip.cityId.cityName"
                       @click="redirectToCarDetail(trip)"
                     />
+                    <div class="absolute-center">
+                      <span class="productype-icon">
+                        <font-awesome-icon icon="car" class="text-center text-x1" />
+                      </span>
+                    </div>
                   </div>
                   <div class="col-8 p-3 m-0">
                     <div class="card-body p-0">
@@ -200,7 +220,7 @@
                           <font-awesome-icon icon="heart" class="text-x1 text-center text-muted" />
                         </span>
                       </div>
-                      <div class="text-left text-08  m-0 p-0">
+                      <div class="text-left text-08 m-0 p-0">
                         <span class="mr-1">
                           <font-awesome-icon
                             icon="map-marker-alt"
@@ -237,8 +257,7 @@
                           <font-awesome-icon
                             icon="dharmachakra"
                             class="text-center mr-2 text-07 text-muted"
-                          />
-                          Driver include
+                          />Driver include
                         </span>
                       </div>
                       <div class="text-muted text-06">
@@ -275,6 +294,14 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-12 w-100 m-0 p-0">
+              <CarCustomRequestComponent
+                class="my-2"
+                :quote="'calltoaction_quote_nocarmatching'"
+                :action="'calltoaction_button_clickhere'"
+                :colapsekey="1"
+              ></CarCustomRequestComponent>
               <div class="p-2 bg-white">
                 <vs-pagination
                   :total="pageCount"
@@ -335,6 +362,11 @@ export default {
       componentFactory: () =>
         import("@/components/ModalDetailImageComponent.vue"),
       loading: SkeletonBox
+    }),
+    CarCustomRequestComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/CarCustomRequestComponent.vue"),
+      loading: SkeletonBox
     })
   },
   name: "CarAllComponent",
@@ -343,9 +375,9 @@ export default {
   },
   data() {
     return {
-      componentLoaded:{
-        carList:false,
-        transType:false,
+      componentLoaded: {
+        carList: false,
+        transType: false
       },
       imgBackground: [
         {
@@ -388,6 +420,7 @@ export default {
       transType: [],
       destination: [],
       filterCondition: {
+        search: "",
         price: {
           filterPrice: [200000, 10500000],
           minPrice: 100000,
@@ -472,9 +505,12 @@ export default {
             element.toLocation = area.toLocation;
           }
         });
-        element.smallPrice=element.priceByCarType[0].price;
+        element.smallPrice = element.priceByCarType[0].price;
         element.priceByCarType.forEach(price => {
-          element.smallPrice=  element.smallPrice >=price.price ? price.price:element.smallPrice;
+          element.smallPrice =
+            element.smallPrice >= price.price
+              ? price.price
+              : element.smallPrice;
         });
       });
       return this.carList;
@@ -497,7 +533,36 @@ export default {
       if (this.componentLoaded == false) {
         return this.carListByLang;
       }
-      return this.carListByLang;
+      var that = this;
+      return this.carListByLang.filter(function(item) {
+        return (
+          (item.tripName
+            .toUpperCase()
+            .includes(that.filterCondition.search.toUpperCase()) ||
+            that.filterCondition.search.trim().length > 0) &&
+          ((item.price >= that.changeFilterPrice[0] &&
+            item.price <= that.changeFilterPrice[1]) ||
+            that.filterCondition.price.isFilter == false) &&
+          (that.changeFilterDestination.filter(function(desItem) {
+            return desItem._id == item.destinationId._id;
+          }).length > 0 ||
+            that.filterCondition.destination.isFilter == false) &&
+          (that.changeFilterCarType.filter(function(desItem) {
+            return (
+              item.priceByCarType.filter(function(carTypeItem) {
+                return carTypeItem._id == item.carTypeId._id;
+              }) /
+                length >
+              0
+            );
+          }).length > 0 ||
+            that.filterCondition.carType.isFilter == false) &&
+          (that.changeFilterTransType.filter(function(desItem) {
+            return desItem._id == item.carTransTypeId._id;
+          }).length > 0 ||
+            that.filterCondition.transType.isFilter == false)
+        );
+      });
     },
     pageCount() {
       let l = this.carList.length,
@@ -517,6 +582,14 @@ export default {
         this.filterCondition.carType.isFilter = true;
       }
       return this.filterCondition.carType.filterCarType;
+    },
+    changeFilterTransType() {
+      if (this.filterCondition.transType.filterTransType.length === 0) {
+        this.filterCondition.transType.isFilter = false;
+      } else {
+        this.filterCondition.transType.isFilter = true;
+      }
+      return this.filterCondition.transType.filterTransType;
     },
     changeFilterDestination() {
       // getter
@@ -580,6 +653,7 @@ export default {
 <style scoped lang="scss">
 .img-card {
   overflow: hidden;
+  min-height: 150px;
 }
 .image-package {
   height: 160px;
@@ -611,5 +685,19 @@ export default {
 }
 .collapse.show {
   display: block;
+}
+.productype-icon {
+  width: 150px;
+  height: 150px;
+  background-image: linear-gradient(
+    45deg,
+    #ff9a9e 0%,
+    #fad0c4 99%,
+    #fad0c4 100%
+  );
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 3;
 }
 </style>

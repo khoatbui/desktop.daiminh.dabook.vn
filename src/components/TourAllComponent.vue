@@ -8,8 +8,15 @@
         <div class="col-3 m-0 p-0 pr-3">
           <div class="row m-0 p-0">
             <div class="card my-2 px-3">
-              <div class="card-body p-0 py-2 font-bold">
-                <AirbnbDatetimePickerComponent :customclass="'border-0'"></AirbnbDatetimePickerComponent>
+              <div class="card-body p-0 py-4 font-bold">
+                <!-- <AirbnbDatetimePickerComponent :customclass="'border-0'"></AirbnbDatetimePickerComponent> -->
+                <input
+                  class="custom-form-input p-1 border-info"
+                  placeholder="Search..."
+                  type="text"
+                  name="iname"
+                  v-model="filterCondition.search"
+                />
               </div>
             </div>
           </div>
@@ -111,7 +118,7 @@
                   class="card-body m-0 p-2 d-flex flex-row justify-content-between align-items-center"
                 >
                   <span>
-                    <span class="text-x1 text-info font-bold">{{tourList.length}}</span>
+                    <span class="text-x1 text-info font-bold">{{sortTour.length}}</span>
                     {{$t('general_label_resultfound')}}
                   </span>
                   <vs-dropdown>
@@ -140,11 +147,18 @@
             </div>
           </div>
           <div class="row w-100 m-0 p-0">
-            <div class="col-12 w-100 m-0 p-0">
+            <div class="col-12 w-100 m-0 p-0"
+                v-for="(tour,i) in sortTour"
+                :key="'tsja'+i">
+              <TourCustomRequestComponent
+              v-if="i==3"
+                class="my-2"
+                :quote="'calltoaction_quote_customyourtrip'"
+                :action="'calltoaction_button_clickhere'"
+                :colapsekey="1"
+              ></TourCustomRequestComponent>
               <div
                 class="card w-100 shadow-none my-3 tour-card"
-                v-for="(tour,i) in sortTour"
-                :key="'tsja'+i"
               >
                 <div class="row h-100 p-0 m-0">
                   <div class="col-4 img-card h-100 p-0 m-0">
@@ -218,6 +232,14 @@
                   </div>
                 </div>
               </div>
+              </div>
+            <div class="col-12 w-100 m-0 p-0">
+              <TourCustomRequestComponent
+                class="my-2"
+                :quote="'calltoaction_quote_notourmatching'"
+                :action="'calltoaction_button_clickhere'"
+                :colapsekey="1"
+              ></TourCustomRequestComponent>
               <div class="p-2 bg-white">
                 <vs-pagination
                   :total="pageCount"
@@ -279,6 +301,11 @@ export default {
         import("@/components/ModalDetailImageComponent.vue"),
       loading: SkeletonBox
     })
+    ,TourCustomRequestComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/TourCustomRequestComponent.vue"),
+      loading: SkeletonBox
+    })
   },
   name: "TourAllComponent",
   props: {
@@ -327,6 +354,7 @@ export default {
       travelStyle: [],
       destination: [],
       filterCondition: {
+        search:"",
         price: {
           filterPrice: [200000, 10500000],
           minPrice: 100000,
@@ -410,6 +438,8 @@ export default {
       var that = this;
       return this.tourListByLang.filter(function(item) {
         return (
+          (item.tourName.toUpperCase().includes(that.filterCondition.search.toUpperCase())||
+          that.filterCondition.search.trim().length>0)&&
           ((item.price >= that.changeFilterPrice[0] &&
             item.price <= that.changeFilterPrice[1]) ||
             that.filterCondition.price.isFilter == false) &&

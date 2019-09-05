@@ -273,6 +273,7 @@
   "general_label_anotherquestion":"기타 정보",
   "general_label_paymentmethod":"결제수단",
   "general_label_pickupinfo":"픽업 / 드랍오프 정보",
+  "general_label_dropoff":"드랍오프 정보",
   "general_label_guidlinelanguage":"가이드 언어",
   "general_label_pickuplocation":"픽업 장소",
   "general_body_paymentnote":"<p class='text-08 text-danger'>표시된 금액은 대략적 예상 금액으로 적용됩니다.</p><p class='text-08 text-danger'> 곧 업데이트된 최고의 급액을 안내드리겠습니다. 재확인(re-confirmation) 이메일을 수신후에만 결제가 가능합니다.</p>",
@@ -347,5 +348,11 @@
   "ptourall_filter_naver":"Naver",
   "ptourall_filter_instagram":"Instagram",
   "ptourall_filter_kakao":"Kakao",
-  "general_placeholder_search":"Search by destination, activity, hotel, tour, car, or interest..."
+  "general_placeholder_search":"Search by destination, activity, hotel, tour, car, or interest...",
+  "calltoaction_quote_nocarmatching": "당신과 어울리는 차가 없습니다?",
+  "calltoaction_quote_nohotelmatching": "No hotel matching with you ?",
+  "calltoaction_quote_notourmatching": "No tour matching with you ?",
+  "calltoaction_quote_customyourtrip": "Custom your trip ?",
+  "calltoaction_quote_customyourroom": "Custom your room ?",
+  "calltoaction_button_clickhere": "Click here"
   }

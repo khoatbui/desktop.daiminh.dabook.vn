@@ -8,8 +8,15 @@
         <div class="col-3 m-0 p-0 pr-3">
           <div class="row m-0 p-0">
             <div class="card my-2 px-3">
-              <div class="card-body p-0 py-2 font-bold">
-                <AirbnbDatetimePickerComponent :customclass="'border-0'"></AirbnbDatetimePickerComponent>
+              <div class="card-body p-0 py-4 font-bold">
+                <!-- <AirbnbDatetimePickerComponent :customclass="'border-0'" @returnData='getDate($event)'></AirbnbDatetimePickerComponent> -->
+                <input
+                  class="custom-form-input p-1 border-info"
+                  placeholder="Search..."
+                  type="text"
+                  name="iname"
+                  v-model="filterCondition.search"
+                />
               </div>
             </div>
           </div>
@@ -194,12 +201,15 @@
             </div>
           </div>
           <div class="row w-100 m-0 p-0">
-            <div class="col-12 w-100 m-0 p-0">
-              <div
-                class="card w-100 shadow-none my-3 hotel-card"
-                v-for="(hotel,i) in sortHotel"
-                :key="'tsja'+i"
-              >
+            <div class="col-12 w-100 m-0 p-0" v-for="(hotel,i) in paginatedData" :key="'tsja'+i">
+              <HotelCustomRequestComponent
+                v-if="i==2"
+                class="my-2"
+                :quote="'calltoaction_quote_customyourroom'"
+                :action="'calltoaction_button_clickhere'"
+                :colapsekey="2"
+              ></HotelCustomRequestComponent>
+              <div class="card w-100 shadow-none my-3 hotel-card">
                 <div class="row h-100 p-0 m-0">
                   <div class="col-4 img-card h-100 p-0 m-0">
                     <img
@@ -268,6 +278,14 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-12 w-100 m-0 p-0">
+              <HotelCustomRequestComponent
+                class="my-2"
+                :quote="'calltoaction_quote_nohotelmatching'"
+                :action="'calltoaction_button_clickhere'"
+                :colapsekey="1"
+              ></HotelCustomRequestComponent>
               <div class="p-2 bg-white">
                 <vs-pagination
                   :total="pageCount"
@@ -321,7 +339,10 @@ const groupBy = key => array =>
     objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
     return objectsByKeyValue;
   }, {});
-
+Array.prototype.move = function(from, to) {
+  this.splice(to, 0, this.splice(from, 1)[0]);
+  return this;
+};
 export default {
   components: {
     DateTimePicker,
@@ -336,6 +357,11 @@ export default {
     ModalDetailImageComponent: lazyLoadComponent({
       componentFactory: () =>
         import("@/components/ModalDetailImageComponent.vue"),
+      loading: SkeletonBox
+    }),
+    HotelCustomRequestComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/HotelCustomRequestComponent.vue"),
       loading: SkeletonBox
     })
   },
@@ -388,6 +414,7 @@ export default {
       travelStyle: [],
       city: [],
       filterCondition: {
+        search: "",
         price: {
           filterPrice: [200000, 10500000],
           minPrice: 100000,
@@ -459,7 +486,12 @@ export default {
     changeFilterAction() {
       this.filterCondition.price.isFilter = true;
     },
-    resetFilter() {}
+    resetFilter() {},
+    getDate(date) {
+      console.log(date);
+      this.filterCondition.date.filterDate.startDate = date.startDate;
+      this.filterCondition.date.filterDate.endDate = date.endDate;
+    }
   },
   computed: {
     packageListByLang() {
@@ -489,6 +521,10 @@ export default {
       var that = this;
       return this.packageListByLang.filter(function(item) {
         return (
+          (item.hotelId.hotelName
+            .toUpperCase()
+            .includes(that.filterCondition.search.toUpperCase()) ||
+            that.filterCondition.search.trim().length > 0) &&
           ((item.price >= that.changeFilterPrice[0] &&
             item.price <= that.changeFilterPrice[1]) ||
             that.filterCondition.price.isFilter == false) &&
@@ -509,20 +545,92 @@ export default {
     },
     groupPackageByRoomType() {
       return _(this.filterHotelList).groupBy(function(o) {
-        return o.roomTypeId.roomTypeCode;
+        return o.hotelId.hotelCode;
       });
+    },
+    sortPriceBySelectDate() {
+      if (this.componentLoaded == false) {
+        return this.groupPackageByRoomType;
+      }
+      var that = this;
+      console.log(Object.values(this.groupPackageByRoomType));
+      Object.values(this.groupPackageByRoomType).forEach(element => {
+        element.forEach(item => {
+          var goodPrice = item.priceRanges.filter(function(supItem) {
+            console.log(supItem.endDate);
+            console.log(that.filterCondition.date.filterDate.startDate);
+            return (
+              moment(supItem.endDate).isAfter(
+                moment(that.filterCondition.date.filterDate.startDate)
+              ) &&
+              moment(supItem.endDate).isBefore(
+                moment(that.filterCondition.date.filterDate.endDate)
+              )
+            );
+          });
+          item.price = goodPrice.price;
+        });
+        element.sort(function(y, x) {
+          return y.price - x.price;
+        });
+      });
+      return this.groupPackageByRoomType;
     },
     pageCount() {
       let l = Object.values(this.groupPackageByRoomType).length,
         s = this.size;
       return Math.ceil(l / s);
     },
+    sortHotel() {
+      console.log(this.groupPackageByRoomType);
+      if (
+        this.filterCondition.sortBy === "PRICE" &&
+        typeof this.groupPackageByRoomType !== "undefined"
+      ) {
+        Object.values(this.groupPackageByRoomType).sort(function(y, x) {
+          return y[0].packageId.price - x[0].packageId.price;
+        });
+      } else if (
+        this.filterCondition.sortBy === "NAME" &&
+        typeof this.groupPackageByRoomType !== "undefined"
+      ) {
+        Object.values(this.groupPackageByRoomType).sort(function(a, b) {
+          if (a[0].hotelId.hotelName < b[0].hotelId.hotelName) {
+            return -1;
+          }
+          if (a[0].hotelId.hotelName > b[0].hotelId.hotelName) {
+            return 1;
+          }
+          return 0;
+        });
+      } else if (
+        this.filterCondition.sortBy === "POPULAR" &&
+        typeof this.groupPackageByRoomType !== "undefined"
+      ) {
+        Object.values(this.groupPackageByRoomType).sort(function(x, y) {
+          return y[0].hotelId.view - x[0].hotelId.view;
+        });
+      } else if (
+        this.filterCondition.sortBy === "VOTE" &&
+        typeof this.groupPackageByRoomType !== "undefined"
+      ) {
+        Object.values(this.groupPackageByRoomType).sort(function(x, y) {
+          return y[0].hotelId.booked - x[0].hotelId.booked;
+        });
+      }
+      return this.groupPackageByRoomType;
+    },
+    mergeHotelImage() {
+      var temp = [];
+      this.paginatedData.forEach(element => {
+        temp.push(element[0].hotelId.hotelImages[0]);
+      });
+      return temp;
+    },
     paginatedData() {
       const start = this.pageNumber === 1 ? 0 : this.pageNumber * this.size,
         end = start + this.size;
-      return randomArray(
-        Object.values(this.groupPackageByRoomType).slice(start, end)
-      );
+      return randomArray(Object.values(this.sortHotel).slice(start, end));
     },
     changeFilterSupplier() {
       // getter
@@ -562,51 +670,6 @@ export default {
     },
     changeFilterPrice() {
       return this.filterCondition.price.filterPrice;
-    },
-    sortHotel() {
-      if (
-        this.filterCondition.sortBy === "PRICE" &&
-        typeof this.paginatedData !== "undefined"
-      ) {
-        this.paginatedData.sort(function(y, x) {
-          return y[0].packageId.price - x[0].packageId.price;
-        });
-      } else if (
-        this.filterCondition.sortBy === "NAME" &&
-        typeof this.paginatedData !== "undefined"
-      ) {
-        this.paginatedData.sort(function(a, b) {
-          if (a[0].hotelId.hotelName < b[0].hotelId.hotelName) {
-            return -1;
-          }
-          if (a[0].hotelId.hotelName > b[0].hotelId.hotelName) {
-            return 1;
-          }
-          return 0;
-        });
-      } else if (
-        this.filterCondition.sortBy === "POPULAR" &&
-        typeof this.paginatedData !== "undefined"
-      ) {
-        this.paginatedData.sort(function(x, y) {
-          return y[0].hotelId.view - x[0].hotelId.view;
-        });
-      } else if (
-        this.filterCondition.sortBy === "VOTE" &&
-        typeof this.paginatedData !== "undefined"
-      ) {
-        this.paginatedData.sort(function(x, y) {
-          return y[0].hotelId.booked - x[0].hotelId.booked;
-        });
-      }
-      return this.paginatedData;
-    },
-    mergeHotelImage() {
-      var temp = [];
-      this.sortHotel.forEach(element => {
-        temp.push(element[0].hotelId.hotelImages[0]);
-      });
-      return temp;
     }
   },
   watch: {}

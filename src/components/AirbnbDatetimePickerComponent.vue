@@ -8,17 +8,18 @@
         class="air-dateinput w-100"
         :class="customclass"
         placeholder="Select dates"
-        :value="formatDates(dateOne, dateTwo)"
+        :value="formatDates(date.dateOne, date.dateTwo)"
       >
       </div>
       <AirbnbStyleDatepicker
         :trigger-element-id="'datepicker-trigger'"
         :mode="'range'"
         :fullscreen-mobile="true"
-        :date-one="dateOne"
-        :date-two="dateTwo"
-        @date-one-selected="val => { dateOne = val }"
-        @date-two-selected="val => { dateTwo = val }"
+        :date-one="date.dateOne"
+        :date-two="date.dateTwo"
+        @date-one-selected="val => { date.dateOne = val;}"
+        @date-two-selected="val => { date.dateTwo = val;}"
+        @apply="sendToParent"
       />
     </div>
 </template>
@@ -31,8 +32,10 @@ export default {
   data() {
     return {
       dateFormat: 'D MMM',
-      dateOne: '',
+      date:{
+        dateOne: '',
       dateTwo: ''
+      }
     }
   },
   methods: {
@@ -45,6 +48,9 @@ export default {
         formattedDates += ' - ' + format(dateTwo, this.dateFormat)
       }
       return formattedDates
+    },
+    sendToParent() {
+      this.$emit('returnData',this.date);
     }
   }
 };
