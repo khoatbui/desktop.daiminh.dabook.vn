@@ -100,6 +100,19 @@ export default {
 <style scoped lang="scss">
 .card-des{
     width: 19%;
+    position:relative;
+    overflow: hidden;
+}
+.card-des::after,.card-des::before{
+    position: absolute;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: linear-gradient(0deg, #111 0%, #111 100%);
+    z-index: 2;
+    opacity: 0.15;
 }
 .image-des{
     height: 180px;
@@ -110,5 +123,6 @@ export default {
     left: 50%;
     transform: translate(-50%,-50%);
     color: #FFFFFF;
+    z-index: 3;
 }
 </style>

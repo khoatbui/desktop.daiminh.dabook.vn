@@ -71,8 +71,9 @@
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
               <h3 class="text-xh1 info-title font-weight-bold">Danh gia</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center">
-              <p>{{$t('general_sticky_tab_vote_empty')}}</p>
+           <div class="row w-100 p-0 m-0 py-2 text-08">
+              <ReviewComponent class="w-100"></ReviewComponent>
+              <!-- <p>{{$t('general_sticky_tab_vote_empty')}}</p> -->
             </div>
           </div>
           <div class="section-tour py-2 second-background" id="chon">
@@ -452,6 +453,11 @@ export default {
         import("@/components/BackgroundHeaderComponent.vue"),
       loading: SkeletonBox
     }),
+    ReviewComponent:lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/ReviewComponent.vue"),
+      loading: SkeletonBox
+    }),
     TopTourPromotionComponent: lazyLoadComponent({
       componentFactory: () =>
         import("@/components/TopTourPromotionComponent.vue"),
@@ -501,7 +507,6 @@ export default {
         package: {},
         optionService: {},
       },
-      map:'<iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.97785448771!2d105.80194413492788!3d21.02273601629448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1565026713918!5m2!1svi!2s" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>'
     };
   },
   created() {

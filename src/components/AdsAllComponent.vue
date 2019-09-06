@@ -414,7 +414,6 @@ export default {
       size: 10
     };
   },
-  watch: {},
   created() {
     this.initialAll();
   },
@@ -469,7 +468,6 @@ export default {
       return Math.ceil(l / s);
     }
   },
-  watch: {}
 };
 </script>
 

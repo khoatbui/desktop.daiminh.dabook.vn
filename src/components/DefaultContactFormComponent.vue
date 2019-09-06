@@ -21,7 +21,7 @@
         <textarea class="custom-form-input" type="text" name="imessage" v-model="customInfo.message"></textarea>
       </div>
       <div class="col-12 py-1 text-right">
-        <button class="btn btn-sm btn-danger border-radius-100">{{$t('default_contact_form_btnsendrequest')}}</button>
+        <button class="btn btn-sm btn-info border-radius-100">{{$t('default_contact_form_btnsendrequest')}}</button>
       </div>
       <div class="col-12 py-1 text-right">
         <small class="text-06">

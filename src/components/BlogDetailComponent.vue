@@ -295,13 +295,8 @@ import carouselss from "vue-owl-carousel";
 import { Carousel, Slide } from "vue-carousel";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
-import TourService from "@/api/TourService";
 import BlogService from "@/api/BlogService";
 import TravelStyleService from "@/api/TravelStyleService";
-
-import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
-import { DateTimePicker } from "@lazy-copilot/datetimepicker";
-import AirbnbDatetimePickerComponent from "@/components/AirbnbDatetimePickerComponent.vue";
 
 function randomArray(array) {
   const array2 = [];
@@ -315,11 +310,9 @@ function randomArray(array) {
 
 export default {
   components: {
-    DateTimePicker,
     carouselss,
     Carousel,
     Slide,
-    AirbnbDatetimePickerComponent,
     TopTourPromotionComponent: lazyLoadComponent({
       componentFactory: () =>
         import("@/components/TopTourPromotionComponent.vue"),

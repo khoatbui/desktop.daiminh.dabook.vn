@@ -86,6 +86,17 @@ export default {
   },
   computed: {
     blogListByLang() {
+      if (this.componentLoaded === false) {
+        return;
+      }
+      this.blogList.forEach(element => {
+        element.blogIntros.forEach(area => {
+          if (area.lang.toUpperCase() === i18n.locale.toUpperCase()) {
+            element.blogName = area.blogName;
+            element.blogIntro = area.blogIntro;
+          }
+        });
+      });
       return this.blogList.slice(0, 5);
     }
   }

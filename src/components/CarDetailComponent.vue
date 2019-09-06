@@ -67,8 +67,9 @@
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
               <h3 class="text-xh1 info-title font-weight-bold">Danh gia</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center">
-              <p>Hien chua co danh gia nao cho tour nay</p>
+            <div class="row w-100 p-0 m-0 py-2 text-08">
+              <ReviewComponent class="w-100"></ReviewComponent>
+              <!-- <p>{{$t('general_sticky_tab_vote_empty')}}</p> -->
             </div>
           </div>
           <div class="section-tour py-2 second-background" id="chon">
@@ -334,6 +335,11 @@ export default {
     BackgroundHeaderComponent: lazyLoadComponent({
       componentFactory: () =>
         import("@/components/BackgroundHeaderComponent.vue"),
+      loading: SkeletonBox
+    }),
+    ReviewComponent:lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/ReviewComponent.vue"),
       loading: SkeletonBox
     }),
     TopTourPromotionComponent: lazyLoadComponent({

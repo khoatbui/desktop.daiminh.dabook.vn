@@ -341,12 +341,12 @@ export default new Router({
       children: [
         {
           path: 'detail',
-          name: 'blogdetail',
+          name: 'adsdetail',
           component: AdsDetailComponent,
         },
         {
           path: '',
-          name: 'blogall',
+          name: 'adsall',
           component: AdsAllComponent,
         },
       ],
