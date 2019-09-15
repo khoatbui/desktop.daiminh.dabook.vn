@@ -123,7 +123,6 @@ export default new Router({
     },
     {
       path: '/travelservice',
-      name: 'travelservice',
       component: TravelServiceView,
       children: [
         {
@@ -155,7 +154,6 @@ export default new Router({
     },
     {
       path: '/mice',
-      name: 'mice',
       component: MICEView,
       children: [
         {

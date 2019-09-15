@@ -488,7 +488,6 @@ export default {
     },
     resetFilter() {},
     getDate(date) {
-      console.log(date);
       this.filterCondition.date.filterDate.startDate = date.startDate;
       this.filterCondition.date.filterDate.endDate = date.endDate;
     }
@@ -553,12 +552,9 @@ export default {
         return this.groupPackageByRoomType;
       }
       var that = this;
-      console.log(Object.values(this.groupPackageByRoomType));
       Object.values(this.groupPackageByRoomType).forEach(element => {
         element.forEach(item => {
           var goodPrice = item.priceRanges.filter(function(supItem) {
-            console.log(supItem.endDate);
-            console.log(that.filterCondition.date.filterDate.startDate);
             return (
               moment(supItem.endDate).isAfter(
                 moment(that.filterCondition.date.filterDate.startDate)
@@ -582,7 +578,6 @@ export default {
       return Math.ceil(l / s);
     },
     sortHotel() {
-      console.log(this.groupPackageByRoomType);
       if (
         this.filterCondition.sortBy === "PRICE" &&
         typeof this.groupPackageByRoomType !== "undefined"

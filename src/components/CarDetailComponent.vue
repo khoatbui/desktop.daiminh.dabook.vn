@@ -390,7 +390,6 @@ export default {
       const response = await CarService.getCarTripById(tripid);
       this.carDetail = response.data;
 
-      console.log(this.carDetail);
       this.$store.commit("showHideLoading", false);
       this.componentLoaded = true;
     },
@@ -449,7 +448,6 @@ export default {
         this.carDetail.priceByCarType.forEach(intro => {
           temp.push(intro.carImages[0]);
         });
-        console.log(temp);
         return temp;
       }
     },

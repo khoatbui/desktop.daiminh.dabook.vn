@@ -33,7 +33,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.personInput);
   },
   methods: {
     plusPerson(person) {

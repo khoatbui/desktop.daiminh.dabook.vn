@@ -200,7 +200,7 @@
                               class="one-line m-0 text-info cursor-pointer"
                               @click="redirectToDetailAds(ads)"
                             >{{ads.adsName}}</h6>
-                            <div class="text-muted two-line text-08" v-html="ads.adsIntro"></div>
+                            <div class="text-muted two-line text-08 text-left d-block" v-html="ads.adsIntro"></div>
                             <div
                               class="text-muted two-line text-06"
                             >{{moment(ads.createDate).format('YYYY-DD-MM')}}</div>
@@ -395,18 +395,13 @@ export default {
       this.componentLoaded.adsDetailList = true;
     },
     async getAdsById(id) {
-      this.$store.commit("showHideLoading", true);
       const response = await AdsService.getAdsById(id);
       this.ads = response.data;
       this.componentLoaded.ads = true;
-      this.$store.commit("showHideLoading", false);
     },
     async getAdsList() {
-      this.$store.commit("showHideLoading", true);
       const response = await AdsService.getAllAds();
       this.adsList = randomArray(response.data);
-      console.log(this.adsList);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded.adsList = true;
     },
     redirectToDetailAds(des) {

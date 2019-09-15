@@ -26,10 +26,10 @@
               <div class="card-title">
                 <h6
                   class="text-left text-x1 font-bold border-bottom"
-                >{{$t('ptourall_filter_price')}}</h6>
+                >{{ $t('ptourall_filter_price') }}</h6>
                 <p
                   class="text-left text-07 text-nomal text-muted"
-                >{{priceformat(filterCondition.price.filterPrice[0]) + ' - ' + priceformat(filterCondition.price.filterPrice[1])}}</p>
+                >{{ priceformat(filterCondition.price.filterPrice[0]) + ' - ' + priceformat(filterCondition.price.filterPrice[1]) }}</p>
               </div>
               <div class="card-body p-0 py-2">
                 <vue-slider
@@ -56,7 +56,7 @@
                 <h6
                   class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
                 >
-                  <span>{{$t('ptourall_filter_cartype')}}</span>
+                  <span>{{ $t('ptourall_filter_cartype') }}</span>
                   <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
                 </h6>
               </div>
@@ -64,13 +64,13 @@
                 <div class="row p-0 m-0">
                   <div
                     class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(style,i) in carType"
-                    :key="'affsa'+i"
+                    v-for="(style, i) in carType"
+                    :key="'affsa' + i"
                   >
                     <vs-checkbox
                       v-model="filterCondition.carType.filterCarType"
                       :vs-value="style"
-                    >{{style.carTypeName}}</vs-checkbox>
+                    >{{ style.carTypeName }}</vs-checkbox>
                   </div>
                 </div>
               </div>
@@ -89,7 +89,7 @@
                 <h6
                   class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
                 >
-                  <span>{{$t('ptourall_filter_transtype')}}</span>
+                  <span>{{ $t('ptourall_filter_transtype') }}</span>
                   <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
                 </h6>
               </div>
@@ -97,13 +97,13 @@
                 <div class="row p-0 m-0">
                   <div
                     class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(style,i) in transTypeByLang"
-                    :key="'affsa'+i"
+                    v-for="(style, i) in transTypeByLang"
+                    :key="'affsa' + i"
                   >
                     <vs-checkbox
                       v-model="filterCondition.transType.filterTransType"
                       :vs-value="style"
-                    >{{style.carTransTypeName}}</vs-checkbox>
+                    >{{ style.carTransTypeName }}</vs-checkbox>
                   </div>
                 </div>
               </div>
@@ -122,7 +122,7 @@
                 <h6
                   class="text-left text-x1 font-bold border-bottom d-flex justify-content-between align-items-center"
                 >
-                  <span>{{$t('ptourall_filter_destination')}}</span>
+                  <span>{{ $t('ptourall_filter_destination') }}</span>
                   <font-awesome-icon icon="chevron-down" class="text-06 text-center" />
                 </h6>
               </div>
@@ -130,13 +130,13 @@
                 <div class="row p-0 m-0">
                   <div
                     class="col-12 p-0 m-0 text-left py-1"
-                    v-for="(des,i) in destination"
-                    :key="'affsa'+i"
+                    v-for="(des, i) in destination"
+                    :key="'affsa' + i"
                   >
                     <vs-checkbox
                       v-model="filterCondition.destination.filterDestination"
                       :vs-value="des"
-                    >{{des.destinationName}}</vs-checkbox>
+                    >{{ des.destinationName }}</vs-checkbox>
                   </div>
                 </div>
               </div>
@@ -151,28 +151,28 @@
                   class="card-body m-0 p-2 d-flex flex-row justify-content-between align-items-center"
                 >
                   <span>
-                    <span class="text-x1 text-info font-bold">{{sortCar.length}}</span>
-                    {{$t('general_label_resultfound')}}
+                    <span class="text-x1 text-info font-bold">{{ sortCar.length }}</span>
+                    {{ $t('general_label_resultfound') }}
                   </span>
                   <vs-dropdown>
                     <a class="a-icon" href="#">
-                      {{$t('pdestinationexplore_filter_sort')}}
+                      {{ $t('pdestinationexplore_filter_sort') }}
                       <vs-icon class icon="expand_more"></vs-icon>
                     </a>
 
                     <vs-dropdown-menu>
                       <vs-dropdown-item
                         @click="filterCondition.sortBy = 'PRICE'"
-                      >{{$t('general_label_sortby_price')}}</vs-dropdown-item>
+                      >{{ $t('general_label_sortby_price') }}</vs-dropdown-item>
                       <vs-dropdown-item
                         @click="filterCondition.sortBy = 'NAME'"
-                      >{{$t('general_label_sortby_name')}}</vs-dropdown-item>
+                      >{{ $t('general_label_sortby_name') }}</vs-dropdown-item>
                       <vs-dropdown-item
                         @click="filterCondition.sortBy = 'POPULAR'"
-                      >{{$t('general_label_sortby_popular')}}</vs-dropdown-item>
+                      >{{ $t('general_label_sortby_popular') }}</vs-dropdown-item>
                       <vs-dropdown-item
                         @click="filterCondition.sortBy = 'VOTE'"
-                      >{{$t('general_label_sortby_vote')}}</vs-dropdown-item>
+                      >{{ $t('general_label_sortby_vote') }}</vs-dropdown-item>
                     </vs-dropdown-menu>
                   </vs-dropdown>
                 </div>
@@ -180,9 +180,9 @@
             </div>
           </div>
           <div class="row w-100 m-0 p-0">
-            <div class="col-12 w-100 m-0 p-0" v-for="(trip,i) in sortCar" :key="'tsja'+i">
+            <div class="col-12 w-100 m-0 p-0" v-for="(trip, i) in sortCar" :key="'tsja' + i">
               <CarCustomRequestComponent
-                v-if="i==2"
+                v-if="i == 2"
                 class="my-2"
                 :quote="'calltoaction_quote_customyourtrip'"
                 :action="'calltoaction_button_clickhere'"
@@ -193,8 +193,8 @@
                   <div class="col-4 img-card h-100 p-0 m-0 absolute-parrent">
                     <img
                       class="image-package cursor-pointer"
-                      v-bind:class="{'small-loading-img':trip.cityId.cityImages.length==0}"
-                      v-bind:src="trip.cityId.cityImages.length>0?`/${trip.cityId.cityImages[0].filePath}`:'/img/defaultloading.gif'"
+                      v-bind:class="{ 'small-loading-img': trip.cityId.cityImages.length == 0 }"
+                      v-bind:src="trip.cityId.cityImages.length > 0 ? `/${trip.cityId.cityImages[0].filePath}` : '/img/defaultloading.gif'"
                       v-bind:alt="trip.cityId.cityName"
                       @click="redirectToCarDetail(trip)"
                     />
@@ -215,7 +215,7 @@
                         </span>
                         <h6
                           class="card-title text-x1 text-main-color m-0 cursor-pointer flex-grow"
-                        >{{trip.tripName}}</h6>
+                        >{{ trip.tripName }}</h6>
                         <span class="shadow">
                           <font-awesome-icon icon="heart" class="text-x1 text-center text-muted" />
                         </span>
@@ -226,14 +226,15 @@
                             icon="map-marker-alt"
                             class="text-center mr-2 text-07 text-muted"
                           />
-                          {{trip.fromLocation}}
-                        </span> /
+                          {{ trip.fromLocation }}
+                        </span>
+                        /
                         <span class="ml-1">
                           <font-awesome-icon
                             icon="map-marker-alt"
                             class="text-center mr-2 text-07 text-muted"
                           />
-                          {{trip.toLocation}}
+                          {{ trip.toLocation }}
                         </span>
                       </div>
                       <div class="text-left text-08 m-0 p-0">
@@ -242,14 +243,15 @@
                             icon="text-width"
                             class="text-center mr-2 text-07 text-muted"
                           />
-                          {{trip.kmTotal}} km
-                        </span> /
+                          {{ trip.kmTotal }} km
+                        </span>
+                        /
                         <span class="ml-1">
                           <font-awesome-icon
                             icon="clock"
                             class="text-center mr-2 text-07 text-muted"
                           />
-                          {{trip.nightTotal}} night
+                          {{ trip.nightTotal }} night
                         </span>
                       </div>
                       <div class="text-left text-08 m-0 p-0">
@@ -261,12 +263,12 @@
                         </span>
                       </div>
                       <div class="text-muted text-06">
-                        <p v-if="typeof trip.time !='undefined'">
+                        <p v-if="typeof trip.time != 'undefined'">
                           <font-awesome-icon
                             icon="clock"
                             class="text-center mr-2 text-07 text-muted"
                           />
-                          <span>{{trip.time.qty + '.' +trip.time.unit}}</span>
+                          <span>{{ trip.time.qty + '.' + trip.time.unit }}</span>
                         </p>
                       </div>
                       <div class="w-100 m-0 p-0 d-flex justify-content-between align-items-end">
@@ -274,21 +276,21 @@
                           <font-awesome-icon
                             icon="star"
                             class="text-center mr-1 text-06 text-muted text-info"
-                            v-for="(star,i) in trip.star"
-                            :key="'sasf'+i"
+                            v-for="(star, i) in trip.star"
+                            :key="'sasf' + i"
                           />
-                          .{{trip.voteScore}}
+                          .{{ trip.voteScore }}
                         </span>
-                        <span v-if="trip.order>0">
+                        <span v-if="trip.order > 0">
                           <font-awesome-icon
                             icon="fire-alt"
                             class="text-center mr-1 text-06 text-muted text-danger"
                           />
-                          .{{trip.order}}
+                          .{{ trip.order }}
                         </span>
                         <span
                           class="text-x1 price-text m-0 font-bold text-info"
-                        >from {{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(trip.smallPrice)}} /km</span>
+                        >from {{ new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(trip.smallPrice) }} /km</span>
                       </div>
                     </div>
                   </div>
@@ -324,18 +326,18 @@
 </template>
 
 <script>
-import moment from "moment";
-import i18n from "@/lang/i18n";
-import { Carousel, Slide } from "vue-carousel";
-import lazyLoadComponent from "@/utils/lazy-load-component";
-import SkeletonBox from "@/components/SkeletonBox.vue";
-import TourService from "@/api/TourService";
-import DestinationService from "@/api/DestinationService";
-import CarService from "@/api/CarService";
+import moment from 'moment';
+import i18n from '@/lang/i18n';
+import { Carousel, Slide } from 'vue-carousel';
+import lazyLoadComponent from '@/utils/lazy-load-component';
+import SkeletonBox from '@/components/SkeletonBox.vue';
+import TourService from '@/api/TourService';
+import DestinationService from '@/api/DestinationService';
+import CarService from '@/api/CarService';
 
-import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
-import { DateTimePicker } from "@lazy-copilot/datetimepicker";
-import AirbnbDatetimePickerComponent from "@/components/AirbnbDatetimePickerComponent.vue";
+import '@lazy-copilot/datetimepicker/dist/datetimepicker.css';
+import { DateTimePicker } from '@lazy-copilot/datetimepicker';
+import AirbnbDatetimePickerComponent from '@/components/AirbnbDatetimePickerComponent.vue';
 
 function randomArray(array) {
   const array2 = [];
@@ -355,21 +357,21 @@ export default {
     AirbnbDatetimePickerComponent,
     TopTourPromotionComponent: lazyLoadComponent({
       componentFactory: () =>
-        import("@/components/TopTourPromotionComponent.vue"),
+        import('@/components/TopTourPromotionComponent.vue'),
       loading: SkeletonBox
     }),
     ModalDetailImageComponent: lazyLoadComponent({
       componentFactory: () =>
-        import("@/components/ModalDetailImageComponent.vue"),
+        import('@/components/ModalDetailImageComponent.vue'),
       loading: SkeletonBox
     }),
     CarCustomRequestComponent: lazyLoadComponent({
       componentFactory: () =>
-        import("@/components/CarCustomRequestComponent.vue"),
+        import('@/components/CarCustomRequestComponent.vue'),
       loading: SkeletonBox
     })
   },
-  name: "CarAllComponent",
+  name: 'CarAllComponent',
   props: {
     msg: String
   },
@@ -381,38 +383,38 @@ export default {
       },
       imgBackground: [
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_01.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_01.jpg'
         },
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_02.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_02.jpg'
         },
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_03.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_03.jpg'
         },
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_04.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_04.jpg'
         },
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_05.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_05.jpg'
         },
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_06.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_06.jpg'
         },
         {
-          fileName: "daiminh travel",
-          filePath: "img/background/bg_07.jpg"
+          fileName: 'daiminh travel',
+          filePath: 'img/background/bg_07.jpg'
         }
       ],
       priceformat: v => {
-        return new Intl.NumberFormat("vi-VN", {
-          style: "currency",
-          currency: "VND"
+        return new Intl.NumberFormat('vi-VN', {
+          style: 'currency',
+          currency: 'VND'
         }).format(v);
       },
       carList: [],
@@ -420,7 +422,7 @@ export default {
       transType: [],
       destination: [],
       filterCondition: {
-        search: "",
+        search: '',
         price: {
           filterPrice: [200000, 10500000],
           minPrice: 100000,
@@ -444,10 +446,10 @@ export default {
           isFilter: false
         },
         date: {
-          filterDate: { startDate: "", endDate: "" },
+          filterDate: { startDate: '', endDate: '' },
           isFilter: false
         },
-        sortBy: ""
+        sortBy: ''
       },
       pageNumber: 1,
       size: 10
@@ -465,10 +467,10 @@ export default {
       this.getDestination();
     },
     async initial() {
-      this.$store.commit("showHideLoading", true);
+      this.$store.commit('showHideLoading', true);
       const response = await CarService.getAllCarTrip();
       this.carList = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
+      this.$store.commit('showHideLoading', false);
       this.componentLoaded.carList = true;
     },
     async getCarType() {
@@ -605,15 +607,15 @@ export default {
     },
     sortCar() {
       if (
-        this.filterCondition.sortBy === "PRICE" &&
-        typeof this.paginatedData !== "undefined"
+        this.filterCondition.sortBy === 'PRICE' &&
+        typeof this.paginatedData !== 'undefined'
       ) {
         this.paginatedData.sort(function(x, y) {
           return y.price - x.price;
         });
       } else if (
-        this.filterCondition.sortBy === "NAME" &&
-        typeof this.paginatedData !== "undefined"
+        this.filterCondition.sortBy === 'NAME' &&
+        typeof this.paginatedData !== 'undefined'
       ) {
         this.paginatedData.sort(function(a, b) {
           if (a.tourName < b.tourName) {
@@ -625,21 +627,20 @@ export default {
           return 0;
         });
       } else if (
-        this.filterCondition.sortBy === "POPULAR" &&
-        typeof this.paginatedData !== "undefined"
+        this.filterCondition.sortBy === 'POPULAR' &&
+        typeof this.paginatedData !== 'undefined'
       ) {
         this.paginatedData.sort(function(x, y) {
           return y.order - x.order;
         });
       } else if (
-        this.filterCondition.sortBy === "VOTE" &&
-        typeof this.paginatedData !== "undefined"
+        this.filterCondition.sortBy === 'VOTE' &&
+        typeof this.paginatedData !== 'undefined'
       ) {
         this.paginatedData.sort(function(x, y) {
           return y.voteScore - x.voteScore;
         });
       }
-      console.log(this.paginatedData);
       return this.paginatedData;
     },
     backgroundImage() {

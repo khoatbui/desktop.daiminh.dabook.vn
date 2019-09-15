@@ -81,7 +81,6 @@ export default {
   },
   computed: {
     imgsDataReload() {
-      console.log(this.min_height);
       return {
         backgroundImage: `url("/${this.root}${this.imgs[0].filePath}")`,
         backgroundSize: "cover",

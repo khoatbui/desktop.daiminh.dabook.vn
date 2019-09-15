@@ -213,16 +213,13 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit("showHideLoading", true);
       const response = await HotelService.getTopPromotionHotelPackage();
       this.packages = randomArray(response.data);
       const responsetour = await TourService.getTopPromotionTourPackage();
       this.tours = randomArray(responsetour.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded=true;
     },
     async initialByCity(cityId) {
-      this.$store.commit("showHideLoading", true);
       const response = await HotelService.getHotelPackageByCity(
         cityId
       );
@@ -231,7 +228,6 @@ export default {
         cityId
       );
       this.tours = randomArray(responsetour.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded=true;
     },
     redirectToTourDetail(des) {

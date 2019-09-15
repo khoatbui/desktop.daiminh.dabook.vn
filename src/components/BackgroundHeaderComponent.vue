@@ -75,6 +75,15 @@ export default {
       {imgPath:"/img/background/bg_21.jpg" },
       {imgPath:"/img/background/bg_22.jpg" },
       {imgPath:"/img/background/bg_23.jpg" },
+      {imgPath:"/img/background/bg_24.jpg" },
+      {imgPath:"/img/background/bg_25.jpg" },
+      {imgPath:"/img/background/bg_26.jpg" },
+      {imgPath:"/img/background/bg_27.jpg" },
+      {imgPath:"/img/background/bg_28.jpg" },
+      {imgPath:"/img/background/bg_29.jpg" },
+      {imgPath:"/img/background/bg_30.jpg" },
+      {imgPath:"/img/background/bg_31.jpg" },
+      {imgPath:"/img/background/bg_32.jpg" },
       ]
     };
   },
@@ -104,7 +113,7 @@ export default {
   overflow: hidden;
 }
 .banner_filter::before,.banner_filter::after {
-    background-color: #111;
+    background-color: #333;
     position: absolute;
     z-index: 2;
     content: "";

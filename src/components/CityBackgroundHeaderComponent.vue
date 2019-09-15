@@ -130,10 +130,8 @@ export default {
   },
   methods: {
     async initial(cityId) {
-      this.$store.commit("showHideLoading", true);
       const response = await DestinationService.getDestinationByCity(cityId);
       this.destinations = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
     }
   },
   computed: {

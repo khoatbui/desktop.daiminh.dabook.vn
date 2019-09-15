@@ -697,13 +697,10 @@ export default {
     async initialCar(keyword) {
       const response = await CarService.getCarBySearch(keyword);
       this.cars = randomArray(response.data);
-      console.log(this.cars);
     },
     async initialHotelPackage(keyword) {
-      this.$store.commit("showHideLoading", true);
       const response = await SearchService.GetHotelPackageBySearch(keyword);
       this.packageList = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded.hotel = true;
     },
     async getSupplier() {

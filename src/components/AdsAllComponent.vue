@@ -430,10 +430,8 @@ export default {
       this.componentLoaded.adsList = true;
     },
     async getAdsType() {
-      this.$store.commit("showHideLoading", true);
       const response = await AdsService.getAllAdsType();
       this.adsTypeList = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded.adsTypeList = true;
     },
     redirectToDetailAds(des) {

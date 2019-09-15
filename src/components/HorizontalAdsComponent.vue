@@ -66,20 +66,14 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit("showHideLoading", true);
       const response = await AdsService.getAllAdsByType(this.adstype);
       this.ads = randomArray(response.data);
       this.componentLoaded=true;
-      this.$store.commit("showHideLoading", false);
     },
     async initialAll() {
-      this.$store.commit("showHideLoading", true);
       const response = await AdsService.getAllAds();
       this.ads = randomArray(response.data);
-      console.log("ads");
-      console.log(this.ads);
       this.componentLoaded=true;
-      this.$store.commit("showHideLoading", false);
     },
     getBackgroundImage(item) {
       return {

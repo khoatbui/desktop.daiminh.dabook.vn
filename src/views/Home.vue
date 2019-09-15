@@ -7,6 +7,9 @@
         <ThreeStepComponent></ThreeStepComponent>
       </div>
       <div class="container pt-4">
+        <ExploreDaiMinhComponent></ExploreDaiMinhComponent>
+      </div>
+      <div class="container pt-4">
         <HorizontalAdsComponent :adstype="'ALL'"></HorizontalAdsComponent>
       </div>
       <div class="container pt-4">
@@ -57,6 +60,10 @@ export default {
     }),
     ThreeStepComponent: lazyLoadComponent({
       componentFactory: () => import('@/components/ThreeStepComponent.vue'),
+      loading: SkeletonBox
+    }),
+    ExploreDaiMinhComponent: lazyLoadComponent({
+      componentFactory: () => import('@/components/ExploreDaiMinhComponent.vue'),
       loading: SkeletonBox
     }),
     TopCityComponent: lazyLoadComponent({

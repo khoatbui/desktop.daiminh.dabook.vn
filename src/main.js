@@ -61,7 +61,9 @@ import store from './store';
 import './registerServiceWorker';
 import './assets/app.scss';
 import vuescroll from 'vuescroll/dist/vuescroll-slide';
+import Progress from 'vue-progress-scroll';
 
+Vue.use(Progress);
 Vue.use(vuescroll);
 library.add(
   faUserSecret,
@@ -110,7 +112,6 @@ library.add(
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('VueSlider', VueSlider);
 Vue.config.productionTip = false;
-// see docs for available options
 const datepickerOptions = {
   colors: {
     selected: '#0149ff',
@@ -123,7 +124,6 @@ const datepickerOptions = {
   },
 };
 
-// make sure we can use it in our components
 Vue.use(AirbnbStyleDatepicker, datepickerOptions);
 Vue.use(Vuesax);
 

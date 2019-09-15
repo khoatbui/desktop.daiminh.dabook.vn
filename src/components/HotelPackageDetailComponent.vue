@@ -69,7 +69,7 @@
             <div class="row m-0 p-0 pt-4 text-08" v-html="packageDetailByLang.hotelId.hotelIntro"></div>
             <div class="row m-0 p-0 text-08" v-html="packageDetailByLang.roomTypeId.roomTypeIntro"></div>
             <div
-              class="row m-0 p-0 pb-4 text-08"
+              class="row m-0 p-0 pb-4 text-08 text-left d-block"
               v-html="packageDetailByLang.packageId.packageIntro"
             ></div>
           </div>

@@ -24,7 +24,7 @@
                   >
                     <h3
                       class="text-x1 text-muted font-bold text-left border-left-bold pl-2"
-                    >{{$('general_label_customerinfo')}}</h3>
+                    >{{$t('general_label_customerinfo')}}</h3>
                     <font-awesome-icon
                       icon="chevron-down"
                       class="text-center text-muted text-08 text-1"

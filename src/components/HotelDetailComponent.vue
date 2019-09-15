@@ -78,7 +78,7 @@
                 </span>
               </p>
             </div>
-            <div class="row m-0 p-0 py-4 text-08" v-html="hotelDetailByLang.hotelIntro"></div>
+            <div class="row m-0 p-0 py-4 text-08 text-left d-block" v-html="hotelDetailByLang.hotelIntro"></div>
           </div>
           <div class="section-tour py-2" id="danhgia">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">

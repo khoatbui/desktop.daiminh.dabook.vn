@@ -277,7 +277,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .footer{
-  background-color:#102344;
+  // #102344
+  background-color:#1A2134;
 }
 .footer p,
     .footer a,

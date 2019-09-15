@@ -45,7 +45,7 @@
               <h3 class="text-xh1 font-weight-bold">{{miceByLang.miceName}}</h3>
               <font-awesome-icon icon="heart" class="text-center text-1" />
             </div>
-            <div class="row m-0 p-0 py-4 text-08" v-html="miceByLang.miceIntro"></div>
+            <div class="row m-0 p-0 py-4 text-08 text-left d-block" v-html="miceByLang.miceIntro"></div>
           </div>
 
           <div class="section-tour w-100 py-2" id="slide">

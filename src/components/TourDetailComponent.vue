@@ -70,7 +70,7 @@
         <div class="col-8 m-0 p-0 pr-3 text-left">
           <div class="section-tour py-2" id="thongtin">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3 class="text-xh1 font-weight-bold">{{tourDetailByLang.tourId.tourName}}</h3>
+              <h3 class="text-xh1">{{tourDetailByLang.tourId.tourName}}</h3>
               <font-awesome-icon icon="heart" class="text-center text-1" />
             </div>
             <div
@@ -89,11 +89,11 @@
                 {{$t('general_label_noticketchange')}}
               </span>
             </div>
-            <div class="row m-0 p-0 py-4 text-08">{{tourDetailByLang.tourId.tourIntro}}</div>
+            <div class="row m-0 p-0 py-4 text-08 text-left d-block">{{tourDetailByLang.tourId.tourIntro}}</div>
           </div>
           <div class="section-tour py-2" id="danhgia">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_vote')}}</h3>
+              <h3 class="text-xh12 info-title">{{$t('general_sticky_tab_vote')}}</h3>
             </div>
             <div class="row w-100 p-0 m-0 py-2 text-08">
               <ReviewComponent class="w-100"></ReviewComponent>
@@ -103,7 +103,7 @@
           <div class="section-tour py-2 second-background" id="chon">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
               <h3
-                class="text-xh1 info-title font-weight-bold"
+                class="text-xh12 info-title"
               >{{$t('general_sticky_tab_roomselect')}}</h3>
             </div>
             <div class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center">
@@ -266,37 +266,37 @@
           </div>
           <div class="section-tour py-2" id="program">
             <div class="row m-0 p-0 py-2">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_program')}}</h3>
+              <h3 class="text-xh12 info-title">{{$t('general_sticky_tab_program')}}</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.program"></div>
+            <div class="row p-0 m-0 py-2 text-08  text-left d-block" v-html="tourDetailByLang.program"></div>
           </div>
           <div class="section-tour py-2" id="service">
             <div class="row m-0 p-0 py-2">
               <h3
-                class="text-xh1 info-title font-weight-bold"
+                class="text-xh12 info-title"
               >{{$t('general_sticky_tab_serviceinclude')}}</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.serviceInclude"></div>
+            <div class="row p-0 m-0 py-2 text-08 text-left d-block" v-html="tourDetailByLang.serviceInclude"></div>
           </div>
           <div class="section-tour py-2" id="nonservice">
             <div class="row m-0 p-0 py-2">
               <h3
-                class="text-xh1 info-title font-weight-bold"
+                class="text-xh12 info-title"
               >{{$t('general_sticky_tab_servicenotinclude')}}</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.serviceNotInclude">></div>
+            <div class="row p-0 m-0 py-2 text-08 text-left d-block" v-html="tourDetailByLang.serviceNotInclude">></div>
           </div>
           <div class="section-tour py-2" id="shouldtake">
             <div class="row m-0 p-0 py-2">
               <h3
-                class="text-xh1 info-title font-weight-bold"
+                class="text-xh12 info-title"
               >{{$t('general_sticky_tab_shouldtake')}}</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08" v-html="tourDetailByLang.shouldTake"></div>
+            <div class="row p-0 m-0 py-2 text-08 text-left d-block" v-html="tourDetailByLang.shouldTake"></div>
           </div>
           <div class="section-tour py-2" id="map">
             <div class="row m-0 p-0 py-2">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_map')}}</h3>
+              <h3 class="text-xh12 info-title">{{$t('general_sticky_tab_map')}}</h3>
             </div>
             <div class="row p-0 m-0 py-2 text-08">
               <div class="map border-radius-10 w-100">
@@ -313,7 +313,7 @@
                   <p>
                     <span class="text-09 font-weight-bold text-muted pr-2">{{$t('general_from')}}</span>
                     <span
-                      class="text-xh1 font-bold"
+                      class="text-xh12 font-bold"
                     >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
                     <span
                       class="text-09 pl-4 font-weight-bold text-muted text-deco-line-through"
@@ -354,7 +354,7 @@
                 >
                   <span class="text-09 text-muted mb-0">{{$t('general_label_total')}}</span>
                   <span
-                    class="text-xh1 text-info font-bold"
+                    class="text-xh12 text-info font-bold"
                   >{{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}}</span>
                 </div>
                 <div class="row m-0 p-0">

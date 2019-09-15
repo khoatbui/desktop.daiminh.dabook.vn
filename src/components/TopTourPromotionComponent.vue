@@ -83,10 +83,8 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit("showHideLoading", true);
       const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded=true;
     },
     redirectToTourDetail(des) {

@@ -9,28 +9,21 @@
           <ul
             class="w-100 d-flex flex-row justify-content-start align-items-center bg-white m-0 p-2 sticky-tab"
           >
-            <li class="px-4">
+            <li class="pr-4">
               <a
                 href="#thongtin"
                 @click="sectionActive='thongtin'"
                 v-bind:class="{'section-active':sectionActive=='thongtin'}"
               >{{$t('general_sticky_tab_info')}}</a>
             </li>
-            <li class="px-4">
+            <li class="pr-4">
               <a
                 href="#danhgia"
                 @click="sectionActive='danhgia'"
                 v-bind:class="{'section-active':sectionActive=='danhgia'}"
               >{{$t('general_sticky_tab_vote')}}</a>
             </li>
-            <li class="px-4">
-              <a
-                href="#blog"
-                @click="sectionActive='blog'"
-                v-bind:class="{'section-active':sectionActive=='blog'}"
-              >Blog</a>
-            </li>
-            <li class="px-4">
+            <li class="pr-4">
               <a
                 href="#map"
                 @click="sectionActive='map'"
@@ -42,25 +35,26 @@
         <div class="col-8 m-0 p-0 pr-3 text-left">
           <div class="section-tour py-2" id="thongtin">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3 class="text-xh1 font-weight-bold">Dich vu xin visa du lich Viet Nam, Han Quoc</h3>
+              <h3 class="text-xh1">Dich vu xin visa du lich Viet Nam, Han Quoc</h3>
               <font-awesome-icon icon="heart" class="text-center text-1" />
             </div>
-            <div class="row m-0 p-0 py-4 text-08" v-html="travelServicesByLang.travelServiceIntro">
+            <div class="row m-0 p-0 py-4 text-08 text-left d-block" v-html="travelServicesByLang.travelServiceIntro">
               
             </div>
           </div>
           <div class="section-tour py-2" id="danhgia">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_vote')}}</h3>
+              <h3 class="text-xh12 info-title">{{$t('general_sticky_tab_vote')}}</h3>
             </div>
-            <div class="row p-0 m-0 py-2 text-08 d-flex justify-content-between align-items-center">
-              <p>{{$t('general_sticky_tab_vote_empty')}}</p>
+            <div class="row w-100 p-0 m-0 py-2 text-08">
+              <ReviewComponent class="w-100"></ReviewComponent>
+              <!-- <p>{{$t('general_sticky_tab_vote_empty')}}</p> -->
             </div>
           </div>
-          <div class="section-tour py-2 second-background" id="blog">
+          <!-- <div class="section-tour py-2 second-background" id="blog">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
               <h3
-                class="text-xh1 info-title font-weight-bold"
+                class="text-xh12 info-title"
               >{{$t('general_sticky_tab_roomselect')}}</h3>
             </div>
             <div
@@ -68,13 +62,12 @@
               id="accordionExample"
             >
               <div class="col-12 px-3 py-1">
-                <!-- BLOG -->
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="section-tour py-2" id="map">
             <div class="row m-0 p-0 py-2">
-              <h3 class="text-xh1 info-title font-weight-bold">{{$t('general_sticky_tab_map')}}</h3>
+              <h3 class="text-xh12 info-title">{{$t('general_sticky_tab_map')}}</h3>
             </div>
             <div class="row p-0 m-0 py-2 text-08">
               <div class="map border-radius-10 w-100">
@@ -229,6 +222,11 @@ export default {
     BackgroundHeaderComponent: lazyLoadComponent({
       componentFactory: () =>
         import("@/components/BackgroundHeaderComponent.vue"),
+      loading: SkeletonBox
+    }),
+    ReviewComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import("@/components/ReviewComponent.vue"),
       loading: SkeletonBox
     }),
     TopTourPromotionComponent: lazyLoadComponent({

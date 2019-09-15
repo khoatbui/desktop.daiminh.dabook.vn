@@ -77,10 +77,8 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit("showHideLoading", true);
       const response = await BlogService.getAllBlog();
       this.blogList = randomArray(response.data);
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded = true;
     }
   },

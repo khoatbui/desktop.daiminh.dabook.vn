@@ -175,7 +175,6 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit("showHideLoading", true);
       const response = await CityService.getTopCity();
       this.citys = randomArray(response.data);
       if (Object.keys(this.destinationData).length === 0) {
@@ -184,7 +183,6 @@ export default {
         );
         this.destinationData = responsedes.data;
       }
-      this.$store.commit("showHideLoading", false);
       this.componentLoaded = true;
     }
   },
