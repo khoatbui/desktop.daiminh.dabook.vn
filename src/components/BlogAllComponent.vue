@@ -57,7 +57,7 @@
                   <div class="col-8 p-3 m-0">
                     <div class="card-body p-0">
                       <div class="card-title m-0 text-color-50 text-06 d-flex justify-content-between align-items-center cursor-pointer" @click="redirectToDetailBlog(blog)">
-                        <h6 class="card-title text-x1 text-main-color m-0 cursor-pointer flex-grow">{{ blog.blogName }}</h6>
+                        <h6 class="card-title text-nomal text-x1 text-main-color m-0 cursor-pointer flex-grow">{{ blog.blogName }}</h6>
                         <span class="shadow">
                           <font-awesome-icon icon="heart" class="text-x1 text-center text-muted" />
                         </span>
@@ -147,7 +147,7 @@
                             />
                           </div>
                           <div class="col-7 p-0 px-2 text-left">
-                            <h6 class="one-line m-0 text-info cursor-pointer" @click="redirectToDetailBlog(blog)">{{ blog.blogName }}</h6>
+                            <h6 class="one-line m-0 text-nomal text-info cursor-pointer" @click="redirectToDetailBlog(blog)">{{ blog.blogName }}</h6>
                             <div class="text-muted two-line text-08" v-html="blog.blogIntro"></div>
                             <div class="text-muted two-line text-06">{{ moment(blog.createDate).format('YYYY-DD-MM') }}</div>
                           </div>

@@ -45,6 +45,11 @@
                     </carouselss>
                   </div>
                   <div class="row h-100 p-0 px-4 m-0">
+                    <div class="col-12 p-0 m-0 full-img my-2">
+                      <blockquote class="custom-blockquote">
+                        <p class="mb-0 text-08 font-italic" v-html="blogDetailByLang.blogId.blogIntro"></p>
+                      </blockquote>
+                    </div>
                     <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block01"></div>
                     <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block02"></div>
                     <div class="col-12 p-0 m-0 full-img" v-html="blogDetailByLang.block03"></div>
@@ -454,5 +459,11 @@ export default {
 }
 .related-card {
   overflow: hidden;
+}
+.custom-blockquote {
+  font-size: 0.8rem !important;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    border-left: 5px solid #eee;
 }
 </style>

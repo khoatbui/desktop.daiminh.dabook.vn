@@ -24,7 +24,7 @@
                   >{{adsDetailByLang.adsId.adsName}}</h2>
                   <p class="text-09 w-100 text-info">
                     <span
-                      class="bg-danger text-white font-bold text-left p-2 border-radius-100"
+                      class="bg-danger text-white font-bold text-left p-2 px-4 border-radius-100"
                     >{{moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')>0?`${moment(adsDetailByLang.adsId.endDate).diff(moment(), 'days')} days left`:'End'}}</span>
                   </p>
                 </div>
@@ -54,11 +54,11 @@
                   </carouselss>
                 </div> -->
                 <div class="row h-100 p-0 px-4 m-0 ads-content-block">
-                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block01"></div>
-                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block02"></div>
-                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block03"></div>
-                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block04"></div>
-                  <div class="col-12 p-0 m-0" v-html="adsDetailByLang.block05"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="adsDetailByLang.block01"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="adsDetailByLang.block02"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="adsDetailByLang.block03"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="adsDetailByLang.block04"></div>
+                  <div class="col-12 p-0 m-0 full-img" v-html="adsDetailByLang.block05"></div>
                 </div>
                 <div
                   class="row h-100 p-0 px-4 pb-4 m-0"
