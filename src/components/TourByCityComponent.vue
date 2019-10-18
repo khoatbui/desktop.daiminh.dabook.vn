@@ -74,17 +74,17 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
     },
     async initialByCity(cityId) {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await TourService.getTourPackageByCity();
       this.packages = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
     },
     redirectToTourDetail(des){

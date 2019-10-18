@@ -92,12 +92,12 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await TourService.getTopPromotionTourPackage();
       this.packages = randomArray(response.data);
       const responseads = await AdsService.getAllAds();
       this.ads = randomArray(responseads.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded = true;
     },
     

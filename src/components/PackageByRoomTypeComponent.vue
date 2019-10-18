@@ -72,10 +72,10 @@ export default {
   },
   methods: {
     async initial(hotelid,roomtypeid) {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await HotelService.getPackageByHotelRoomType(hotelid,roomtypeid);
       this.packages = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded = true
     },
     redirectToPackage(des){

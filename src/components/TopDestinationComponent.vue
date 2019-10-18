@@ -65,10 +65,10 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await DestinationService.getAllDestination();
       this.destinations = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
     },
     redirectToDestination(des){
        this.$router.push(

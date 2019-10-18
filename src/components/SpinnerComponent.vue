@@ -1,4 +1,5 @@
 <template>
+ <transition name="fade">
   <div id="spinner" v-if="showHide">
     <div class="loading">
       <img class="footer-logo" src="/img/main_logo_text.png" alt />
@@ -10,6 +11,7 @@
       />
     </div>
   </div>
+ </transition>
 </template>
 
 <script>
@@ -35,7 +37,12 @@ export default {
   height: 100vh;
   z-index: 999999999999999;
   background: #019ee2;
-  opacity: 0.9;
+  visibility: visible;
+  opacity: 1;
+}
+.hide{
+  visibility: hidden;
+  opacity: 0;
 }
 .loading {
   position: relative;
@@ -50,6 +57,11 @@ export default {
 .spinner-item {
   margin: 0 auto;
 }
-</style>>
-
+.fade-enter-active, .fade-leave-active {
+  transition: visibility 2s, opacity 2s linear;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  visibility: hidden;
+}
 </style>

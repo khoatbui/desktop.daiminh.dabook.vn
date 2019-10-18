@@ -8,7 +8,7 @@
       <div class="col-12 m-0 p-0 parent-absolute">
         <img class="w-100" src="/img/background/bg_10.jpg" alt />
         <div class="center-absolute text-center text-white">
-          <button class="explorer-btn shadow text-x06">
+          <button class="explorer-btn shadow text-x06"@click="redirectToTarget()">
             {{$t('pintroduce_btn_exploreus')}}
             <font-awesome-icon icon="play" class="text-center" />
           </button>
@@ -26,7 +26,11 @@ export default {
     return {};
   },
   mounted() {},
-  methods: {},
+  methods: {
+    redirectToTarget(){
+       this.$router.push('/about');
+    }
+  },
 };
 </script>
 

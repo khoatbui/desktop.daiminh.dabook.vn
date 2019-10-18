@@ -150,12 +150,12 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await TourService.getTourPackageByStyle(
         this.travelStyle._id
       );
       this.tour = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded = true;
     },
     redirectToTourDetail(des) {

@@ -83,10 +83,10 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await HotelService.getTopPromotionHotel();
       this.packages = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded=true;
     },
     redirectToHotelDetail(des){

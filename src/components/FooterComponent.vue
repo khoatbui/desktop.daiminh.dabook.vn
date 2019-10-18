@@ -36,7 +36,7 @@
                 <li>
                   <span>
                     <font-awesome-icon icon="phone" class="text-center mr-2" />
-                    </i>0243-562-3777/778
+                    0243-562-3777/778
                   </span>
                 </li>
                 <li>

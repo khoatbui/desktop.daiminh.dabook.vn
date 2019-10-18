@@ -424,3 +424,6 @@ b, strong {
 .custom-bg-success{
   background-image: linear-gradient(to right, #009efd 0%, #2af598 100%);
 }
+.rhombus{
+  border-radius: 100px !important;
+}

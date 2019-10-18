@@ -103,10 +103,10 @@ export default {
   },
   methods: {
     async initial() {
-      this.$store.commit('showHideLoading', true);
+      // this.$store.commit('showHideLoading', true);
       const response = await DestinationService.getDestinationByAreaCountry(this.area._id);
       this.destination = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      // this.$store.commit('showHideLoading', false);
       this.componentLoaded =true;
     },
     redirectToDestination(des){
