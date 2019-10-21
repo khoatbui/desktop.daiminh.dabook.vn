@@ -514,7 +514,13 @@ export default {
         var parram = {
           customer: this.customer,
           order: this.$store.state.tour.order,
-          tour: this.$store.state.tour.tourDetail,
+          tour: {
+            tourId:this.$store.state.tour.tourDetail._id,
+            tourCode:this.$store.state.tour.tourDetail.tourCode,
+            tourName:this.$store.state.tour.tourDetail.tourName,
+            from:this.$store.state.tour.tourDetail.from,
+            to:this.$store.state.tour.tourDetail.to,
+          },
           request: this.order
         };
         const response = MailService.sendMailWithTourBooking(parram);
