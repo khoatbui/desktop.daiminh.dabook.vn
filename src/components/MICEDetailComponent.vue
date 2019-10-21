@@ -155,46 +155,23 @@
                 <div class="row m-0 p-0 py-4 justify-content-between align-items-center">
                   <div class="col-12 m-0 p-0">
                     <div class="row mb-3">
-                      <div class="col-6 text-left">
+                      <div class="col-12 text-left">
                         <label
                           class="text-08 mb-1"
-                          for="ifirstname"
-                          v-bind:class="formCheck.firstName.label"
-                        >{{$t('general_label_firstname')}}</label>
+                          for="ifullname"
+                          v-bind:class="formCheck.fullName.label"
+                        >{{$t('general_label_fullname')}}</label>
                         <input
                           class="custom-form-input custom-form-input-md border-radius-5"
                           type="text"
-                          id="ifirstname"
-                          v-model="customer.firstName"
-                          v-bind:class="formCheck.firstName.input"
-                        />
-                      </div>
-                      <div class="col-6 text-left">
-                        <label
-                          class="text-08 mb-1"
-                          for="ilastname"
-                          v-bind:class="formCheck.lastName.label"
-                        >{{$t('general_label_lastname')}}</label>
-                        <input
-                          class="custom-form-input custom-form-input-md border-radius-5"
-                          type="text"
-                          id="ilastname"
-                          v-model="customer.lastName"
-                          v-bind:class="formCheck.lastName.input"
+                          id="ifullname"
+                          v-model="customer.fullName"
+                          v-bind:class="formCheck.fullName.input"
                         />
                       </div>
                     </div>
                     <div class="row mb-3">
-                      <div class="col-6 text-left">
-                        <label class="text-08 mb-1" for="icountry">{{$t('general_label_country')}}</label>
-                        <input
-                          class="custom-form-input custom-form-input-md border-radius-5"
-                          type="text"
-                          id="icountry"
-                          v-model="customer.country"
-                        />
-                      </div>
-                      <div class="col-6 text-left">
+                      <div class="col-12 text-left">
                         <label
                           class="text-08 mb-1"
                           for="iphone"
@@ -270,6 +247,7 @@ import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import MICEService from "@/api/MICEService";
 import BlogService from "@/api/BlogService";
+import MailService from "@/api/MailService";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
@@ -318,24 +296,17 @@ export default {
       mice: {},
       miceBlog: [],
       customer: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         phone: "",
-        country: ""
+        requestType:"",
+        message:"Yêu cầu tư vấn"
       },
       formCheck: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         phone: "",
         isFail: true
-      },
-      order: {
-        guest: {
-          guest: { qty: 1 },
-          child: { qty: 0 }
-        }
       },
       maplink:
         '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119175.80490038882!2d105.7844322251528!3d21.022924670241864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454aa2523524d%3A0x23546fd77caee54b!2zQ8O0bmcgVHkgVG5oaCBUaMawxqFuZyBN4bqhaSBE4buLY2ggVuG7pSAmIER1IEzhu4tjaCDEkOG6oWkgTWluaCAtIMSQ4bqhaSBNaW5oIFRyYXZlbA!5e0!3m2!1svi!2s!4v1566322188277!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>'
@@ -364,22 +335,10 @@ export default {
       this.componentLoaded.miceBlog = true;
     },
     formChecking() {
-      if (this.customer.firstName.length === 0) {
+      if (this.customer.fullName.length === 0) {
         this.formCheck = {
-          firstName: { label: "text-danger", input: "border-outline-danger" },
-          lastName: "",
+          fullName: { label: "text-danger", input: "border-outline-danger" },
           email: "",
-          phone: "",
-          isFail: false
-        };
-        window.location.href = "#ithongtindathang";
-        $("#collapseCustomer").collapse("show");
-        return false;
-      } else if (this.customer.email.length === 0) {
-        this.formCheck = {
-          firstName: "",
-          lastName: "",
-          email: { label: "text-danger", input: "border-outline-danger" },
           phone: "",
           isFail: false
         };
@@ -388,8 +347,7 @@ export default {
         return false;
       } else if (this.customer.phone.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: { label: "text-danger", input: "border-outline-danger" },
           isFail: false
@@ -397,21 +355,20 @@ export default {
         window.location.href = "#ithongtindathang";
         $("#collapseCustomer").collapse("show");
         return false;
-      } else if (this.customer.lastName.length === 0) {
+      } else if (this.customer.email.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: { label: "text-danger", input: "border-outline-danger" },
-          email: "",
+          fullName: "",
+          lastName: "",
+          email: { label: "text-danger", input: "border-outline-danger" },
           phone: "",
           isFail: false
         };
         window.location.href = "#ithongtindathang";
         $("#collapseCustomer").collapse("show");
         return false;
-      } else {
+      }  else {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: "",
           isFail: true
@@ -421,6 +378,17 @@ export default {
     },
     requestBooking() {
       if (this.formChecking()) {
+        this.customer.requestType=(this.mice.miceIntros.filter(function(item){
+          return item.lang.toUpperCase()=='EN'
+        }))[0].miceName.toUpperCase();
+        const response = MailService.sendMailWithGeneralQuestion(
+            this.customer
+          );
+          this.$vs.notify({
+            title: "Thank you",
+            text: "We will call you back",
+            color: "primary"
+          });
         $("#bookingModal").modal("show");
       }
     },

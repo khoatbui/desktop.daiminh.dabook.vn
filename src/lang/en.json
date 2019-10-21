@@ -264,6 +264,7 @@
   "general_label_confirm": "Re-confirmation",
   "general_label_payment": "Payment",
   "general_label_finish": "Total",
+  "general_label_fullname": "Your Name",
   "general_label_firstname": "Given Name",
   "general_label_lastname": "Sur Name",
   "general_label_country": "Nationality",

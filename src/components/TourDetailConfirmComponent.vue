@@ -33,46 +33,23 @@
                 </div>
                 <div class="collapse show" id="collapseCustomer">
                   <div class="row mb-3">
-                    <div class="col-4 text-left">
+                    <div class="col-8 text-left">
                       <label
                         class="text-08 mb-1"
-                        for="ifirstname"
-                        v-bind:class="formCheck.firstName.label"
-                      >{{$t('general_label_firstname')}}</label>
+                        for="ifullname"
+                        v-bind:class="formCheck.fullName.label"
+                      >{{$t('general_label_fullname')}}</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
-                        id="ifirstname"
-                        v-model="customer.firstName"
-                        v-bind:class="formCheck.firstName.input"
-                      />
-                    </div>
-                    <div class="col-4 text-left">
-                      <label
-                        class="text-08 mb-1"
-                        for="ilastname"
-                        v-bind:class="formCheck.lastName.label"
-                      >{{$t('general_label_lastname')}}</label>
-                      <input
-                        class="custom-form-input custom-form-input-md border-radius-5"
-                        type="text"
-                        id="ilastname"
-                        v-model="customer.lastName"
-                        v-bind:class="formCheck.lastName.input"
+                        id="ifullname"
+                        v-model="customer.fullName"
+                        v-bind:class="formCheck.fullName.input"
                       />
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <div class="col-4 text-left">
-                      <label class="text-08 mb-1" for="icountry">{{$t('general_label_country')}}</label>
-                      <input
-                        class="custom-form-input custom-form-input-md border-radius-5"
-                        type="text"
-                        id="icountry"
-                        v-model="customer.country"
-                      />
-                    </div>
-                    <div class="col-4 text-left">
+                    <div class="col-8 text-left">
                       <label
                         class="text-08 mb-1"
                         for="iphone"
@@ -184,14 +161,32 @@
                 </div>
                 <div class="collapse" id="collapsePickup">
                   <div class="row mb-3">
-                    <div class="col-4 text-left">
-                      <label class="text-08 mb-1" for="ifirstname">{{$t('general_label_guidlinelanguage')}}</label>
-                      <input
-                        class="custom-form-input custom-form-input-md border-radius-5"
-                        type="text"
-                        id="ifirstname"
-                        v-model="order.translatorLang"
-                      />
+                    <div class="col-8 text-left">
+                      <label
+                        class="text-08 mb-1"
+                        for="itranslatorLang"
+                      >{{$t('general_label_guidlinelanguage')}}</label>
+                      <div class="d-flex justify-content-start align-items-center">
+                        <vs-radio
+                          v-model="order.translatorLang"
+                          vs-name="translatorLang"
+                          vs-value="English"
+                          class="mr-2"
+                          selected
+                        >English</vs-radio>
+                        <vs-radio
+                          v-model="order.translatorLang"
+                          vs-name="translatorLang"
+                          vs-value="Vietnamese"
+                          class="mr-2"
+                        >Vietnamese</vs-radio>
+                        <vs-radio
+                          v-model="order.translatorLang"
+                          vs-name="translatorLang"
+                          vs-value="Korean"
+                          class="mr-2"
+                        >Korean</vs-radio>
+                      </div>
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -201,18 +196,21 @@
                         for="ipickuplocation"
                         v-bind:class="formCheck.pickupLocation.label"
                       >{{$t('general_label_pickuplocation')}}</label>
-                      <textarea
-                        class="custom-form-input custom-form-text-md border-radius-5"
+                      <input
+                        class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
                         id="ipickuplocation"
                         v-model="order.pickupLocation"
                         v-bind:class="formCheck.pickupLocation.input"
-                      ></textarea>
+                      />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-8 text-left">
-                      <label class="text-08 mb-1" for="imessage">{{$t('general_label_anotherquestion')}}</label>
+                      <label
+                        class="text-08 mb-1"
+                        for="imessage"
+                      >{{$t('general_label_anotherquestion')}}</label>
                       <textarea
                         class="custom-form-input custom-form-text-md border-radius-5"
                         type="text"
@@ -302,7 +300,11 @@
             <div class="card-body">
               <div class="row m-0 p-0 mb-4">
                 <div class="col-12 m-0 p-0 height-150">
-                  <ModalDetailImageComponent :imgs="selectedTour.tourDetail.tourId.tourImages" :root="''" :minheight="'300px'"></ModalDetailImageComponent>
+                  <ModalDetailImageComponent
+                    :imgs="selectedTour.tourDetail.tourId.tourImages"
+                    :root="''"
+                    :minheight="'300px'"
+                  ></ModalDetailImageComponent>
                 </div>
                 <div class="col-12 m-0 p-0 text-left border-bottom">
                   <h3 class="text-xh1">{{selectedTour.tourDetail.tourId.tourName}}</h3>
@@ -350,11 +352,11 @@
         </div>
       </div>
     </div>
-      <div class="container-fluid my-0 mt-2 py-4 second-background">
-        <div class="container p-0">
-          <TopHotelPromotionComponent :isTitle="true" :paginationEnabled="false"></TopHotelPromotionComponent>
-        </div>
+    <div class="container-fluid my-0 mt-2 py-4 second-background">
+      <div class="container p-0">
+        <TopHotelPromotionComponent :isTitle="true" :paginationEnabled="false"></TopHotelPromotionComponent>
       </div>
+    </div>
     <div
       class="modal fade"
       id="bookingModal"
@@ -367,7 +369,8 @@
         <div class="modal-content">
           <div class="modal-header border-bottom pb-3 text-left">
             <h6 class="modal-title" id="bookingModalLabel">
-              <span class="badge badge-success">{{bookingResult.orderStatus}}</span> {{$t('general_label_thankyouusingservice')}}
+              <span class="badge badge-success">{{bookingResult.orderStatus}}</span>
+              {{$t('general_label_thankyouusingservice')}}
             </h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -390,7 +393,11 @@
               id="ihidden-input"
               v-model="bookingResult.transactionCode"
             />
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{$t('general_btn_close')}}</button>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              data-dismiss="modal"
+            >{{$t('general_btn_close')}}</button>
             <button
               type="button"
               class="btn btn-primary btn-sm btn-info"
@@ -404,9 +411,10 @@
 </template>
 
 <script>
-import TourService from '@/api/TourService';
-import lazyLoadComponent from '@/utils/lazy-load-component';
-import SkeletonBox from '@/components/SkeletonBox.vue';
+import TourService from "@/api/TourService";
+import lazyLoadComponent from "@/utils/lazy-load-component";
+import SkeletonBox from "@/components/SkeletonBox.vue";
+import MailService from "@/api/MailService";
 
 function randomArray(array) {
   const array2 = [];
@@ -420,52 +428,52 @@ function randomArray(array) {
 export default {
   components: {
     ModalDetailImageComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/ModalDetailImageComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () =>
+        import("@/components/ModalDetailImageComponent.vue"),
+      loading: SkeletonBox
     }),
     PaymentComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/PaymentComponent.vue'),
-      loading: SkeletonBox,
+      componentFactory: () => import("@/components/PaymentComponent.vue"),
+      loading: SkeletonBox
     }),
     TopHotelPromotionComponent: lazyLoadComponent({
-      componentFactory: () => import('@/components/TopHotelPromotionComponent.vue'),
-      loading: SkeletonBox,
-    }),
+      componentFactory: () =>
+        import("@/components/TopHotelPromotionComponent.vue"),
+      loading: SkeletonBox
+    })
   },
-  name: 'TourDetailConfirmComponent',
+  name: "TourDetailConfirmComponent",
   props: {
-    msg: String,
+    msg: String
   },
   data() {
     return {
       componentLoaded: false,
       order: {
-        discountCode: '',
-        translatorLang: '',
-        pickupLocation: '',
-        otherRequest: '',
+        discountCode: "",
+        translatorLang: "English",
+        pickupLocation: "",
+        otherRequest: ""
       },
       customer: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        country: '',
+        fullName: "",
+        email: "",
+        phone: "",
+        country: ""
       },
       formCheck: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        pickupLocation: '',
-        isFail: true,
+        fullName: "",
+        email: "",
+        phone: "",
+        pickupLocation: "",
+        isFail: true
       },
       bookingResult: {
-        transactionCode: '',
-        orderStatus: '',
-        replyTime: '',
-        requestStatus: false,
-      },
+        transactionCode: "",
+        orderStatus: "",
+        replyTime: "",
+        requestStatus: false
+      }
     };
   },
   mounted() {
@@ -473,141 +481,125 @@ export default {
   },
   methods: {
     async initial(tourId) {
-      this.$store.commit('showHideLoading', true);
+      this.$store.commit("showHideLoading", true);
       const response = await TourService.GetTourDetailById(tourId);
       this.citys = randomArray(response.data);
-      this.$store.commit('showHideLoading', false);
+      this.$store.commit("showHideLoading", false);
       this.componentLoaded = true;
     },
     finishThongTinKhachHang() {
-      $('#collapseCustomer').collapse('hide');
-      $('#collapseDiscount').collapse('show');
+      $("#collapseCustomer").collapse("hide");
+      $("#collapseDiscount").collapse("show");
       if (
-        this.formCheck.firstName !== ''
-        && this.formCheck.lastName !== ''
-        && this.formCheck.email !== ''
-        && this.formCheck.phone !== ''
+        this.formCheck.fullName !== "" &&
+        this.formCheck.email !== "" &&
+        this.formCheck.phone !== ""
       ) {
-        window.location.href = '#imagiamgia';
+        window.location.href = "#imagiamgia";
       }
     },
     finishMaGiamGia() {
-      $('#collapseDiscount').collapse('hide');
-      $('#collapsePickup').collapse('show');
+      $("#collapseDiscount").collapse("hide");
+      $("#collapsePickup").collapse("show");
     },
     finishThongTinDuaDon() {
-      $('#collapsePickup').collapse('hide');
-      $('#collapsePayment').collapse('show');
-      if (this.formCheck.pickupLocation !== '') {
-        window.location.href = '#iphuongthucthanhtoan';
+      $("#collapsePickup").collapse("hide");
+      $("#collapsePayment").collapse("show");
+      if (this.formCheck.pickupLocation !== "") {
+        window.location.href = "#iphuongthucthanhtoan";
       }
     },
     requestBooking() {
       if (this.formChecking()) {
-        $('#bookingModal').modal('show');
+        var parram = {
+          customer: this.customer,
+          order: this.$store.state.tour.order,
+          tour: this.$store.state.tour.tourDetail,
+          request: this.order
+        };
+        const response = MailService.sendMailWithTourBooking(parram);
+        $("#bookingModal").modal("show");
       }
     },
     formChecking() {
-      if (this.customer.firstName.length === 0) {
+      if (this.customer.fullName.length === 0) {
         this.formCheck = {
-          firstName: {
-            label: 'text-danger',
-            input: 'border-outline-danger',
+          fullName: {
+            label: "text-danger",
+            input: "border-outline-danger"
           },
-          lastName: '',
-          email: '',
-          phone: '',
-          pickupLocation: '',
-          isFail: false,
+          email: "",
+          phone: "",
+          pickupLocation: "",
+          isFail: false
         };
-        window.location.href = '#ithongtindathang';
-        $('#collapseCustomer').collapse('show');
+        window.location.href = "#ithongtindathang";
+        $("#collapseCustomer").collapse("show");
         return false;
       }
       if (this.customer.email.length === 0) {
         this.formCheck = {
-          firstName: '',
-          lastName: '',
+          fullName: "",
           email: {
-            label: 'text-danger',
-            input: 'border-outline-danger',
+            label: "text-danger",
+            input: "border-outline-danger"
           },
-          phone: '',
-          pickupLocation: '',
-          isFail: false,
+          phone: "",
+          pickupLocation: "",
+          isFail: false
         };
-        window.location.href = '#ithongtindathang';
-        $('#collapseCustomer').collapse('show');
+        window.location.href = "#ithongtindathang";
+        $("#collapseCustomer").collapse("show");
         return false;
       }
       if (this.customer.phone.length === 0) {
         this.formCheck = {
-          firstName: '',
-          lastName: '',
-          email: '',
+          fullName: "",
+          email: "",
           phone: {
-            label: 'text-danger',
-            input: 'border-outline-danger',
+            label: "text-danger",
+            input: "border-outline-danger"
           },
-          pickupLocation: '',
-          isFail: false,
+          pickupLocation: "",
+          isFail: false
         };
-        window.location.href = '#ithongtindathang';
-        $('#collapseCustomer').collapse('show');
+        window.location.href = "#ithongtindathang";
+        $("#collapseCustomer").collapse("show");
         return false;
       }
       if (this.order.pickupLocation.length === 0) {
         this.formCheck = {
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
+          fullName: "",
+          email: "",
+          phone: "",
           pickupLocation: {
-            label: 'text-danger',
-            input: 'border-outline-danger',
+            label: "text-danger",
+            input: "border-outline-danger"
           },
-          isFail: false,
+          isFail: false
         };
-        window.location.href = '#ithongtinduadon';
-        $('#collapsePickup').collapse('show');
+        window.location.href = "#ithongtinduadon";
+        $("#collapsePickup").collapse("show");
         return false;
-      }
-      if (this.customer.lastName.length === 0) {
+      } else {
         this.formCheck = {
-          firstName: '',
-          lastName: {
-            label: 'text-danger',
-            input: 'border-outline-danger',
-          },
-          email: '',
-          phone: '',
-          pickupLocation: '',
-          isFail: false,
-        };
-        window.location.href = '#ithongtindathang';
-        $('#collapseCustomer').collapse('show');
-        return false;
-      }
-      else {
-        this.formCheck = {
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          pickupLocation: '',
-          isFail: true,
+          fullName: "",
+          email: "",
+          phone: "",
+          pickupLocation: "",
+          isFail: true
         };
         return true;
       }
     },
-    transactionCopy() {},
+    transactionCopy() {}
   },
   computed: {
     selectedTour() {
       if (!this.componentLoaded) return null;
       return this.$store.state.tour;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -622,10 +614,10 @@ export default {
   left: 10px;
   color: #ffffff;
 }
-.collapse{
-display: none ;
+.collapse {
+  display: none;
 }
 .collapse.show {
-  display: block ;
+  display: block;
 }
 </style>

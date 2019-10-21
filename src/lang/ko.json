@@ -263,6 +263,7 @@
   "general_label_confirm":"재확인",
   "general_label_payment":"결제",
   "general_label_finish":"total",
+  "general_label_fullname": "Your Name",
   "general_label_firstname":"이름",
   "general_label_lastname":"성",
   "general_label_country":"국적",
