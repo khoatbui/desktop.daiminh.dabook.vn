@@ -383,7 +383,7 @@
             </p>
             <p
               class="text-mutedt text-08"
-            >{{$t('general_label_wewillcontactat')}} {{bookingResult.replyTime}} {{$t('general_label_date')}}</p>
+            >{{$t('general_label_wewillcontactat')}} {{bookingResult.replyTime}} {{$t('general_label_hour')}}</p>
           </div>
           <div class="modal-footer">
             <input
@@ -515,16 +515,25 @@ export default {
           customer: this.customer,
           order: this.$store.state.tour.order,
           tour: {
-            tourId:this.$store.state.tour.tourDetail._id,
-            tourCode:this.$store.state.tour.tourDetail.tourCode,
-            tourName:this.$store.state.tour.tourDetail.tourName,
-            from:this.$store.state.tour.tourDetail.from,
-            to:this.$store.state.tour.tourDetail.to,
+            tourId: this.$store.state.tour.tourDetail._id,
+            tourCode: this.$store.state.tour.tourDetail.tourId.tourCode,
+            tourName: this.$store.state.tour.tourDetail.tourId.tourName,
+            from: this.$store.state.tour.tourDetail.tourId.from,
+            to: this.$store.state.tour.tourDetail.tourId.to
           },
           request: this.order
         };
         const response = MailService.sendMailWithTourBooking(parram);
-        $("#bookingModal").modal("show");
+        response.then(
+          result => {
+            console.log(result);
+            this.bookingResult.transactionCode=result.data.orderCode;
+            this.bookingResult.orderStatus=result.data.requestStatus;
+            this.bookingResult.replyTime=result.data.feedbackTime;
+            $("#bookingModal").modal("show");
+          },
+          error => alert(error) // doesn't run
+        );
       }
     },
     formChecking() {
@@ -598,11 +607,17 @@ export default {
         return true;
       }
     },
-    transactionCopy() {}
+    transactionCopy() {
+      this.$vs.notify({
+            title: "Copied!",
+            color: "primary"
+          });
+    }
   },
   computed: {
     selectedTour() {
       if (!this.componentLoaded) return null;
+      console.log(this.$store.state.tour);
       return this.$store.state.tour;
     }
   }
