@@ -82,20 +82,23 @@ export default {
           this.$vs.notify({
             title: "Thank you",
             text: "We will call you back",
-            color: "primary"
+            color: "primary",
+            position:'top-right'
           });
         } else {
           this.$vs.notify({
             title: "Opp!",
             text: "Please input you name, phone, email and message",
-            color: "warning"
+            color: "warning",
+            position:'top-right'
           });
         }
       } else {
         this.$vs.notify({
           title: "Opp!",
           text: "Please input correct email",
-          color: "warning"
+          color: "warning",
+          position:'top-right'
         });
       }
     },
