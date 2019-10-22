@@ -7,6 +7,9 @@ const Mail = {
   },
   sendMailWithTourBooking(parram){
     return axios.post(`${api}/mail/tour-booking`,parram);
+  },
+  sendMailWithCarBooking(parram){
+    return axios.post(`${api}/mail/car-booking`,parram);
   }
 };
 

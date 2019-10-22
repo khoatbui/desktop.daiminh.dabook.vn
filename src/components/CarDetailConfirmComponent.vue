@@ -33,46 +33,23 @@
                 </div>
                 <div class="collapse show" id="collapseCustomer">
                   <div class="row mb-3">
-                    <div class="col-4 text-left">
+                    <div class="col-8 text-left">
                       <label
                         class="text-08 mb-1"
                         for="ifirstname"
-                        v-bind:class="formCheck.firstName.label"
+                        v-bind:class="formCheck.fullName.label"
                       >Ten</label>
                       <input
                         class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
                         id="ifirstname"
-                        v-model="customer.firstName"
-                        v-bind:class="formCheck.firstName.input"
-                      />
-                    </div>
-                    <div class="col-4 text-left">
-                      <label
-                        class="text-08 mb-1"
-                        for="ilastname"
-                        v-bind:class="formCheck.lastName.label"
-                      >Ho</label>
-                      <input
-                        class="custom-form-input custom-form-input-md border-radius-5"
-                        type="text"
-                        id="ilastname"
-                        v-model="customer.lastName"
-                        v-bind:class="formCheck.lastName.input"
+                        v-model="customer.fullName"
+                        v-bind:class="formCheck.fullName.input"
                       />
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <div class="col-4 text-left">
-                      <label class="text-08 mb-1" for="icountry">Quoc gia</label>
-                      <input
-                        class="custom-form-input custom-form-input-md border-radius-5"
-                        type="text"
-                        id="icountry"
-                        v-model="customer.country"
-                      />
-                    </div>
-                    <div class="col-4 text-left">
+                    <div class="col-8 text-left">
                       <label
                         class="text-08 mb-1"
                         for="iphone"
@@ -184,30 +161,30 @@
                 </div>
                 <div class="collapse" id="collapsePickup">
                   <div class="row mb-3">
-                    <div class="col-4 text-left">
-                      <label class="text-08 mb-1" for="ifirstname">Ngon ngu huong dan vien</label>
-                      <input
-                        class="custom-form-input custom-form-input-md border-radius-5"
-                        type="text"
-                        id="ifirstname"
-                        v-model="order.translatorLang"
-                      />
-                    </div>
-                  </div>
-                  <div class="row mb-3">
                     <div class="col-8 text-left">
                       <label
                         class="text-08 mb-1"
                         for="ipickuplocation"
                         v-bind:class="formCheck.pickupLocation.label"
                       >Dia diem dua don</label>
-                      <textarea
-                        class="custom-form-input custom-form-text-md border-radius-5"
+                       <input
+                        class="custom-form-input custom-form-input-md border-radius-5"
                         type="text"
                         id="ipickuplocation"
                         v-model="order.pickupLocation"
                         v-bind:class="formCheck.pickupLocation.input"
-                      ></textarea>
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-8 text-left">
+                      <label class="text-08 mb-1" for="idroplocation">Diem den</label>
+                      <input
+                        class="custom-form-input custom-form-input-md border-radius-5"
+                        type="text"
+                        id="idroplocation"
+                        v-model="order.dropLocation"
+                      />
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -433,20 +410,18 @@ export default {
       componentLoaded: false,
       order: {
         discountCode: "",
-        translatorLang: "",
         pickupLocation: "",
+        dropLocation:"",
         otherRequest: ""
       },
       customer: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         phone: "",
         country: ""
       },
       formCheck: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         phone: "",
         pickupLocation: "",
@@ -471,8 +446,7 @@ export default {
       $("#collapseCustomer").collapse("hide");
       $("#collapseDiscount").collapse("show");
       if (
-        this.formCheck.firstName != "" &&
-        this.formCheck.lastName != "" &&
+        this.formCheck.fullName != "" &&
         this.formCheck.email != "" &&
         this.formCheck.phone != ""
       ) {
@@ -491,15 +465,36 @@ export default {
       }
     },
     requestBooking() {
-      if (this.formChecking()) {
-        $("#bookingModal").modal("show");
+     if (this.formChecking()) {
+        var parram = {
+          customer: this.customer,
+          order: this.$store.state.car.order,
+          car: {
+            tripId: this.$store.state.car.carDetail._id,
+            carId: this.$store.state.car.carDetail.carId._id,
+            tourName: this.$store.state.car.carDetail.tripName,
+            from: this.$store.state.car.carDetail.fromLocation,
+            to: this.$store.state.car.carDetail.toLocation
+          },
+          request: this.order
+        };
+        const response = MailService.sendMailWithTourBooking(parram);
+        response.then(
+          result => {
+            console.log(result);
+            this.bookingResult.transactionCode=result.data.orderCode;
+            this.bookingResult.orderStatus=result.data.requestStatus;
+            this.bookingResult.replyTime=result.data.feedbackTime;
+            $("#bookingModal").modal("show");
+          },
+          error => alert(error) // doesn't run
+        );
       }
     },
     formChecking() {
-      if (this.customer.firstName.length === 0) {
+      if (this.customer.fullName.length === 0) {
         this.formCheck = {
-          firstName: { label: "text-danger", input: "border-outline-danger" },
-          lastName: "",
+          fullName: { label: "text-danger", input: "border-outline-danger" },
           email: "",
           phone: "",
           pickupLocation: "",
@@ -510,8 +505,7 @@ export default {
         return false;
       } else if (this.customer.email.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: { label: "text-danger", input: "border-outline-danger" },
           phone: "",
           pickupLocation: "",
@@ -522,8 +516,7 @@ export default {
         return false;
       } else if (this.customer.phone.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: { label: "text-danger", input: "border-outline-danger" },
           pickupLocation: "",
@@ -534,8 +527,7 @@ export default {
         return false;
       } else if (this.order.pickupLocation.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: "",
           pickupLocation: {
@@ -547,22 +539,9 @@ export default {
         window.location.href = "#ithongtinduadon";
         $("#collapsePickup").collapse("show");
         return false;
-      } else if (this.customer.lastName.length === 0) {
-        this.formCheck = {
-          firstName: "",
-          lastName: { label: "text-danger", input: "border-outline-danger" },
-          email: "",
-          phone: "",
-          pickupLocation: "",
-          isFail: false
-        };
-        window.location.href = "#ithongtindathang";
-        $("#collapseCustomer").collapse("show");
-        return false;
       } else {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: "",
           pickupLocation: "",
