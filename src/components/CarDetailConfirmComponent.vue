@@ -372,6 +372,7 @@ import { Carousel, Slide } from "vue-carousel";
 import CarService from "@/api/CarService";
 import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
+import MailService from "@/api/MailService";
 
 function randomArray(array) {
   const array2 = [];
@@ -466,22 +467,22 @@ export default {
     },
     requestBooking() {
      if (this.formChecking()) {
+       console.log(this.$store.state.car.carDetail);
         var parram = {
           customer: this.customer,
           order: this.$store.state.car.order,
-          car: {
+          trip: {
             tripId: this.$store.state.car.carDetail._id,
-            carId: this.$store.state.car.carDetail.carId._id,
-            tourName: this.$store.state.car.carDetail.tripName,
+            tripCode: this.$store.state.car.carDetail.tripCode,
+            tripName: this.$store.state.car.carDetail.tripName,
             from: this.$store.state.car.carDetail.fromLocation,
             to: this.$store.state.car.carDetail.toLocation
           },
           request: this.order
         };
-        const response = MailService.sendMailWithTourBooking(parram);
+        const response = MailService.sendMailWithCarBooking(parram);
         response.then(
           result => {
-            console.log(result);
             this.bookingResult.transactionCode=result.data.orderCode;
             this.bookingResult.orderStatus=result.data.requestStatus;
             this.bookingResult.replyTime=result.data.feedbackTime;
