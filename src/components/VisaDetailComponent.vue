@@ -1,7 +1,11 @@
 <template>
   <div class="tour-detail" v-if="componentLoaded">
     <div class="container py-4 my-0">
-      <ModalDetailImageComponent :imgs="travelServicesByLang.travelServiceImages" :root="''" :minheight="'300px'"></ModalDetailImageComponent>
+      <ModalDetailImageComponent
+        :imgs="travelServicesByLang.travelServiceImages"
+        :root="''"
+        :minheight="'300px'"
+      ></ModalDetailImageComponent>
     </div>
     <div class="container py-4 my-0 custom-sticky-component">
       <div class="row m-0 p-0">
@@ -38,9 +42,10 @@
               <h3 class="text-xh1">Dich vu xin visa du lich Viet Nam, Han Quoc</h3>
               <font-awesome-icon icon="heart" class="text-center text-1" />
             </div>
-            <div class="row m-0 p-0 py-4 text-08 text-left d-block" v-html="travelServicesByLang.travelServiceIntro">
-              
-            </div>
+            <div
+              class="row m-0 p-0 py-4 text-08 text-left d-block"
+              v-html="travelServicesByLang.travelServiceIntro"
+            ></div>
           </div>
           <div class="section-tour py-2" id="danhgia">
             <div class="row m-0 p-0 py-2 d-flex justify-content-between align-items-center">
@@ -64,7 +69,7 @@
               <div class="col-12 px-3 py-1">
               </div>
             </div>
-          </div> -->
+          </div>-->
           <div class="section-tour py-2" id="map">
             <div class="row m-0 p-0 py-2">
               <h3 class="text-xh12 info-title">{{$t('general_sticky_tab_map')}}</h3>
@@ -94,46 +99,23 @@
                 <div class="row m-0 p-0 py-4 justify-content-between align-items-center">
                   <div class="col-12 m-0 p-0">
                     <div class="row mb-3">
-                      <div class="col-6 text-left">
+                      <div class="col-12 text-left">
                         <label
                           class="text-08 mb-1"
-                          for="ifirstname"
-                          v-bind:class="formCheck.firstName.label"
-                        >{{$t('general_label_firstname')}}</label>
+                          for="ifullname"
+                          v-bind:class="formCheck.fullName.label"
+                        >{{$t('general_label_fullname')}}</label>
                         <input
                           class="custom-form-input custom-form-input-md border-radius-5"
                           type="text"
-                          id="ifirstname"
-                          v-model="customer.firstName"
-                          v-bind:class="formCheck.firstName.input"
-                        />
-                      </div>
-                      <div class="col-6 text-left">
-                        <label
-                          class="text-08 mb-1"
-                          for="ilastname"
-                          v-bind:class="formCheck.lastName.label"
-                        >{{$t('general_label_lastname')}}</label>
-                        <input
-                          class="custom-form-input custom-form-input-md border-radius-5"
-                          type="text"
-                          id="ilastname"
-                          v-model="customer.lastName"
-                          v-bind:class="formCheck.lastName.input"
+                          id="ifullname"
+                          v-model="customer.fullName"
+                          v-bind:class="formCheck.fullName.input"
                         />
                       </div>
                     </div>
                     <div class="row mb-3">
-                      <div class="col-6 text-left">
-                        <label class="text-08 mb-1" for="icountry">{{$t('general_label_country')}}</label>
-                        <input
-                          class="custom-form-input custom-form-input-md border-radius-5"
-                          type="text"
-                          id="icountry"
-                          v-model="customer.country"
-                        />
-                      </div>
-                      <div class="col-6 text-left">
+                      <div class="col-12 text-left">
                         <label
                           class="text-08 mb-1"
                           for="iphone"
@@ -167,7 +149,10 @@
                   </div>
                 </div>
                 <div class="row m-0 p-0">
-                  <a class="btn btn-info text-white text-nomal w-100" @click="requestBooking">Nhan tu van</a>
+                  <a
+                    class="btn btn-info text-white text-nomal w-100"
+                    @click="requestBooking"
+                  >Nhan tu van</a>
                 </div>
                 <div class="row m-0 p-0 text-muted">
                   <p class="my-1 text-08">
@@ -205,6 +190,7 @@ import lazyLoadComponent from "@/utils/lazy-load-component";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import TravelService from "@/api/TravelService";
 import DropdownListComponent from "@/components/DropdownListComponent.vue";
+import MailService from "@/api/MailService";
 
 import "@lazy-copilot/datetimepicker/dist/datetimepicker.css";
 import { DateTimePicker } from "@lazy-copilot/datetimepicker";
@@ -225,8 +211,7 @@ export default {
       loading: SkeletonBox
     }),
     ReviewComponent: lazyLoadComponent({
-      componentFactory: () =>
-        import("@/components/ReviewComponent.vue"),
+      componentFactory: () => import("@/components/ReviewComponent.vue"),
       loading: SkeletonBox
     }),
     TopTourPromotionComponent: lazyLoadComponent({
@@ -254,31 +239,17 @@ export default {
       sectionActive: "thongtin",
       travelServices: {},
       customer: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         phone: "",
-        country: ""
+        message: "Request for advisory",
+        requestType: "VISA"
       },
       formCheck: {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         phone: "",
         isFail: true
-      },
-      order: {
-        guest: {
-          guest: { qty: 1 },
-          child: { qty: 0 }
-        },
-        checkInDate: moment().format("YYYY/DD/MM"),
-        checkOutDate: moment().format("YYYY/DD/MM"),
-        totalPrice: 0,
-        hotel: {},
-        roomType: {},
-        package: {},
-        optionService: {}
       },
       maplink:
         '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119175.80490038882!2d105.7844322251528!3d21.022924670241864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454aa2523524d%3A0x23546fd77caee54b!2zQ8O0bmcgVHkgVG5oaCBUaMawxqFuZyBN4bqhaSBE4buLY2ggVuG7pSAmIER1IEzhu4tjaCDEkOG6oWkgTWluaCAtIMSQ4bqhaSBNaW5oIFRyYXZlbA!5e0!3m2!1svi!2s!4v1566322188277!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>'
@@ -294,12 +265,11 @@ export default {
       );
       this.travelServices = responseservice.data;
       this.componentLoaded = true;
-    }, 
+    },
     formChecking() {
-      if (this.customer.firstName.length === 0) {
+      if (this.customer.fullName.length === 0) {
         this.formCheck = {
-          firstName: { label: "text-danger", input: "border-outline-danger" },
-          lastName: "",
+          fullName: { label: "text-danger", input: "border-outline-danger" },
           email: "",
           phone: "",
           isFail: false
@@ -309,8 +279,7 @@ export default {
         return false;
       } else if (this.customer.email.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: { label: "text-danger", input: "border-outline-danger" },
           phone: "",
           isFail: false
@@ -320,8 +289,7 @@ export default {
         return false;
       } else if (this.customer.phone.length === 0) {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: { label: "text-danger", input: "border-outline-danger" },
           isFail: false
@@ -329,21 +297,9 @@ export default {
         window.location.href = "#ithongtindathang";
         $("#collapseCustomer").collapse("show");
         return false;
-      } else if (this.customer.lastName.length === 0) {
-        this.formCheck = {
-          firstName: "",
-          lastName: { label: "text-danger", input: "border-outline-danger" },
-          email: "",
-          phone: "",
-          isFail: false
-        };
-        window.location.href = "#ithongtindathang";
-        $("#collapseCustomer").collapse("show");
-        return false;
       } else {
         this.formCheck = {
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           phone: "",
           isFail: true
@@ -353,7 +309,25 @@ export default {
     },
     requestBooking() {
       if (this.formChecking()) {
-        $("#bookingModal").modal("show");
+        const response = MailService.sendMailWithGeneralQuestion(this.customer);
+        response.then(
+          result => {
+            this.$vs.notify({
+              title: "Thank you",
+              text: "We will call you back",
+              color: "primary",
+              position:'top-right'
+            });
+          },
+          error => {
+            this.$vs.notify({
+            title: "Opp!",
+            text: "We have backend error, Please call 19001542 to direct advisory",
+            color: "danger",
+            position:'top-right'
+          });
+          } // doesn't run
+        );
       }
     }
   },
